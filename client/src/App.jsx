@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import logo from "./assets/img/logo.png";
 import "./App.css";
+import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
   return (
     <div>
+      <NavBar />
       <h1 className="text-3xl font-bold underline">
         Hello world! Tailwind installed! ✨
       </h1>
