@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import logo from "./utils/img/logo.png";
+import logo from "./assets/img/logo.png";
 import "./App.css";
 
 const App = () => {
