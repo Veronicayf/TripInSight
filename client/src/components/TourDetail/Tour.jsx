@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import tourStyle from './tour.module.css'
 import TourInfoItem from '../TourInfoItem/TourInfoItem';
 import PhotoSection from '../PhotoSection/PhotoSection';
+import GuideSection from '../TourDetailGuideSection/GuideSection';
 import ImagePrincipal from '../../assets/img/Caballo1.jpg'
 import ImageSecundaria from '../../assets/img/Caballo2.jpg'
 import ImangeProvisoria1 from '../../assets/img/ciervo1.jpg'
@@ -138,12 +139,14 @@ const Tour = () => {
             />
         </section>
 {/*-------------- Guide Section --------------*/}
-        <section id='guide' className='flex-col px-4 w-3/4'>
-            <div className='flex items-center'>
-                <i className='h-12 content-center'><img className='h-10 w-10' src={iconTourDetail} alt="Tour Detail" /></i>
-                <h3 className='px-4 flex-grow text-3xl'>Guide</h3>
-            </div>
-        </section>
+        <GuideSection
+                icon={iconTourDetail}
+                title='Guide'
+                guideName='Fernando Alonso Pérez'
+                guideImage={ImangeProvisoria1}
+                guideDescription={`"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."`}
+            />
+        <footer> Aca va el footer</footer>
 
     </main>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 
 const PhotoSection = ({ icon, title, images }) => {
         return (
-        <section id='photos' className='flex-col px-4 w-3/4'>
+        <section id='photos' className='flex-col px-4 w-6/8'>
             <div className='flex items-center'>
                 <i className='h-12 content-center'>
                 <img className='h-10 w-10' src={icon} alt={title} />
