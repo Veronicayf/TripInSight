@@ -2,8 +2,12 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import tourStyle from './tour.module.css'
 import TourInfoItem from '../TourInfoItem/TourInfoItem';
+import PhotoSection from '../PhotoSection/PhotoSection';
 import ImagePrincipal from '../../assets/img/Caballo1.jpg'
 import ImageSecundaria from '../../assets/img/Caballo2.jpg'
+import ImangeProvisoria1 from '../../assets/img/ciervo1.jpg'
+import ImangeProvisoria2 from '../../assets/img/paisaje1.jpg'
+import ImangeProvisoria3 from '../../assets/img/paisaje2.jpg'
 import iconDay from '../../assets/icons/dayIcon.png'
 import iconCalendar from '../../assets/icons/calendarIcon.png'
 import iconpeople from '../../assets/icons/peopleIcon.png'
@@ -126,14 +130,21 @@ const Tour = () => {
         </section>
 {/*-------------- Photos tour --------------*/}
         <section id='photos' className='flex-col px-4 w-3/4'>
+
+            <PhotoSection
+                icon={iconPhoto}
+                title='Photos'
+                images={[ImangeProvisoria1, ImangeProvisoria2, ImangeProvisoria3,ImagePrincipal,ImageSecundaria , ImangeProvisoria2, ImangeProvisoria3,ImagePrincipal,ImageSecundaria]}
+            />
+        </section>
+{/*-------------- Guide Section --------------*/}
+        <section id='guide' className='flex-col px-4 w-3/4'>
             <div className='flex items-center'>
-                <i className='h-12 content-center'><img className='h-10 w-10' src={iconPhoto} alt="Tour Detail" /></i>
-                <h3 className='px-4 flex-grow text-3xl'>Photos</h3>
-            </div>
-            <div className=' columns-4 gap-3 w-full space-y-3 pb-28'>
-                <div className=' break-inside-avoid'><img src={caballo1} alt="" /></div>
+                <i className='h-12 content-center'><img className='h-10 w-10' src={iconTourDetail} alt="Tour Detail" /></i>
+                <h3 className='px-4 flex-grow text-3xl'>Guide</h3>
             </div>
         </section>
+
     </main>
   )
 }
