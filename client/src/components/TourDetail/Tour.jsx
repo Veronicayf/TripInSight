@@ -10,6 +10,7 @@ import iconpeople from '../../assets/icons/peopleIcon.png'
 import iconplace from '../../assets/icons/placeIcon.png'
 import iconTourDetail from'../../assets/icons/tourDetailicon.png'
 import IconIncludes from '../../assets/icons/includesIcon.png'
+import iconPhoto from '../../assets/icons/photosIcon.png'
 
 const Tour = () => {
   return (
@@ -98,13 +99,39 @@ const Tour = () => {
                 </div>
             </div>
             <div className='bg-seconday-text h-2 my-4'></div>
-            <div className=' w-full flex h-16'>
+            <div className=' w-full flex'>
                 <div className='w-1/3 flex justify-center text-lg'>
-                    <b>Travel time</b>
+                    <b>Included in the price</b>
                 </div>
-                <div className='w-2/3 flex text-lg'>
-                    <p>February 30 - May 32</p>
+                <div className=' flex-col'>
+                    <div className='w-2/3 flex text-lg py-1'>
+                        <i className='h-12 content-center'><img className='h-10 w-16' src={IconIncludes} alt="icon" /></i>
+                        <p className='px-4 flex-grow text-base'>Accommodation and overnight stay in all hotels in a shared room, the single supplement is €650</p>
+                    </div>
+                    <div className='w-2/3 flex text-lg py-1'>
+                        <i className='h-12 content-center'><img className='h-10 w-10' src={IconIncludes} alt="icon" /></i>
+                        <p className='px-4 flex-grow text-base'>All meals, breakfasts, lunches and dinners.</p>
+                    </div>
+                    <div className='w-2/3 flex text-lg py-1'>
+                        <i className='h-12 content-center'><img className='h-10 w-10' src={IconIncludes} alt="icon" /></i>
+                        <p className='px-4 flex-grow text-base'>Local bilingual guide throughout the trip</p>
+                    </div>
+                    <div className='w-2/3 flex text-lg py-1'>
+                        <i className='h-12 content-center'><img className='h-10 w-10' src={IconIncludes} alt="icon" /></i>
+                        <p className='px-4 flex-grow text-base'>Photographic guide and all its expenses</p>
+                    </div>
                 </div>
+            </div>
+            <div className='bg-seconday-text h-2 my-4'></div>
+        </section>
+{/*-------------- Photos tour --------------*/}
+        <section id='photos' className='flex-col px-4 w-3/4'>
+            <div className='flex items-center'>
+                <i className='h-12 content-center'><img className='h-10 w-10' src={iconPhoto} alt="Tour Detail" /></i>
+                <h3 className='px-4 flex-grow text-3xl'>Photos</h3>
+            </div>
+            <div className=' columns-4 gap-3 w-full space-y-3 pb-28'>
+                <div className=' break-inside-avoid'><img src={caballo1} alt="" /></div>
             </div>
         </section>
     </main>
