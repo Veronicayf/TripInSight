@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import logo from "./assets/img/logo.png";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/FootBar/FootBar";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         Hello world! Tailwind installed! ✨
       </h1>
       <img src={logo} alt="Trip In Sight" />
+      <Footer />
       <Routes>
         <Route path="/" />
         <Route path="/login" />
