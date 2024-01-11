@@ -4,11 +4,13 @@ import logo from "./assets/img/logo.png";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
+import Login from "./components/Login/Login";
 
 const App = () => {
   return (
     <div>
       <NavBar />
+      
       <h1 className="text-3xl font-bold underline">
         Hello world! Tailwind installed! ✨
       </h1>
@@ -16,7 +18,7 @@ const App = () => {
       <Footer />
       <Routes>
         <Route path="/" />
-        <Route path="/login" />
+        <Route path="/login" element={<Login />} />
         <Route path="/aboutus" />
         <Route path="/guides" />
         <Route path="/tours" />
