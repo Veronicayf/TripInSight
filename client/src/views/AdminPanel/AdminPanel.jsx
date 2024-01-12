@@ -48,7 +48,7 @@ const AdminPanel = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="bg-gray-800 text-white w-16 flex flex-col items-center">
+      <div className="bg-gray-800 text-white w-16 flex flex-col items-center justify-evenly">
         <button className="py-2 px-4 text-sm hover:bg-gray-700 focus:outline-none">
           Guides
         </button>
@@ -64,14 +64,24 @@ const AdminPanel = () => {
         <h1 className="text-2xl font-semibold mb-4">Admin Panel</h1>
 
         {/* Search Bar */}
-        <input
-          type="text"
-          placeholder="Search guides..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="mb-4 px-4 py-2 border border-gray-300 rounded w-full"
-        />
-
+        <div className="flex flex-row justify-evenly">
+          <div>
+            <input
+              type="text"
+              placeholder="Search guides..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="mb-4 px-4 py-2 border border-gray-300 rounded w-full"
+            />
+          </div>
+          <div>
+            <Link to="/form">
+              <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Add a Guide
+              </button>
+            </Link>
+          </div>
+        </div>
         {/* Table */}
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
