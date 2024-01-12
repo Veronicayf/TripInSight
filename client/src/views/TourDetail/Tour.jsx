@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import tourStyle from './tour.module.css'
-import TourInfoItem from '../TourInfoItem/TourInfoItem';
-import Buysection from '../Buysection/Buysection';
-import PhotoSection from '../PhotoSection/PhotoSection';
-import GuideSection from '../TourDetailGuideSection/GuideSection';
+import TourInfoItem from '../../components/TourInfoItem/TourInfoItem';
+import Buysection from '../../components/Buysection/Buysection';
+import PhotoSection from '../../components/PhotoSection/PhotoSection';
+import GuideSection from '../../components/TourDetailGuideSection/GuideSection';
 import ImagePrincipal from '../../assets/img/Caballo1.jpg'
 import ImageSecundaria from '../../assets/img/Caballo2.jpg'
 import ImangeProvisoria1 from '../../assets/img/ciervo1.jpg'
