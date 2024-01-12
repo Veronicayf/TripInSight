@@ -12,7 +12,7 @@ const NavBar = () => {
     <div className="bg-fixed bg-gradient-to-b from-black fixed to-transparent to-15% h-35 w-full font-bold text-white flex flex-row place-content-stretch">
       <div className="flex flex-row basis-2/5 justify-start items-center gap-5">
         <img src={logo} alt="Trip In Sight" className="w-28 h-28" />
-        <Link to="/home" className={` ${location.pathname === '/home' ? 'text-green-400' : ''}`}>
+        <Link to="/" className={` ${location.pathname === '/' ? 'text-green-400' : ''}`}>
           <h3>Home</h3>
         </Link>
         <Link to="/tours" className={` ${location.pathname === '/tours' ? 'text-green-400' : ''}`}>
