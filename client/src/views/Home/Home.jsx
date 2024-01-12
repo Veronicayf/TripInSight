@@ -67,7 +67,7 @@ const Home = () => {
       {/*<-- Subscribe section -->*/}
       <section>
             <div className="bg-bg-landscape bg-cover text-white flex p-24">
-            {/<-- Left -->/ }
+            {/*<-- Left --> */ }
                 <div className="flex flex-col w-1/2 justify-around items-center h-96">
                     <div className="w-5/6 h-5/6 m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
                         <div className="flex">
@@ -86,7 +86,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                {/<-- right -->/ }
+                {/*<-- right --> */ }
                 <div className="flex flex-col w-1/2 justify-around items-center h-96">
                     <div className="w-5/6 h-5/6 m-auto p-4 bg-primary opacity-75  flex flex-col rounded-3xl justify-around">
                         <div className="flex">
