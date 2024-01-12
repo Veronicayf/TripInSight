@@ -6,7 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+package-lock.json
 node_modules
 dist
 dist-ssr
@@ -17,6 +17,10 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
+.env.local
+.env.development.local
+.env.test.local.env.production.local
+.env
 *.suo
 *.ntvs*
 *.njsproj
