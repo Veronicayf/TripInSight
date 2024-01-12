@@ -60,7 +60,7 @@ const AdminPanel = () => {
         </button>
       </div>
 
-      <div className="flex-1 p-8">
+      <div className="flex-1 p-40">
         <h1 className="text-2xl font-semibold mb-4">Admin Panel</h1>
 
         {/* Search Bar */}
