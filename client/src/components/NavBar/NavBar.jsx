@@ -9,7 +9,7 @@ const NavBar = () => {
   const loginRout = location.pathname === "/login";
 
   return (
-    <div className="bg-fixed bg-gradient-to-b from-black to-transparent to-15% h-35 w-full font-bold text-white flex flex-row place-content-stretch">
+    <div className="bg-fixed bg-gradient-to-b from-black fixed to-transparent to-15% h-35 w-full font-bold text-white flex flex-row place-content-stretch">
       <div className="flex flex-row basis-2/5 justify-start items-center gap-5">
         <img src={logo} alt="Trip In Sight" className="w-28 h-28" />
         <Link to="/home" className={` ${location.pathname === '/home' ? 'text-green-400' : ''}`}>
@@ -27,13 +27,13 @@ const NavBar = () => {
           <SearchBar />
           <div className="flex flex-row  items-center gap-5">
             <Link to="/cart">
-              <button className="bg-white text-green-600 flex flex-row rounded-2xl items-center gap-3 p-1">
+              <button className="bg-white text-green-600 flex flex-row rounded-3xl items-center gap-3 p-1.5">
                 <img src={cart} alt="Cart" />
                 <h3>Cart</h3>
               </button>
             </Link>
             <Link to="/login">
-              <button className="bg-green-600 flex flex-row rounded-2xl items-center gap-3 p-1">
+              <button className="bg-green-600 flex flex-row rounded-3xl items-center gap-3 p-1.5">
                 <img src={login} alt="Login" />
                 <h3>Login</h3>
               </button>
