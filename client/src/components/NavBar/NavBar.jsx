@@ -9,7 +9,7 @@ const NavBar = () => {
   const loginRout = location.pathname === "/login";
 
   return (
-    <div className="bg-fixed bg-gradient-to-b from-black fixed to-transparent to-15% h-35 w-full font-bold text-white flex flex-row place-content-stretch">
+    <div className="bg-fixed bg-gradient-to-b from-black fixed z-50 to-transparent to-15% h-35 w-full font-bold text-white flex flex-row place-content-stretch">
       <div className="flex flex-row basis-2/5 justify-start items-center gap-5">
         <img src={logo} alt="Trip In Sight" className="w-28 h-28" />
         <Link to="/home" className={` ${location.pathname === '/home' ? 'text-green-400' : ''}`}>
