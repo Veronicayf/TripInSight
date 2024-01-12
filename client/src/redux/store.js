@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
-import tourReducer from "./tourSlice";
-import guideReducer from "./guideSlice";
+import userReducer from "./userStore/userSlice";
+import tourReducer from "./tourStore/tourSlice";
+import guideReducer from "./guideStore/guideSlice";
 
 export const store = configureStore({
   reducer: {
