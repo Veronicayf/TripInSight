@@ -6,6 +6,7 @@ import TourDetail from './components/TourDetail/Tour'
 import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
 import Login from "./components/Login/Login";
+import Home from "./components/Home/Home";
 
 const App = () => {
   return (
@@ -13,7 +14,7 @@ const App = () => {
       <NavBar />
       
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<Home/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" />
         <Route path="/guides" />
