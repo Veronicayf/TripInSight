@@ -1,7 +1,9 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { Link } from "react-router-dom";
 
 const AdminPanel = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   const guideData = [
     {
       id: 1,
@@ -37,6 +39,12 @@ const AdminPanel = () => {
     },
     // Add more guide data as needed
   ];
+  const filteredGuides = guideData.filter(
+    (guide) =>
+      guide.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      guide.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      guide.tour.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="flex h-screen">
@@ -55,6 +63,15 @@ const AdminPanel = () => {
       <div className="flex-1 p-8">
         <h1 className="text-2xl font-semibold mb-4">Admin Panel</h1>
 
+        {/* Search Bar */}
+        <input
+          type="text"
+          placeholder="Search guides..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="mb-4 px-4 py-2 border border-gray-300 rounded w-full"
+        />
+
         {/* Table */}
         <table className="min-w-full bg-white border border-gray-300">
           <thead>
@@ -68,7 +85,7 @@ const AdminPanel = () => {
             </tr>
           </thead>
           <tbody>
-            {guideData.map((guide) => (
+            {filteredGuides.map((guide) => (
               <tr key={guide.id}>
                 <td className="px-4 py-2">
                   <img
