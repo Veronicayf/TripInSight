@@ -1,6 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "./LoginButton";
-import LogoutButton from "./LogoutButton";
+import LoginButton from "../../components/Auth0/LoginButton";
+
 import paisaje1 from "./../../assets/img/paisaje1.jpg";
 import bghojas from "./../../assets/img/vector1.jpg";
 
