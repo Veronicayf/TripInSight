@@ -11,6 +11,7 @@ const App = () => {
   return (
     <div>
       <NavBar />
+      
       <Routes>
         <Route path="/" />
         <Route path="/login" element={<Login />} />
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/cart" />
         <Route path="/admin" />
       </Routes>
+      <Footer />
     </div>
   );
 };
