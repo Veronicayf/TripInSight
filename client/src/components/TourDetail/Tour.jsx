@@ -27,11 +27,6 @@ const Tour = () => {
 
   return (
     <main >
-        {/* NavBar Section */}
-        <section className='w-full flex justify-center bg-transparent'>
-            <p>Aca va a la navBar</p>
-        </section>
-
 {/* Image Section */}
         <section>
             <img src={ImagePrincipal} className='w-full h-auto overflow-hidden' alt="" />
