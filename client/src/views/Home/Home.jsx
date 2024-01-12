@@ -6,7 +6,7 @@ import ImageProvisoria1 from '../../assets/img/ciervo1.jpg'
 import ImageProvisoria2 from '../../assets/img/paisaje1.jpg'
 import ImageProvisoria3 from '../../assets/img/paisaje2.jpg'
 import IconGoTo from '../../assets/icons/gotoIcon.png'
-import Carousel from "../../components/Carrusel/Carousel";
+import Carousel from "../Carrusel/Carousel";
 
 const Home = () => {
   return (
