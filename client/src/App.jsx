@@ -12,6 +12,7 @@ import Register from "./components/Register/Register";
 
 
 import { useAuth0 } from "@auth0/auth0-react";
+// import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/cart" />
         <Route path="/admin" element={<AdminPanel />} />
         {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
+        {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
 
       </Routes>
       <Footer />
