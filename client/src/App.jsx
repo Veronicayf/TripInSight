@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/guide" />
         <Route path="/cart" />
         <Route path="/admin" element={<AdminPanel />} />
-        <Route path="/register" element={<Register setAuth={setAuth} />} />
+        {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
 
       </Routes>
       <Footer />
