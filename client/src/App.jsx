@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
+import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
   return (
