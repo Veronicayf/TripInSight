@@ -1,17 +1,9 @@
 import { React } from "react";
-import { useDispatch } from "react-redux";
-
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 const tourCard = ({
-  name,
-  city,
-  country,
-  initialDate,
-  endDate,
-  capacity,
-  price,
-  image,
+  tour
 }) => {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -23,20 +15,20 @@ const tourCard = ({
   };
 
   return (
-    <Link to={`/detail/${id}`} className="tourCard">
-      <img src={image} alt={name} className="TourImage" />
-      <h2>{name}</h2>
+    <Link to={`/detail/${tour.id}`} className="tourCard">
+      <img src={tour.image} alt={tour.nameTour} className="TourImage" />
+      <h2>{tour.nameTour}</h2>
       <p>
-        <strong>Location:</strong> {city}, {country}
+        <strong>Location:</strong> {tour.city}, {tour.country}
       </p>
       <p>
-        <span>Date:</span> {initialDate} - {endDate}
+        <span>Date:</span> {tour.initialDate} - {tour.endDate}
       </p>
       <p>
-        <span>Capacity:</span> {capacity}
+        <span>Capacity:</span> {tour.capacity}
       </p>
       <p>
-        <strong>Price:</strong> ${price}
+        <strong>Price:</strong> ${tour.price}
       </p>
     </Link>
   );
