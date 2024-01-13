@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
-import PruebaBack from "./views/pruebaBack/PruebaBack";
+import AdminPanel from "./views/AdminPanel/AdminPanel";
 
 const App = () => {
   return (
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/tour" element={<TourDetail />} />
         <Route path="/guide" />
         <Route path="/cart" />
-        <Route path="/admin" />
+        <Route path="/admin" element={<AdminPanel />} />
       </Routes>
       <Footer />
     </div>
