@@ -48,7 +48,7 @@ const AdminPanel = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="bg-gray-800 text-white w-16 flex flex-col items-center justify-evenly">
+      <div className="bg-gray-600 text-white w-16 flex flex-col items-center justify-evenly">
         <button className="py-2 px-4 text-sm hover:bg-gray-700 focus:outline-none">
           Guides
         </button>
