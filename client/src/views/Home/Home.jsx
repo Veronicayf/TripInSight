@@ -8,6 +8,8 @@ import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
 import IconGoTo from "../../assets/icons/gotoIcon.png";
 import IconSale from '../../assets/icons/IconSale.png'
 import Carousel from "../../components/Carrusel/Carousel";
+import IconStar from '../../assets/icons/IconStar.png'
+import ImageComentary from '../../assets/img/ComentariImage.png'
 
 
 const Home = () => {
@@ -103,6 +105,56 @@ const Home = () => {
                                 <Link><b>See Tours</b></Link>
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {/* <-- Comentary Section --> */}
+        <section>
+            <div className="flex justify-center item-center my-5">
+                <b className="text-4xl">What <b className=" text-primary">our costume</b> are sayin about us</b>
+            </div>
+            <div className=" flex flex-row justify-around items-center mb-6" >
+                {/* <-- Comentary --> */}
+                <div className=" w-1/3 flex flex-col justify-center items-center m-5">
+                    <div className="flex flex-col justify-center items-center">
+                        <img src={ImageComentary} alt="" className=" h-28 w-28" />
+                        <b>Brittany Clark</b>
+                        <div className="flex flex-row justify-center">
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                        </div>
+                        <p className=" text-center">The tours in this website are great i had benn really enjoy with my family! the team is very professional an taking care fo the customers. Will surely recommend to my firend to join this company!</p>
+                    </div>
+                </div>
+                {/* <-- Comentary --> */}
+                <div className=" w-1/3 flex flex-col justify-center items-center m-5 ">
+                    <div className="flex flex-col justify-center items-center">
+                        <img src={ImageComentary} alt="" className=" h-28 w-28" />
+                        <b>Brittany Clark</b>
+                        <div className="flex flex-row justify-center">
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                        </div>
+                        <p className=" text-center">The tours in this website are great i had benn really enjoy with my family! the team is very professional an taking care fo the customers. Will surely recommend to my firend to join this company!</p>
+                    </div>
+                </div>
+                {/* <-- Comentary --> */}
+                <div className=" w-1/3 flex flex-col justify-center items-center m-5">
+                    <div className="flex flex-col justify-center items-center">
+                        <img src={ImageComentary} alt="" className=" h-28 w-28" />
+                        <b>Brittany Clark</b>
+                        <div className="flex flex-row justify-center">
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                            <i ><img src={IconStar} alt="" className="h-8" /></i>
+                        </div>
+                        <p className=" text-center">The tours in this website are great i had benn really enjoy with my family! the team is very professional an taking care fo the customers. Will surely recommend to my firend to join this company!</p>
                     </div>
                 </div>
             </div>
