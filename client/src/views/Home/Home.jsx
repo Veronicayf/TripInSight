@@ -10,6 +10,8 @@ import IconSale from '../../assets/icons/IconSale.png'
 import Carousel from "../../components/Carrusel/Carousel";
 import IconStar from '../../assets/icons/IconStar.png'
 import ImageComentary from '../../assets/img/ComentariImage.png'
+import IconPlane from '../../assets/icons/IconPlane.png'
+import IconMail from '../../assets/icons/IconEmail.png'
 
 
 const Home = () => {
@@ -66,8 +68,8 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/*<-- Subscribe section -->*/}
-      <section>
+{/*<-- Subscribe section -->*/}
+<section>
             <div className="bg-bg-landscape bg-cover text-white flex p-24">
             {/*<-- Left --> */ }
                 <div className="flex flex-col w-1/2 justify-around items-center h-96">
@@ -97,18 +99,19 @@ const Home = () => {
                                 <p className="text-xl">Get update to special deals and exclusive offers</p>
                             </div>
                             <div className="flex items-center w-1/3">
-                            <i><img src={IconSale} alt="Sales Icon" className="h-38 w-36" /></i>
+                            <i><img src={IconPlane} alt="Sales Icon" className="h-38 w-36" /></i>
                             </div>
                         </div>
-                        <div className="h-12 flex justify-center">
-                            <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary">
-                                <Link><b>See Tours</b></Link>
-                            </button>
+                        <div className="h-12 flex justify-between bg-white text-black rounded-3xl items-center">
+                            <i className=" px-2"><img src={IconMail} alt="" /></i>
+                            <input className=" w-full outline-none" type="text" placeholder="Your Email Address..." />
+                            <button className=" bg-darkgreen-bg text-white w-40 h-12 rounded-3xl hover:bg-btn-hover" type="submit">Suscribe</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         {/* <-- Comentary Section --> */}
         <section>
             <div className="flex justify-center item-center my-5">
