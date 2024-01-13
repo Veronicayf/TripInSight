@@ -1,61 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-  user: {
-    forename: "",
-    surname: "",
-    nationality: "",
-    birthDate: "",
-    image: "",
-    email: "",
-    phoneNumber: "",
-  },
-  isLoading: false,
-  error: null,
-};
-
 export const userSlice = createSlice({
   name: "user",
-  initialState,
+  initialState: {
+    users: [],
+    user: {}, //detail/profile
+    login: false,
+  },
   reducers: {
-    addUser: (state, action) => {
-      const {
-        forename,
-        surname,
-        nationality,
-        image,
-        birthDate,
-        email,
-        phoneNumber,
-      } = action.payload;
-      state.user.forename = forename;
-      state.user.surname = surname;
-      state.user.nationality = nationality;
-      state.user.image = image;
-      state.user.birthDate = birthDate;
-      state.user.email = email;
-      state.user.phoneNumber = phoneNumber;
+    getAllUsers: (state, action) => {
+      state.users = action.payload;
     },
-    getUserStart: (state) => {
-      state.isLoading = true;
-      state.error = null;
+    getUserDetail: (state, action) => {
+      state.user = action.payload;
     },
-    getUserSuccess: (state, action) => {
-      const { forename, surname, nationality } = action.payload;
-      state.user.forename = forename;
-      state.user.surname = surname;
-      state.user.nationality = nationality;
-      state.isLoading = false;
-      state.error = null;
+    clearUserDetail: (state) => {
+      state.user = {};
     },
-    getUserFailure: (state) => {
-      state.isLoading = false;
-      state.error = "There was an error while getting the user's info";
+    setLogin: (state) => {
+      state.login = !state.login;
     },
   },
 });
 
-export const { addUser, getUserStart, getUserFailure, getUserSuccess } =
+export const { getAllUsers, getUserDetail, clearUserDetail, setLogin } =
   userSlice.actions;
 
 export default userSlice.reducer;
