@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
+import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/pruebaback" element={<PruebaBack/>}/>
         <Route path="/aboutus" />
         <Route path="/guides" />
         <Route path="/tours" />

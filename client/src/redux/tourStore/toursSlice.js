@@ -8,7 +8,7 @@ export const tourSlice = createSlice({
   },
   reducers: {
     getAllTours: (state, action) => {
-      state.tours = action.payload;
+      state.tours = [...action.payload];
     },
     getTourById: (state, action) => {
       state.detail = action.payload;
