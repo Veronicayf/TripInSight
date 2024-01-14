@@ -19,8 +19,8 @@ const TourCard = ({ tour }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatchEvent(getTourById(tour.id));
-    navigate(`/detail/`);
+    dispatch(getTourId(tour.id));
+    navigate(`/tours/${tour.id}`);
   };
 
   return (
@@ -31,7 +31,7 @@ const TourCard = ({ tour }) => {
       onClick={(e) => handleClick(e)}
     >
       <Link
-        to={`/detail/${tour.id}`}
+        to={`/tours/${tour.id}`}
         className="tourCard rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105 mb-4"
       >
         <img

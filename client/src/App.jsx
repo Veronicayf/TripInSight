@@ -8,6 +8,7 @@ import Footer from "./components/FootBar/FootBar";
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
 import AdminPanel from "./views/AdminPanel/AdminPanel";
+import { getTourId } from "./redux/tourStore/toursActions";
 
 const App = () => {
   return (
@@ -21,7 +22,7 @@ const App = () => {
         <Route path="/guides" />
         <Route path="/tours" />
         <Route path="/profile" />
-        <Route path="/tour" element={<TourDetail />} />
+        <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guide" />
         <Route path="/cart" />
         <Route path="/admin" element={<AdminPanel />} />
