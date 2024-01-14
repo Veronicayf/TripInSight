@@ -51,9 +51,9 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center h-96">
+        {/* <div className="flex justify-center items-center h-96">
           CARD SECTION
-        </div>
+        </div> */}
 
         <div className="flex justify-center items-center h-96">
           <div className="flex justify-center items-center">
