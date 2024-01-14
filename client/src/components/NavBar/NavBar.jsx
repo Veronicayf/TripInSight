@@ -23,6 +23,9 @@ const NavBar = () => {
         <Link to="/tours" className={` ${location.pathname === '/tours' ? 'text-green-400' : ''}`}>
           <h3>Tours List</h3>
         </Link>
+        <Link to="/guides" className={` ${location.pathname === '/guides' ? 'text-green-400' : ''}`}>
+          <h3>Guides List</h3>
+        </Link>
         <Link to="/aboutus" className={` ${location.pathname === '/aboutus' ? 'text-green-400' : ''}`}>
           <h3>About Us</h3>
         </Link>

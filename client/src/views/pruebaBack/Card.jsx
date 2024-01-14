@@ -1,8 +1,11 @@
 import { useDispatch } from "react-redux";
 
 const Card = ({ tour }) => {
+
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center"
+    >
       <div className="mx-auto px-5">
         <div className="max-w-xs cursor-pointer rounded-lg bg-white p-2 shadow duration-150 hover:scale-105 hover:shadow-md">
           <img
