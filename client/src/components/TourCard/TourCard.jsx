@@ -18,11 +18,7 @@ const TourCard = ({ tour }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    // Assuming you have a Redux action named getTourId
-    // and useDispatch from react-redux
-    // import { useDispatch } from 'react-redux';
-    // const dispatch = useDispatch();
-    // dispatch(getTourId(tour.id));
+
     navigate(`/detail/${tour.id}`);
   };
 
@@ -44,20 +40,20 @@ const TourCard = ({ tour }) => {
         />
         <div className="p-4">
           <h2 className="text-lg font-bold mb-2">{tour.nameTour}</h2>
-          <p className="text-gray-700">
+          <p className="text-gray-800">
             <strong>Location:</strong> {tour.city}, {tour.country}
           </p>
-          <p className="text-gray-700">
+          <p className="text-gray-7800">
             <span>Date:</span> {tour.initialDate} - {tour.endDate}
           </p>
-          <p className="text-gray-700">
+          <p className="text-gray-800">
             <span>Capacity:</span> {tour.capacity}
           </p>
-          <p className="text-gray-700">
+          <p className="text-gray-800">
             <strong>Price:</strong> ${tour.price}
           </p>
           {isHovering && (
-            <p className="text-gray-700 mt-2">
+            <p className="text-gray-800 mt-2">
               <strong>Description:</strong> {tour.description}
             </p>
           )}
