@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getTourId } from "../../redux/tourStore/toursActions";
+import { getTourById } from "../../redux/tourStore/toursSlice";
 
 const TourCard = ({ tour }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -18,8 +19,8 @@ const TourCard = ({ tour }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-
-    navigate(`/detail/${tour.id}`);
+    dispatchEvent(getTourById(tour.id));
+    navigate(`/detail/`);
   };
 
   return (
@@ -43,12 +44,12 @@ const TourCard = ({ tour }) => {
           <p className="text-gray-800">
             <strong>Location:</strong> {tour.city}, {tour.country}
           </p>
-          <p className="text-gray-7800">
-            <span>Date:</span> {tour.initialDate} - {tour.endDate}
-          </p>
-          <p className="text-gray-800">
-            <span>Capacity:</span> {tour.capacity}
-          </p>
+
+          {isHovering && (
+            <p className="text-gray-800">
+              <span>Capacity:</span> {tour.capacity}
+            </p>
+          )}
           <p className="text-gray-800">
             <strong>Price:</strong> ${tour.price}
           </p>
