@@ -1,28 +1,36 @@
 import { React } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getTourId } from "../../redux/tourStore/toursActions";
 
-const tourCard = ({ tour }) => {
+const TourCard = ({ tour }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const navigate = useNavigate();
 
   const handleMouseOver = () => {
     setIsHovering(true);
   };
+
   const handleMouseOut = () => {
     setIsHovering(false);
   };
+
   const handleClick = (e) => {
-    console.log("me ejecute");
     e.preventDefault();
-    dispatch(getTourId(tour.id));
-    navigate("/detail");
+    // Assuming you have a Redux action named getTourId
+    // and useDispatch from react-redux
+    // import { useDispatch } from 'react-redux';
+    // const dispatch = useDispatch();
+    // dispatch(getTourId(tour.id));
+    navigate(`/detail/${tour.id}`);
   };
 
   return (
     <div
       className="m-20 tourCard rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105"
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
       onClick={(e) => handleClick(e)}
     >
       <Link
@@ -48,10 +56,15 @@ const tourCard = ({ tour }) => {
           <p className="text-gray-700">
             <strong>Price:</strong> ${tour.price}
           </p>
+          {isHovering && (
+            <p className="text-gray-700 mt-2">
+              <strong>Description:</strong> {tour.description}
+            </p>
+          )}
         </div>
       </Link>
     </div>
   );
 };
 
-export default tourCard;
+export default TourCard;
