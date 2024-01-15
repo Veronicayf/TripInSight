@@ -6,7 +6,7 @@ const LogoutButton = () => {
   return (
     
       <button
-      className="w-full text-center py-3 rounded-3xl bg-red-400 text-white font-bold hover:bg-red-600 focus:outline-none my-1"
+      className="gap-3 p-1.5 h-16 w-20 text-center py-3 rounded-full bg-red-400 text-white font-bold hover:bg-red-600 focus:outline-none"
       onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}> Sign Out </button>
     
   );
