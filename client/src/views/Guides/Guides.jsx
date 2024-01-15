@@ -24,7 +24,7 @@ const Guides = () => {
       <section>
         <div className="flex justify-center text-5xl my-3 gap-3">
           <b>Our </b>
-          <b className="text-primary"> Guides</b>
+          <b className="text-primary"> Guides </b>
         </div>
         <div className="flex justify-center items-center">
           {allGuides && allGuides.length > 0 ? (

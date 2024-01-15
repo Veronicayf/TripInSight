@@ -97,7 +97,7 @@ const Tour = () => {
           </i>
           <h3 className="px-4 flex-grow text-3xl">Tour Detail</h3>
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-start">
           <p className="text-lg">{tourDetail.description}</p>
         </div>
       </section>
