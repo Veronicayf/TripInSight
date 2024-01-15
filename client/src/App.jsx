@@ -7,11 +7,12 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
+import Cart from "./views/ShoppingCart/Cart";
 
 const App = () => {
   return (
     <div>
-      <NavBar />
+      
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -22,7 +23,7 @@ const App = () => {
         <Route path="/profile" />
         <Route path="/tour" element={<TourDetail />} />
         <Route path="/guide" />
-        <Route path="/cart" />
+        <Route path="/cart" element={<Cart/>} />
         <Route path="/admin" />
       </Routes>
       <Footer />
