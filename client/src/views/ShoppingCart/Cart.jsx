@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import iconTrust from '../../assets/icons/iconTrust.png'
 import boreal from '../../assets/img/boreal.png'
-
+import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
+import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
+import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
+import Carousel from '../../components/Carrusel/Carousel';
 
 const Cart = () => {
     const initialQuantity = 0
@@ -21,6 +24,9 @@ const Cart = () => {
     const totalPrice = quantity * pricePerUnit;
   return (
     <main className=''>
+        <Carousel
+        images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
+      />
         
     <div className='text-xl text-seconday-text flex justify-center'>
         <b>One more step for enjoy</b>
