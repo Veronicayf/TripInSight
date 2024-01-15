@@ -8,9 +8,11 @@ export const getAllT = () => {
   };
 };
 
-export const getTourId = (id) => {
-  return async (dispatch) => {
-    let { data } = await axios.get(`http://localhost:4000/tours/${id}`);
-    return dispatch(getTourById(data));
+
+  export const getTourId = (id) => {
+    return async (dispatch) => {
+      let {data} = await axios.get(`http://localhost:4000/tours/${id}`);
+      return dispatch(getTourById(data));
+    };
   };
-};
+

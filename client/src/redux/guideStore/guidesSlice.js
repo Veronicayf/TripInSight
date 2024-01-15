@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const guideSlice = createSlice({
-  name: "guide",
+  name: "guides",
   initialState: {
     guides: [],
     detail: {},
   },
   reducers: {
     getAllGuides: (state, action) => {
-      state.guides = action.payload;
+      state.guides = [...action.payload];
     },
     getGuideById: (state, action) => {
       state.detail = action.payload;
