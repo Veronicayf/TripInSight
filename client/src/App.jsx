@@ -17,6 +17,7 @@ import Register from "./components/Register/Register";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
+import ToursList from "./views/Tours/Tours";
 // import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
@@ -33,7 +34,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" />
         <Route path="/guides" element={<Guides />}/>
-        <Route path="/tours" />
+        <Route path="/tours" element={<ToursList />}/>
         <Route path="/profile" />
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guide/:id" />
