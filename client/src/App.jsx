@@ -14,35 +14,33 @@ import { getTourId } from "./redux/tourStore/toursActions";
 
 import Register from "./components/Register/Register";
 
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import ToursList from "./views/Tours/Tours";
+import Paypal from "./components/PayPal/PayPal";
 // import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
-
   //dana
   const { user, isAuthenticated, isLoading } = useAuth0();
+  //Fran
 
   return (
     <div>
       <NavBar />
-
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/aboutus" />
-        <Route path="/guides" element={<Guides />}/>
-        <Route path="/tours" element={<ToursList />}/>
+        <Route path="/guides" element={<Guides />} />
+        <Route path="/tours" element={<ToursList />} />
         <Route path="/profile" />
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guide/:id" />
-         <Route path="/cart" element={<Cart/>} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPanel />} />
         {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
         {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
-
       </Routes>
       <Footer />
     </div>
