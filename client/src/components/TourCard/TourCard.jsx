@@ -8,6 +8,7 @@ import { getTourById } from "../../redux/tourStore/toursSlice";
 const TourCard = ({ tour }) => {
   const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -20,6 +21,7 @@ const TourCard = ({ tour }) => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getTourId(tour.id));
+    console.log("aqui", tour);
     navigate(`/tours/${tour.id}`);
   };
 
