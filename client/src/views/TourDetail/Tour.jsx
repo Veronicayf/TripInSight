@@ -30,7 +30,7 @@ const Tour = () => {
       {/* Image Section */}
       <section>
         <img
-          src={ImagePrincipal}
+          src={tourDetail.image}
           className="w-full h-auto overflow-hidden"
           alt=""
         />
