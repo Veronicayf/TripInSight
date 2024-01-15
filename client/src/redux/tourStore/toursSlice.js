@@ -5,6 +5,7 @@ export const tourSlice = createSlice({
   initialState: {
     tours: [],
     detail: {},
+    searchTours: [],
   },
   reducers: {
     getAllTours: (state, action) => {
@@ -12,9 +13,12 @@ export const tourSlice = createSlice({
     },
     getTourById: (state, action) => {
       state.detail = action.payload;
+    },
+    searchTourByName: (state, action) => {
+      state.searchTours = state.tours.filter((t) => t.nameTour.includes(action.payload));
     }
   },
 });
 
-export const { getAllTours, getTourById } = tourSlice.actions;
+export const { getAllTours, getTourById, searchTourByName } = tourSlice.actions;
 export default tourSlice.reducer;
