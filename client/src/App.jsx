@@ -12,7 +12,7 @@ import Cart from "./views/ShoppingCart/Cart";
 const App = () => {
   return (
     <div>
-      
+      <NavBar />
 
       <Routes>
         <Route path="/" element={<Home />} />

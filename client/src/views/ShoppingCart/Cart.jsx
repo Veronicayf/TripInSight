@@ -1,7 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import iconTrust from '../../assets/icons/iconTrust.png'
+import boreal from '../../assets/img/boreal.png'
+
 
 const Cart = () => {
+    const initialQuantity = 0
+    const pricePerUnit = 49.99
+        const [quantity, setQuantity] = useState(initialQuantity || 1);
+
+    const handleIncrease = () => {
+        setQuantity(quantity + 1);
+    };
+
+    const handleDecrease = () => {
+        if (quantity > 1) {
+        setQuantity(quantity - 1);
+        }
+    };
+
+    const totalPrice = quantity * pricePerUnit;
   return (
     <main className=''>
         
@@ -12,21 +29,42 @@ const Cart = () => {
         <b>Your</b> <b className='text-primary mx-1'>Travel</b>
     </div>
     <section className='flex flex-row w-full px-7'>
-        <div className='w-2/3'> 
-            <div id='row' className=''>
+        <div className='w-2/3 py-7 flex flex-col'> 
+            <div id='row' className='text-seconday-text'>
                 <div className='w-full flex flex-row'>
-                    <div className='w-2/4'>
-                        <p>Product</p>
+                    <div className='w-2/4 flex justify-center'>
+                        <b>Product</b>
                     </div>
-                    <div className='w-1/4'>
-                        <p>Quantity</p>
+                    <div className='w-1/4  flex justify-center'>
+                        <b>Quantity</b>
                     </div>
-                    <div className='w-1/4'>
-                        <p>Price</p>
+                    <div className='w-1/4  flex justify-center'>
+                        <b>Price</b>
                     </div>
                 </div>
             </div>
+            <div className='py-3 flex flex-row items-center'>
+                <div className='w-2/4 flex h-26 items-center justify-around'>
+                        <img src={boreal} className='h-24 rounded-full' alt="" />
+                        <b>Aureora Boreal en Chaco</b>
+                </div>
+                    <div className='w-1/4 h-26 flex justify-center '>
+                        <button onClick={handleDecrease} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-l">
+                            -
+                        </button>
+                        <span className="bg-white px-4 py-2 border-t border-b text-gray-700">
+                            {quantity}
+                        </span>
+                        <button onClick={handleIncrease} className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r">
+                            +
+                        </button>
+                    </div>
+                    <div className=' w-1/4 flex justify-center item-center'>
+                        <b>${totalPrice.toFixed(2)}</b>
+                    </div>
+            </div>
         </div>
+
         <div className='w-1/3 flex flex-col'>
             <div className=' bg-cream-bg rounded-[50px]  '>
                 <div className='flex justify-center items-center h-20 '>
@@ -36,17 +74,17 @@ const Cart = () => {
                 <div className=' h-28 text-xl'>
                     <div className='w-full flex justify-between h-12 items-center'>
                         <b className=''>Subtotal</b>
-                        <b>$39.00</b>
+                        <b>${totalPrice.toFixed(2)}</b>
                     </div>
                     <div className='w-full flex justify-between text-seconday-text h-12 items-center'>
                         <b className=''>Sales Tax</b>
-                        <b>$39.00</b>
+                        <b>$0.00</b>
                     </div>
                 </div>
                 <div>
                 <div className='w-full flex justify-between text-2xl h'>
                         <b className=''>Total</b>
-                        <b>$99.00</b>
+                        <b>${totalPrice.toFixed(2)}</b>
                     </div>
                 </div>
                 <div className='w-full h-1 bg-seconday-text'></div>
