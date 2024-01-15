@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAllGuides, getGuideById } from './toursSlice'
+import { getAllGuides, getGuideById } from './guidesSlice'
 
 export const getAllG = () => {
     return async (dispatch) => {

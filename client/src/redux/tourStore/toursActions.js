@@ -10,7 +10,7 @@ export const getAllT = () => {
 
   export const getTourId = (id) => {
     return async (dispatch) => {
-      let json = await axios.get(`http://localhost:4000/tours/${id}`);
-      return dispatch(getTourById(json.data));
+      let {data} = await axios.get(`http://localhost:4000/tours/${id}`);
+      return dispatch(getTourById(data));
     };
   };
