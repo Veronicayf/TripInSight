@@ -6,6 +6,7 @@ const Checkout = () => {
 
   return (
     <div className="container mx-auto flex flex-col min-h-screen">
+      <div>Purchase CheckOut</div>
       <div className="flex-grow my-4 flex items-center justify-center">
         {checkout ? (
           <Paypal />
