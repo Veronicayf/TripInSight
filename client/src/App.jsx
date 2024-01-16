@@ -18,6 +18,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import ToursList from "./views/Tours/Tours";
 import Paypal from "./components/PayPal/PayPal";
+import Checkout from "./views/CheckOut/CheckOut";
 // import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
         <Route path="/guide/:id" />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/checkout" element={<Checkout />} />
         {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
         {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
       </Routes>

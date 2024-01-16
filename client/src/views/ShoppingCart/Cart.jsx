@@ -5,10 +5,9 @@ import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
 import Carousel from "../../components/Carrusel/Carousel";
-import Paypal from "../../components/PayPal/PayPal";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const [checkout, setCheckOut] = useState(false);
   const initialQuantity = 0;
   const pricePerUnit = 49.99;
   const [quantity, setQuantity] = useState(initialQuantity || 1);
@@ -104,18 +103,11 @@ const Cart = () => {
             <div className="w-full h-1 bg-seconday-text"></div>
             <div>
               <div className="flex justify-center items-center h-14">
-                {checkout ? (
-                  <Paypal />
-                ) : (
-                  <button
-                    className=" w-80 h-12 text-xl bg-primary rounded-full text-white hover:bg-btn-hover"
-                    onClick={() => {
-                      setCheckOut(true);
-                    }}
-                  >
+                <Link to={"/checkout/"}>
+                  <button className=" w-80 h-12 text-xl bg-primary rounded-full text-white hover:bg-btn-hover">
                     Procced to checkout
                   </button>
-                )}
+                </Link>
               </div>
               <div>
                 <div className="flex justify-center items-center h-14">
