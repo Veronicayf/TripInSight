@@ -28,7 +28,7 @@ const ToursList = () => {
         </div>
         <div className="flex justify-center items-center">
           {allTours && allTours.length > 0 ? (
-            allTours?.map((tour) => <TourCard key={tour.id} tour={tour}/>)
+            allTours?.map((tour, index) => <TourCard key={index} tour={tour}/>)
           ) : (
             <b>Loading...</b>
           )}
