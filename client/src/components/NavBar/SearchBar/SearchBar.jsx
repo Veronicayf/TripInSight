@@ -9,6 +9,7 @@ const SearchBar = () => {
 
     const handleChange = (event) => {
         setName(event.target.value);
+        dispatch(getTourName(name));
       };
 
     const handleButtonSubmit = () => {
@@ -19,6 +20,8 @@ const SearchBar = () => {
     return (
         <div className='flex flex-row items-center text-black'>
             <input className='rounded-lg p-1' type="search" placeholder="Search tour..." onChange={handleChange}/>
+            {/* <img src={search} alt='Search Tour'/> */}
+            
             <button onClick={handleButtonSubmit}><img src={search} alt='Search Tour'/></button>
         </div>
     )
