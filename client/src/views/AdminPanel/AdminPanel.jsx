@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { Link } from "react-router-dom";
+import SideBar from '../../components/SideBar/SideBar';
 
 const AdminPanel = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -48,18 +49,10 @@ const AdminPanel = () => {
 
   return (
     <div className="flex h-screen">
-      <div className="bg-gray-600 text-white w-16 flex flex-col items-center justify-evenly">
-        <button className="py-2 px-4 text-sm hover:bg-gray-700 focus:outline-none">
-          Guides
-        </button>
-        <button className="py-2 px-4 text-sm hover:bg-gray-700 focus:outline-none">
-          Users
-        </button>
-        <button className="py-2 px-4 text-sm hover:bg-gray-700 focus:outline-none">
-          Tours
-        </button>
+      <div>
+        <SideBar/>
       </div>
-
+      <div> 
       <div className="flex-1 p-40">
         <h1 className="text-2xl font-semibold mb-4">Admin Panel</h1>
 
@@ -122,6 +115,9 @@ const AdminPanel = () => {
           </tbody>
         </table>
       </div>
+
+      </div>
+      
     </div>
   );
 };
