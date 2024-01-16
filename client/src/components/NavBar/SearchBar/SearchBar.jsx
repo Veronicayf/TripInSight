@@ -12,8 +12,8 @@ const SearchBar = () => {
       };
 
     const handleButtonSubmit = () => {
-        dispatch(getTourName(name)); 
-        setName(''); 
+        dispatch(getTourName(name));
+        setName('');
     }
 
     return (
