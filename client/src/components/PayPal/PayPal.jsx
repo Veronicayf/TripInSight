@@ -48,5 +48,7 @@ export default function Paypal() {
     };
   }, [isButtonRendered]);
 
-  return <div ref={paypal}></div>;
+  return <main ref={paypal}></main>;
 }
+
+console.log(Paypal);

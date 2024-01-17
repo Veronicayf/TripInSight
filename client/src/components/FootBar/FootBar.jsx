@@ -5,7 +5,7 @@ import email from "./../../assets/icons/loginEmailIcon.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center w-full justify-between bg-green-800 text-white">
+    <div className="flex flex-col items-center w-full justify-between bg-green-600 text-white">
       <div className="flex flex-row justify-evenly items-center">
         <div className="w-1/2 flex items-start">
           <img src={logo} alt="Trip In Sight" className="m-4 mr-80" />

@@ -17,7 +17,6 @@ import Register from "./components/Register/Register";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import ToursList from "./views/Tours/Tours";
-import Paypal from "./components/PayPal/PayPal";
 import Checkout from "./views/CheckOut/CheckOut";
 // import PruebaBack from "./views/pruebaBack/PruebaBack";
 
@@ -29,6 +28,7 @@ const App = () => {
   return (
     <div>
       <NavBar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -44,6 +44,7 @@ const App = () => {
         {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
         {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
       </Routes>
+
       <Footer />
     </div>
   );
