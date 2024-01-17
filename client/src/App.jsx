@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import logo from "./assets/img/logo.png";
 import "./App.css";
@@ -10,20 +10,22 @@ import Home from "./views/Home/Home";
 import Cart from "./views/ShoppingCart/Cart";
 import AdminPanel from "./views/AdminPanel/AdminPanel";
 
-import { getTourId } from "./redux/tourStore/toursActions";
-
-import Register from "./components/Register/Register";
-
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import ToursList from "./views/Tours/Tours";
-// import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
 
   //dana
   const { user, isAuthenticated, isLoading } = useAuth0();
+  console.log('user datos:', user);
+
+  //verificar si el user esta logueado cuando ingresa.
+  useEffect(() => {
+    if(!isLoading) {
+
+    }
+  }, [isAuthenticated, isLoading])
 
   return (
     <div>

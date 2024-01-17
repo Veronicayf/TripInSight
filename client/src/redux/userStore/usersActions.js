@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAllUsers, getUserDetail, setLogin } from './usersSlice'
+import { getAllUsers, getUserDetail, setLogin, userCreated, userExisted } from './usersSlice'
 
 //Pedir a Raul que me haga la ruta.
 // export const getUsers = () => {
@@ -19,3 +19,11 @@ export const getUserId = (id) => {
 export const loging = () => (dispatch) => {
     dispatch(setLogin());
   };
+
+export const createUser = () => {
+
+};
+
+export const existeUser = () => {
+
+};

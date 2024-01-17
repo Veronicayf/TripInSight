@@ -42,13 +42,16 @@ const Tour = () => {
             <TourInfoItem icon={iconDay} label="80 Days" />
             <TourInfoItem
               icon={iconCalendar}
-              label={tourDetail.initialDate + " " + tourDetail.endDate}
-            />
-            <TourInfoItem icon={iconpeople} label={tourDetail.capacity} />
+              label={"Initial Date: " + tourDetail.initialDate} />
+            <TourInfoItem
+              icon={iconCalendar}
+              label= {" End Date: " + tourDetail.endDate} />
+            
           </ul>
         </div>
         <div className="flex w-1/2">
           <ul>
+            <TourInfoItem icon={iconpeople} label={tourDetail.capacity} />
             <TourInfoItem
               icon={iconplace}
               label={tourDetail.city + ", " + tourDetail.country}
