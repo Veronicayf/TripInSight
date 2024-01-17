@@ -6,6 +6,7 @@ export const userSlice = createSlice({
     users: [],
     user: {}, //detail/profile
     login: false,
+    create: false,
   },
   reducers: {
     getAllUsers: (state, action) => {
@@ -20,10 +21,17 @@ export const userSlice = createSlice({
     setLogin: (state) => {
       state.login = !state.login;
     },
+    userExisted: (state, action) => {
+      state.create = false;
+    },
+    userCreated: (state, action) => {
+      state.create = true;
+      state.users = [...action.payload]
+    }
   },
 });
 
-export const { getAllUsers, getUserDetail, clearUserDetail, setLogin } =
+export const { getAllUsers, getUserDetail, clearUserDetail, setLogin, userExisted, userCreated } =
   userSlice.actions;
 
 export default userSlice.reducer;
