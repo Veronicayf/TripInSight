@@ -10,6 +10,8 @@ import Home from "./views/Home/Home";
 import Cart from "./views/ShoppingCart/Cart";
 import AdminPanel from "./views/AdminPanel/AdminPanel";
 import CreateTour from "./views/CreateTour/CreateTour";
+import CreateGuide from "./views/CreateGuide/CreateGuide";
+import ToursList from "./views/Tours/Tours";
 
 import { getTourId } from "./redux/tourStore/toursActions";
 
@@ -18,7 +20,8 @@ import Register from "./components/Register/Register";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-import ToursList from "./views/Tours/Tours";
+
+
 // import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
@@ -41,6 +44,7 @@ const App = () => {
           <Route path="/cart" element={<Cart/>} />
           <Route path="/admin/" element={<AdminPanel />} />
           <Route path="/admin/createtour" element={<CreateTour />} />
+          <Route path="/admin/createguide" element={<CreateGuide />} />
           {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
           {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
 

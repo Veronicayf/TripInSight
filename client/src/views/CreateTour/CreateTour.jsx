@@ -1,6 +1,7 @@
     import React, { useState } from "react";
     import SideBar from "../../components/SideBar/SideBar";
     import CloudinaryUploadWidget from "../../components/UploadWidget/UploadWidget";
+    import { image } from "@cloudinary/url-gen/qualifiers/source";
 
     const CreateTour = () => {
     const [tourInfo, setTourInfo] = useState({
@@ -45,35 +46,51 @@
     <div className="flex flex-row font-Mulish">
         <SideBar />
         <div className="w-full flex flex-col p-2 ">
-            <h1>Create Tour</h1>
+            <h1 className="text-3xl font-bold px-4 " >Create Tour</h1>
             <form onSubmit={handleSubmit} className=" flex flex-col justify-between   border-seconday-text border-2 rounded-xl ">
                 {/* <--- Left --->*/}
                 <div className="flex  w-full gap-5 p-6 ">
                     <div className=" flex flex-col w-1/2 border-seconday-text border-2 rounded-xl">
-                        <h2> Add Images</h2>
+                        <h2 className=" text-2xl font-bold px-4">Add Images</h2>
+                        <div className=" p-4 ">
                         <CloudinaryUploadWidget
                         onImageUpload={handleImageUpload}
                         multiple={true}
                         />
+                        <div className=" flex justify-around items-center text-seconday-text h-16">
+                            <b>Imagen</b>
+                            <b>Name</b>
+                            <b>Format</b>
+                        </div>
 
                         {images.length > 0 && (
                         <div>
-                            <h2>Vista Previa de Imágenes</h2>
-                            <div className="image-preview-container">
-                            {images.map((imageUrl, index) => (
-                                <img
-                                className="h-52"
+                            <h2>Images</h2>
+                            <div className="flex flex-col p-4 ">
+                                { /*  image[0] = Image Url image[1] = Image Name image[2] = Image Format  */}
+                                
+                            {images.map((image, index) => (
+                                
+                                <div className=" flex flex-row justify-around items-center">
+                                    {console.log(images)}
+                                    <img
+                                className="h-14"
                                 key={index}
-                                src={imageUrl}
+                                src={image[0]}
                                 alt={`Imagen ${index + 1}`}
                                 />
+                                <p>{image[1]}</p>
+                                <p>{image[2]}</p>
+                                </div>
                             ))}
                             </div>
                         </div>
                         )}
+
+                        </div>
                     </div>
                     {/* <--- Right --->*/}
-                    <div className=" flex flex-col w-1/2 px-3 border-seconday-text border-2 rounded-xl">
+                    <div className=" flex flex-col w-1/2 p-3 border-seconday-text border-2 rounded-xl">
                         {/* -- NAME -- */}
                         <label className="flex flex-col">
                         Tour Name:
@@ -205,7 +222,10 @@
                     </div>
             </div>
             {/* Otros campos según tus necesidades */}
-            <button type="submit">Guardar Tour</button>
+            <div className=" h-16 flex justify-center items-center">
+                <button type="submit" className="w-56 h-12 text-white rounded-3xl bg-primary  hover:bg-btn-hover" >Guardar Tour</button>
+            </div>
+            
             </form>
         </div>
         </div>
