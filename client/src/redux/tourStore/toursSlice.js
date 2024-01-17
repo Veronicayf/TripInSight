@@ -14,7 +14,7 @@ export const tourSlice = createSlice({
       state.detail = action.payload;
     },
     searchTourByName: (state, action) => {
-      state.tours = [action.payload]
+      state.tours = [...action.payload]
     }
   },
 });

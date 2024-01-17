@@ -18,7 +18,7 @@ export const getAllT = () => {
 
 export const getTourName = (tour) => {
   return async (dispatch) => {
-    let {data} = await axios.get(`http://localhost:4000/tours/nameTour?nameTour=${tour}`);
+    let {data} = await axios.get(`http://localhost:4000/tours/tags?tags=${tour}`);
     return dispatch(searchTourByName(data));
   }
 }
