@@ -13,13 +13,13 @@ const SideBar = () => {
             <span>TripInSight</span>
         </div>
         <div className=' flex-1'>
-                <div>
-                    <SideBarLink linkTo="/guides" text="Guides" icon={dashboardIcon} />
-                    <SideBarLink linkTo="/tours" text="Tours" icon={dashboardIcon} />
-                    <SideBarLink linkTo="/customers" text="Customers" icon={dashboardIcon} />
-                    <SideBarLink linkTo="/transactions" text="Transactions" icon={dashboardIcon} />
-                    <SideBarLink linkTo="/comments" text="Comments" icon={dashboardIcon} />
-                </div>
+          <div>
+            <SideBarLink linkTo="/admin/guides" text="Guides" icon={dashboardIcon} />
+            <SideBarLink linkTo="/admin/tours" text="Tours" icon={dashboardIcon} />
+            <SideBarLink linkTo="/admin/createtour" text="Create Tour" icon={dashboardIcon} />
+            <SideBarLink linkTo="/admin/transactions" text="Transactions" icon={dashboardIcon} />
+            <SideBarLink linkTo="/admin/comments" text="Comments" icon={dashboardIcon} />
+          </div>
         </div>
         <div>
             <SideBarLink linkTo="/comments" text="Exit" icon={dashboardIcon} />
