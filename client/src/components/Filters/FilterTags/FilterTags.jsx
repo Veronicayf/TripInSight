@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { getAllT, searchTourTags } from "../../../redux/tourStore/toursActions";
+import { searchTourTags } from "../../../redux/tourStore/toursActions";
 
 
 const FilterTags = () => {
@@ -7,7 +7,6 @@ const FilterTags = () => {
 
     const handleButtonSubmit = (e) => {
         e.preventDefault();
-        console.log('e', e.target.name);
         dispatch(searchTourTags(e.target.name));
       }
 
