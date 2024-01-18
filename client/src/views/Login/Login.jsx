@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import LoginButton from "../../components/Auth0/LoginButton";
 import paisaje1 from "./../../assets/img/paisaje1.jpg";
 import logo from "./../../assets/img/logo.png"
+import SignUpButton from "../../components/Auth0/SignUpButton";
 
 const Login = () => {
   return (
@@ -32,10 +33,11 @@ const Login = () => {
 
         <div className="mt-6 text-green-600 text-center">
         <h2 className=" mb-4">New here?</h2>
-          <Link to="/register" className="font-bold hover:underline">
+        <SignUpButton />
+          {/* <Link to="/register" className="font-bold hover:underline">
            <button className="w-32 text-center py-3 rounded-3xl bg-green-400 text-white font-bold hover:bg-green-600 focus:outline-none my-1"
            >Sign up!</button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
