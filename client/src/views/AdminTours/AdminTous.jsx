@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SideBar from '../../components/SideBar/SideBar'
 import iconmenu from '../../assets/icons/IconMenuVertical.png'
 import TourItem from '../../components/TourItem/TourItem';
+import Pagination from '../../components/Pagination/Pagination';
 
 const toursData = [
     {
@@ -54,11 +55,48 @@ const toursData = [
         "image7": "https://www.scuba.com/blog/wp-content/uploads/2017/09/shutterstock_236579056.jpg",
         "image8": "https://www.scuba.com/blog/wp-content/uploads/2017/09/shutterstock_325504112-825x465.jpg",
       },
-    // agregar más tours aquí
+      {
+        "nameTour": "Mountain Trekking with Daniel",
+        "initialDate": "2024-08-11",
+        "endDate": "2024-08-19",
+        "image": "https://www.machupicchu-tours-peru.com/wp-content/uploads/2020/05/choquequirao-cusco-featured.webp",
+        "continent": "South America",
+        "country": "Peru",
+        "city": "Cusco",
+        "type": "Adventure",
+        "capacity": 25,
+        "description": "Embark on a thrilling mountain trekking adventure with Daniel in the Andes near Cusco, Peru. Traverse breathtaking landscapes, witness unique flora and fauna, and experience the Andean culture. Suitable for trekking enthusiasts of all levels.",
+        "season": "Winter",
+        "status": "false",
+        "price": "180",
+        "equipment": "Hiking poles and backpacks provided",
+        "guide": "Daniel Garcia",
+        "image1": "https://www.machupicchu-tours-peru.com/wp-content/uploads/2021/02/Camino-Inca-Corto.jpg",
+        "image2": "https://www.machupicchu-tours-peru.com/wp-content/uploads/2021/01/camino-inca-min.jpg",
+        "image3": "https://www.perurail.com/wp-content/uploads/2017/10/Foto-1_Machu-Picchu-city-wonder-of-the-world-Cusco-Peru.jpg",
+        "image4": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgY2vkjurZDdNZ_w3K6d-hegkarhe6S3O-yibLWKmf0cligAAOV1yrGL3A6KLV4lk6ozA&usqp=CAU",
+        "image5": "https://elcomercio.pe/resizer/I_hfzi2D3K3DHdYjbZm9HidAnAc=/980x528/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/3LNMIYXDAVEM7BTLXIBEZBUXEM.jpg",
+        "image6": "https://img.itinari.com/pages/images/original/7cc2cf66-2e54-4342-a413-ce01d9edebf5-istock-pawopa3336.jpg?ch=DPR&dpr=2.625&w=1600&s=33475215b65c25c7e73b0a575011b538",
+        "image7": "https://media.tacdn.com/media/attractions-splice-spp-674x446/0a/4a/87/12.jpg",
+        "image8": "",
+      },
   ];
 
 const AdminTous = () => {
-  return (
+    const [currentPage,setCurrentPage] = useState(1)
+    const [itemPerPage] = useState(10)
+    
+    const indexOfLastItem = currentPage * itemPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemPerPage;
+    const currentItem = toursData.slice(indexOfFirstItem,indexOfLastItem);
+
+    const paginate = (pageNumber) =>{
+        setCurrentPage(pageNumber)
+    }
+
+
+
+    return (
     <div className='flex w-full flex-row'>
         <SideBar/>
         <div className=' flex w-full flex-col p-4'>
@@ -96,6 +134,7 @@ const AdminTous = () => {
                         <TourItem key={index} tourInfo={tourInfo} />
                         ))}
                         </div>
+                    <Pagination itemPerPage={itemPerPage} totalItems={toursData.length} paginate={paginate}/>
             </div>
         </div>
     </div>
