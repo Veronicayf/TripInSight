@@ -27,7 +27,7 @@ const TourCard = ({ tour }) => {
 
   return (
     <div
-      className="m-20 tourCard rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105"
+      className="m-20 tourCard rounded-lg bg-white overflow-hidden shadow-md transition-transform transform hover:scale-105"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={(e) => handleClick(e)}
