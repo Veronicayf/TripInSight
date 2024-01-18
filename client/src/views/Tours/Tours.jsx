@@ -8,6 +8,7 @@ import TourCard from '../../components/TourCard/TourCard'
 import { getAllT } from "../../redux/tourStore/toursActions";
 import FilterTags from "../../components/Filters/FilterTags/FilterTags";
 import FilterContinent from "../../components/Filters/FiltersCG/FilterContinent";
+import PriceOrder from "../../components/Filters/Order/PriceOrder";
 
 const ToursList = () => {
     const allTours = useSelector((state) => state.tour.tours);
@@ -36,6 +37,7 @@ const ToursList = () => {
         <div className="flex justify-center my-3 gap-3">
         <FilterContinent />
         <FilterTags />
+        <PriceOrder />
         </div>
         <div className="flex justify-center items-center">
           {allTours && allTours.length > 0 ? (

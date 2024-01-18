@@ -1,9 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  filterContinent,
-  getAllT,
-} from "../../../redux/tourStore/toursActions";
-import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { filterContinent } from "../../../redux/tourStore/toursActions";
 
 const FilterContinent = () => {
   const dispatch = useDispatch();
@@ -23,31 +19,31 @@ const FilterContinent = () => {
         onChange={(e) => handleFilterType(e)}
       >
         <option
-          className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+          className="bg-green-600 text-white"
           value="North America"
         >
           North America
         </option>
         <option
-          className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+          className="bg-green-600 text-white"
           value="South America"
         >
           South America
         </option>
         <option
-          className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+          className="bg-green-600 text-white"
           value="Asia"
         >
           Asia
         </option>
         <option
-          className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+          className="bg-green-600 text-white"
           value="Europe"
         >
           Europe
         </option>
         <option
-          className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+          className="bg-green-600 text-white"
           value="Oceania"
         >
           Oceania
@@ -58,16 +54,3 @@ const FilterContinent = () => {
 };
 
 export default FilterContinent;
-
-{
-  /* {continents?.map((t, i) => {
-                  return (
-                    <option 
-                    className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
-                    value={t.continent} key={i}
-                    >
-                      {t.continent.charAt(0).toUpperCase() + t.continent.slice(1)}
-                    </option>
-                  );
-                })} */
-}

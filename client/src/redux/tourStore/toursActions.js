@@ -1,5 +1,5 @@
 import axios from "axios";
-import { filterTourByContinent, getAllTours, getTourById, searchTourByName, searchTourByTags, } from "./toursSlice";
+import { filterTourByContinent, getAllTours, getTourById, searchTourByName, searchTourByTags, sortToursByPrice, } from "./toursSlice";
 
 export const getAllT = () => {
   return async (dispatch) => {
@@ -33,5 +33,11 @@ export const filterContinent = (tour) => {
   return async (dispatch) => {
     let {data} = await axios.get(`http://localhost:4000/tours/continent?continent=${tour}`);
     return dispatch(filterTourByContinent(data));
+  }
+}
+
+export const sortToursPrice = () => {
+  return (dispatch) => {
+    dispatch(sortToursByPrice());
   }
 }
