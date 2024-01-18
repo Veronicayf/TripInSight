@@ -32,7 +32,9 @@ const ToursList = () => {
           <b>Our </b>
           <b className="text-primary"> Tours </b>
         </div>
+        <div className="flex justify-center my-3 gap-3">
         <FilterTags />
+        </div>
         <div className="flex justify-center items-center">
           {allTours && allTours.length > 0 ? (
             allTours?.map((tour, index) => <TourCard key={index} tour={tour}/>)

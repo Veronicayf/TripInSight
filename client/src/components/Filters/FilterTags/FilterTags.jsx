@@ -12,7 +12,7 @@ const FilterTags = () => {
       }
 
     return (
-        <div className="flex flex-col justify-items-center justify-center items-center bg-green-300 gap-3 p-5 rounded-full">
+        <div className="flex flex-col justify-items-center justify-center items-center min-w-fit bg-green-300 gap-3 p-5 rounded-full">
             <div className="flex flex-row justify-center items-center">
             <b> Filter by the 10 most searched tags</b>
             </div>
@@ -43,10 +43,40 @@ const FilterTags = () => {
             >#Birds</button>
             <button 
             type="submit"
-            name="birds"
+            name="landscapes"
             className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
             onClick={(e) => handleButtonSubmit(e)}
-            >#Sea</button>
+            >#Landscapes</button>
+            <button 
+            type="submit"
+            name="trekking"
+            className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+            onClick={(e) => handleButtonSubmit(e)}
+            >#Trekking</button>
+            <button 
+            type="submit"
+            name="forest"
+            className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+            onClick={(e) => handleButtonSubmit(e)}
+            >#Forest</button>
+            <button 
+            type="submit"
+            name="climbing"
+            className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+            onClick={(e) => handleButtonSubmit(e)}
+            >#Climbing</button>
+            <button 
+            type="submit"
+            name="snow"
+            className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+            onClick={(e) => handleButtonSubmit(e)}
+            >#Snow</button>
+            <button 
+            type="submit"
+            name="nature"
+            className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+            onClick={(e) => handleButtonSubmit(e)}
+            >#Nature</button>
             </div>
         </div>
     )
