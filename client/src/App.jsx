@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import logo from "./assets/img/logo.png";
 import "./App.css";
 import TourDetail from "./views/TourDetail/Tour";
@@ -22,6 +22,7 @@ import Register from "./components/Register/Register";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import Profile from "./views/Profile/Profile";
+import AdminGuides from "./views/AdminGuides/AdminGuides";
 
 
 
@@ -32,9 +33,12 @@ const App = () => {
   //dana
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+  const location = useLocation();
+  const isOnAdminRoute = location.pathname.startsWith("/admin");
+
   return (
     <div>
-      
+        {!isOnAdminRoute && <NavBar />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -49,12 +53,13 @@ const App = () => {
           <Route path="/admin/createtour" element={<CreateTour />} />
           <Route path="/admin/createguide" element={<CreateGuide />} />
           <Route path="/admin/viewTours" element={<AdminTous />} />
+          <Route path="/admin/viewGuides" element={<AdminGuides />} />
           {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
           {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
 
         </Routes>
       
-      <Footer />
+        {!isOnAdminRoute && <Footer />}
     </div>
   );
 };

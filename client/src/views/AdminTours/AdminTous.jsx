@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SideBar from '../../components/SideBar/SideBar'
-import iconmenu from '../../assets/icons/IconMenuVertical.png'
+
 import TourItem from '../../components/TourItem/TourItem';
 import Pagination from '../../components/Pagination/Pagination';
 
