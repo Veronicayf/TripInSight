@@ -21,9 +21,12 @@ export const tourSlice = createSlice({
     },
     searchTourByTags: (state, action) => {
       state.tours = [...action.payload]
+    },
+    filterTourByContinent: (state, action) => {
+      state.tours = [...action.payload]
     }
   },
 });
 
-export const { getAllTours, getTourById, searchTourByName, searchTourByTags } = tourSlice.actions;
+export const { getAllTours, getTourById, searchTourByName, searchTourByTags, filterTourByContinent } = tourSlice.actions;
 export default tourSlice.reducer;

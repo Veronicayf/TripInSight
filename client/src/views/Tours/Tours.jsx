@@ -7,6 +7,7 @@ import React, { useEffect } from "react";
 import TourCard from '../../components/TourCard/TourCard'
 import { getAllT } from "../../redux/tourStore/toursActions";
 import FilterTags from "../../components/Filters/FilterTags/FilterTags";
+import FilterContinent from "../../components/Filters/FiltersCG/FilterContinent";
 
 const ToursList = () => {
     const allTours = useSelector((state) => state.tour.tours);
@@ -33,6 +34,7 @@ const ToursList = () => {
           <b className="text-primary"> Tours </b>
         </div>
         <div className="flex justify-center my-3 gap-3">
+        <FilterContinent />
         <FilterTags />
         </div>
         <div className="flex justify-center items-center">
