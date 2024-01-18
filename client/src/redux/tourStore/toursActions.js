@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAllTours, getTourById, searchTourByName, searchTourByTags, } from "./toursSlice";
+import { filterTourByContinent, getAllTours, getTourById, searchTourByName, searchTourByTags, sortToursByPrice, } from "./toursSlice";
 
 export const getAllT = () => {
   return async (dispatch) => {
@@ -7,7 +7,6 @@ export const getAllT = () => {
     return dispatch(getAllTours(json.data));
   };
 };
-
 
   export const getTourId = (id) => {
     return async (dispatch) => {
@@ -27,5 +26,18 @@ export const searchTourTags = (tour) => {
   return async (dispatch) => {
     let {data} = await axios.get(`http://localhost:4000/tours/tags?tags=${tour}`);
     return dispatch(searchTourByTags(data));
+  }
+}
+
+export const filterContinent = (tour) => {
+  return async (dispatch) => {
+    let {data} = await axios.get(`http://localhost:4000/tours/continent?continent=${tour}`);
+    return dispatch(filterTourByContinent(data));
+  }
+}
+
+export const sortToursPrice = () => {
+  return (dispatch) => {
+    dispatch(sortToursByPrice());
   }
 }

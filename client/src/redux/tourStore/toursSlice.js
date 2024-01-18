@@ -7,6 +7,7 @@ export const tourSlice = createSlice({
     toursCopy: [],
     detail: {},
     searchTours: [],
+    sortOrder: 'asc',
   },
   reducers: {
     getAllTours: (state, action) => {
@@ -21,9 +22,18 @@ export const tourSlice = createSlice({
     },
     searchTourByTags: (state, action) => {
       state.tours = [...action.payload]
-    }
+    },
+    filterTourByContinent: (state, action) => {
+      state.tours = [...action.payload]
+    },
+    sortToursByPrice: (state) => {
+      const multiplier = state.sortOrder === 'asc' ? 1 : -1;
+      state.tours.sort((a, b) => multiplier * (a.price - b.price));
+      state.sortOrder = state.sortOrder === 'asc' ? 'desc' : 'asc';
+
+    },
   },
 });
 
-export const { getAllTours, getTourById, searchTourByName, searchTourByTags } = tourSlice.actions;
+export const { getAllTours, getTourById, searchTourByName, searchTourByTags, filterTourByContinent, sortToursByPrice } = tourSlice.actions;
 export default tourSlice.reducer;

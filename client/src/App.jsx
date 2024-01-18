@@ -16,9 +16,9 @@ import ToursList from "./views/Tours/Tours";
 
 const App = () => {
 
-  //dana
+  //dana  ---> en proceso hasta el useEffect
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log('user datos:', user);
+  // console.log('user datos:', user);
 
   //verificar si el user esta logueado cuando ingresa.
   useEffect(() => {
