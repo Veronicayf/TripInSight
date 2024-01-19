@@ -7,20 +7,13 @@ import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
 import IconBirthday from '../../assets/icons/IconBirthday.png'
 import IconCountry from '../../assets/icons/IconCountry.png'
 import IconHome from '../../assets/icons/IconHome.png'
+import { useSelector } from 'react-redux';
 
 
-const guideInfo = [
-    {
-        "forename": "Benjamin",
-        "surname": "Smith",
-        "nationality": "Canadian",
-        "image": "https://images.pexels.com/photos/14783579/pexels-photo-14783579.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "birthDate": "1990-09-25",
-        "biography": "Benjamin is an adventurous guide with a keen interest in marine life. Specializing in scuba diving, he provides unique insights into the underwater world. With a commitment to environmental conservation, Benjamin's tours focus on sustainable practices, making him an ideal choice for eco-conscious travelers."
-      },
-]
 
-const Guide = () => {
+const GuideDetail = () => {
+  const guideDetail = useSelector((state) => state.guide.detail);
+
   const place = "algunlugar"
   return (
     <div className=" font-Nunito">
@@ -31,20 +24,20 @@ const Guide = () => {
         <div className='w-2/3 px-9'>
             <div className=' flex flex-col'>
             <div className='flex justify-center flex-row py-9'>
-                <b className='text-5xl'>{guideInfo[0].forename}</b> 
-                <b className='text-5xl text-primary pl-4'>{guideInfo[0].surname}</b> </div>
+                <b className='text-5xl'>{guideDetail.forename}</b> 
+                <b className='text-5xl text-primary pl-4'>{guideDetail.surname}</b> </div>
             </div>
             <div className='flex justify-center items-center'>
-                <p className=' w-1/2'>{guideInfo[0].biography}</p>
+                <p className=' w-1/2'>{guideDetail.biography}</p>
             </div>
             <div className='flex text-center justify-around items-center '>
               <div className='flex text-center items-center py-8'>
                 <i ><img className='h-12' src={IconBirthday} alt="" /></i>
-                <b>{ guideInfo[0].birthDate}</b>
+                <b>{ guideDetail.birthDate}</b>
               </div>
               <div className='flex text-center items-center'>
                 <i ><img className='h-12' src={IconCountry} alt="" /></i>
-                <b>{ guideInfo[0].nationality}</b>
+                <b>{ guideDetail.nationality}</b>
               </div>
             </div>
             <div className='flex flex-row p-4 justify-around items-center'>
@@ -60,7 +53,7 @@ const Guide = () => {
 
         <div>
             <div>
-                <img className='h-1/2' src={ guideInfo[0].image} alt="" />
+                <img className='h-1/2' src={ guideDetail.image} alt="" />
             </div>
         </div>
       </div>
@@ -68,4 +61,4 @@ const Guide = () => {
   )
 }
 
-export default Guide
+export default GuideDetail;

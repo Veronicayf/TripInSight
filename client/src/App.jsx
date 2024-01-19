@@ -19,8 +19,7 @@ import { loggedUser } from "./redux/userStore/usersActions";
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import GuideCard from "./components/GuideCard/GuideCard";
-import Checkout from "./views/CheckOut/CheckOut";
-import { useDispatch } from "react-redux";
+
 
 const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -57,7 +56,7 @@ const App = () => {
           <Route path="/tours" element={<ToursList />}/>
           <Route path="/profile/:id" element={<Profile/>} />
           <Route path="/tours/:id" element={<TourDetail />} />
-          <Route path="/guide/:id" element={<GuideCard />} />
+          <Route path="/guides/:id" element={<GuideDetail />} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/admin/" element={<AdminPanel />} />
           <Route path="/admin/createtour" element={<CreateTour />} />
