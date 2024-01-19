@@ -223,11 +223,27 @@ const CreateTour = () => {
                                     className="border p-2 rounded-md  focus:outline-none focus:border-primary"
                                 />
                             </label>
+                            
+                            <label className=" flex flex-col">Add tags:
+                        <select
+                            name="tags"
+                            multiple
+                            id="tags"
+                            className="border p-2 rounded-md  focus:outline-none focus:border-primary"
+                        >
+                            <option value="">Select tags: </option>
+                            { /*{ Map para recorrer las tags.map((tag, index) => (
+                                
+                            <option key={index} value={tag.name}>
+                                {tag.name}
+                            </option>
+                            ))}*/}
+                            </select>
+                            </label>
+                            
                         </div>
                     </div>
-                    {/* Otros campos según tus necesidades */}
-                    <div className=" h-16 flex justify-center items-center">
-                        <button type="submit" className="w-56 h-12 text-white rounded-3xl bg-primary  hover:bg-btn-hover" >Guardar Tour</button>
+
                     </div>
 
                 </form>

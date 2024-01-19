@@ -14,9 +14,9 @@ const SideBar = () => {
         </div>
         <div className=' flex-1'>
           <div>
-            <SideBarLink linkTo="/admin/tours" text="Tours" icon={dashboardIcon} />
+            <SideBarLink linkTo="/admin/viewTours" text="Tours" icon={dashboardIcon} />
             <SideBarLink linkTo="/admin/createtour" text="Create Tour" icon={dashboardIcon} />
-            <SideBarLink linkTo="/admin/guides" text="Guides" icon={dashboardIcon} />
+            <SideBarLink linkTo="/admin/viewGuides" text="Guides" icon={dashboardIcon} />
             <SideBarLink linkTo="/admin/createguide" text="Create Guide" icon={dashboardIcon} />
             <SideBarLink linkTo="/admin/transactions" text="Transactions" icon={dashboardIcon} />
             <SideBarLink linkTo="/admin/comments" text="Comments" icon={dashboardIcon} />
