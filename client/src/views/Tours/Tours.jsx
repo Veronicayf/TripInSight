@@ -39,7 +39,7 @@ const ToursList = () => {
         <FilterTags />
         <PriceOrder />
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex flex-wrap gap-10 p-4 w-full justify-around items-center">
           {allTours && allTours.length > 0 ? (
             allTours?.map((tour, index) => <TourCard key={index} tour={tour}/>)
           ) : (
