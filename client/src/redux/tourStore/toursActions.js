@@ -8,19 +8,37 @@ export const getAllT = () => {
   };
 };
 
+
   export const getTourId = (id) => {
     return async (dispatch) => {
       let {data} = await axios.get(`http://localhost:4000/tours/${id}`);
       return dispatch(getTourById(data));
-    };
-  };
+   };
+};
 
 export const getTourName = (tour) => {
   return async (dispatch) => {
+
     let {data} = await axios.get(`http://localhost:4000/tours/nameTour?nameTour=${tour}`);
     return dispatch(searchTourByName(data));
   }
 }
+
+
+
+//veronica__________________
+export const postTourAction = (posteoTour) => {
+  console.log('action problematico', postTour)
+  return async (dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:4000/tours", posteoTour);
+      dispatch(postTour(response.data));
+    } catch (error) {
+      console.error("error en la accion:", error);
+    }
+  };
+
+
 
 export const searchTourTags = (tour) => {
   return async (dispatch) => {
@@ -40,4 +58,5 @@ export const sortToursPrice = () => {
   return (dispatch) => {
     dispatch(sortToursByPrice());
   }
+
 }

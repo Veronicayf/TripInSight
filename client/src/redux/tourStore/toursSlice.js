@@ -32,8 +32,12 @@ export const tourSlice = createSlice({
       state.sortOrder = state.sortOrder === 'asc' ? 'desc' : 'asc';
 
     },
+    postTour: (state, action) => {
+      state.tours = [...state.tours, action.payload];
+    },
   },
-});
 
-export const { getAllTours, getTourById, searchTourByName, searchTourByTags, filterTourByContinent, sortToursByPrice } = tourSlice.actions;
+
+export const { getAllTours, getTourById, searchTourByName, searchTourByTags, filterTourByContinent, sortToursByPrice, postTour } = tourSlice.actions;
+
 export default tourSlice.reducer;
