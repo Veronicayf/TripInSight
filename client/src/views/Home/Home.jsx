@@ -46,10 +46,9 @@ const Home = () => {
           </p>
         </div>
         <div className="my-3">
-          <Link className=" flex justify-center  items-center text-2xl">
+          <Link to={"/tours"} className=" flex justify-center  items-center text-2xl transition hover:duration-300 hover:scale-110 ease-in-out ">
             <b>All Tours</b>
             <i>
-              {" "}
               <img src={IconGoTo} alt="Icon Go to " className="h-12" />
             </i>
           </Link>
@@ -84,7 +83,7 @@ const Home = () => {
           </div>
         </div>
           <div className="my-3">
-            <Link className=" flex justify-center  items-center text-2xl">
+            <Link to={"/tours"} className=" flex justify-center  items-center text-2xl transition hover:duration-300 hover:scale-110 ease-in-out  ">
               <b>All Tours</b>
               <i>
                 {" "}
@@ -110,8 +109,8 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="h-12 flex justify-center">
-                            <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary">
-                                <Link><b>See Tours</b></Link>
+                            <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary transition hover:duration-300 hover:scale-110 ease-in-out ">
+                                <Link to={"/tours"}><b>See Tours</b></Link>
                             </button>
                         </div>
                     </div>

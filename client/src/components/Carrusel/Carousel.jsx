@@ -31,13 +31,13 @@
               </div>
             </div>
             <button
-              className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 mx-4 bg-gray-800 opacity-75 rounded-full text-white"
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 px-4 py-2 mx-4 bg-gray-800 opacity-75 rounded-full text-white font-bold hover:bg-gray-950 transition hover:duration-300 hover:scale-110 ease-in-out "
               onClick={prevImage}
             >
               {"<"}
             </button>
             <button
-              className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 mx-4 bg-gray-800 opacity-75 rounded-full text-white"
+              className="absolute top-1/2 right-0 transform -translate-y-1/2 px-4 py-2 mx-4 bg-gray-800 opacity-75 rounded-full text-white font-bold hover:bg-gray-950 transition hover:duration-300 hover:scale-110 ease-in-out "
               onClick={nextImage}
             >
               {">"}
