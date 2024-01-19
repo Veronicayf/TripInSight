@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import iconTrust from "../../assets/icons/iconTrust.png";
 import boreal from "../../assets/img/boreal.png";
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
