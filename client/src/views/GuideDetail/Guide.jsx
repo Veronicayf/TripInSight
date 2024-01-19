@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Carousel from '../../components/Carrusel/Carousel'
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
@@ -42,10 +42,10 @@ const GuideDetail = () => {
             </div>
             <div className='flex flex-row p-4 justify-around items-center'>
               <div>
-                <button className='bg-primary w-48 h-14 rounded-3xl flex justify-center items-center text-white text-xl font-bold border-black border-2  hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out '> <img src={IconHome} alt="Icon home" className='h-10' /><NavLink to={"/"}>Home</NavLink></button>
+                <button className='bg-primary w-48 h-14 rounded-3xl flex justify-center items-center text-white text-xl font-bold border-black border-2  hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out '> <img src={IconHome} alt="Icon home" className='h-10' /><Link to={"/"}>Home</Link></button>
               </div>
               <div>
-              <button className='bg-white w-48 h-14 rounded-3xl flex justify-center items-center text-primary border-black border-2  text-xl font-bold hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out  '><img src="" alt="" /> <NavLink to={place}>Guide's Tours</NavLink>
+              <button className='bg-white w-48 h-14 rounded-3xl flex justify-center items-center text-primary border-black border-2  text-xl font-bold hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out  '><img src="" alt="" /> <Link to={place}>Guide's Tours</Link>
               </button>
               </div>
             </div>
