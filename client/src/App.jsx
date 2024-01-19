@@ -20,13 +20,15 @@ import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import GuideCard from "./components/GuideCard/GuideCard";
 import Checkout from "./views/CheckOut/CheckOut";
+import { useDispatch } from "react-redux";
 
 const App = () => {
-  //dana  ---> en proceso hasta el useEffect
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const dispatch = useDispatch();
   
     //verificar si el user esta autenticado cuando ingresa.
     useEffect(() => {
+      const data = async () => {
       if (isAuthenticated) {
         //si lo esta destructuro la info para mandarla al back
       const userAuth = {
@@ -34,11 +36,12 @@ const App = () => {
         surname: user.family_name,
         email: user.email,
         image: user.picture,
-        username: user.nickname,
       };
-      loggedUser(userAuth);
+      await dispatch(loggedUser(userAuth));
     }
-  }, [isAuthenticated, user]);
+   }
+   data();
+  }, [dispatch, isAuthenticated, user]);
 
   const location = useLocation();
   const isOnAdminRoute = location.pathname.startsWith("/admin");

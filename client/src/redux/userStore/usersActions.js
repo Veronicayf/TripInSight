@@ -18,7 +18,7 @@ export const getUserId = (id) => {
 
 export const loggedUser = (user) => {
   return async (dispatch) => {
-    let {data} = await axios.post("http://localhost:4000/user", user);
-    return dispatch(loggedUserReducer(data));
+    let response = await axios.post("http://localhost:4000/user", user);
+    return dispatch(loggedUserReducer(response.data));
   }
 };
