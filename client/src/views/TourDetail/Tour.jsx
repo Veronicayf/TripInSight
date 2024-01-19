@@ -60,7 +60,7 @@ const Tour = () => {
         </div>
       </section>
       <section>
-        <Buysection />
+        <Buysection tour={tourDetail} />
       </section>
       {/*-------------- Info Del Tour --------------*/}
       {/*-------------- Page Nav Bar--------------*/}
