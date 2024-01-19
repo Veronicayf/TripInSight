@@ -30,7 +30,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <main>
+    <main className=" font-Nunito">
       <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />

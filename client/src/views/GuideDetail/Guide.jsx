@@ -23,7 +23,7 @@ const guideInfo = [
 const Guide = () => {
   const place = "algunlugar"
   return (
-    <div>
+    <div className=" font-Nunito">
         <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
@@ -38,7 +38,7 @@ const Guide = () => {
                 <p className=' w-1/2'>{guideInfo[0].biography}</p>
             </div>
             <div className='flex text-center justify-around items-center '>
-              <div className='flex text-center items-center'>
+              <div className='flex text-center items-center py-8'>
                 <i ><img className='h-12' src={IconBirthday} alt="" /></i>
                 <b>{ guideInfo[0].birthDate}</b>
               </div>
