@@ -26,9 +26,9 @@ const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
   const dispatch = useDispatch();
   
-    //verificar si el user esta autenticado cuando ingresa.
-    useEffect(() => {
-      const data = async () => {
+  //verificar si el user esta autenticado cuando ingresa.
+  useEffect(() => {
+    const data = async () => {
       if (isAuthenticated) {
         //si lo esta destructuro la info para mandarla al back
       const userAuth = {
