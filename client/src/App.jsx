@@ -17,15 +17,15 @@ import ToursList from "./views/Tours/Tours";
 const App = () => {
 
   //dana  ---> en proceso hasta el useEffect
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  // console.log('user datos:', user);
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
+  
   //verificar si el user esta logueado cuando ingresa.
-  useEffect(() => {
-    if(!isLoading) {
+  // useEffect(() => {
+  //   if(!isLoading) {
 
-    }
-  }, [isAuthenticated, isLoading])
+  //   }
+  // }, [isAuthenticated, isLoading])
 
   return (
     <div>
