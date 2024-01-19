@@ -14,7 +14,7 @@ const GuideCard = ({ guide }) => {
 
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
+      className="flex min-h-screen items-center flex-wrap justify-center"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
@@ -22,7 +22,7 @@ const GuideCard = ({ guide }) => {
       (<div className="mx-auto px-5">
         <div className="max-w-xs cursor-pointer rounded-lg bg-white p-2 shadow duration-150 hover:scale-105 hover:shadow-md">
           <img
-            className="w-full rounded-lg object-cover object-center"
+            className="h-80 rounded-lg object-cover object-center"
             src={guide.image}
             alt="product"
           />
@@ -33,10 +33,8 @@ const GuideCard = ({ guide }) => {
         </div>
       </div>)
       : ( 
-      <div className="mx-auto px-5">
+      <div className="mx-auto h-96  px-5">
         <div className="max-w-xs cursor-pointer rounded-lg bg-white p-2 shadow duration-150 hover:scale-105 hover:shadow-md">
-          
-          
             <div className="">
               <p className="mb-4 ml-4 text-xl font-semibold text-gray-800">
                 {guide.biography}
