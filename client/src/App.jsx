@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import logo from "./assets/img/logo.png";
@@ -16,10 +15,10 @@ import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-import ToursList from "./views/Tours/Tours";
 import { loggedUser } from "./redux/userStore/usersActions";
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
+import GuideCard from "./components/GuideCard/GuideCard";
 
 
 const App = () => {
@@ -56,7 +55,7 @@ const App = () => {
           <Route path="/tours" element={<ToursList />}/>
           <Route path="/profile/:id" element={<Profile/>} />
           <Route path="/tours/:id" element={<TourDetail />} />
-          <Route path="/guide/:id" element={<Guide/>} />
+          <Route path="/guide/:id" element={<GuideCard />} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/admin/" element={<AdminPanel />} />
           <Route path="/admin/createtour" element={<CreateTour />} />

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { filterTourByContinent, getAllTours, getTourById, searchTourByName, searchTourByTags, sortToursByPrice, } from "./toursSlice";
+import { filterTourByContinent, getAllTours, getTourById, searchTourByName, searchTourByTags, sortToursByPrice, postTour} from "./toursSlice";
 
 export const getAllT = () => {
   return async (dispatch) => {
@@ -36,6 +36,7 @@ export const postTourAction = (posteoTour) => {
     } catch (error) {
       console.error("error en la accion:", error);
     }
+  }
   };
 
 

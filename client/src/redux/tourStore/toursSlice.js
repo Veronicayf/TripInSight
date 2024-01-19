@@ -36,6 +36,7 @@ export const tourSlice = createSlice({
       state.tours = [...state.tours, action.payload];
     },
   },
+});
 
 
 export const { getAllTours, getTourById, searchTourByName, searchTourByTags, filterTourByContinent, sortToursByPrice, postTour } = tourSlice.actions;
