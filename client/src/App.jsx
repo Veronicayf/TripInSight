@@ -1,5 +1,7 @@
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
 import logo from "./assets/img/logo.png";
 import "./App.css";
 import TourDetail from "./views/TourDetail/Tour";
@@ -14,24 +16,27 @@ import CreateGuide from "./views/CreateGuide/CreateGuide";
 import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
 
-import { getTourId } from "./redux/tourStore/toursActions";
-
-import Register from "./components/Register/Register";
-
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
+
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 
 
 
-// import PruebaBack from "./views/pruebaBack/PruebaBack";
 
 const App = () => {
 
-  //dana
+  //dana  ---> en proceso hasta el useEffect
   const { user, isAuthenticated, isLoading } = useAuth0();
+  // console.log('user datos:', user);
+
+  //verificar si el user esta logueado cuando ingresa.
+  useEffect(() => {
+    if(!isLoading) {
+
+    }
+  }, [isAuthenticated, isLoading])
 
   const location = useLocation();
   const isOnAdminRoute = location.pathname.startsWith("/admin");
@@ -54,9 +59,6 @@ const App = () => {
           <Route path="/admin/createguide" element={<CreateGuide />} />
           <Route path="/admin/viewTours" element={<AdminTous />} />
           <Route path="/admin/viewGuides" element={<AdminGuides />} />
-          {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
-          {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
-
         </Routes>
       
         {!isOnAdminRoute && <Footer />}
