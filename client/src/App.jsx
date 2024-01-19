@@ -18,8 +18,9 @@ import Guides from "./views/Guides/Guides";
 import { loggedUser } from "./redux/userStore/usersActions";
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
-import GuideCard from "./components/GuideCard/GuideCard";
-
+import { useDispatch } from "react-redux";
+import GuideDetail from "./views/GuideDetail/Guide";
+import Checkout from "./views/CheckOut/CheckOut";
 
 const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
