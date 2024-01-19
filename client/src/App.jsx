@@ -19,7 +19,7 @@ import { loggedUser } from "./redux/userStore/usersActions";
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import GuideCard from "./components/GuideCard/GuideCard";
-
+import Checkout from "./views/CheckOut/CheckOut";
 
 const App = () => {
   //dana  ---> en proceso hasta el useEffect
@@ -45,7 +45,6 @@ const App = () => {
 
   return (
     <div>
-
         {!isOnAdminRoute && <NavBar />}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -62,9 +61,11 @@ const App = () => {
           <Route path="/admin/createguide" element={<CreateGuide />} />
           <Route path="/admin/viewTours" element={<AdminTous />} />
           <Route path="/admin/viewGuides" element={<AdminGuides />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       
         {!isOnAdminRoute && <Footer />}
+
 
     </div>
   );
