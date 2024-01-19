@@ -118,7 +118,7 @@ const Tour = () => {
             <b>Depature place</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>Wakanda or Antigua and Barbuda airport</p>
+            <p>{tourDetail.city + ', ' + tourDetail.country + ', ' + tourDetail.continent}</p>
           </div>
         </div>
         <div className="bg-seconday-text h-2 my-4"></div>

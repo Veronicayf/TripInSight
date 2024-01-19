@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-
 import logo from "./assets/img/logo.png";
 import "./App.css";
 import TourDetail from "./views/TourDetail/Tour";
@@ -15,29 +14,32 @@ import CreateTour from "./views/CreateTour/CreateTour";
 import CreateGuide from "./views/CreateGuide/CreateGuide";
 import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-
+import ToursList from "./views/Tours/Tours";
+import { loggedUser } from "./redux/userStore/usersActions";
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 
 
-
-
-
 const App = () => {
-
   //dana  ---> en proceso hasta el useEffect
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  // console.log('user datos:', user);
-
-  //verificar si el user esta logueado cuando ingresa.
-  useEffect(() => {
-    if(!isLoading) {
-
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  
+    //verificar si el user esta autenticado cuando ingresa.
+    useEffect(() => {
+      if (isAuthenticated) {
+        //si lo esta destructuro la info para mandarla al back
+      const userAuth = {
+        forename: user.given_name,
+        surname: user.family_name,
+        email: user.email,
+        image: user.picture,
+        username: user.nickname,
+      };
+      loggedUser(userAuth);
     }
-  }, [isAuthenticated, isLoading])
+  }, [isAuthenticated, user]);
 
   const location = useLocation();
   const isOnAdminRoute = location.pathname.startsWith("/admin");
