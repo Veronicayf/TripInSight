@@ -45,8 +45,8 @@ const Home = () => {
             around the world
           </p>
         </div>
-        <div className="my-3">
-          <Link to={"/tours"} className=" flex justify-center  items-center text-2xl transition hover:duration-300 hover:scale-110 ease-in-out ">
+        <div className="my-3 w-full flex justify-center">
+            <Link to={"/tours"} className=" w-96 mx-10 flex justify-center items-center text-2xl  transition hover:duration-300 hover:scale-110 ease-in-out  ">
             <b>All Tours</b>
             <i>
               <img src={IconGoTo} alt="Icon Go to " className="h-12" />
@@ -55,7 +55,7 @@ const Home = () => {
         </div>
 
         <div className="flex justify-center items-center w-full h-96">
-          <div className="flex justify-center items-center gap-10">
+          <div className="flex justify-center items-center  gap-4">
             {allTours && allTours.length > 0 ? (
               allTours.slice(0, 5).map((tour) => <TourCard key={tour.id} tour={tour} />)
             ) : (
@@ -74,7 +74,7 @@ const Home = () => {
             <b className="text-primary mx-2">PROPOUSALS</b>
           </div>
           <div className="flex justify-center items-center w-full h-96">
-            <div className="flex justify-center items-center gap-10">
+            <div className="flex justify-center items-center gap-4">
               {allTours && allTours.length > 0 ? (
                 allTours.slice(0, 5).map((tour) => <TourCard key={tour.id} tour={tour} />)
               ) : (
@@ -82,11 +82,10 @@ const Home = () => {
               )}
             </div>
           </div>
-          <div className="my-3">
-            <Link to={"/tours"} className=" flex justify-center  items-center text-2xl transition hover:duration-300 hover:scale-110 ease-in-out  ">
+          <div className="my-3 w-full flex justify-center">
+            <Link to={"/tours"} className=" w-96 mx-10 flex justify-center items-center text-2xl  transition hover:duration-300 hover:scale-110 ease-in-out  ">
               <b>All Tours</b>
               <i>
-                {" "}
                 <img src={IconGoTo} alt="Icon Go to " className="h-12" />
               </i>
             </Link>

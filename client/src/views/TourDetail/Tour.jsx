@@ -24,19 +24,20 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
+  console.log(tourDetail)
 
   return (
     <main className=" font-Nunito">
       {/* Image Section */}
-      <section>
+      <section className="">
         <img
           src={tourDetail.image}
-          className="w-full h-auto overflow-hidden"
+          className="w-full h-[35rem] "
           alt=""
         />
       </section>
       {/*-------------- Info Del Tour --------------*/}
-      <section className="px-4 flex w-3/4">
+      <section className="px-4 pt-8 flex w-3/4">
         <div className="flex w-1/2">
           <ul>
             <TourInfoItem icon={iconDay} label="80 Days" />
@@ -107,8 +108,10 @@ const Tour = () => {
       {/*-------------- Tour Detail --------------*/}
 
       {/*-------------- Second Image --------------*/}
-      <section className=" w-3/4 px-4">
-        <img src={ImageSecundaria} alt="" />
+      <section className=" w-3/4 px-4 flex justify-center">
+      {tourDetail && tourDetail.photos && tourDetail.photos.length > 0 && (
+    <img src={tourDetail.photos[0]} alt="" />
+  )}
       </section>
       {/*-------------- Detail tour --------------*/}
       <section className=" w-3/4">
@@ -127,7 +130,7 @@ const Tour = () => {
             <b>Travel time</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>February 30 - May 32</p>
+            <p>{tourDetail.initialDate} - {tourDetail.endDate}</p>
           </div>
         </div>
         <div className="bg-seconday-text h-2 my-4"></div>
@@ -175,21 +178,11 @@ const Tour = () => {
       </section>
       {/*-------------- Photos tour --------------*/}
       <section id="photos" className="flex-col px-4 w-3/4">
-        <PhotoSection
-          icon={iconPhoto}
-          title="Photos"
-          images={[
-            ImangeProvisoria1,
-            ImangeProvisoria2,
-            ImangeProvisoria3,
-            ImagePrincipal,
-            ImageSecundaria,
-            ImangeProvisoria2,
-            ImangeProvisoria3,
-            ImagePrincipal,
-            ImageSecundaria,
-          ]}
-        />
+      <PhotoSection
+        icon={iconPhoto}
+        title="Photos"
+        images={tourDetail.photos || []}
+      />
       </section>
       {/*-------------- Guide Section --------------*/}
       <GuideSection

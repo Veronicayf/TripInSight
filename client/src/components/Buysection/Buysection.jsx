@@ -4,12 +4,6 @@ import iconFav from '../../assets/icons/favoriteIcon.png'
 import iconPrice from '../../assets/icons/PriceIcon.png'
 
 
-
-
-
-
-
-
     const Buysection = ({tour}) => {
     const [isSticky, setIsSticky] = useState(false);
 
@@ -39,8 +33,8 @@ import iconPrice from '../../assets/icons/PriceIcon.png'
                         <h2 className="mb-2 text-4xl py-2 font-semibold flex items-center justify-center">PRICE</h2>
                     </div>
                     <div className="w-full flex justify-center items-center" >
-                        <i className='h-12'><img className='h-16 w-16' src={iconPrice} alt="icon" /></i>
-                        <b className=" mb-2 text-4xl py-4 font-Bebas">{`$ ${tour.price}`}</b>
+                        <i className='h-12 flex items-center justify-center'><img className='h-16 w-16' src={iconPrice} alt="icon" /></i>
+                        <b className=" mb-2 text-6xl py-4 font-Bebas flex justify-center items-center">{`$ ${tour.price}`}</b>
                     </div>
                     <div className="w-full ">
                         <button className="text-primary bg-white w-full py-2 mb-2 rounded flex items-center justify-center hover:bg-btn-hover hover:text-white">
