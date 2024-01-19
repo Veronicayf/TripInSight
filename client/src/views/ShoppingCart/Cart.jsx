@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
-import iconTrust from "../../assets/icons/iconTrust.png";
-import boreal from "../../assets/img/boreal.png";
+import React, { useEffect, useState } from 'react'
+import iconTrust from '../../assets/icons/iconTrust.png'
+import boreal from '../../assets/img/boreal.png'
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
-import Carousel from "../../components/Carrusel/Carousel";
+import Carousel from '../../components/Carrusel/Carousel';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+
 
 const Cart = () => {
   const initialQuantity = 0;
@@ -25,6 +28,7 @@ const Cart = () => {
       localStorage.removeItem("cartQuantity");
     }, 60 * 60 * 1000);
 
+
     return () => clearTimeout(timeoutId);
   }, [quantity]);
 
@@ -37,11 +41,30 @@ const Cart = () => {
       setQuantity(quantity - 1);
     }
   };
+    const totalPrice = quantity * pricePerUnit;
 
-  const totalPrice = quantity * pricePerUnit;
+    const { isAuthenticated, isLoading, loginWithRedirect, logout, user } = useAuth0();
+    const navigate = useNavigate();
+
+  useEffect(() => {
+    const verifyAuthentication = async () => {
+      if (!isLoading) {
+        if (!isAuthenticated) {
+            navigate('/login');
+        } else {
+          // El usuario está autenticado
+          console.log('Usuario autenticado:', user);
+        }
+      }
+    };
+
+    verifyAuthentication();
+  }, [isLoading, isAuthenticated, loginWithRedirect, user]);
+
   return (
-    <main className="">
-      <Carousel
+    <main className=" font-Nunito">
+        <Carousel
+
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
 

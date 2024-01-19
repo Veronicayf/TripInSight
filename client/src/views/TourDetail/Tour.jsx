@@ -26,7 +26,7 @@ const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
 
   return (
-    <main>
+    <main className=" font-Nunito">
       {/* Image Section */}
       <section>
         <img
@@ -42,13 +42,16 @@ const Tour = () => {
             <TourInfoItem icon={iconDay} label="80 Days" />
             <TourInfoItem
               icon={iconCalendar}
-              label={tourDetail.initialDate + " " + tourDetail.endDate}
-            />
-            <TourInfoItem icon={iconpeople} label={tourDetail.capacity} />
+              label={"Initial Date: " + tourDetail.initialDate} />
+            <TourInfoItem
+              icon={iconCalendar}
+              label= {" End Date: " + tourDetail.endDate} />
+            
           </ul>
         </div>
         <div className="flex w-1/2">
           <ul>
+            <TourInfoItem icon={iconpeople} label={tourDetail.capacity} />
             <TourInfoItem
               icon={iconplace}
               label={tourDetail.city + ", " + tourDetail.country}
@@ -115,7 +118,7 @@ const Tour = () => {
             <b>Depature place</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>Wakanda or Antigua and Barbuda airport</p>
+            <p>{tourDetail.city + ', ' + tourDetail.country + ', ' + tourDetail.continent}</p>
           </div>
         </div>
         <div className="bg-seconday-text h-2 my-4"></div>

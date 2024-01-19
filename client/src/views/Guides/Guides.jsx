@@ -26,9 +26,13 @@ const Guides = () => {
           <b>Our </b>
           <b className="text-primary"> Guides </b>
         </div>
-        <div className="flex justify-center items-center">
+        <div className="flex flex-wrap justify-center items-center grid-cols-4 ">
           {allGuides && allGuides.length > 0 ? (
-            allGuides?.map((guide) => <GuideCard key={guide.id} guide={guide}/>)
+            allGuides?.map((guide) => 
+            <div className="flex justify-center items-start">
+            <GuideCard key={guide.id} guide={guide}/>
+            </div>
+            )
           ) : (
             <b>Loading...</b>
           )}
