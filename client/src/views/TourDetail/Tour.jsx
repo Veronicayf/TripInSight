@@ -26,7 +26,7 @@ const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
 
   return (
-    <main>
+    <main className=" font-Nunito">
       {/* Image Section */}
       <section>
         <img
