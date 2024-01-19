@@ -29,15 +29,15 @@ const Tour = () => {
   return (
     <main className=" font-Nunito">
       {/* Image Section */}
-      <section>
+      <section className="">
         <img
           src={tourDetail.image}
-          className="w-full h-auto overflow-hidden"
+          className="w-full h-[35rem] "
           alt=""
         />
       </section>
       {/*-------------- Info Del Tour --------------*/}
-      <section className="px-4 flex w-3/4">
+      <section className="px-4 pt-8 flex w-3/4">
         <div className="flex w-1/2">
           <ul>
             <TourInfoItem icon={iconDay} label="80 Days" />
@@ -130,7 +130,7 @@ const Tour = () => {
             <b>Travel time</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>February 30 - May 32</p>
+            <p>{tourDetail.initialDate} - {tourDetail.endDate}</p>
           </div>
         </div>
         <div className="bg-seconday-text h-2 my-4"></div>
