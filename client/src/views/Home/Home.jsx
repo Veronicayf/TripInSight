@@ -54,10 +54,10 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center h-96">
-          <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center w-full h-96">
+          <div className="flex justify-center items-center gap-10">
             {allTours && allTours.length > 0 ? (
-              allTours?.map((tour) => <TourCard key={tour.id} tour={tour} />)
+              allTours.slice(0, 5).map((tour) => <TourCard key={tour.id} tour={tour} />)
             ) : (
               <h2>Loading...</h2>
             )}
@@ -73,15 +73,15 @@ const Home = () => {
             <b className=" mx-4">OUR</b>
             <b className="text-primary mx-2">PROPOUSALS</b>
           </div>
-          <div className="flex justify-center items-center h-96">
-          <div className="flex justify-center items-center">
-            {allTours && allTours.length > 0 ? (
-              allTours?.map((tour) => <TourCard key={tour.id} tour={tour} />)
-            ) : (
-              <h2>Loading...</h2>
-            )}
+          <div className="flex justify-center items-center w-full h-96">
+            <div className="flex justify-center items-center gap-10">
+              {allTours && allTours.length > 0 ? (
+                allTours.slice(0, 5).map((tour) => <TourCard key={tour.id} tour={tour} />)
+              ) : (
+                <h2>Loading...</h2>
+              )}
+            </div>
           </div>
-        </div>
           <div className="my-3">
             <Link to={"/tours"} className=" flex justify-center  items-center text-2xl transition hover:duration-300 hover:scale-110 ease-in-out  ">
               <b>All Tours</b>
