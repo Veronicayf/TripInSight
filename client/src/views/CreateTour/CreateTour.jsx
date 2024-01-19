@@ -244,8 +244,7 @@ const CreateTour = () => {
                         </div>
                     </div>
 
-                    </div>
-
+                    
                 </form>
             </div>
         </div>
