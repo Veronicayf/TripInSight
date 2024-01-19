@@ -32,7 +32,7 @@ const Guide = () => {
             <div className=' flex flex-col'>
             <div className='flex justify-center flex-row py-9'>
                 <b className='text-5xl'>{guideInfo[0].forename}</b> 
-                <b className='text-5xl text-primary'>{ guideInfo[0].surname}</b> </div>
+                <b className='text-5xl text-primary pl-4'>{guideInfo[0].surname}</b> </div>
             </div>
             <div className='flex justify-center items-center'>
                 <p className=' w-1/2'>{guideInfo[0].biography}</p>
@@ -49,10 +49,10 @@ const Guide = () => {
             </div>
             <div className='flex flex-row p-4 justify-around items-center'>
               <div>
-                <button className='bg-primary w-48 h-14 rounded-3xl flex justify-center items-center text-white text-xl font-bold border-black border-2  hover:bg-btn-hover'> <img src={IconHome} alt="Icon home" className='h-10' /><NavLink to={"/"}>home</NavLink></button>
+                <button className='bg-primary w-48 h-14 rounded-3xl flex justify-center items-center text-white text-xl font-bold border-black border-2  hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out '> <img src={IconHome} alt="Icon home" className='h-10' /><NavLink to={"/"}>Home</NavLink></button>
               </div>
               <div>
-              <button className='bg-white w-48 h-14 rounded-3xl flex justify-center items-center text-primary border-black border-2  text-xl font-bold hover:bg-btn-hover '><img src="" alt="" /> <NavLink to={place}>Guide's Tours</NavLink>
+              <button className='bg-white w-48 h-14 rounded-3xl flex justify-center items-center text-primary border-black border-2  text-xl font-bold hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out  '><img src="" alt="" /> <NavLink to={place}>Guide's Tours</NavLink>
               </button>
               </div>
             </div>

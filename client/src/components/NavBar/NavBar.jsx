@@ -17,17 +17,17 @@ const NavBar = () => {
     <div className="bg-fixed bg-gradient-to-b from-black fixed z-50 to-transparent to-15% h-35 w-full font-bold text-white flex flex-row place-content-stretch">
       <div className="flex flex-row basis-2/5 justify-start items-center gap-5">
         <img src={logo} alt="Trip In Sight" className="w-28 h-28" />
-        <Link to="/" className={` ${location.pathname === '/' ? 'text-green-400' : ''}`}>
-          <h3>Home</h3>
+        <Link to="/" className={` ${location.pathname === '/' ? 'text-green-400' : ''}` }>
+          <h3 className="transition hover:duration-300 hover:scale-110 ease-in-out" >Home</h3>
         </Link>
         <Link to="/tours" className={` ${location.pathname === '/tours' ? 'text-green-400' : ''}`}>
-          <h3>Tours List</h3>
+          <h3 className="transition hover:duration-300 hover:scale-110 ease-in-out" >Tours List</h3>
         </Link>
         <Link to="/guides" className={` ${location.pathname === '/guides' ? 'text-green-400' : ''}`}>
-          <h3>Guides List</h3>
+          <h3 className=" transition hover:duration-300 hover:scale-110 ease-in-out ">Guides List</h3>
         </Link>
         <Link to="/aboutus" className={` ${location.pathname === '/aboutus' ? 'text-green-400' : ''}`}>
-          <h3>About Us</h3>
+          <h3 className="transition hover:duration-300 hover:scale-110 ease-in-out">About Us</h3>
         </Link>
       </div>
       {!loginRout && (
@@ -35,7 +35,7 @@ const NavBar = () => {
           <SearchBar />
           <div className="flex flex-row  items-center gap-5">
             <Link to="/cart">
-              <button className="bg-white text-green-600 flex flex-row rounded-full items-center gap-3 p-1.5">
+              <button className=" h-12 w-36 bg-white text-primary flex flex-row justify-center rounded-full items-center gap-3 p-1.5 hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out">
                 <img src={cart} alt="Cart" />
                 <h3>Cart</h3>
               </button>
@@ -50,8 +50,8 @@ const NavBar = () => {
             ) 
             : (
             <Link to="/login">
-              <button className="bg-green-600 flex flex-row rounded-full items-center gap-3 p-1.5">
-                <img src={login} alt="Login" />
+              <button className=" h-12 w-36 bg-primary flex flex-row justify-center rounded-full items-center gap-3 p-1.5 hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out ">
+                <img className=" h-10" src={login} alt="Login" />
                 <h3>Login</h3>
               </button>
             </Link> 
