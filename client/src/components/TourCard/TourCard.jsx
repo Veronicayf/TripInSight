@@ -27,7 +27,7 @@ const TourCard = ({ tour }) => {
 
   return (
     <div
-      className="m-20 tourCard rounded-lg bg-white overflow-hidden shadow-md transition-transform transform hover:scale-105"
+      className=" w-60 h-[21rem] tourCard rounded-lg bg-white overflow-hidden shadow-md transition-transform transform hover:scale-105"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={(e) => handleClick(e)}
@@ -41,7 +41,7 @@ const TourCard = ({ tour }) => {
           alt={tour.nameTour}
           className="w-full h-40 object-cover"
         />
-        <div className="p-4">
+        <div className="p-2">
           <h2 className="text-lg font-bold mb-2">{tour.nameTour}</h2>
           <p className="text-gray-800">
             <strong>Location:</strong> {tour.city}, {tour.country}
@@ -55,11 +55,6 @@ const TourCard = ({ tour }) => {
           <p className="text-gray-800">
             <strong>Price:</strong> ${tour.price}
           </p>
-          {isHovering && (
-            <p className="text-gray-800 mt-2">
-              <strong>Description:</strong> {tour.description}
-            </p>
-          )}
         </div>
       </Link>
     </div>
