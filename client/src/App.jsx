@@ -13,6 +13,7 @@ import AdminPanel from "./views/AdminPanel/AdminPanel";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import ToursList from "./views/Tours/Tours";
+import Guide from "./views/GuideDetail/Guide";
 
 const App = () => {
 
@@ -39,7 +40,7 @@ const App = () => {
         <Route path="/tours" element={<ToursList />}/>
         <Route path="/profile" />
         <Route path="/tours/:id" element={<TourDetail />} />
-        <Route path="/guide/:id" />
+        <Route path="/guide/:id" element={<Guide/>} />
          <Route path="/cart" element={<Cart/>} />
         <Route path="/admin" element={<AdminPanel />} />
         {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
