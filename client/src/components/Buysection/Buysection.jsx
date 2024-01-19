@@ -10,7 +10,7 @@ import iconPrice from '../../assets/icons/PriceIcon.png'
 
 
 
-    const Buysection = () => {
+    const Buysection = ({tour}) => {
     const [isSticky, setIsSticky] = useState(false);
 
     const handleScroll = () => {
@@ -40,7 +40,7 @@ import iconPrice from '../../assets/icons/PriceIcon.png'
                     </div>
                     <div className="w-full flex justify-center items-center" >
                         <i className='h-12'><img className='h-16 w-16' src={iconPrice} alt="icon" /></i>
-                        <b className=" mb-2 text-4xl py-4 font-Bebas">$999.99</b>
+                        <b className=" mb-2 text-4xl py-4 font-Bebas">{`$ ${tour.price}`}</b>
                     </div>
                     <div className="w-full ">
                         <button className="text-primary bg-white w-full py-2 mb-2 rounded flex items-center justify-center hover:bg-btn-hover hover:text-white">
