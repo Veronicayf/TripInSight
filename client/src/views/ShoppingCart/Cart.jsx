@@ -23,7 +23,7 @@ const Cart = () => {
 
     const totalPrice = quantity * pricePerUnit;
   return (
-    <main className=''>
+    <main className=" font-Nunito">
         <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />

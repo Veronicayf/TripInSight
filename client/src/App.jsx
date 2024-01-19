@@ -25,6 +25,7 @@ import AdminGuides from "./views/AdminGuides/AdminGuides";
 
 
 
+
 const App = () => {
 
   //dana  ---> en proceso hasta el useEffect
@@ -43,6 +44,7 @@ const App = () => {
 
   return (
     <div>
+
         {!isOnAdminRoute && <NavBar />}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -52,7 +54,7 @@ const App = () => {
           <Route path="/tours" element={<ToursList />}/>
           <Route path="/profile/:id" element={<Profile/>} />
           <Route path="/tours/:id" element={<TourDetail />} />
-          <Route path="/guide/:id" />
+          <Route path="/guide/:id" element={<Guide/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/admin/" element={<AdminPanel />} />
           <Route path="/admin/createtour" element={<CreateTour />} />
@@ -62,6 +64,7 @@ const App = () => {
         </Routes>
       
         {!isOnAdminRoute && <Footer />}
+
     </div>
   );
 };
