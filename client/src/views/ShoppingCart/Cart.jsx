@@ -10,7 +10,23 @@ import { Link } from "react-router-dom";
 const Cart = () => {
   const initialQuantity = 0;
   const pricePerUnit = 49.99;
-  const [quantity, setQuantity] = useState(initialQuantity || 1);
+  const storedQuantity = localStorage.getItem("cartQuantity");
+  const [quantity, setQuantity] = useState(
+    storedQuantity ? JSON.parse(storedQuantity) : initialQuantity || 1
+  );
+
+  useEffect(() => {
+    localStorage.setItem("cartQuantity", JSON.stringify(quantity));
+  }, [quantity]);
+
+  // limpiar local storage en la proxima hora
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      localStorage.removeItem("cartQuantity");
+    }, 60 * 60 * 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [quantity]);
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
