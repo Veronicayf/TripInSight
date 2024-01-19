@@ -1,5 +1,7 @@
+
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
 import logo from "./assets/img/logo.png";
 import "./App.css";
 import TourDetail from "./views/TourDetail/Tour";
@@ -9,11 +11,20 @@ import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
 import Cart from "./views/ShoppingCart/Cart";
 import AdminPanel from "./views/AdminPanel/AdminPanel";
+import CreateTour from "./views/CreateTour/CreateTour";
+import CreateGuide from "./views/CreateGuide/CreateGuide";
+import ToursList from "./views/Tours/Tours";
+import AdminTous from "./views/AdminTours/AdminTous";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-import ToursList from "./views/Tours/Tours";
-import Guide from "./views/GuideDetail/Guide";
+
+import Profile from "./views/Profile/Profile";
+import AdminGuides from "./views/AdminGuides/AdminGuides";
+
+
+
+
 
 const App = () => {
 
@@ -28,26 +39,32 @@ const App = () => {
     }
   }, [isAuthenticated, isLoading])
 
+  const location = useLocation();
+  const isOnAdminRoute = location.pathname.startsWith("/admin");
+
   return (
     <div>
-      <NavBar />
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/aboutus" />
-        <Route path="/guides" element={<Guides />}/>
-        <Route path="/tours" element={<ToursList />}/>
-        <Route path="/profile" />
-        <Route path="/tours/:id" element={<TourDetail />} />
-        <Route path="/guide/:id" element={<Guide/>} />
-         <Route path="/cart" element={<Cart/>} />
-        <Route path="/admin" element={<AdminPanel />} />
-        {/* <Route path="/register" element={<Register setAuth={setAuth} />} /> */}
-        {/* <Route path="/pruebaback" element={<PruebaBack />} /> */}
+        {!isOnAdminRoute && <NavBar />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/aboutus" />
+          <Route path="/guides" element={<Guides />}/>
+          <Route path="/tours" element={<ToursList />}/>
+          <Route path="/profile/:id" element={<Profile/>} />
+          <Route path="/tours/:id" element={<TourDetail />} />
+          <Route path="/guide/:id" element={<Guide/>} />
+          <Route path="/cart" element={<Cart/>} />
+          <Route path="/admin/" element={<AdminPanel />} />
+          <Route path="/admin/createtour" element={<CreateTour />} />
+          <Route path="/admin/createguide" element={<CreateGuide />} />
+          <Route path="/admin/viewTours" element={<AdminTous />} />
+          <Route path="/admin/viewGuides" element={<AdminGuides />} />
+        </Routes>
+      
+        {!isOnAdminRoute && <Footer />}
 
-      </Routes>
-      <Footer />
     </div>
   );
 };
