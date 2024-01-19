@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { getGuideId } from "../../redux/guideStore/guidesActions";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const GuideCard = ({ guide }) => {
   const name = guide.forename + " " + guide.surname;
   const [isHovering, setIsHovering] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -12,12 +17,24 @@ const GuideCard = ({ guide }) => {
     setIsHovering(false);
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    dispatch(getGuideId(guide.id));
+    console.log("aqui", guide);
+    navigate(`/guides/${guide.id}`);
+  };
+
   return (
     <div
       className="flex min-h-screen items-center justify-center"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
+      onClick={(e) => handleClick(e)}
     >
+      <Link
+        to={`/guides/${guide.id}`}
+        className="rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105 mb-4"
+      >
       {!isHovering && !isHovering ?
       (<div className="mx-auto px-5">
         <div className="max-w-xs cursor-pointer rounded-lg bg-white p-2 shadow duration-150 hover:scale-105 hover:shadow-md">
@@ -46,6 +63,7 @@ const GuideCard = ({ guide }) => {
       </div>
           
       )}
+      </Link>
     </div>
     
   );

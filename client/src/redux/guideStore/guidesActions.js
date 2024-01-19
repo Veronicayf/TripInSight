@@ -10,7 +10,7 @@ export const getAllG = () => {
 
 export const getGuideId = (id) => {
     return async (dispatch) => {
-      let json = await axios.get(`http://localhost:4000/guides/${id}`);
-      return dispatch(getGuideById(json.data));
+      let {data} = await axios.get(`http://localhost:4000/guides/${id}`);
+      return dispatch(getGuideById(data));
     };
   };
