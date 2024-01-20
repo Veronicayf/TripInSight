@@ -32,11 +32,13 @@ const App = () => {
       if (isAuthenticated) {
         //si lo esta destructuro la info para mandarla al back
       const userAuth = {
-        forename: user.given_name,
-        surname: user.family_name,
+        name: user.name,
         email: user.email,
         image: user.picture,
+        auth0Id: user.sub,
+        admin: false,
       };
+      console.log(user, userAuth);
       await dispatch(loggedUser(userAuth));
     }
    }

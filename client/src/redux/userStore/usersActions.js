@@ -18,7 +18,11 @@ export const getUserId = (id) => {
 
 export const loggedUser = (user) => {
   return async (dispatch) => {
+   try { 
     let response = await axios.post("http://localhost:4000/user", user);
     return dispatch(loggedUserReducer(response.data));
+  } catch(error) {
+    console.log(error.response.data);
+  }
   }
 };
