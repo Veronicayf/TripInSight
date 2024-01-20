@@ -10,10 +10,13 @@ const Buysection = ({ tour }) => {
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
-    dispatch(addToCart({ name: tour.nameTour, price: tour.price }));
+    dispatch(
+      addToCart({ name: tour.nameTour, price: tour.price, image: tour.image })
+    );
     console.log("Product added to cart:", {
       name: tour.nameTour,
       price: tour.price,
+      image: tour.image,
     });
   };
 
