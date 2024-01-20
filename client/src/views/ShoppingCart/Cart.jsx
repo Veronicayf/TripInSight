@@ -9,6 +9,8 @@ import Carousel from "../../components/Carrusel/Carousel";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import OrderSummary from "../../components/OrderSummary/OrderSummary";
+import CartItem from "../../components/CartItem/CartItem";
 
 const Cart = ({ tour }) => {
   const cart = useSelector((state) => state.cart);
@@ -73,13 +75,13 @@ const Cart = ({ tour }) => {
       <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
-
       <div className="text-xl text-seconday-text flex justify-center">
         <b>One more step for enjoy</b>
       </div>
       <div className=" flex justify-center text-5xl">
         <b>Your</b> <b className="text-primary mx-1">Travel</b>
       </div>
+      {/* <-- Cart Section -->*/}
       <section className="flex flex-row w-full px-7">
         <div className="w-2/3 py-7 flex flex-col">
           <div id="row" className="text-seconday-text">
@@ -97,72 +99,18 @@ const Cart = ({ tour }) => {
           </div>
           {/* Map through the products in the cart and display them */}
           {cart.map((product, index) => (
-            <div key={index} className="py-3 flex flex-row items-center">
-              <div className="w-2/4 flex h-26 items-center justify-around">
-                {/* Use the product image from the Redux store */}
-                <img src={product.image} className="h-24 rounded-full" alt="" />
-                <b>{product.name}</b>
-              </div>
-              <div className="w-1/4 h-26 flex justify-center ">
-                <button
-                  onClick={handleDecrease}
-                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-l"
-                >
-                  -
-                </button>
-                <span className="bg-white px-4 py-2 border-t border-b text-gray-700">
-                  {quantity}
-                </span>
-                <button
-                  onClick={handleIncrease}
-                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r"
-                >
-                  +
-                </button>
-              </div>
-              <div className=" w-1/4 flex justify-center item-center">
-                <b>${product.price.toFixed(2)}</b>
-              </div>
-            </div>
+            <CartItem
+              key={index}
+              product={product}
+              quantity={quantity}
+              handleDecrease={handleDecrease}
+              handleIncrease={handleIncrease}
+            />
           ))}
         </div>
 
         <div className="w-1/3 flex flex-col">
-          <div className=" bg-cream-bg rounded-[50px]  ">
-            <div className="flex justify-center items-center h-20 ">
-              <b className=" text-3xl"> Order Summary</b>
-            </div>
-            <div className="w-full h-1 bg-seconday-text"></div>
-            <div className=" h-28 text-xl">
-              <div className="w-full flex justify-between h-12 items-center">
-                <b className="">Total</b>
-                <b>${totalPrice.toFixed(2)}</b>
-              </div>
-            </div>
-            <div>
-              <div className="w-full flex justify-between text-2xl h">
-                <b className="">Total</b>
-                <b>${totalPrice.toFixed(2)}</b>
-              </div>
-            </div>
-            <div className="w-full h-1 bg-seconday-text"></div>
-            <div>
-              <div className="flex justify-center items-center h-14">
-                <Link to={"/checkout/"}>
-                  <button className=" w-80 h-12 text-xl bg-primary rounded-full text-white hover:bg-btn-hover">
-                    Procced to checkout
-                  </button>
-                </Link>
-              </div>
-              <div>
-                <div className="flex justify-center items-center h-14">
-                  <button className=" w-80 h-12 text-xl bg-seconday-text rounded-full text-white hover:bg-btn-hover">
-                    Continue shopping
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          <OrderSummary totalPrice={totalPrice} />
           <div>
             <div className=" text-2xl py-3">
               <b>Buy with confidence</b>

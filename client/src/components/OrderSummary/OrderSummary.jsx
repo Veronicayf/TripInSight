@@ -1,0 +1,47 @@
+import React from 'react'
+
+import React from "react";
+import { Link } from "react-router-dom";
+
+    const OrderSummary = ({ totalPrice }) => {
+    return (
+        <div className=" bg-cream-bg rounded-[50px]">
+        <div className="flex justify-center items-center h-20 ">
+            <b className=" text-3xl"> Order Summary</b>
+        </div>
+        <div className="w-full h-1 bg-seconday-text"></div>
+        <div className=" h-28 text-xl">
+            <div className="w-full flex justify-between h-12 items-center">
+            <b className="">Total</b>
+            <b>${totalPrice.toFixed(2)}</b>
+            </div>
+        </div>
+        <div>
+            <div className="w-full flex justify-between text-2xl h">
+            <b className="">Total</b>
+            <b>${totalPrice.toFixed(2)}</b>
+            </div>
+        </div>
+        <div className="w-full h-1 bg-seconday-text"></div>
+        <div>
+            <div className="flex justify-center items-center h-14">
+            <Link to={"/checkout/"}>
+                <button className=" w-80 h-12 text-xl bg-primary rounded-full text-white hover:bg-btn-hover">
+                Proceed to checkout
+                </button>
+            </Link>
+            </div>
+            <div>
+            <div className="flex justify-center items-center h-14">
+                <button className=" w-80 h-12 text-xl bg-seconday-text rounded-full text-white hover:bg-btn-hover">
+                Continue shopping
+                </button>
+            </div>
+            </div>
+        </div>
+        </div>
+    );
+    };
+
+
+export default OrderSummary
