@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 
 const Profile = () => {
+  
   const [formData, setFormData] = useState({
-    password: '',
-    confirmPassword: '',
     nationality: '',
     birthDate: '',
     email: '',
@@ -19,9 +18,9 @@ const Profile = () => {
     }));
   };
 
-  const handleTogglePassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
+  // const handleTogglePassword = () => {
+  //   setShowPassword((prevShowPassword) => !prevShowPassword);
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +33,7 @@ const Profile = () => {
       <h1 className=' text-5xl mt-20 h-16 font-bold'>Edit Info <b className=' text-primary'>Profile</b></h1>
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
 
-    <label className="block mb-4">
+    {/* <label className="block mb-4">
         <span className="text-black font-bold">Change Password:</span>
         <input
           type={showPassword ? 'text' : 'password'}
@@ -64,11 +63,11 @@ const Profile = () => {
           className="mx-3 my-1  focus:outline-primary"
         />
         <label className="text-gray-700 mr-2">Mostrar Contraseña:</label>
-      </div>
+      </div> */}
 
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Nacionalidad:</span>
+      <span className="text-black font-bold">Nationality:</span>
         <input
           type="text"
           name="nationality"
@@ -79,11 +78,11 @@ const Profile = () => {
       </label>
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Cumpleaños:</span>
+      <span className="text-black font-bold">Birth Date:</span>
         <input
           type="date"
           name="birthDate"
-          value={formData.birthday}
+          value={formData.birthDate}
           onChange={handleChange}
           className="mt-1 p-2 w-full border rounded-md  focus:outline-primary"
         />
@@ -101,7 +100,7 @@ const Profile = () => {
       </label>
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Número de Teléfono:</span>
+      <span className="text-black font-bold">Phone Number:</span>
         <input
           type="text"
           name="phoneNumber"
@@ -112,11 +111,11 @@ const Profile = () => {
       </label>
 
       <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover">
-        Guardar Cambios
+        Save Changes
       </button>
     </form>
     </div>
   );
 };
 
-export default Profile
+export default Profile;

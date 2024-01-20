@@ -24,6 +24,7 @@ export const tourSlice = createSlice({
       state.tours = [...action.payload]
     },
     filterTourByContinent: (state, action) => {
+      if(action.payload === 'all') state.tours = [...state.toursCopy]
       state.tours = [...action.payload]
     },
     sortToursByPrice: (state) => {
