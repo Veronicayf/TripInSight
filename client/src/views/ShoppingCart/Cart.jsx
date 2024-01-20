@@ -18,9 +18,9 @@ const Cart = ({ tour }) => {
     console.log(item.price);
   });
 
-  const initialQuantity = 0;
+  const initialQuantity = 1;
 
-  const [quantity, setQuantity] = useState();
+  const [quantity, setQuantity] = useState(initialQuantity);
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
@@ -32,7 +32,9 @@ const Cart = ({ tour }) => {
     }
   };
 
-  const totalPrice = quantity * cart.price;
+  const totalPrice = cart.reduce((acc, item) => acc + item.price * quantity, 0);
+
+  console.log(totalPrice);
 
   const { isAuthenticated, isLoading, loginWithRedirect, logout, user } =
     useAuth0();
