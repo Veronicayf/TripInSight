@@ -4,17 +4,17 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     users: [],
-    user: {}, //detail/profile
+    userProfile: {}, //detail/profile
   },
   reducers: {
     getAllUsers: (state, action) => {
       state.users = action.payload;
     },
     getUserDetail: (state, action) => {
-      state.user = action.payload;
+      state.userProfile = action.payload;
     },
     clearUserDetail: (state) => {
-      state.user = {};
+      state.userProfile = {};
     },
     loggedUserReducer: (state, action) => {
       state.users = [...state.users, action.payload]

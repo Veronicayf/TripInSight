@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 
 const Profile = () => {
+  
   const [formData, setFormData] = useState({
     nationality: '',
     birthDate: '',
@@ -66,7 +67,7 @@ const Profile = () => {
 
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Nacionalidad:</span>
+      <span className="text-black font-bold">Nationality:</span>
         <input
           type="text"
           name="nationality"
@@ -77,11 +78,11 @@ const Profile = () => {
       </label>
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Cumpleaños:</span>
+      <span className="text-black font-bold">Birth Date:</span>
         <input
           type="date"
           name="birthDate"
-          value={formData.birthday}
+          value={formData.birthDate}
           onChange={handleChange}
           className="mt-1 p-2 w-full border rounded-md  focus:outline-primary"
         />
@@ -99,7 +100,7 @@ const Profile = () => {
       </label>
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Número de Teléfono:</span>
+      <span className="text-black font-bold">Phone Number:</span>
         <input
           type="text"
           name="phoneNumber"
@@ -110,11 +111,11 @@ const Profile = () => {
       </label>
 
       <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover">
-        Guardar Cambios
+        Save Changes
       </button>
     </form>
     </div>
   );
 };
 
-export default Profile
+export default Profile;
