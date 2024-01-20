@@ -20,7 +20,7 @@ const FilterContinent = () => {
       >
         <option
           className="bg-green-600 text-white"
-          value="All"
+          value="all"
         >
           All
         </option>
