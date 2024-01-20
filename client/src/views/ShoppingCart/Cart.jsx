@@ -11,15 +11,21 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Cart = ({ tour }) => {
+  const cart = useSelector((state) => state.cart);
+  cart.map((item) => {
+    console.log(item.price);
+  });
+
   const initialQuantity = 0;
-  const pricePerUnit = 49.99;
+
   const storedQuantity = localStorage.getItem("cartQuantity");
   const [quantity, setQuantity] = useState(
-    storedQuantity ? JSON.parse(storedQuantity) : initialQuantity || 1
+    storedQuantity ? parseInt(storedQuantity, 10) : initialQuantity
   );
 
+  // Update local storage when the quantity changes
   useEffect(() => {
-    localStorage.setItem("cartQuantity", JSON.stringify(quantity));
+    localStorage.setItem("cartQuantity", quantity.toString());
   }, [quantity]);
 
   // limpiar local storage en la proxima hora
@@ -40,7 +46,8 @@ const Cart = ({ tour }) => {
       setQuantity(quantity - 1);
     }
   };
-  const totalPrice = quantity * pricePerUnit;
+
+  const totalPrice = quantity * cart.price;
 
   const { isAuthenticated, isLoading, loginWithRedirect, logout, user } =
     useAuth0();
@@ -60,7 +67,6 @@ const Cart = ({ tour }) => {
 
     verifyAuthentication();
   }, [isLoading, isAuthenticated, loginWithRedirect, user]);
-  const cart = useSelector((state) => state.cart);
 
   return (
     <main className=" font-Nunito">
