@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import { updateUser } from '../../redux/userStore/usersActions';
+import { useDispatch } from 'react-redux';
 
-const Profile = () => {
-  
+const Profile = ({user}) => {
+  const dispatch = useDispatch()
+
   const [formData, setFormData] = useState({
     nationality: '',
     birthDate: '',
-    email: '',
     phoneNumber: '',
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -25,7 +27,8 @@ const Profile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // datos para enviar la servidor
-    console.log('Datos actualizados:', formData);
+    console.log('Datos actualizados:', formData, user.id);
+    dispatch(updateUser(formData, user.id))
   };
 
   return (
@@ -88,7 +91,7 @@ const Profile = () => {
         />
       </label>
 
-      <label className="block mb-4">
+      {/* <label className="block mb-4">
       <span className="text-black font-bold">Email:</span>
         <input
           type="email"
@@ -97,7 +100,7 @@ const Profile = () => {
           onChange={handleChange}
           className="mt-1 p-2 w-full border rounded-md  focus:outline-primary"
         />
-      </label>
+      </label> */}
 
       <label className="block mb-4">
       <span className="text-black font-bold">Phone Number:</span>

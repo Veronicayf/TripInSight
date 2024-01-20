@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getAllUsers, getUserDetail, loggedUserReducer } from './usersSlice'
+import { getAllUsers, getUserDetail, loggedUserReducer, updateUserReducer } from './usersSlice'
 
 //Pedir a Raul que me haga la ruta.
 // export const getUsers = () => {
@@ -21,6 +21,17 @@ export const loggedUser = (user) => {
    try { 
     let response = await axios.post("http://localhost:4000/user", user);
     return dispatch(loggedUserReducer(response.data));
+  } catch(error) {
+    console.log(error.response.data);
+  }
+  }
+};
+
+export const updateUser = (user) => {
+  return async (dispatch) => {
+   try { 
+    let response = await axios.put("http://localhost:4000/user/updateuser", user);
+    return dispatch(updateUserReducer(response.data));
   } catch(error) {
     console.log(error.response.data);
   }

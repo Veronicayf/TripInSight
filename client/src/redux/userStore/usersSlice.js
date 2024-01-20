@@ -18,11 +18,14 @@ export const userSlice = createSlice({
     },
     loggedUserReducer: (state, action) => {
       state.users = [...state.users, action.payload]
+    },
+    updateUserReducer: (state, action) => {
+      state.users = [...state.users, action.payload]
     }
   },
 });
 
-export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer } =
+export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer} =
   userSlice.actions;
 
 export default userSlice.reducer;
