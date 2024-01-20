@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import iconTrust from '../../assets/icons/iconTrust.png'
-import boreal from '../../assets/img/boreal.png'
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import iconTrust from "../../assets/icons/iconTrust.png";
+import boreal from "../../assets/img/boreal.png";
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
-import Carousel from '../../components/Carrusel/Carousel';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useNavigate } from 'react-router-dom';
+import Carousel from "../../components/Carrusel/Carousel";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
 
 const Cart = () => {
   const initialQuantity = 0;
@@ -28,7 +28,6 @@ const Cart = () => {
       localStorage.removeItem("cartQuantity");
     }, 60 * 60 * 1000);
 
-
     return () => clearTimeout(timeoutId);
   }, [quantity]);
 
@@ -41,30 +40,31 @@ const Cart = () => {
       setQuantity(quantity - 1);
     }
   };
-    const totalPrice = quantity * pricePerUnit;
+  const totalPrice = quantity * pricePerUnit;
 
-    const { isAuthenticated, isLoading, loginWithRedirect, logout, user } = useAuth0();
-    const navigate = useNavigate();
+  const { isAuthenticated, isLoading, loginWithRedirect, logout, user } =
+    useAuth0();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const verifyAuthentication = async () => {
       if (!isLoading) {
         if (!isAuthenticated) {
-            navigate('/login');
+          navigate("/login");
         } else {
           // El usuario está autenticado
-          console.log('Usuario autenticado:', user);
+          console.log("Usuario autenticado:", user);
         }
       }
     };
 
     verifyAuthentication();
   }, [isLoading, isAuthenticated, loginWithRedirect, user]);
+  const cart = useSelector((state) => state.cart);
 
   return (
     <main className=" font-Nunito">
-        <Carousel
-
+      <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
 
@@ -89,32 +89,36 @@ const Cart = () => {
               </div>
             </div>
           </div>
-          <div className="py-3 flex flex-row items-center">
-            <div className="w-2/4 flex h-26 items-center justify-around">
-              <img src={boreal} className="h-24 rounded-full" alt="" />
-              <b>Aureora Boreal en Chaco</b>
+          {/* Map through the products in the cart and display them */}
+          {cart.map((product, index) => (
+            <div key={index} className="py-3 flex flex-row items-center">
+              <div className="w-2/4 flex h-26 items-center justify-around">
+                {/* Use the product image from the Redux store */}
+                <img src={product.image} className="h-24 rounded-full" alt="" />
+                <b>{product.name}</b>
+              </div>
+              <div className="w-1/4 h-26 flex justify-center ">
+                <button
+                  onClick={handleDecrease}
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-l"
+                >
+                  -
+                </button>
+                <span className="bg-white px-4 py-2 border-t border-b text-gray-700">
+                  {quantity}
+                </span>
+                <button
+                  onClick={handleIncrease}
+                  className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r"
+                >
+                  +
+                </button>
+              </div>
+              <div className=" w-1/4 flex justify-center item-center">
+                <b>${totalPrice.toFixed(2)}</b>
+              </div>
             </div>
-            <div className="w-1/4 h-26 flex justify-center ">
-              <button
-                onClick={handleDecrease}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-l"
-              >
-                -
-              </button>
-              <span className="bg-white px-4 py-2 border-t border-b text-gray-700">
-                {quantity}
-              </span>
-              <button
-                onClick={handleIncrease}
-                className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r"
-              >
-                +
-              </button>
-            </div>
-            <div className=" w-1/4 flex justify-center item-center">
-              <b>${totalPrice.toFixed(2)}</b>
-            </div>
-          </div>
+          ))}
         </div>
 
         <div className="w-1/3 flex flex-col">
@@ -127,10 +131,6 @@ const Cart = () => {
               <div className="w-full flex justify-between h-12 items-center">
                 <b className="">Subtotal</b>
                 <b>${totalPrice.toFixed(2)}</b>
-              </div>
-              <div className="w-full flex justify-between text-seconday-text h-12 items-center">
-                <b className="">Sales Tax</b>
-                <b>$0.00</b>
               </div>
             </div>
             <div>
