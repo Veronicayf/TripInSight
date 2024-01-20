@@ -20,24 +20,7 @@ const Cart = ({ tour }) => {
 
   const initialQuantity = 0;
 
-  const storedQuantity = localStorage.getItem("cartQuantity");
-  const [quantity, setQuantity] = useState(
-    storedQuantity ? parseInt(storedQuantity, 10) : initialQuantity
-  );
-
-  // Update local storage when the quantity changes
-  useEffect(() => {
-    localStorage.setItem("cartQuantity", quantity.toString());
-  }, [quantity]);
-
-  // limpiar local storage en la proxima hora
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      localStorage.removeItem("cartQuantity");
-    }, 60 * 60 * 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, [quantity]);
+  const [quantity, setQuantity] = useState();
 
   const handleIncrease = () => {
     setQuantity(quantity + 1);
