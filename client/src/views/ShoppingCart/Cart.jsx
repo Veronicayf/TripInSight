@@ -10,7 +10,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-const Cart = () => {
+const Cart = ({ tour }) => {
   const initialQuantity = 0;
   const pricePerUnit = 49.99;
   const storedQuantity = localStorage.getItem("cartQuantity");
@@ -115,7 +115,7 @@ const Cart = () => {
                 </button>
               </div>
               <div className=" w-1/4 flex justify-center item-center">
-                <b>${totalPrice.toFixed(2)}</b>
+                <b>${product.price.toFixed(2)}</b>
               </div>
             </div>
           ))}
@@ -129,7 +129,7 @@ const Cart = () => {
             <div className="w-full h-1 bg-seconday-text"></div>
             <div className=" h-28 text-xl">
               <div className="w-full flex justify-between h-12 items-center">
-                <b className="">Subtotal</b>
+                <b className="">Total</b>
                 <b>${totalPrice.toFixed(2)}</b>
               </div>
             </div>
