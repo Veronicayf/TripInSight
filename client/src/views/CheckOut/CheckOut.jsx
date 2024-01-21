@@ -13,7 +13,6 @@ const Checkout = ({ totalPrice }) => {
         <div className="text-2xl font-bold mb-4">Purchase Checkout</div>
         <div className="flex items-center justify-center">
           <div className="flex items-center justify-center">
-            <p>Price: ${totalPrice}</p>
             {checkout ? (
               <Paypal />
             ) : (
