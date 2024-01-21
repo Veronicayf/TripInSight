@@ -11,13 +11,16 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import CartItem from "../../components/CartItem/CartItem";
+import { addTourCart } from "../../redux/tourStore/toursActions";
 
 const Cart = ({ tour }) => {
-  const cart = useSelector((state) => state.cart);
-  cart.map((item) => {
-    console.log(item.price);
-  });
+  const cart = useSelector((state) => state.tour.addCart);
+  console.log(cart);
+  /* cart.map((item) => {
+   console.log(item.price); 
 
+  });
+ */
   const initialQuantity = 1;
 
   const [quantity, setQuantity] = useState(initialQuantity);

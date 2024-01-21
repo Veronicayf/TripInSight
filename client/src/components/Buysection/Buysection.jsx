@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import iconCart from "../../assets/icons/cartIcon.png";
 import iconFav from "../../assets/icons/favoriteIcon.png";
 import iconPrice from "../../assets/icons/PriceIcon.png";
-import { addToCart } from "../../redux/cartStore/cartSlice";
+import { addTourCart } from "../../redux/tourStore/toursActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
   const dispatch = useDispatch();
-
+  const tourDetail = useSelector((state) => state.tour.detail);
   const handleAddToCart = () => {
+    console.log(tourDetail);
     dispatch(
-      addToCart({
+      addTourCart(tourDetail)
+      /* addToCart({
         id: tour.id,
         name: tour.nameTour,
         price: tour.price,
         image: tour.image,
-      })
+      }) */
     );
     console.log("Product added to cart:", {
       id: tour.id,
