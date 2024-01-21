@@ -4,6 +4,7 @@ import LoginButton from "../../components/Auth0/LoginButton";
 import paisaje1 from "./../../assets/img/paisaje1.jpg";
 import logo from "./../../assets/img/logo.png"
 import SignUpButton from "../../components/Auth0/SignUpButton";
+import ForgetPassword from "../../components/Auth0/ForgetPassword";
 
 const Login = () => {
   return (
@@ -26,18 +27,12 @@ const Login = () => {
         <LoginButton />
 
         <div className="mb-6 text-green-600">
-          <a href="passwordrecovery" className="hover:underline">
-            Forgot Password?
-          </a>
+          <ForgetPassword />
         </div>
 
-        <div className="mt-6 text-green-600 text-center">
-        <h2 className=" mb-4">New here?</h2>
+        <div className="mt-6 text-green-600 font-bold text-center">
+        <h2>New here?</h2>
         <SignUpButton />
-          {/* <Link to="/register" className="font-bold hover:underline">
-           <button className="w-32 text-center py-3 rounded-3xl bg-green-400 text-white font-bold hover:bg-green-600 focus:outline-none my-1"
-           >Sign up!</button>
-          </Link> */}
         </div>
       </div>
     </div>

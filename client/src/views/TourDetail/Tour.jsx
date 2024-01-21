@@ -24,7 +24,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
-  console.log(tourDetail)
+  
+  const initialDate = new Date(tourDetail.initialDate);
+  const endDate = new Date(tourDetail.endDate);
+
+  const differenceInMilliseconds = endDate - initialDate;
+  const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
 
   return (
     <main className=" font-Nunito">
@@ -32,7 +37,7 @@ const Tour = () => {
       <section className="">
         <img
           src={tourDetail.image}
-          className="w-full h-[35rem] "
+          className="w-full h-[38rem] object-cover "
           alt=""
         />
       </section>
@@ -40,7 +45,7 @@ const Tour = () => {
       <section className="px-4 pt-8 flex w-3/4">
         <div className="flex w-1/2">
           <ul>
-            <TourInfoItem icon={iconDay} label="80 Days" />
+            <TourInfoItem icon={iconDay} label={"Duration: " + differenceInDays} />
             <TourInfoItem
               icon={iconCalendar}
               label={"Initial Date: " + tourDetail.initialDate} />
@@ -110,7 +115,7 @@ const Tour = () => {
       {/*-------------- Second Image --------------*/}
       <section className=" w-3/4 px-4 flex justify-center">
       {tourDetail && tourDetail.photos && tourDetail.photos.length > 0 && (
-    <img src={tourDetail.photos[0]} alt="" />
+    <img className=" h-[38rem] rounded-3xl my-4" src={tourDetail.photos[0]} alt="" />
   )}
       </section>
       {/*-------------- Detail tour --------------*/}

@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
+import { updateUser } from '../../redux/userStore/usersActions';
+import { useDispatch, useSelector } from 'react-redux';
 
-const Profile = () => {
+const ProfileEdit = () => {
+  const dispatch = useDispatch()
+  const profile = useSelector((state) => state.user.userProfile)
+
   const [formData, setFormData] = useState({
-    password: '',
-    confirmPassword: '',
     nationality: '',
     birthDate: '',
-    email: '',
     phoneNumber: '',
+    idUser: profile.id,
   });
   const [showPassword, setShowPassword] = useState(false);
 
@@ -19,14 +22,11 @@ const Profile = () => {
     }));
   };
 
-  const handleTogglePassword = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     // datos para enviar la servidor
-    console.log('Datos actualizados:', formData);
+    //console.log('Datos actualizados:', formData);
+    dispatch(updateUser(formData))
   };
 
   return (
@@ -34,41 +34,8 @@ const Profile = () => {
       <h1 className=' text-5xl mt-20 h-16 font-bold'>Edit Info <b className=' text-primary'>Profile</b></h1>
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
 
-    <label className="block mb-4">
-        <span className="text-black font-bold">Change Password:</span>
-        <input
-          type={showPassword ? 'text' : 'password'}
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          className="mt-1 p-2 w-full border rounded-md focus:outline-primary"
-        />
-      </label>
-
       <label className="block mb-4">
-      <span className="text-black font-bold">Confirm Password:</span>
-        <input
-          type={showPassword ? 'text' : 'password'}
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          className="mt-1 p-2 w-full border rounded-md  focus:outline-primary"
-        />
-      </label>
-
-      <div className="mb-4">
-        <input
-          type="checkbox"
-          onChange={handleTogglePassword}
-          checked={showPassword}
-          className="mx-3 my-1  focus:outline-primary"
-        />
-        <label className="text-gray-700 mr-2">Mostrar Contraseña:</label>
-      </div>
-
-
-      <label className="block mb-4">
-      <span className="text-black font-bold">Nacionalidad:</span>
+      <span className="text-black font-bold">Nationality:</span>
         <input
           type="text"
           name="nationality"
@@ -79,29 +46,18 @@ const Profile = () => {
       </label>
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Cumpleaños:</span>
+      <span className="text-black font-bold">Birth Date:</span>
         <input
           type="date"
           name="birthDate"
-          value={formData.birthday}
+          value={formData.birthDate}
           onChange={handleChange}
           className="mt-1 p-2 w-full border rounded-md  focus:outline-primary"
         />
       </label>
 
       <label className="block mb-4">
-      <span className="text-black font-bold">Email:</span>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          className="mt-1 p-2 w-full border rounded-md  focus:outline-primary"
-        />
-      </label>
-
-      <label className="block mb-4">
-      <span className="text-black font-bold">Número de Teléfono:</span>
+      <span className="text-black font-bold">Phone Number:</span>
         <input
           type="text"
           name="phoneNumber"
@@ -112,11 +68,11 @@ const Profile = () => {
       </label>
 
       <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover">
-        Guardar Cambios
+        Save Changes
       </button>
     </form>
     </div>
   );
 };
 
-export default Profile
+export default ProfileEdit;
