@@ -1,15 +1,19 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DropMenu from "../DropMenu/DropMenu";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserId } from "../../redux/userStore/usersActions";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [open, setOpen] = useState(false)
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.userProfile)
 
   const options = [
     { label: 'Profile', to: `/favorites` },
-    { label: 'Settings', to: `/profile/:id` },
+    { label: 'Settings', to: `/profile/${profile.name}` },
   ];
 
 
