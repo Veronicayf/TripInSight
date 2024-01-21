@@ -17,6 +17,7 @@ export const userSlice = createSlice({
       state.userProfile = {};
     },
     loggedUserReducer: (state, action) => {
+      state.userProfile = action.payload;
       state.users = [...state.users, action.payload]
     },
     updateUserReducer: (state, action) => {
