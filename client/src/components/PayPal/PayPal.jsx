@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Paypal() {
   const paypal = useRef();
   const [isButtonRendered, setIsButtonRendered] = useState(false);
-
+  const price = useSelector((state) => state.tour.cartTotal);
+  console.log(price);
   useEffect(() => {
     let buttonsInstance;
 
@@ -15,10 +17,10 @@ export default function Paypal() {
               intent: "CAPTURE",
               purchase_units: [
                 {
-                  description: "A trip to Spain",
+                  description: "Trip package",
                   amount: {
                     currency_code: "EUR",
-                    value: 1,
+                    value: price,
                   },
                 },
               ],
