@@ -26,7 +26,7 @@ const CartItem = ({ product, quantity, handleDecrease, handleIncrease }) => {
         </button>
       </div>
       <div className=" w-1/4 flex justify-center item-center">
-        <b>${product.price.toFixed(2)}</b>
+        <b>${product.price}</b>
       </div>
     </div>
   );

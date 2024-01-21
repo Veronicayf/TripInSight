@@ -13,31 +13,30 @@ import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import CartItem from "../../components/CartItem/CartItem";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 
-const Cart = ({ tour }) => {
+const Cart = () => {
   const cart = useSelector((state) => state.tour.addCart);
-  console.log(cart);
-  /* cart.map((item) => {
-   console.log(item.price); 
+  const initialQuantities = cart.reduce((quantities, product) => {
+    quantities[product.id] = 1;
+    return quantities;
+  }, {});
 
-  });
- */
-  const initialQuantity = 1;
+  const [quantities, setQuantities] = useState(initialQuantities);
 
-  const [quantity, setQuantity] = useState(initialQuantity);
-
-  const handleIncrease = () => {
-    setQuantity(quantity + 1);
+  const handleIncrease = (productId) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: (prevQuantities[productId] || 0) + 1,
+    }));
   };
 
-  const handleDecrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+  const handleDecrease = (productId) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: Math.max((prevQuantities[productId] || 0) - 1, 0),
+    }));
   };
 
-  const totalPrice = cart.reduce((acc, item) => acc + item.price * quantity, 0);
-
-  console.log(totalPrice);
+  const totalPrice = cart.reduce((acc, product) => acc + product.price * quantities[product.id], 0);
 
   const { isAuthenticated, isLoading, loginWithRedirect, logout, user } =
     useAuth0();
@@ -86,15 +85,22 @@ const Cart = ({ tour }) => {
             </div>
           </div>
           {/* Map through the products in the cart and display them */}
-          {cart.map((product, index) => (
+          <div >
+          {cart.length > 0 ? (
+            cart.map((product, index) => (
             <CartItem
               key={index}
               product={product}
-              quantity={quantity}
-              handleDecrease={handleDecrease}
-              handleIncrease={handleIncrease}
+              quantity={quantities[product.id] || 1}
+              handleDecrease={() => handleDecrease(product.id)}
+              handleIncrease={() => handleIncrease(product.id)}
             />
-          ))}
+          ))
+          ) : (
+            <p className="flex justify-center just w-full font-bold text-xl bg-primary rounded-full">The cart is empty.</p>
+          )
+        }
+          </div>
         </div>
 
         <div className="w-1/3 flex flex-col">
