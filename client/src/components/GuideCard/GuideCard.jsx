@@ -26,7 +26,7 @@ const GuideCard = ({ guide }) => {
 
   return (
     <div
-      className="flex min-h-screen items-center flex-wrap justify-center"
+      className="flex h-[600px] w-96 items-center flex-wrap justify-center p-4"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
       onClick={(e) => handleClick(e)}
@@ -53,7 +53,7 @@ const GuideCard = ({ guide }) => {
       <div className="mx-auto h-96  px-5">
         <div className="max-w-xs cursor-pointer rounded-lg bg-white p-2 shadow duration-150 hover:scale-105 hover:shadow-md">
             <div className="">
-              <p className="mb-4 ml-4 text-xl font-semibold text-gray-800">
+              <p className="mb-4 ml-4 text-nomal font-semibold text-gray-800">
                 {guide.biography}
               </p>
             </div> 
