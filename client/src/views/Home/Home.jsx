@@ -26,7 +26,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllT());
-    console.log("hola");
   }, [dispatch]);
 
   return (

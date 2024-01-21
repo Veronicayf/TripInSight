@@ -21,7 +21,7 @@ const GuideCard = ({ guide }) => {
     e.preventDefault();
     dispatch(getGuideId(guide.id));
     console.log("aqui", guide);
-    navigate(`/guides/${guide.id}`);
+    navigate(`/guides/${guide.forename}`);
   };
 
   return (

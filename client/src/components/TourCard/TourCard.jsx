@@ -22,7 +22,7 @@ const TourCard = ({ tour }) => {
     e.preventDefault();
     dispatch(getTourId(tour.id));
     console.log("aqui", tour);
-    navigate(`/tours/${tour.id}`);
+    navigate(`/tours/${tour.nameTour}`);
   };
 
   return (

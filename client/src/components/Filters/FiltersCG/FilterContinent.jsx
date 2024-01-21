@@ -20,6 +20,12 @@ const FilterContinent = () => {
       >
         <option
           className="bg-green-600 text-white"
+          value="all"
+        >
+          All
+        </option>
+        <option
+          className="bg-green-600 text-white"
           value="North America"
         >
           North America

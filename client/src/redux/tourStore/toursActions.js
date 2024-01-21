@@ -61,28 +61,35 @@ export const searchTourTags = (tour) => {
 
 export const filterContinent = (tour) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `http://localhost:4000/tours/continent?continent=${tour}`
-    );
-    return dispatch(filterTourByContinent(data));
-  };
-};
+    if(tour === 'all') {
+      return dispatch(filterTourByContinent('all'));
+    }
+    try {
+
+      let {data} = await axios.get(`http://localhost:4000/tours/continent?continent=${tour}`);
+      return dispatch(filterTourByContinent(data));
+
+    } catch (error) {
+      console.error('Error filter continent:', error)
+    }
+  }
+}
 
 export const sortToursPrice = () => {
   return (dispatch) => {
     dispatch(sortToursByPrice());
-  };
-};
+  }
+
+}
 
 export const addTourCart = (tour) => {
-  console.log("action", tour);
   return (dispatch) => {
     dispatch(addTourCartReducer(tour));
-  };
-};
+  }
+}
+
 export const cartTotal = (price) => {
-  console.log("total: ", price);
   return (dispatch) => {
     dispatch(cartTotalReducer(price));
-  };
-};
+  }
+}
