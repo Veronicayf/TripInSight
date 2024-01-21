@@ -33,59 +33,59 @@ const FilterTags = () => {
         </button>
         <button
           type="submit"
-          name="winter"
+          name="marine"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Winter
+          #Marine
         </button>
         <button
           type="submit"
-          name="birds"
+          name="Tour"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Birds
+          #Tour
         </button>
         <button
           type="submit"
-          name="landscapes"
+          name="Discovery"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Landscapes
+          #Discovery
         </button>
         <button
           type="submit"
-          name="trekking"
+          name="exploration"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Trekking
+          #Exploration
         </button>
         <button
           type="submit"
-          name="forest"
+          name="summer"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Forest
+          #Summer
         </button>
         <button
           type="submit"
-          name="climbing"
+          name="Autumn"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Climbing
+          #Autumn
         </button>
         <button
           type="submit"
-          name="snow"
+          name="Spring"
           className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
-          #Snow
+          #Spring
         </button>
         <button
           type="submit"
