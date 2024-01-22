@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-auto flex flex-row justify-center gap-80">
+      <div className="mt-auto flex flex-row justify-center gap-80 mb-6">
         <Link to="/aboutus" className="mx-4">
           <h3 className="cursor-pointer hover:underline">ABOUT US</h3>
         </Link>
