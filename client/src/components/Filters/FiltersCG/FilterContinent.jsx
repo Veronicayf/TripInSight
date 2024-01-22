@@ -13,43 +13,43 @@ const FilterContinent = () => {
     <div className="flex flex-col justify-items-center justify-center items-center min-w-fit bg-green-300 gap-3 p-5 rounded-full">
       <b>Contienent Filter</b>
       <select
-        className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+        className="bg-primary text-white flex flex-row rounded-full items-center gap-3 p-1.5"
         name="filterType"
         id="filterType"
         onChange={(e) => handleFilterType(e)}
       >
         <option
-          className="bg-green-600 text-white"
+          className="bg-primary text-white"
           value="all"
         >
           All
         </option>
         <option
-          className="bg-green-600 text-white"
+          className="bg-primary text-white"
           value="North America"
         >
           North America
         </option>
         <option
-          className="bg-green-600 text-white"
+          className="bg-primary text-white"
           value="South America"
         >
           South America
         </option>
         <option
-          className="bg-green-600 text-white"
+          className="bg-primary text-white"
           value="Asia"
         >
           Asia
         </option>
         <option
-          className="bg-green-600 text-white"
+          className="bg-primary text-white"
           value="Europe"
         >
           Europe
         </option>
         <option
-          className="bg-green-600 text-white"
+          className="bg-primary text-white"
           value="Oceania"
         >
           Oceania
