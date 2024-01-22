@@ -38,7 +38,7 @@ const Tour = () => {
       <section className="">
         <img
           src={tourDetail.image}
-          className="w-full h-[35rem] "
+          className="w-full h-[38rem] object-cover "
           alt=""
         />
       </section>
@@ -116,7 +116,7 @@ const Tour = () => {
       {/*-------------- Second Image --------------*/}
       <section className=" w-3/4 px-4 flex justify-center">
       {tourDetail && tourDetail.photos && tourDetail.photos.length > 0 && (
-    <img src={tourDetail.photos[0]} alt="" />
+    <img className=" h-[38rem] rounded-3xl my-4" src={tourDetail.photos[0]} alt="" />
   )}
       </section>
       {/*-------------- Detail tour --------------*/}
