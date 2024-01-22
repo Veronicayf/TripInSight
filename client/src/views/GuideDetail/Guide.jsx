@@ -16,7 +16,7 @@ const GuideDetail = () => {
   const tourGuide = tours.filter((tour) => tour.guideId === guideDetail.id);
 
   return (
-    <div className=" font-Nunito">
+    <div className="font-Nunito">
       <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
