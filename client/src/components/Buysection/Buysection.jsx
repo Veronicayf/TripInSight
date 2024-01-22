@@ -4,28 +4,32 @@ import iconCart from "../../assets/icons/cartIcon.png";
 import iconFav from "../../assets/icons/favoriteIcon.png";
 import iconPrice from "../../assets/icons/PriceIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
   const handleAddToCart = () => {
-    console.log(tourDetail);
-    dispatch(
-      addTourCart(tourDetail)
-      /* addToCart({
-        id: tour.id,
-        name: tour.nameTour,
-        price: tour.price,
-        image: tour.image,
-      }) */
-    );
-    console.log("Product added to cart:", {
-      id: tour.id,
-      name: tour.nameTour,
-      price: tour.price,
-      image: tour.image,
-    });
+    try {
+      dispatch(addTourCart(tourDetail));
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Product added to cart!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } catch (error) {
+      console.error('Error adding product to cart:', error);
+
+      Swal.fire({
+        icon: 'error',
+        title: 'Error adding product to cart',
+        text: 'Please try again later',
+      });
+    }
   };
 
   const handleScroll = () => {
