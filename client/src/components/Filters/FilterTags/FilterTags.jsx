@@ -18,7 +18,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="expedition"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Expedition
@@ -26,7 +26,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="adventure"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Adventure
@@ -34,7 +34,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="marine"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Marine
@@ -42,7 +42,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="Tour"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Tour
@@ -50,7 +50,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="Discovery"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Discovery
@@ -58,7 +58,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="exploration"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Exploration
@@ -66,7 +66,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="summer"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Summer
@@ -74,7 +74,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="Autumn"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Autumn
@@ -82,7 +82,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="Spring"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Spring
@@ -90,7 +90,7 @@ const FilterTags = () => {
         <button
           type="submit"
           name="nature"
-          className="bg-zinc-100 duration-150 hover:!border-b-2 text-green-600 rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-green-600 cursor-pointer active:bg-zinc-300 p-1.5"
+          className="bg-zinc-100 duration-150 hover:!border-b-2 text-primary rounded-xl drop-shadow-lg group flex items-center border-2 border-b-4 border-primary cursor-pointer active:bg-zinc-300 p-1.5"
           onClick={(e) => handleButtonSubmit(e)}
         >
           #Nature
