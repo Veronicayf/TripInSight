@@ -1,6 +1,7 @@
 import React from "react";
 
 const CartItem = ({ product, quantity, handleDecrease, handleIncrease }) => {
+
   return (
     <div className="py-3 flex flex-row items-center">
       <div className="w-2/4 flex h-26 items-center justify-around">

@@ -38,7 +38,7 @@ const App = () => {
         image: user.picture,
         auth0Id: user.sub,
       };
-      console.log(userAuth);
+      //console.log(userAuth, user.email_verified);
       await dispatch(loggedUser(userAuth))
     }
    }
