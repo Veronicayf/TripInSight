@@ -66,6 +66,7 @@ const Tour = () => {
           </ul>
         </div>
       </section>
+      {/*-------------- BuySection --------------*/}
       <section>
         <Buysection tour={tourDetail} />
       </section>
