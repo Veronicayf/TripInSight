@@ -14,7 +14,7 @@ const Login = () => {
         />
       </div>
 
-      <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2">
+      <div className="md:p-52 sm:20 p-8 flex flex-col justify-center w-full lg:w-1/2">
       <img
           src={logo}
           alt="Placeholder Image"

@@ -7,7 +7,7 @@ const LoginButton = () => {
      
       <button
         
-        className="w-full text-center py-3 rounded-3xl bg-green-400 text-white font-bold hover:bg-green-600 focus:outline-none my-1"
+        className="w-full text-center py-3 rounded-3xl bg-primary text-white font-bold hover:bg-btn-hover focus:outline-none my-1"
         onClick={() => loginWithRedirect()}
       >
        Log In
