@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getTourId } from "../../redux/tourStore/toursActions";
 import { getTourById } from "../../redux/tourStore/toursSlice";
+import { getGuideId } from "../../redux/guideStore/guidesActions";
 
 const TourCard = ({ tour }) => {
   const [isHovering, setIsHovering] = useState(false);
@@ -21,6 +22,7 @@ const TourCard = ({ tour }) => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getTourId(tour.id));
+    dispatch(getGuideId(tour.guideId))
     console.log("aqui", tour);
     navigate(`/tours/${tour.nameTour}`);
   };
