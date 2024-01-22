@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import tourStyle from "./tourcopy.module.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+
+// <-- Components -->
+import { getTourId } from "../../redux/tourStore/toursActions";
 import TourInfoItem from "../../components/TourInfoItem/TourInfoItem";
 import Buysection from "../../components/Buysection/Buysection";
 import PhotoSection from "../../components/PhotoSection/PhotoSection";
 import GuideSection from "../../components/TourDetailGuideSection/GuideSection";
-import ImagePrincipal from "../../assets/img/Caballo1.jpg";
-import ImageSecundaria from "../../assets/img/Caballo2.jpg";
 import ImangeProvisoria1 from "../../assets/img/ciervo1.jpg";
-import ImangeProvisoria2 from "../../assets/img/paisaje1.jpg";
-import ImangeProvisoria3 from "../../assets/img/paisaje2.jpg";
+
+// <-- Icons -->
 import iconDay from "../../assets/icons/dayIcon.png";
 import iconCalendar from "../../assets/icons/calendarIcon.png";
 import iconpeople from "../../assets/icons/peopleIcon.png";
@@ -18,9 +21,7 @@ import iconTourDetail from "../../assets/icons/tourDetailicon.png";
 import IconIncludes from "../../assets/icons/includesIcon.png";
 import iconPhoto from "../../assets/icons/photosIcon.png";
 
-import { getTourId } from "../../redux/tourStore/toursActions";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 
 const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
@@ -66,6 +67,7 @@ const Tour = () => {
           </ul>
         </div>
       </section>
+      {/*-------------- BuySection --------------*/}
       <section>
         <Buysection tour={tourDetail} />
       </section>
