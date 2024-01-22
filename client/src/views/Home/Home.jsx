@@ -40,7 +40,7 @@ const Home = () => {
         <div className=" flex justify-center text-gray-600 my-6">
           <p>
             Explore our top destinations, curated by more than +100.000
-            customers around the world
+            costumers around the world
           </p>
         </div>
         <div className="my-3 w-full flex justify-center">
