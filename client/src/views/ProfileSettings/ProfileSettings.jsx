@@ -1,76 +1,101 @@
-import React, { useState, useEffect } from 'react';
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-import { updateUser } from '../../redux/userStore/usersActions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import CloudinaryUploadWidget from '../../components/UploadWidget/UploadWidget';
+import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
+import "sweetalert2/dist/sweetalert2.min.css";
+import { updateUser } from "../../redux/userStore/usersActions";
+import { useDispatch, useSelector } from "react-redux";
+import CloudinaryUploadWidget from "../../components/UploadWidget/UploadWidget";
 
 const ProfileEdit = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
 
   const [formData, setFormData] = useState({
-    nationality: profile.nationality || '',
-    birthDate: profile.birthDate || '',
-    phoneNumber: profile.phoneNumber || '',
-    image: '',
+    nationality: profile.nationality || "",
+    birthDate: profile.birthDate || "",
+    phoneNumber: profile.phoneNumber || "",
+    image: "",
     idUser: profile.id,
   });
   console.log(profile);
 
-  const [validationMessage, setValidationMessage] = useState('');
+  const [validationMessage, setValidationMessage] = useState("");
+  const [imagePreview, setImagePreview] = useState("");
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     setFormData((prevData) => ({
       ...prevData,
-      nationality: profile.nationality || '',
-      birthDate: profile.birthDate || '',
-      phoneNumber: profile.phoneNumber || '',
+      nationality: profile.nationality || "",
+      birthDate: profile.birthDate || "",
+      phoneNumber: profile.phoneNumber || "",
     }));
   }, [profile]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+
+    if (name === "image") {
+      // Procesar la imagen seleccionada y mostrar la vista previa
+      const selectedImage = files[0];
+      if (selectedImage) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setImagePreview(reader.result);
+        };
+        reader.readAsDataURL(selectedImage);
+      }
+    }
+
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
+  const handleImageUpload = (newImages) => {
+    setImages([...images, ...newImages]);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!formData.nationality || !formData.birthDate || !formData.phoneNumber) {
-      setValidationMessage('Please complete all fields.');
+      setValidationMessage("Please complete all fields.");
       return;
     }
+
+    // Puedes acceder a las imágenes subidas en el estado 'images'
+    console.log("Imágenes subidas:", images);
 
     try {
       await dispatch(updateUser(formData));
 
       Swal.fire({
-        icon: 'success',
-        title: 'Profile updated successfully!',
+        icon: "success",
+        title: "Profile updated successfully!",
         showConfirmButton: false,
         timer: 1500,
       });
     } catch (error) {
-      console.error('Error updating profile:', error);
+      console.error("Error updating profile:", error);
 
       Swal.fire({
-        icon: 'error',
-        title: 'Error updating profile',
-        text: 'Please try again later',
+        icon: "error",
+        title: "Error updating profile",
+        text: "Please try again later",
       });
     }
   };
 
   return (
-    <div className='flex justify-center items-center flex-col font-Nunito'>
-      <h1 className='text-5xl mt-20 h-16 font-bold'>Edit Info <b className='text-primary'>Profile</b></h1>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md">
-
+    <div className="flex justify-center items-center flex-col font-Nunito">
+      <h1 className="text-5xl mt-20 h-16 font-bold">
+        Edit Info <b className="text-primary">Profile</b>
+      </h1>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-md mx-auto p-6 bg-white rounded-md shadow-md"
+      >
         <label className="block mb-4">
           <span className="text-black font-bold">Nationality:</span>
           <input
@@ -104,23 +129,54 @@ const ProfileEdit = () => {
           />
         </label>
 
-        <div className='m-4'>
+        <div className=" p-4 ">
           <CloudinaryUploadWidget
-            onImageUpload={""}
+            onImageUpload={handleImageUpload}
             multiple={false}
           />
-          
+          <div className=" flex justify-around items-center text-seconday-text h-16">
+            <b>Imagen</b>
+            <b>Name</b>
+            <b>Format</b>
+          </div>
+
+          {images.length > 0 && (
+            <div>
+              <h2>Images</h2>
+              <div className="flex flex-col p-4 ">
+                {/*  image[0] = Image Url image[1] = Image Name image[2] = Image Format  */}
+
+                {images.map((image, index) => (
+                  <div className=" flex flex-row justify-around items-center">
+                    {console.log(images)}
+                    <img
+                      className="h-14"
+                      key={index}
+                      src={image[0]}
+                      alt={`Imagen ${index + 1}`}
+                    />
+                    <p>{image[1]}</p>
+                    <p>{image[2]}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         {validationMessage && (
-          <p className="bg-red-500 text-white rounded-xl text-center">{validationMessage}</p>
+          <p className="bg-red-500 text-white rounded-xl text-center">
+            {validationMessage}
+          </p>
         )}
-        <div className=' flex justify-center py-4'>
-          <button type="submit" className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover">
+        <div className=" flex justify-center py-4">
+          <button
+            type="submit"
+            className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover"
+          >
             Save Changes
           </button>
         </div>
-        
       </form>
     </div>
   );
