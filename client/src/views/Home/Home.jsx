@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ImagePrincipal from "../../assets/img/Caballo1.jpg";
-import ImageSecundaria from "../../assets/img/Caballo2.jpg";
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";

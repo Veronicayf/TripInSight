@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
+import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 
 
 const App = () => {
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/guides" element={<Guides />}/>
           <Route path="/tours" element={<ToursList />}/>
           <Route path="/profile/:id" element={<ProfileEdit/>} />
+          <Route path="/profilefavs/:id" element={<ProfileFavs/>} />
           <Route path="/tours/:id" element={<TourDetail />} />
           <Route path="/guides/:id" element={<GuideDetail />} />
           <Route path="/cart" element={<Cart/>} />
