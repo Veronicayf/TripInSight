@@ -16,12 +16,12 @@ import AdminTous from "./views/AdminTours/AdminTous";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import { loggedUser } from "./redux/userStore/usersActions";
-import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
-import ProfileEdit from "./views/Profile/Profile";
+import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
+
 
 const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
