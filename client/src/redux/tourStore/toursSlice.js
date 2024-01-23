@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const tourdetail = localStorage.getItem('tour-detail') !== null ? JSON.parse(localStorage.getItem('tour-detail')) : {};
+
 export const tourSlice = createSlice({
   name: "tours",
   initialState: {
     tours: [],
     toursCopy: [],
-    detail: {},
+    detail: tourdetail,
     searchTours: [],
     sortOrder: "asc",
     addCart: [],
@@ -15,9 +17,11 @@ export const tourSlice = createSlice({
     getAllTours: (state, action) => {
       state.tours = [...action.payload];
       state.toursCopy = [...action.payload];
+      //localStorage.setItem('tours', JSON.stringify(state.tours.map(tour => tour)))
     },
     getTourById: (state, action) => {
       state.detail = action.payload;
+      localStorage.setItem('tour-detail', JSON.stringify(state.detail))
     },
     searchTourByName: (state, action) => {
       state.tours = [...action.payload];
