@@ -6,7 +6,7 @@ const PriceOrder = () => {
 
   const handleOrderPrice = (e) => {
     e.preventDefault();
-    dispatch(sortToursPrice(e.target.value))
+    dispatch(sortToursPrice(e.target.value));
   };
 
   return (

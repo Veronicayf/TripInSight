@@ -5,7 +5,7 @@ import email from "./../../assets/icons/IconEmail.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="flex flex-col items-center w-full font-Nunito font-bold justify-between bg-primary text-white">
+    <div className="flex flex-col items-center w-full font-Nunito font-bold justify-between bg-vector-leaves text-black h-full">
       <div className="flex flex-row justify-evenly items-center">
         <div className="w-1/2 flex items-start">
           <img src={logo} alt="Trip In Sight" className="m-4 mr-80" />
@@ -33,7 +33,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-auto flex flex-row justify-center gap-80">
+      <div className="mt-auto flex flex-row justify-center gap-80 mb-6">
         <Link to="/aboutus" className="mx-4">
           <h3 className="cursor-pointer hover:underline">ABOUT US</h3>
         </Link>
