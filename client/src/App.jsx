@@ -27,6 +27,14 @@ import { useDispatch } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
 import ProfileEdit from "./views/Profile/Profile";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+
+const initialOptions = {
+  "client-id":
+    "Ae43YNhNcy82WK7N3f27yDbXklBUj1Pozc0NPYBJrayPxISs85PIMt9WPorvGk20mza-F3aKJd-z9HJI",
+  currency: "USD",
+  intent: "capture",
+};
 
 const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
@@ -73,7 +81,14 @@ const App = () => {
         <Route path="/admin/createguide" element={<CreateGuide />} />
         <Route path="/admin/viewTours" element={<AdminTous />} />
         <Route path="/admin/viewGuides" element={<AdminGuides />} />
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <PayPalScriptProvider options={initialOptions}>
+              <Checkout />
+            </PayPalScriptProvider>
+          }
+        />
       </Routes>
 
       {!isOnAdminRoute && <Footer />}
