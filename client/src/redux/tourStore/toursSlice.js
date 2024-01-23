@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const tours = localStorage.getItem('tours') !== null ? JSON.parse(localStorage.getItem('tours')) : [];
 const tourdetail = localStorage.getItem('tour-detail') !== null ? JSON.parse(localStorage.getItem('tour-detail')) : {};
+const cart = localStorage.getItem('cart') !== null ? JSON.parse(localStorage.getItem('cart')) : [];
+const price = localStorage.getItem('cart-price') !== null ? JSON.parse(localStorage.getItem('cart-price')) : 0;
 
 export const tourSlice = createSlice({
   name: "tours",
@@ -11,8 +13,8 @@ export const tourSlice = createSlice({
     detail: tourdetail,
     searchTours: [],
     sortOrder: "asc",
-    addCart: [],
-    cartTotal: 0,
+    addCart: cart,
+    cartTotal: price,
   },
   reducers: {
     getAllTours: (state, action) => {
@@ -46,9 +48,13 @@ export const tourSlice = createSlice({
     },
     addTourCartReducer: (state, action) => {
       state.addCart = [...state.addCart, action.payload];
+      localStorage.setItem('cart', JSON.stringify(state.addCart.map(item => item)))
+      
     },
     cartTotalReducer: (state, action) => {
       state.cartTotal = action.payload;
+      localStorage.setItem('cart-price', JSON.stringify(state.cartTotal))
+
     },
   },
 });
