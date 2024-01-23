@@ -16,13 +16,13 @@ const PriceOrder = () => {
         className="bg-primary text-white flex flex-row rounded-full items-center gap-3 p-1.5"
         name="orderPrice"
         id="orderPrice"
-        defaultValue="desc"
+        defaultValue="asc"
         onChange={(e) => handleOrderPrice(e)}
       >
-        <option className="bg-primary text-white" value="desc">
+        <option className="bg-primary text-white" value="asc">
           Low to High
         </option>
-        <option className="bg-primary text-white" value="asc">
+        <option className="bg-primary text-white" value="desc">
           High to Low
         </option>
       </select>
