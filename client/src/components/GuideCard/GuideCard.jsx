@@ -2,6 +2,7 @@ import { useState } from "react";
 import { getGuideId } from "../../redux/guideStore/guidesActions";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { getAllT } from "../../redux/tourStore/toursActions";
 
 const GuideCard = ({ guide }) => {
   const name = guide.forename + " " + guide.surname;
@@ -20,6 +21,7 @@ const GuideCard = ({ guide }) => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getGuideId(guide.id));
+    dispatch(getAllT());
     console.log("aqui", guide);
     navigate(`/guides/${guide.forename}`);
   };

@@ -30,12 +30,11 @@ export const tourSlice = createSlice({
       if(action.payload === 'all') {state.tours = [...state.toursCopy]
       } else {state.tours = [...action.payload]}
       
-
     },
     sortToursByPrice: (state) => {
-      const multiplier = state.sortOrder === "asc" ? 1 : -1;
+      const multiplier = state.sortOrder === "desc" ? 1 : -1;
       state.tours.sort((a, b) => multiplier * (a.price - b.price));
-      state.sortOrder = state.sortOrder === "asc" ? "desc" : "asc";
+      state.sortOrder = state.sortOrder === "desc" ? "asc" : "desc";
     },
     postTour: (state, action) => {
       state.tours = [...state.tours, action.payload];

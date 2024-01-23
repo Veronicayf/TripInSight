@@ -1,15 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import tourStyle from "./tourcopy.module.css";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+
+// <-- Components -->
+import { getTourId } from "../../redux/tourStore/toursActions";
 import TourInfoItem from "../../components/TourInfoItem/TourInfoItem";
 import Buysection from "../../components/Buysection/Buysection";
 import PhotoSection from "../../components/PhotoSection/PhotoSection";
 import GuideSection from "../../components/TourDetailGuideSection/GuideSection";
-import ImagePrincipal from "../../assets/img/Caballo1.jpg";
-import ImageSecundaria from "../../assets/img/Caballo2.jpg";
 import ImangeProvisoria1 from "../../assets/img/ciervo1.jpg";
-import ImangeProvisoria2 from "../../assets/img/paisaje1.jpg";
-import ImangeProvisoria3 from "../../assets/img/paisaje2.jpg";
+
+// <-- Icons -->
 import iconDay from "../../assets/icons/dayIcon.png";
 import iconCalendar from "../../assets/icons/calendarIcon.png";
 import iconpeople from "../../assets/icons/peopleIcon.png";
@@ -18,12 +21,11 @@ import iconTourDetail from "../../assets/icons/tourDetailicon.png";
 import IconIncludes from "../../assets/icons/includesIcon.png";
 import iconPhoto from "../../assets/icons/photosIcon.png";
 
-import { getTourId } from "../../redux/tourStore/toursActions";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 
 const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
+  const guideDetail = useSelector((state) => state.guide.detail)
   
   const initialDate = new Date(tourDetail.initialDate);
   const endDate = new Date(tourDetail.endDate);
@@ -65,6 +67,7 @@ const Tour = () => {
           </ul>
         </div>
       </section>
+      {/*-------------- BuySection --------------*/}
       <section>
         <Buysection tour={tourDetail} />
       </section>
@@ -193,9 +196,9 @@ const Tour = () => {
       <GuideSection
         icon={iconTourDetail}
         title="Guide"
-        guideName="Fernando Alonso Pérez"
-        guideImage={ImangeProvisoria1}
-        guideDescription={`"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."`}
+        guideName={guideDetail.forename + ' ' + guideDetail.surname}
+        guideImage={guideDetail.image}
+        guideDescription={guideDetail.biography}
       />
     </main>
   );

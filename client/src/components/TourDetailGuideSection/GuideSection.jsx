@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GuideSection = ({ icon, title, guideName, guideImage, guideDescription }) => {
+const GuideSection = ({ icon, title, guideName, guideImage, guideDescription}) => {
     return (
         <section id='guide' className='flex-col px-4 w-3/4'>
             <div className='flex items-center mb-4'>

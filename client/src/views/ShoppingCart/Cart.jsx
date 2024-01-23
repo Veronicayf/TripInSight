@@ -32,7 +32,7 @@ const Cart = () => {
   const handleDecrease = (productId) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [productId]: Math.max((prevQuantities[productId] || 0) - 1, 0),
+      [productId]: Math.max((prevQuantities[productId] || 1) - 1, 1),
     }));
   };
 
