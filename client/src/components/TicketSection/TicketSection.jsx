@@ -4,7 +4,7 @@ const TicketSection = ({ ticketData }) => {
   return (
     <div className='flex flex-col border-2 border-seconday-text rounded-xl mx-4'>
       <div className='w-full flex items-center justify-around text-seconday-text'>
-        <div className='w-1/3'>
+        <div className='w-1/3 text-center'>
           <b>Tour name</b>
         </div>
         <div className='w-1/4 text-center'>

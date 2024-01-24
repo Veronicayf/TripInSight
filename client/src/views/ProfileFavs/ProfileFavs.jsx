@@ -57,7 +57,7 @@ const ProfileFavs = () => {
       <div>
         <div>
           <ReviewSection />
-          <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl mx-10 my-4">
+          <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10 my-4">
             <div className="text-3xl my-4">
               <b>My</b> <b className="text-primary">Things</b>
             </div>
@@ -74,7 +74,11 @@ const ProfileFavs = () => {
                 </div>
                 
                 <div className="w-1/2">
-                  favorites
+                  <div className="flex justify-center"><b>My</b><b className="text-primary">Profile</b></div>
+                  <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10 my-4">
+                    
+
+                  </div>
                 </div>
               </div>
             </div>
