@@ -9,7 +9,7 @@ const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.userProfile);
+  /* const profile = useSelector((state) => state.user.userProfile); */
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -31,8 +31,8 @@ const Profile = () => {
   };
 
   const options = [
-    { label: 'Profile', to: `/profilefavs/${profile.name}` },
-    { label: 'Settings', to: `/profile/${profile.name}` },
+    { label: "Profile", to: `/profilefavs/${user.name}` },
+    { label: "Settings", to: `/profile/${user.name}` },
   ];
 
   if (isLoading) {
