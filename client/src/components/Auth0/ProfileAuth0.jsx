@@ -11,6 +11,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   /* const profile = useSelector((state) => state.user.userProfile); */
   const menuRef = useRef(null);
+  const profileName = user.name;
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -31,8 +32,8 @@ const Profile = () => {
   };
 
   const options = [
-    { label: "Profile", to: `/profilefavs/${user.name}` },
-    { label: "Settings", to: `/profile/${user.name}` },
+    { label: "Profile", to: `/profilefavs/${profileName}` },
+    { label: "Settings", to: `/profile/${profileName}` },
   ];
 
   if (isLoading) {
@@ -45,7 +46,7 @@ const Profile = () => {
         <img
           className="rounded-full size-16 cursor-pointer"
           src={user.picture}
-          alt={user.name}
+          alt={profileName}
           onClick={toggleMenu}
         />
         <h2>{user.name}</h2>
