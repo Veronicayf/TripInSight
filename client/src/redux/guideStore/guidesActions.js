@@ -3,16 +3,14 @@ import { getAllGuides, getGuideById } from "./guidesSlice";
 
 export const getAllG = () => {
   return async (dispatch) => {
-    let json = await axios.get("https://tripinsight.onrender.com/guides");
+    let json = await axios.get("http://localhost:4000/guides");
     return dispatch(getAllGuides(json.data));
   };
 };
 
 export const getGuideId = (id) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `https://tripinsight.onrender.com/guides/${id}`
-    );
+    let { data } = await axios.get(`http://localhost:4000/guides/${id}`);
     return dispatch(getGuideById(data));
   };
 };

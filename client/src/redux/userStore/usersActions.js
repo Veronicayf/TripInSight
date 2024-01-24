@@ -9,7 +9,7 @@ import {
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
     let { data } = await axios(
-      `https://tripinsight.onrender.com/all?page=${page}&pagesize=${pagesize}`
+      `http://localhost:4000/user/all?page=${page}&pagesize=${pagesize}`
     );
     return dispatch(getAllUsers(data));
   };
@@ -17,9 +17,7 @@ export const getUsers = (page, pagesize) => {
 
 export const getUserId = (id) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `https://tripinsight.onrender.com/getuser/${id}`
-    );
+    let { data } = await axios.get(`http://localhost:4000/user/getuser/${id}`);
     return dispatch(getUserDetail(data));
   };
 };
@@ -27,10 +25,7 @@ export const getUserId = (id) => {
 export const loggedUser = (user) => {
   return async (dispatch) => {
     try {
-      let response = await axios.post(
-        "https://tripinsight.onrender.com/user",
-        user
-      );
+      let response = await axios.post("http://localhost:4000/user", user);
       // console.log('acaaaa', response.data.msg);
       return dispatch(loggedUserReducer(response.data.msg));
     } catch (error) {
@@ -43,7 +38,7 @@ export const updateUser = (userData) => {
   return async (dispatch) => {
     try {
       let response = await axios.put(
-        "https://tripinsight.onrender.com/updateuser",
+        "http://localhost:4000/user/updateuser",
         userData
       );
       return dispatch(updateUserReducer(response.data));

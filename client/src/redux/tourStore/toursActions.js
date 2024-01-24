@@ -13,16 +13,14 @@ import {
 
 export const getAllT = () => {
   return async (dispatch) => {
-    let json = await axios.get("https://tripinsight.onrender.com/tours");
+    let json = await axios.get("http://localhost:4000/tours");
     return dispatch(getAllTours(json.data));
   };
 };
 
 export const getTourId = (id) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `https://tripinsight.onrender.com/tours/${id}`
-    );
+    let { data } = await axios.get(`http://localhost:4000/tours/${id}`);
     return dispatch(getTourById(data));
   };
 };
@@ -30,7 +28,7 @@ export const getTourId = (id) => {
 export const getTourName = (tour) => {
   return async (dispatch) => {
     let { data } = await axios.get(
-      `https://tripinsight.onrender.com/tours/nameTour?nameTour=${tour}`
+      `http://localhost:4000/tours/nameTour?nameTour=${tour}`
     );
     return dispatch(searchTourByName(data));
   };
@@ -42,7 +40,7 @@ export const postTourAction = (posteoTour) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "https://tripinsight.onrender.com/tours",
+        "http://localhost:4000/tours",
         posteoTour
       );
       dispatch(postTour(response.data));
@@ -55,7 +53,7 @@ export const postTourAction = (posteoTour) => {
 export const searchTourTags = (tour) => {
   return async (dispatch) => {
     let { data } = await axios.get(
-      `https://tripinsight.onrender.com/tours/tags?tags=${tour}`
+      `http://localhost:4000/tours/tags?tags=${tour}`
     );
     return dispatch(searchTourByTags(data));
   };
@@ -68,7 +66,7 @@ export const filterContinent = (tour) => {
     }
     try {
       let { data } = await axios.get(
-        `https://tripinsight.onrender.com/tours/continent?continent=${tour}`
+        `http://localhost:4000/tours/continent?continent=${tour}`
       );
       return dispatch(filterTourByContinent(data));
     } catch (error) {
