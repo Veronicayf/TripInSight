@@ -51,7 +51,7 @@ const ReviewFavorites = () => {
             <label className="block text-black font-bold mb-2"> Tour Comments:</label>
             <textarea
               value={tourComment}
-              onChange={(e) => setComment(e.target.value)}
+              onChange={(e) => setTourComment(e.target.value)}
               className="p-2 w-full  border rounded-md focus:outline-primary"
             />
           </div>
@@ -65,7 +65,7 @@ const ReviewFavorites = () => {
             <label className="block text-black font-bold mb-2"> Guide Comments:</label>
             <textarea
               value={guideComment}
-              onChange={(e) => setComment(e.target.value)}
+              onChange={(e) => setGuideComment(e.target.value)}
               className="p-2 w-full  border rounded-md focus:outline-primary"
             />
           </div>
