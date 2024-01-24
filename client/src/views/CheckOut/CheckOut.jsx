@@ -38,7 +38,7 @@ const Checkout = () => {
   };
 
   return (
-    <div className="checkout flex items-center justify-center min-h-screen text-center">
+    <div className="checkout flex items-center justify-center min-h-screen text-center z-0">
       {isPending ? (
         <p>LOADING...</p>
       ) : (
@@ -51,11 +51,17 @@ const Checkout = () => {
             <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
-          <PayPalButtons
-            style={{ layout: "vertical" }}
-            createOrder={(data, actions) => onCreateOrder(data, actions)}
-            onApprove={(data, actions) => onApproveOrder(data, actions)}
-          />
+
+          <div className="flex items-center justify-center">
+            {/* Surround PayPalButtons with a container for centering */}
+            <div className="text-center">
+              <PayPalButtons
+                style={{ layout: "vertical", height: 55, width: 180 }} // Adjust the width value
+                createOrder={(data, actions) => onCreateOrder(data, actions)}
+                onApprove={(data, actions) => onApproveOrder(data, actions)}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>
