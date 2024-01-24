@@ -31,7 +31,7 @@ const Profile = () => {
   };
 
   const options = [
-    { label: 'Profile', to: `/favorites` },
+    { label: 'Profile', to: `/profilefavs/${profile.name}` },
     { label: 'Settings', to: `/profile/${profile.name}` },
   ];
 

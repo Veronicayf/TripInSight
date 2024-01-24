@@ -20,13 +20,17 @@ import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
+import { loggedUser } from "./redux/userStore/usersActions";
 import { getUserId, loggedUser } from "./redux/userStore/usersActions";
 import Profile from "./views/Profile/Profile";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
-import ProfileEdit from "./views/Profile/Profile";
+import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
+import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
+import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
+
 
 const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
@@ -58,6 +62,7 @@ const App = () => {
 
   return (
     <div>
+
       {!isOnAdminRoute && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -65,7 +70,9 @@ const App = () => {
         <Route path="/aboutus" />
         <Route path="/guides" element={<Guides />} />
         <Route path="/tours" element={<ToursList />} />
-        <Route path="/profile/:id" element={<ProfileEdit />} />
+        <Route path="/profile/:id" element={<ProfileEdit/>} />
+        <Route path="/profilefavs/:id" element={<ProfileFavs/>} />
+        <Route path="/profile/review" element={<ReviewFavorites/>}/>
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guides/:id" element={<GuideDetail />} />
         <Route path="/cart" element={<Cart />} />
