@@ -3,7 +3,6 @@ import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
 import Carousel from "../../components/Carrusel/Carousel";
-import { Link } from "react-router-dom";
 import ReviewSection from "../../components/ReviewSection/ReviewSection";
 import TicketSection from "../../components/TicketSection/TicketSection";
 import Pagination from "../../components/Pagination/Pagination";

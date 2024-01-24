@@ -22,6 +22,7 @@ import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
+import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 
 
 const App = () => {
@@ -60,6 +61,7 @@ const App = () => {
           <Route path="/tours" element={<ToursList />}/>
           <Route path="/profile/:id" element={<ProfileEdit/>} />
           <Route path="/profilefavs/:id" element={<ProfileFavs/>} />
+          <Route path="/profile/review" element={<ReviewFavorites/>}/>
           <Route path="/tours/:id" element={<TourDetail />} />
           <Route path="/guides/:id" element={<GuideDetail />} />
           <Route path="/cart" element={<Cart/>} />
