@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// const userdetail = localStorage.getItem('user-detail') !== null ? JSON.parse(localStorage.getItem('user-detail')) : {};
+//const userdetail = localStorage.getItem('user-detail') !== null ? JSON.parse(localStorage.getItem('user-detail')) : {};
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
     users: [],
-    userProfile: {}, //detail/profile, userdetail
+    userProfile: {}, //userdetail,  // //detail/profile, userdetail,
+    favorites: [],
   },
   reducers: {
     getAllUsers: (state, action) => {
@@ -14,6 +15,7 @@ export const userSlice = createSlice({
     },
     getUserDetail: (state, action) => {
       state.userProfile = action.payload;
+      //localStorage.setItem('user-detail', JSON.stringify(state.userProfile));
     },
     clearUserDetail: (state) => {
       state.userProfile = {};
@@ -22,16 +24,21 @@ export const userSlice = createSlice({
       state.userProfile = action.payload;
       state.users = [...state.users, action.payload]
       // console.log('llego???', action.payload);
-      // localStorage.setItem('user-detail', JSON.stringify(state.userProfile));
 
     },
     updateUserReducer: (state, action) => {
       state.users = [...state.users, action.payload]
-    }
+    },
+    addFavReducer: (state, action) => {
+      state.favorites = [...state.favorites, action.payload]
+    },
+    removeFavReducer: (state, action) => {
+      state.favorites = action.payload
+    },
   },
 });
 
-export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer} =
+export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer} =
   userSlice.actions;
 
 export default userSlice.reducer;

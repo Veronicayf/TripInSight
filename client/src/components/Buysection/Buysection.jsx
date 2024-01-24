@@ -6,11 +6,15 @@ import iconPrice from "../../assets/icons/PriceIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { addFav, removeFav } from "../../redux/userStore/usersActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
+  const profile = useSelector((state) => state.user.userProfile)
+
   const handleAddToCart = () => {
     try {
       dispatch(addTourCart(tourDetail));
@@ -39,6 +43,27 @@ const Buysection = ({ tour }) => {
       setIsSticky(true);
     } else {
       setIsSticky(false);
+    }
+  };
+
+  const handleFavorite = () => {
+    if(isFav) {
+      setIsFav(false);
+      dispatch(removeFav(tourDetail.id, profile.id));
+      Swal.fire({
+        icon: 'error',
+        title: 'Tour removed from favorites!',
+        // text: 'Please try again later',
+      });
+    } else {
+      setIsFav(true);
+      dispatch(addFav(tourDetail.id, profile.id))
+      Swal.fire({
+        icon: 'success',
+        title: 'Tour added to favorites!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -80,7 +105,10 @@ const Buysection = ({ tour }) => {
           </button>
         </div>
         <div>
-          <button className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white">
+          <button 
+          className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white"
+          onClick={(e) => handleFavorite(e)}
+          >
             <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>
