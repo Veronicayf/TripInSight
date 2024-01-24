@@ -85,7 +85,11 @@ const ProfileFavs = () => {
             </div>
           </div>
           <div className="p-4">
-            <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10"> Favorites</div>
+            <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10">
+            <div className="text-3xl py-4">
+              <b>My</b> <b className="text-primary">Favorites</b>
+            </div>
+            </div>
           </div>
         </div>
       </div>
