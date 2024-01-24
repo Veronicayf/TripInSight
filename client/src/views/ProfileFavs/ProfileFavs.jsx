@@ -59,7 +59,7 @@ const ProfileFavs = () => {
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
       <div>
-        <div>
+        <div className="p-4">
           <ReviewSection />
           <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10">
             <div className="text-3xl py-4">
@@ -84,6 +84,9 @@ const ProfileFavs = () => {
                 />
               </div>
             </div>
+          </div>
+          <div className="p-4">
+            <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10"> Favorites</div>
           </div>
         </div>
       </div>
