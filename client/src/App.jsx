@@ -29,17 +29,15 @@ import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 
-
 const App = () => {
   const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
     useAuth0();
   const dispatch = useDispatch();
-  const [userRegistered, setUserRegistered] = useState(false);
 
   //verificar si el user esta autenticado cuando ingresa.
   useEffect(() => {
     const data = async () => {
-      if (isAuthenticated && !userRegistered) {
+      if (isAuthenticated) {
         //si lo esta destructuro la info para mandarla al back
         const userAuth = {
           name: user.name,
@@ -48,18 +46,16 @@ const App = () => {
           auth0Id: user.sub,
         };
         await dispatch(loggedUser(userAuth));
-        setUserRegistered(true);
       }
     };
     data();
-  }, [dispatch, isAuthenticated, user, userRegistered]);
+  }, [dispatch, isAuthenticated, user]);
 
   const location = useLocation();
   const isOnAdminRoute = location.pathname.startsWith("/admin");
 
   return (
     <div>
-
       {!isOnAdminRoute && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -67,9 +63,9 @@ const App = () => {
         <Route path="/aboutus" />
         <Route path="/guides" element={<Guides />} />
         <Route path="/tours" element={<ToursList />} />
-        <Route path="/profile/:id" element={<ProfileEdit/>} />
-        <Route path="/profilefavs/:id" element={<ProfileFavs/>} />
-        <Route path="/profile/review" element={<ReviewFavorites/>}/>
+        <Route path="/profile/:id" element={<ProfileEdit />} />
+        <Route path="/profilefavs/:id" element={<ProfileFavs />} />
+        <Route path="/profile/review" element={<ReviewFavorites />} />
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guides/:id" element={<GuideDetail />} />
         <Route path="/cart" element={<Cart />} />
