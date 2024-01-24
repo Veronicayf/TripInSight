@@ -32,11 +32,14 @@ const Cart = () => {
   const handleDecrease = (productId) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [productId]: Math.max((prevQuantities[productId] || 0) - 1, 0),
+      [productId]: Math.max((prevQuantities[productId] || 1) - 1, 1),
     }));
   };
 
-  const totalPrice = cart.reduce((acc, product) => acc + product.price * quantities[product.id], 0);
+  const totalPrice = cart.reduce(
+    (acc, product) => acc + product.price * quantities[product.id],
+    0
+  );
 
   const { isAuthenticated, isLoading, loginWithRedirect, logout, user } =
     useAuth0();
@@ -63,10 +66,10 @@ const Cart = () => {
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
       <div className="text-xl text-seconday-text flex justify-center">
-        <b>One more step for enjoy</b>
+        <b>One more step towards enjoyment</b>
       </div>
       <div className=" flex justify-center text-5xl">
-        <b>Your</b> <b className="text-primary mx-1">Travel</b>
+        <b>Your</b> <b className="text-primary mx-1">Trip</b>
       </div>
       {/* <-- Cart Section -->*/}
       <section className="flex flex-row w-full px-7">
@@ -85,21 +88,22 @@ const Cart = () => {
             </div>
           </div>
           {/* Map through the products in the cart and display them */}
-          <div >
-          {cart.length > 0 ? (
-            cart.map((product, index) => (
-            <CartItem
-              key={index}
-              product={product}
-              quantity={quantities[product.id] || 1}
-              handleDecrease={() => handleDecrease(product.id)}
-              handleIncrease={() => handleIncrease(product.id)}
-            />
-          ))
-          ) : (
-            <p className="flex justify-center just w-full font-bold text-xl bg-primary rounded-full">The cart is empty.</p>
-          )
-        }
+          <div>
+            {cart.length > 0 ? (
+              cart.map((product, index) => (
+                <CartItem
+                  key={index}
+                  product={product}
+                  quantity={quantities[product.id] || 1}
+                  handleDecrease={() => handleDecrease(product.id)}
+                  handleIncrease={() => handleIncrease(product.id)}
+                />
+              ))
+            ) : (
+              <p className="flex justify-center just w-full font-bold text-xl bg-primary rounded-full">
+                The cart is empty.
+              </p>
+            )}
           </div>
         </div>
 
@@ -117,7 +121,7 @@ const Cart = () => {
                 <div className="w-3/4">
                   <b>World-class customer support. </b>
                   <p>
-                    There´s customer support, and them there´s Travel In Sight
+                    There´s customer support, and them there´s Trip In Sight's
                     customer support. We take pride in going above and beyond to
                     keep our community happy
                   </p>
@@ -130,7 +134,7 @@ const Cart = () => {
                 <div className="w-3/4">
                   <b>World-class customer support. </b>
                   <p>
-                    There´s customer support, and them there´s Travel In Sight
+                    There´s customer support, and them there´s Trip In Sight's
                     customer support. We take pride in going above and beyond to
                     keep our community happy
                   </p>
@@ -143,7 +147,7 @@ const Cart = () => {
                 <div className="w-3/4">
                   <b>World-class customer support. </b>
                   <p>
-                    There´s customer support, and them there´s Travel In Sight
+                    There´s customer support, and them there´s Trip In Sight's
                     customer support. We take pride in going above and beyond to
                     keep our community happy
                   </p>

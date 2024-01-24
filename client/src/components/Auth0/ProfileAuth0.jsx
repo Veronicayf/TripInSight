@@ -7,15 +7,33 @@ import { getUserId } from "../../redux/userStore/usersActions";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
-  const profile = useSelector((state) => state.user.userProfile)
+  const profile = useSelector((state) => state.user.userProfile);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const toggleMenu = () => {
+    setOpen(!open);
+  };
 
   const options = [
-    { label: 'Profile', to: `/favorites` },
+    { label: 'Profile', to: `/profilefavs/${profile.name}` },
     { label: 'Settings', to: `/profile/${profile.name}` },
   ];
-
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -24,11 +42,15 @@ const Profile = () => {
   return (
     isAuthenticated && (
       <div className="flex flex-col items-center relative">
-        <img className="rounded-full size-16 cursor-pointer" src={user.picture} alt={user.name} onClick={()=>setOpen(!open)} />
+        <img
+          className="rounded-full size-16 cursor-pointer"
+          src={user.picture}
+          alt={user.name}
+          onClick={toggleMenu}
+        />
         <h2>{user.name}</h2>
         {/* <p>{user.email}</p> */}
-        {open && <DropMenu options={options} />
-        }
+        {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
       </div>
     )
   );
