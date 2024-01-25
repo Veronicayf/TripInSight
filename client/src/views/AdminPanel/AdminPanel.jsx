@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 
 import SideBar from '../../components/SideBar/SideBar';
+import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
 
 
 const AdminPanel = () => {
@@ -51,7 +52,9 @@ const AdminPanel = () => {
   return (
     <div className="flex h-screen">
         <SideBar />
-      
+        <div className=" w-full">
+          <HeaderAdmin/>
+        </div>
 
     </div>
   );
