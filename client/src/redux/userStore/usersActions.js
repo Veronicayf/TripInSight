@@ -2,24 +2,24 @@ import axios from 'axios'
 import { addFavReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
 
 export const getUsers = (page, pagesize) => {
-    return async (dispatch) => {
-        let {data} = await axios(`http://localhost:4000/user/all?page=${page}&pagesize=${pagesize}`);
-        return dispatch(getAllUsers(data));
-    };
+  return async (dispatch) => {
+    let { data } = await axios(`http://localhost:4000/user/all?page=${page}&pagesize=${pagesize}`);
+    return dispatch(getAllUsers(data));
+  };
 };
 
 export const loggedUser = (user) => {
   return async (dispatch) => {
-    try { 
+    try {
       let response = await axios.post("http://localhost:4000/user", user);
       dispatch(loggedUserReducer(response.data));
 
       //await dispatch(getUserId(response.data.id));
       
-  } catch(error) {
-    console.log(error.response.data);
-  }
-  }
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
 };
 
 export const getUserId = (id) => {
@@ -65,5 +65,4 @@ export const removeFav = (tourId, userId) => {
   } catch(error) {
     console.log(error.data);
   }
-  }
-};
+}
