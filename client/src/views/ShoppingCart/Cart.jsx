@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import iconTrust from "../../assets/icons/iconTrust.png";
 import boreal from "../../assets/img/boreal.png";
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
@@ -11,10 +11,12 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import CartItem from "../../components/CartItem/CartItem";
-import { addTourCart } from "../../redux/tourStore/toursActions";
+import { removeTourFromCartAction } from "../../redux/tourStore/toursActions";
 
 const Cart = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.tour.addCart);
+  console.log(cart[1]);
   const initialQuantities = cart.reduce((quantities, product) => {
     quantities[product.id] = 1;
     return quantities;
@@ -35,7 +37,9 @@ const Cart = () => {
       [productId]: Math.max((prevQuantities[productId] || 1) - 1, 1),
     }));
   };
-
+  const handleRemove = (cart) => {
+    dispatch(removeTourFromCartAction(cart));
+  };
   const totalPrice = cart.reduce(
     (acc, product) => acc + product.price * quantities[product.id],
     0
@@ -97,6 +101,7 @@ const Cart = () => {
                   quantity={quantities[product.id] || 1}
                   handleDecrease={() => handleDecrease(product.id)}
                   handleIncrease={() => handleIncrease(product.id)}
+                  handleRemove={() => handleRemove(product.id)}
                 />
               ))
             ) : (
