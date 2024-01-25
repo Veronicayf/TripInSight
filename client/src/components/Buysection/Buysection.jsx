@@ -6,11 +6,15 @@ import iconPrice from "../../assets/icons/PriceIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { addFav, removeFav } from "../../redux/userStore/usersActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
+  const profile = useSelector((state) => state.user.userProfile)
+
   const handleAddToCart = () => {
     try {
       dispatch(addTourCart(tourDetail));
@@ -42,6 +46,26 @@ const Buysection = ({ tour }) => {
     }
   };
 
+  const handleFavorite = () => {
+    if(isFav) {
+      setIsFav(false);
+      dispatch(removeFav(tourDetail.id, profile.id));
+      Swal.fire({
+        icon: 'error',
+        title: 'Tour removed from favorites!',
+      });
+    } else {
+      setIsFav(true);
+      dispatch(addFav(tourDetail.id, profile.id))
+      Swal.fire({
+        icon: 'success',
+        title: 'Tour added to favorites!',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -58,17 +82,17 @@ const Buysection = ({ tour }) => {
     >
       <div className="flex-col">
         <div className="w-full">
-          <h2 className="mb-2 text-4xl py-2 font-semibold flex items-center justify-center">
+          <h2 className="mb-2 text-3xl py-2 font-semibold flex items-center justify-center">
             PRICE
           </h2>
         </div>
-        <div className="w-full flex justify-center items-center">
-          <i className="h-12 flex items-center justify-center">
-            <img className="h-16 w-16" src={iconPrice} alt="icon" />
+        <div className="w-full flex justify-center items-center gap-2">
+          <i className="h-12 flex items-center justify-end w-1/3">
+            <img className="h-12 w-12" src={iconPrice} alt="icon" />
           </i>
-          <b className=" mb-2 text-6xl py-4 font-Bebas flex justify-center items-center">{`$ ${tour.price}`}</b>
+          <b className="mb-2 w-2/3 text-6xl py-4 font-Bebas flex justify-start items-center">{`$${tour.price}`}</b>
         </div>
-        <div className="w-full ">
+        <div className="w-full">
           <button
             className="text-primary bg-white w-full py-2 mb-2 rounded flex items-center justify-center hover:bg-btn-hover hover:text-white"
             onClick={handleAddToCart}
@@ -79,12 +103,26 @@ const Buysection = ({ tour }) => {
             <b className="ml-2">Add to Cart</b>
           </button>
         </div>
-        <div>
-          <button className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white">
+        <div >
+          <button 
+          className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white"
+          onClick={(e) => handleFavorite(e)}
+          >
+          {isFav ? (
+            <div className="flex flex-row justify-center items-center">
+            <i className="h-12">
+              <img className="h-10 w-10" src={iconFav} alt="icon" />
+            </i>
+            <b className="ml-2">In your favorites!</b>
+            </div>
+          ) : ( 
+            <div className="flex flex-row justify-center items-center">
             <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>
             <b className="ml-2">Add to favorite</b>
+            </div>
+          )}
           </button>
         </div>
       </div>
