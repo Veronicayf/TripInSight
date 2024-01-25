@@ -9,6 +9,7 @@ import {
   postTour,
   addTourCartReducer,
   cartTotalReducer,
+  removeFromCartReducer,
 } from "./toursSlice";
 
 export const getAllT = () => {
@@ -61,35 +62,39 @@ export const searchTourTags = (tour) => {
 
 export const filterContinent = (tour) => {
   return async (dispatch) => {
-    if(tour === 'all') {
-      return dispatch(filterTourByContinent('all'));
+    if (tour === "all") {
+      return dispatch(filterTourByContinent("all"));
     }
     try {
-
-      let {data} = await axios.get(`http://localhost:4000/tours/continent?continent=${tour}`);
+      let { data } = await axios.get(
+        `http://localhost:4000/tours/continent?continent=${tour}`
+      );
       return dispatch(filterTourByContinent(data));
-
     } catch (error) {
-      console.error('Error filter continent:', error)
+      console.error("Error filter continent:", error);
     }
-  }
-}
+  };
+};
 
 export const sortToursPrice = () => {
   return (dispatch) => {
     dispatch(sortToursByPrice());
-  }
-
-}
+  };
+};
 
 export const addTourCart = (tour) => {
   return (dispatch) => {
     dispatch(addTourCartReducer(tour));
-  }
-}
+  };
+};
+export const removeTourFromCartAction = (tour) => {
+  return (dispatch) => {
+    dispatch(removeFromCartReducer(tour));
+  };
+};
 
 export const cartTotal = (price) => {
   return (dispatch) => {
     dispatch(cartTotalReducer(price));
-  }
-}
+  };
+};

@@ -1,9 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const tours = localStorage.getItem('tours') !== null ? JSON.parse(localStorage.getItem('tours')) : [];
-const tourdetail = localStorage.getItem('tour-detail') !== null ? JSON.parse(localStorage.getItem('tour-detail')) : {};
-const cart = localStorage.getItem('cart') !== null ? JSON.parse(localStorage.getItem('cart')) : [];
-const price = localStorage.getItem('cart-price') !== null ? JSON.parse(localStorage.getItem('cart-price')) : 0;
+const tours =
+  localStorage.getItem("tours") !== null
+    ? JSON.parse(localStorage.getItem("tours"))
+    : [];
+const tourdetail =
+  localStorage.getItem("tour-detail") !== null
+    ? JSON.parse(localStorage.getItem("tour-detail"))
+    : {};
+const cart =
+  localStorage.getItem("cart") !== null
+    ? JSON.parse(localStorage.getItem("cart"))
+    : [];
+const price =
+  localStorage.getItem("cart-price") !== null
+    ? JSON.parse(localStorage.getItem("cart-price"))
+    : 0;
 
 export const tourSlice = createSlice({
   name: "tours",
@@ -20,11 +32,14 @@ export const tourSlice = createSlice({
     getAllTours: (state, action) => {
       state.tours = [...action.payload];
       state.toursCopy = [...action.payload];
-      localStorage.setItem('tours', JSON.stringify(state.tours.map(tour => tour)))
+      localStorage.setItem(
+        "tours",
+        JSON.stringify(state.tours.map((tour) => tour))
+      );
     },
     getTourById: (state, action) => {
       state.detail = action.payload;
-      localStorage.setItem('tour-detail', JSON.stringify(state.detail))
+      localStorage.setItem("tour-detail", JSON.stringify(state.detail));
     },
     searchTourByName: (state, action) => {
       state.tours = [...action.payload];
@@ -33,10 +48,11 @@ export const tourSlice = createSlice({
       state.tours = [...action.payload];
     },
     filterTourByContinent: (state, action) => {
-
-      if(action.payload === 'all') {state.tours = [...state.toursCopy]
-      } else {state.tours = [...action.payload]}
-      
+      if (action.payload === "all") {
+        state.tours = [...state.toursCopy];
+      } else {
+        state.tours = [...action.payload];
+      }
     },
     sortToursByPrice: (state) => {
       const multiplier = state.sortOrder === "desc" ? 1 : -1;
@@ -48,13 +64,23 @@ export const tourSlice = createSlice({
     },
     addTourCartReducer: (state, action) => {
       state.addCart = [...state.addCart, action.payload];
-      localStorage.setItem('cart', JSON.stringify(state.addCart.map(item => item)))
-      
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.addCart.map((item) => item))
+      );
     },
     cartTotalReducer: (state, action) => {
       state.cartTotal = action.payload;
-      localStorage.setItem('cart-price', JSON.stringify(state.cartTotal))
-
+      localStorage.setItem("cart-price", JSON.stringify(state.cartTotal));
+    },
+    removeFromCartReducer: (state, action) => {
+      state.addCart = state.addCart.filter(
+        (item) => item.id !== action.payload
+      );
+      localStorage.setItem(
+        "cart",
+        JSON.stringify(state.addCart.map((item) => item))
+      );
     },
   },
 });
@@ -69,6 +95,7 @@ export const {
   postTour,
   addTourCartReducer,
   cartTotalReducer,
+  removeFromCartReducer,
 } = tourSlice.actions;
 
 export default tourSlice.reducer;
