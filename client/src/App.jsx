@@ -52,7 +52,6 @@ const App = () => {
       }
     };
     data();
-    // getUserId(user.email);
   }, [dispatch, isAuthenticated, user, userRegistered]);
 
   const location = useLocation();
