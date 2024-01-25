@@ -30,10 +30,11 @@ export const userSlice = createSlice({
       state.users = [...state.users, action.payload]
     },
     addFavReducer: (state, action) => {
-      state.favorites = [...state.favorites, action.payload]
+      state.favorites = [...state.favorites, action.payload] //cambiar esto, no se ven los favs, se ve el msg
     },
     removeFavReducer: (state, action) => {
-      state.favorites = action.payload
+      state.favorites = [...state.favorites],
+      console.log('removeFavReducer:', action.payload);
     },
   },
 });

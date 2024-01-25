@@ -8,6 +8,20 @@ export const getUsers = (page, pagesize) => {
     };
 };
 
+export const loggedUser = (user) => {
+  return async (dispatch) => {
+    try { 
+      let response = await axios.post("http://localhost:4000/user", user);
+      dispatch(loggedUserReducer(response.data));
+
+      //await dispatch(getUserId(response.data.id));
+      
+  } catch(error) {
+    console.log(error.response.data);
+  }
+  }
+};
+
 export const getUserId = (id) => {
     return async (dispatch) => {
       let {data} = await axios.get(`http://localhost:4000/user/getuser/${id}`);
@@ -15,16 +29,6 @@ export const getUserId = (id) => {
     };
   };
 
-export const loggedUser = (user) => {
-  return async (dispatch) => {
-    try { 
-      let response = await axios.post("http://localhost:4000/user", user);
-    return dispatch(loggedUserReducer(response.data));
-  } catch(error) {
-    console.log(error.response.data);
-  }
-  }
-};
 
 export const updateUser = (userData) => {
   return async (dispatch) => {
@@ -41,8 +45,8 @@ export const addFav = (tourId, userId) => {
   
   return async (dispatch) => {
    try { 
-    let {data} = await axios.put("http://localhost:4000/user/addfavorite", {tourId, userId});
-    return dispatch(addFavReducer(data));
+    let response = await axios.put("http://localhost:4000/user/addfavorite", {tourId, userId});
+    return dispatch(addFavReducer(response.data));
   } catch(error) {
     console.log(error);
   }
@@ -50,13 +54,16 @@ export const addFav = (tourId, userId) => {
 };
 
 export const removeFav = (tourId, userId) => {
+  const url = "http://localhost:4000/user/deletefavoritetour";
+  const deleteFav = {tourId, userId}
   return async (dispatch) => {
    try { 
-    let {data} = await axios.delete("http://localhost:4000/user/deletefavoritetour", tourId, userId);
+    let {data} = await axios.delete(url, {
+      data: deleteFav
+    });
     return dispatch(removeFavReducer(data));
   } catch(error) {
     console.log(error.data);
   }
   }
 };
-

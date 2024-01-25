@@ -53,7 +53,6 @@ const Buysection = ({ tour }) => {
       Swal.fire({
         icon: 'error',
         title: 'Tour removed from favorites!',
-        // text: 'Please try again later',
       });
     } else {
       setIsFav(true);
@@ -104,15 +103,26 @@ const Buysection = ({ tour }) => {
             <b className="ml-2">Add to Cart</b>
           </button>
         </div>
-        <div>
+        <div className="w-full ">
           <button 
           className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white"
           onClick={(e) => handleFavorite(e)}
           >
+          {isFav ? (
+            <div>
+            <i className="h-12">
+              <img className="h-10 w-10" src={iconFav} alt="icon" />
+            </i>
+            <b className="ml-2">Is favorite</b>
+            </div>
+          ) : ( 
+            <div className="w-full ">
             <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>
             <b className="ml-2">Add to favorite</b>
+            </div>
+          )}
           </button>
         </div>
       </div>

@@ -32,6 +32,8 @@ const Tour = () => {
     differenceInMilliseconds / (1000 * 60 * 60 * 24)
   );
 
+  //const availablePlaces = tourDetail.places;
+
   const scrollToSection = (event, sectionId) => {
     event.preventDefault();
 

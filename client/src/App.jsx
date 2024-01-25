@@ -31,29 +31,33 @@ import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 
 
 const App = () => {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const [userRegistered, setUserRegistered] = useState(false);
   const userProfile = useSelector((state) => state.user.userProfile)
 
-  //verificar si el user esta autenticado cuando ingresa.
+  const fetchUserId = () => {
+    if (isAuthenticated) {
+      dispatch(getUserId(userProfile.id));
+    }
+  };
+
+  const authenticateUser = async () => {
+    if (isAuthenticated ) {
+      const userAuth = {
+        name: user.name,
+        email: user.email,
+        image: user.picture,
+        auth0Id: user.sub,
+      };
+      await dispatch(loggedUser(userAuth));
+    }
+    fetchUserId();
+  };
+
+  // Verificar la autenticación del usuario cuando cambia su estado
   useEffect(() => {
-    const data = async () => {
-      if (isAuthenticated && !userRegistered) {  //
-        //si lo esta destructuro la info para mandarla al back
-        const userAuth = {
-          name: user.name,
-          email: user.email,
-          image: user.picture,
-          auth0Id: user.sub,
-        };
-        await dispatch(loggedUser(userAuth));
-        setUserRegistered(true);
-      }
-    };
-    data();
-    dispatch(getUserId(userProfile.id))
-  }, [dispatch, isAuthenticated, user, userRegistered]);
+    authenticateUser();
+  }, [isAuthenticated, user]);
 
   const location = useLocation();
   const isOnAdminRoute = location.pathname.startsWith("/admin");
