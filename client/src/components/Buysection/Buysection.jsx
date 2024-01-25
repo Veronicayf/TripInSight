@@ -90,7 +90,7 @@ const Buysection = ({ tour }) => {
           <i className="h-12 flex items-center justify-center">
             <img className="h-16 w-16" src={iconPrice} alt="icon" />
           </i>
-          <b className=" mb-2 text-6xl py-4 font-Bebas flex justify-center items-center">{`$ ${tour.price}`}</b>
+          <b className=" mb-2 text-6xl py-4 font-Bebas flex justify-center items-center">{`$${tour.price}`}</b>
         </div>
         <div className="w-full ">
           <button
@@ -103,20 +103,20 @@ const Buysection = ({ tour }) => {
             <b className="ml-2">Add to Cart</b>
           </button>
         </div>
-        <div className="w-full ">
+        <div >
           <button 
           className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white"
           onClick={(e) => handleFavorite(e)}
           >
           {isFav ? (
-            <div>
+            <div className="flex flex-row justify-center items-center">
             <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>
-            <b className="ml-2">Is favorite</b>
+            <b className="ml-2">In your favorites!</b>
             </div>
           ) : ( 
-            <div className="w-full ">
+            <div className="flex flex-row justify-center items-center">
             <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>

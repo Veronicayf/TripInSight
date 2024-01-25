@@ -36,7 +36,7 @@ const App = () => {
   const userProfile = useSelector((state) => state.user.userProfile)
 
   const fetchUserId = () => {
-    if (isAuthenticated) {
+    if (isAuthenticated && userProfile.id) {
       dispatch(getUserId(userProfile.id));
     }
   };
