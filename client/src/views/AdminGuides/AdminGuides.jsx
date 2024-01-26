@@ -19,8 +19,6 @@ const AdminGuides = () => {
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const currentItem = allGuides.slice(indexOfFirstItem, indexOfLastItem);
-  
-  console.log(allGuides)
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);

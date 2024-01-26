@@ -145,7 +145,7 @@ const CreateGuide = () => {
             </div>
             {/* Otros campos según tus necesidades */}
             <div className=" h-16 flex justify-center items-center">
-                <button type="submit" className="w-56 h-12 text-white rounded-3xl bg-primary  hover:bg-btn-hover" >Guardar Tour</button>
+                <button type="submit" className="w-56 h-12 text-white rounded-3xl bg-primary  hover:bg-btn-hover" >Create Guide</button>
             </div>
             
             </form>

@@ -15,7 +15,6 @@ const AdminTous = () => {
   useEffect(() => {
     dispatch(getAllT());
   }, [dispatch]);
-console.log(allTours);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage] = useState(10);
 
