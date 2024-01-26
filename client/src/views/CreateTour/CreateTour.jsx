@@ -57,7 +57,6 @@ const CreateTour = () => {
     event.preventDefault();
     dispatch(postTourAction(tourInfo));
   };
-  console.log("objeto", tourInfo);
   return (
     <div className="flex flex-row font-Poppins">
       <SideBar />

@@ -49,11 +49,9 @@ const AdminDashboard = () => {
 
  // Obtener los 3 tours más cercanos
  const upcomingTours = sortedTours.slice(0, 3);
-  
 
-  console.log(allTours);
   return (
-    <div className='w-full flex flex-col border-y-2  border-seconday-text'>
+    <div className='w-full flex flex-col border-y-2  border-seconday-text '>
       <div className='w-full flex flex-row'>
         <DashboardCard/>
         <SalesCountCard/>
