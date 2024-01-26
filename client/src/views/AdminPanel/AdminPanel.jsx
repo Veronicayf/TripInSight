@@ -2,6 +2,7 @@ import { React, useState } from "react";
 
 import SideBar from '../../components/SideBar/SideBar';
 import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
+import AdminDashboard from "../../components/AdminDashboard/AdminDashboard";
 
 
 const AdminPanel = () => {
@@ -54,6 +55,7 @@ const AdminPanel = () => {
         <SideBar />
         <div className=" w-full">
           <HeaderAdmin/>
+          <AdminDashboard/>
         </div>
 
     </div>

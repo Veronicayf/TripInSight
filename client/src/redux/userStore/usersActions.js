@@ -20,7 +20,7 @@ export const loggedUser = (user) => {
     try { 
       let response = await axios.post("http://localhost:4000/user", user);
       // console.log('acaaaa', response.data.msg);
-    return dispatch(loggedUserReducer(response.data.msg));
+    return dispatch(loggedUserReducer(response.data));
   } catch(error) {
     console.log(error.response.data);
   }
