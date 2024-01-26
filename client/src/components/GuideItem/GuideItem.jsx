@@ -18,7 +18,7 @@ const GuideItem = ({ guideInfo }) => {
     return (
     <div id='Item' className='flex flex-row w-full justify-between py-4'>
         <div className='w-1/6 flex flex-row items-center justify-around'>
-            <b>{guideInfo.id}</b>
+            <p className='text-[12px]'>{guideInfo.id}</p>
         </div>
         <div className='w-2/6 flex flex-row items-center justify-around'>
             <img src={guideInfo.image} alt={guideInfo.nameTour} className='h-12 rounded-3xl' />
