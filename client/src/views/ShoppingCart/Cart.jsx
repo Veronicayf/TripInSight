@@ -80,7 +80,7 @@ const Cart = () => {
         <div className="w-2/3 py-7 flex flex-col">
           <div id="row" className="text-seconday-text">
             <div className="w-full flex flex-row">
-              <div className="w-2/4 flex justify-center">
+              <div className="w-1/4 flex justify-center">
                 <b>Product</b>
               </div>
               <div className="w-1/4  flex justify-center">
