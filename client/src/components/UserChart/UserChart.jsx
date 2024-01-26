@@ -13,10 +13,6 @@ const UserChart = ({ data, colors, title }) => {
       areaBottomColor = 'rgba(41, 98, 255, 0.28)',
     } = colors || {};
 
-    const handleResize = () => {
-      chart.applyOptions({ width: chartContainerRef.current.clientWidth });
-    };
-
     const chart = createChart(chartContainerRef.current, {
       layout: {
         background: { type: ColorType.Solid, color: backgroundColor },
@@ -26,6 +22,10 @@ const UserChart = ({ data, colors, title }) => {
       height: 200,
     });
     chart.timeScale().fitContent();
+
+    const handleResize = () => {
+      chart.applyOptions({ width: chartContainerRef.current.clientWidth });
+    };
 
     const newSeries = chart.addAreaSeries({
       lineColor,

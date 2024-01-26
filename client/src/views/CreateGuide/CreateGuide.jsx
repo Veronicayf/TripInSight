@@ -38,7 +38,7 @@ const CreateGuide = () => {
     
 
     return (
-    <div className="flex flex-row font-Mulish">
+    <div className="flex flex-row font-Poppins">
         <SideBar />
         <div className="w-full flex flex-col p-2 ">
             <h1 className="text-3xl font-bold px-4 " >Create Guide</h1>

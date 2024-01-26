@@ -28,6 +28,8 @@ import Checkout from "./views/CheckOut/CheckOut";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
+import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
+
 
 
 const App = () => {
@@ -78,6 +80,8 @@ const App = () => {
         <Route path="/admin/createguide" element={<CreateGuide />} />
         <Route path="/admin/viewTours" element={<AdminTous />} />
         <Route path="/admin/viewGuides" element={<AdminGuides />} />
+        <Route path="/admin/transactions" element={<AdminTransactions />} />
+
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
 

@@ -24,7 +24,7 @@ const AdminGuides = () => {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="flex w-full flex-row">
+    <div className="flex w-full flex-row font-Poppins">
       <SideBar />
       <div className=" flex w-full flex-col p-4">
         <div>filter bar & Button add product</div>
