@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import DashboardCard from '../DashboardCard/DashboardCard'
 import SalesCountCard from '../SalesCountCard/SalesCountCard'
 import TotalSalesCard from '../TotalSalesCard/TotalSalesCard'
 import UserChart from '../UserChart/UserChart';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllT } from '../../redux/tourStore/toursActions';
 
 const initialData = [
 	{ time: '2018-12-22', value: 32.51 },
@@ -18,6 +20,38 @@ const initialData = [
 ];
 
 const AdminDashboard = () => {
+  const allTours = useSelector((state) => state.tour.tours);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllT());
+  }, [dispatch])
+
+  const handleClick = (e) => {
+    //refresco largando nuevamente una petición al back.
+    e.preventDefault();
+    dispatch(getAllT(e.target.value));
+  };
+
+ // Obtener la fecha actual
+ const currentDate = new Date();
+
+ // Crear una copia del array antes de ordenar
+ const sortedTours = [...allTours].sort((a, b) => {
+   const dateA = new Date(a.initialDate);
+   const dateB = new Date(b.initialDate);
+
+   const timeDiffA = Math.abs(dateA - currentDate);
+   const timeDiffB = Math.abs(dateB - currentDate);
+
+   return timeDiffA - timeDiffB;
+ });
+
+ // Obtener los 3 tours más cercanos
+ const upcomingTours = sortedTours.slice(0, 3);
+  
+
+  console.log(allTours);
   return (
     <div className='w-full flex flex-col border-y-2  border-seconday-text'>
       <div className='w-full flex flex-row'>
@@ -39,7 +73,7 @@ const AdminDashboard = () => {
             
           }
         }
-        title="Chart Users"
+        title="Total Users"
         />
       </div>
 
@@ -53,7 +87,7 @@ const AdminDashboard = () => {
             areaTopColor: '#3aab47',
             areaBottomColor: 'rgba(58, 171, 71, 0.28)',
           }}
-          title="Chart Sales"
+          title="Sales"
         />
       </div>
 
@@ -72,7 +106,18 @@ const AdminDashboard = () => {
       </div>
     </div>
       </div>
-      <div>proximos tours</div>
+      <div className=' flex flex-col justify-center items-center my-8'>
+        <h2 className="text-2xl font-bold mb-2">Próximos Tours</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {upcomingTours.map((tour) => (
+            <div key={tour.id} className="border p-4 rounded-md">
+              <h3 className="text-lg font-semibold mb-2">{tour.nameTour}</h3>
+              <img className='h-14 w-14' src={tour.image}/>
+              {/* Puedes agregar más detalles según sea necesario */}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
