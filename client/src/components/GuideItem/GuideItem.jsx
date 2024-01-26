@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import iconmenu from '../../assets/icons/IconMenuVertical.png';
+import DropMenu from '../DropMenu/DropMenu';
 
 const GuideItem = ({ guideInfo }) => {
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
     const statusStyle = {
         backgroundColor: guideInfo.working === 'true' ? 'green' : 'red',
@@ -11,9 +12,30 @@ const GuideItem = ({ guideInfo }) => {
         padding: '5px 10px',
         borderRadius: '5px',
     };
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
+    const [open, setOpen] = useState(false);
+    const menuRef = useRef(null);
+    useEffect(() => {
+      const handleOutsideClick = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+          setOpen(false);
+        }
       };
+  
+      document.addEventListener("mousedown", handleOutsideClick);
+  
+      return () => {
+        document.removeEventListener("mousedown", handleOutsideClick);
+      };
+    }, []);
+  
+    const toggleMenu = () => {
+      setOpen(!open);
+    };
+    const options = [
+      { label: 'Edit', to: `/profilefavs/` },
+      { label: 'Disable', to: `/profile/` },
+    ];
+    
 
     return (
     <div id='Item' className='flex flex-row w-full justify-between py-4'>
@@ -31,17 +53,12 @@ const GuideItem = ({ guideInfo }) => {
         <div style={statusStyle}><b>{guideInfo.working}</b></div>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
-        <div className="relative">
+        <div className=" relative flex flex-col items-center">
           <button className='h-10 w-10 bg-primary rounded-2xl hover:bg-btn-hover' onClick={toggleMenu}>
+          {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
             <img src={iconmenu} alt="icon menu" />
           </button>
-          {isMenuOpen && (
-            <div className="absolute bg-white border border-gray-300 p-2 mt-2 rounded right-0 z-10">
-              {/* Aquí puedes agregar elementos de menú y acciones */}
-              <button onClick={() => console.log("Realizar acción 1")}>Acción 1</button>
-              <button onClick={() => console.log("Realizar acción 2")}>Acción 2</button>
-            </div>
-          )}
+        
           </div>
         </div>
     </div>
