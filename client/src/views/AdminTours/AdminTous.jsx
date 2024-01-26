@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBar from '../../components/SideBar/SideBar'
 
 import TourItem from '../../components/TourItem/TourItem';
 import Pagination from '../../components/Pagination/Pagination';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllT } from '../../redux/tourStore/toursActions';
+import HeaderAdmin from '../../components/HeaderAdmin/HeaderAdmin';
 
 const toursData = [
     {
@@ -83,6 +86,13 @@ const toursData = [
   ];
 
 const AdminTous = () => {
+    const allTours = useSelector((state) => state.tour.tours);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+      dispatch(getAllT());
+    }, [dispatch])
+
     const [currentPage,setCurrentPage] = useState(1)
     const [itemPerPage] = useState(10)
     
@@ -93,7 +103,7 @@ const AdminTous = () => {
     const paginate = (pageNumber) =>{
         setCurrentPage(pageNumber)
     }
-
+    console.log(allTours)
 
 
     return (
@@ -101,9 +111,7 @@ const AdminTous = () => {
         <SideBar/>
         <div className=' flex w-full flex-col p-4'>
             <div>
-                filter bar
-                & 
-                Button add product
+                <HeaderAdmin/>
             </div>
             <div className=' w-full flex flex-col'>
                 <div className=' flex w-full flex-row justify-between text-white bg-primary rounded-b-3xl'>
@@ -130,9 +138,16 @@ const AdminTous = () => {
     
                 </div>
                     <div className='flex flex-col w-full justify-between py-4'>
-                        {toursData.map((tourInfo, index) => (
-                        <TourItem key={index} tourInfo={tourInfo} />
-                        ))}
+                        {allTours && allTours.length > 0 ? (
+                            allTours.map((tour, index) => <TourItem key={index} tourInfo={tour} />)
+                        ): (
+                            <div className="flex flex-col justify-center items-center p-5 gap-5">
+                            <b>Loading...</b>
+                            <img src="https://media1.tenor.com/m/QqPVtiP0IjYAAAAC/travel-lets-go.gif" alt="loading" width="250"/>
+                            <button className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5" onClick={handleClick}>View all tours</button>
+                            </div>
+                        )}
+
                         </div>
                     <Pagination itemPerPage={itemPerPage} totalItems={toursData.length} paginate={paginate}/>
             </div>
