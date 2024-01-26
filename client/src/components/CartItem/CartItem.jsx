@@ -35,7 +35,7 @@ const CartItem = ({
         <b>${product.price}</b>
       </div>
       <div className="w-2/4 flex justify-center">
-        <button onClick={handleRemove}>Delete</button>
+        <button onClick={handleRemove}>X</button>
       </div>
     </div>
   );
