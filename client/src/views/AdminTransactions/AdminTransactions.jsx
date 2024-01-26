@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
 import SalesCountCard from "../../components/SalesCountCard/SalesCountCard";
 import TotalSalesCard from "../../components/TotalSalesCard/TotalSalesCard";
 import UserChart from "../../components/UserChart/UserChart";
+import TransactionList from "../../components/TransactionList/TransactionList";
+import Pagination from "../../components/Pagination/Pagination";
 
 const AdminTransactions = () => {
   const transactionsData = [
     {
-      id: "45ad4120-bb2f-4d43-a9fa-b74535be83b0",
+      id: "45ad4120-bb2f-4d43-a9fa-b745356be83b0",
       status: true,
       detail: "Compra de productos electrónicos",
       totalPrice: 899.99,
@@ -24,7 +26,7 @@ const AdminTransactions = () => {
       timestamp: new Date("2024-02-02T15:30:00").getTime(),
     },
     {
-      id: "45ad4120-bb2f-4d43-a9fa-b74535be83b0",
+      id: "45ad4120-bb2f-4d43-a9fa-b74535b7e813b0",
       status: false,
       detail: "Transacción fallida - Tarjeta rechazada",
       totalPrice: 0.0,
@@ -32,13 +34,37 @@ const AdminTransactions = () => {
       timestamp: new Date("2024-02-03T09:45:00").getTime(),
     },
     {
-      id: "45ad4120-bb2f-4d43-a9fa-b74535be83b0",
+      id: "45ad4120-bb2f-4d43-a9fa-b74535be823b0",
       status: true,
       detail: "Compra de libros",
       totalPrice: 45.0,
       buyer: "Usuario4",
       timestamp: new Date("2024-02-04T14:20:00").getTime(),
     },
+    {
+        id: "45ad4120-bb2f-4d43-a9fa-b74535be383b0",
+        status: true,
+        detail: "Compra de libros",
+        totalPrice: 45.0,
+        buyer: "Usuario4",
+        timestamp: new Date("2024-02-05T14:20:00").getTime(),
+      },
+      {
+        id: "45ad4120-bb2f-4d43-a9fa-b74535b4e83b0",
+        status: true,
+        detail: "Compra de libros",
+        totalPrice: 45.0,
+        buyer: "Usuario4",
+        timestamp: new Date("2024-02-06T14:20:00").getTime(),
+      },
+      {
+        id: "45ad4120-bb2f-4d43-a9fa-b74535be583b0",
+        status: true,
+        detail: "Compra de libros",
+        totalPrice: 45.0,
+        buyer: "Usuario4",
+        timestamp: new Date("2024-02-07T14:20:00").getTime(),
+      },
     // Agrega más transacciones según sea necesario
   ];
   // Convertimos transactionsData a un formato compatible con lightweight-charts
@@ -59,6 +85,14 @@ const AdminTransactions = () => {
       value: transaction.totalPrice,
     };
   });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemPerPage] = useState(5);
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItem = transactionsData.slice(indexOfFirstItem, indexOfLastItem);
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
 
   return (
@@ -88,11 +122,16 @@ const AdminTransactions = () => {
             </div>
           </div>
           {/* List Transaction */}
-          <div>
+          <div className="px-4">
             
-            <div id="Row">
-                
+            <div className=" w-full">
+                <TransactionList transactions={transactionsData} />
             </div>
+            <Pagination
+            itemPerPage={itemPerPage}
+            totalItems={transactionsData.length}
+            paginate={paginate}
+          />
           </div>
         </div>
       </div>
