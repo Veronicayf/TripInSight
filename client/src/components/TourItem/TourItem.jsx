@@ -20,7 +20,7 @@ const TourItem = ({ tourInfo }) => {
             <b>{tourInfo.initialDate}</b>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
-            <b>6/{tourInfo.capacity}</b>
+            <b>{tourInfo.places}/{tourInfo.capacity}</b>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
             <b>${tourInfo.price}</b>

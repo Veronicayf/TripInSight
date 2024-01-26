@@ -103,9 +103,6 @@ const AdminTous = () => {
     const paginate = (pageNumber) =>{
         setCurrentPage(pageNumber)
     }
-    console.log(allTours)
-
-
     return (
     <div className='flex w-full flex-row'>
         <SideBar/>
