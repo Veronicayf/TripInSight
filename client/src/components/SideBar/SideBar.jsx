@@ -16,32 +16,32 @@ const SideBar = () => {
         </div>
         <div className=' flex-1 text-primary'>
           <div>
-            <SideBarLink linkTo="/admin/" text="Dashboard"   icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/" text="Dashboard"   icon={<span className="material-symbols-outlined">
             dashboard
             </span>} />
-            <SideBarLink linkTo="/admin/viewTours" text="Tours" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/viewTours" text="Tours" icon={<span className="material-symbols-outlined">
             travel_explore
             </span>} />
-            <SideBarLink linkTo="/admin/createtour" text="Create Tour" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/createtour" text="Create Tour" icon={<span className="material-symbols-outlined">
             add_circle
             </span>} />
-            <SideBarLink linkTo="/admin/viewGuides" text="Guides" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/viewGuides" text="Guides" icon={<span className="material-symbols-outlined">
             familiar_face_and_zone
             </span>} />
-            <SideBarLink linkTo="/admin/createguide" text="Create Guide" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/createguide" text="Create Guide" icon={<span className="material-symbols-outlined">
             add_circle
             </span>} />
-            <SideBarLink linkTo="/admin/transactions" text="Transactions" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/transactions" text="Transactions" icon={<span className="material-symbols-outlined">
             storefront
             </span>} />
-            <SideBarLink linkTo="/admin/comments" text="Comments" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/comments" text="Comments" icon={<span className="material-symbols-outlined">
             reviews
             </span>} />
 
           </div>
         </div>
         <div className='text-primary'>
-            <SideBarLink linkTo="/" text="Exit" icon={<span class="material-symbols-outlined">
+            <SideBarLink linkTo="/" text="Exit" icon={<span className="material-symbols-outlined">
             logout
             </span>} />
         </div>

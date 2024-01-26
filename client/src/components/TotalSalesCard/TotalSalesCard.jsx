@@ -9,7 +9,7 @@
     const isPositiveDifference = difference > 0;
 
     return (
-        <div className="border w-1/3 p-4 m-4 rounded shadow-md flex flex-row justify-around items-center">
+        <div className="border w-1/3 p-4 m-4 rounded shadow-md flex flex-row justify-center items-center">
             <div className='px-4'>
                 <span className={`text-4xl material-symbols-outlined ${isPositiveDifference ? 'text-green-500' : 'text-red-500'}`}>
                 receipt

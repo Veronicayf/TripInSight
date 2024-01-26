@@ -34,8 +34,6 @@ const Profile = () => {
     { label: 'Profile', to: `/profilefavs/${profile.name}` },
     { label: 'Settings', to: `/profile/${profile.name}` },
   ];
-  console.log(profile)
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
