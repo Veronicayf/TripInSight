@@ -66,3 +66,4 @@ export const removeFav = (tourId, userId) => {
     console.log(error.data);
   }
 }
+}
