@@ -11,16 +11,17 @@ const AdminTous = () => {
   const allTours = useSelector((state) => state.tour.tours);
   const dispatch = useDispatch();
 
+
   useEffect(() => {
     dispatch(getAllT());
   }, [dispatch]);
-
+console.log(allTours);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage] = useState(10);
 
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
-  const currentItem = toursData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItem = allTours.slice(indexOfFirstItem, indexOfLastItem);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -73,7 +74,7 @@ const AdminTous = () => {
           </div>
           <Pagination
             itemPerPage={itemPerPage}
-            totalItems={toursData.length}
+            totalItems={allTours.length}
             paginate={paginate}
           />
         </div>
