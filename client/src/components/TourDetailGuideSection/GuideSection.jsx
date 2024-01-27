@@ -12,11 +12,11 @@ const GuideSection = ({ icon, title, guideName, guideImage, guideDescription}) =
             <div className='w-full grid grid-cols-8'>
             <div className='col-span-4 flex flex-col'>
                 <p className='text-2xl mb-4'>{guideName}</p>
-                <div className='bg-seconday-text h-2 mb-4'></div>
+                <div className='bg-seconday-text h-2 mb-4 rounded-full'></div>
                 <p>{guideDescription}</p>
             </div>
-            <div className='col-span-4 flex justify-center items-center'>
-                <img src={guideImage} alt={`Guide ${guideName}`} className='rounded-lg' />
+            <div className='col-span-4 flex justify-start items-center ml-10 mb-10 h-96'>
+                <img src={guideImage} alt={`Guide ${guideName}`} className='rounded-lg h-full' />
             </div>
             </div>
         </section>

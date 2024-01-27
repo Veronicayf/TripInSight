@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 
 // <-- Components -->
 import { getTourId } from "../../redux/tourStore/toursActions";
@@ -20,41 +19,63 @@ import iconplace from "../../assets/icons/placeIcon.png";
 import iconTourDetail from "../../assets/icons/tourDetailicon.png";
 import IconIncludes from "../../assets/icons/includesIcon.png";
 import iconPhoto from "../../assets/icons/photosIcon.png";
-
-
+import guidesIcon from "../../assets/icons/guidesIcon.png"
 
 const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
-  const guideDetail = useSelector((state) => state.guide.detail)
-  
+  const guideDetail = useSelector((state) => state.guide.detail);
+
   const initialDate = new Date(tourDetail.initialDate);
   const endDate = new Date(tourDetail.endDate);
 
   const differenceInMilliseconds = endDate - initialDate;
-  const differenceInDays = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+  const differenceInDays = Math.ceil(
+    differenceInMilliseconds / (1000 * 60 * 60 * 24)
+  );
+
+  //const availablePlaces = tourDetail.places;
+
+  const scrollToSection = (event, sectionId) => {
+    event.preventDefault();
+
+    const targetSection = document.querySelector(sectionId);
+
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
 
   return (
-    <main className=" font-Nunito">
+    <main className="font-Nunito">
       {/* Image Section */}
       <section className="">
         <img
           src={tourDetail.image}
-          className="w-full h-[38rem] object-cover "
+          className="w-full h-[24rem] object-cover "
           alt=""
         />
       </section>
       {/*-------------- Info Del Tour --------------*/}
+      <section className="flex px-4 w-3/4 mt-2">
+        <div className="flex items-center justify-center">
+          <h3 className="text-4xl">{tourDetail.nameTour}</h3>
+        </div>
+      </section>
       <section className="px-4 pt-8 flex w-3/4">
         <div className="flex w-1/2">
           <ul>
-            <TourInfoItem icon={iconDay} label={"Duration: " + differenceInDays} />
+            <TourInfoItem
+              icon={iconDay}
+              label={"Duration: " + differenceInDays + " days."}
+            />
             <TourInfoItem
               icon={iconCalendar}
-              label={"Initial Date: " + tourDetail.initialDate} />
+              label={"Initial Date: " + tourDetail.initialDate}
+            />
             <TourInfoItem
               icon={iconCalendar}
-              label= {" End Date: " + tourDetail.endDate} />
-            
+              label={" End Date: " + tourDetail.endDate}
+            />
           </ul>
         </div>
         <div className="flex w-1/2">
@@ -73,30 +94,33 @@ const Tour = () => {
       </section>
       {/*-------------- Info Del Tour --------------*/}
       {/*-------------- Page Nav Bar--------------*/}
-      <section className="px-4 flex w-3/4 h-14 bg-gray-500 justify-around items-center">
+      <section className="px-4 flex w-3/4 h-14 bg-seconday-text justify-around items-center rounded-full ml-4">
         <div className="">
-          <button
-            type="button"
-            className="focus:outline-none text-white hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary  dark:hover:bg-btn-hover dark:focus:ring-green-800"
+          <a
+            href="#description"
+            onClick={(e) => scrollToSection(e, "#description")}
+            className="text-white font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover"
           >
-            <Link to="#description">Description</Link>
-          </button>
+            Description
+          </a>
         </div>
         <div>
-          <button
-            type="button"
-            className="focus:outline-none text-white hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary  dark:hover:bg-btn-hover dark:focus:ring-green-800"
+          <a
+            href="#photos"
+            onClick={(e) => scrollToSection(e, "#photos")}
+            className="text-white font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover"
           >
-            <Link to="#photos">Photos</Link>
-          </button>
+            Photos
+          </a>
         </div>
         <div>
-          <button
-            type="button"
-            className="focus:outline-none text-white hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary  dark:hover:bg-btn-hover dark:focus:ring-green-800"
+          <a
+            href="#guide"
+            onClick={(e) => scrollToSection(e, "#guide")}
+            className="text-white font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover"
           >
-            <Link to="#guide">Guide</Link>
-          </button>
+            Guide
+          </a>
         </div>
       </section>
       {/*-------------- Page Nav Bar--------------*/}
@@ -117,31 +141,57 @@ const Tour = () => {
 
       {/*-------------- Second Image --------------*/}
       <section className=" w-3/4 px-4 flex justify-center">
-      {tourDetail && tourDetail.photos && tourDetail.photos.length > 0 && (
-    <img className=" h-[38rem] rounded-3xl my-4" src={tourDetail.photos[0]} alt="" />
-  )}
+        {tourDetail && tourDetail.photos && tourDetail.photos.length > 0 && (
+          <img
+            className=" h-[38rem] rounded-3xl my-4"
+            src={tourDetail.photos[0]}
+            alt=""
+          />
+        )}
       </section>
       {/*-------------- Detail tour --------------*/}
       <section className=" w-3/4">
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex h-16">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Depature place</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>{tourDetail.city + ', ' + tourDetail.country + ', ' + tourDetail.continent}</p>
+          <TourInfoItem
+              icon={iconplace}
+              label={tourDetail.city + ", " + tourDetail.country + ", " + tourDetail.continent}
+            />
           </div>
         </div>
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex h-16">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Travel time</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>{tourDetail.initialDate} - {tourDetail.endDate}</p>
+          <TourInfoItem
+              icon={iconCalendar}
+              label={"Initial Date: " + tourDetail.initialDate}
+            />
+            <TourInfoItem
+              icon={iconCalendar}
+              label={"End Date: " + tourDetail.endDate}
+            />
           </div>
         </div>
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
+        <div className=" w-full flex h-16">
+          <div className="w-1/3 flex justify-center text-lg">
+            <b>Equipment</b>
+          </div>
+          <div className="w-2/3 flex text-lg">
+          <TourInfoItem
+              icon={guidesIcon}
+              label={tourDetail.equipment}
+            />
+          </div>
+        </div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Included in the price</b>
@@ -152,8 +202,7 @@ const Tour = () => {
                 <img className="h-10 w-16" src={IconIncludes} alt="icon" />
               </i>
               <p className="px-4 flex-grow text-base">
-                Accommodation and overnight stay in all hotels in a shared room,
-                the single supplement is €650
+                Accommodation and overnight stay in all hotels in a shared room.
               </p>
             </div>
             <div className="w-2/3 flex text-lg py-1">
@@ -182,24 +231,26 @@ const Tour = () => {
             </div>
           </div>
         </div>
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
       </section>
       {/*-------------- Photos tour --------------*/}
       <section id="photos" className="flex-col px-4 w-3/4">
-      <PhotoSection
-        icon={iconPhoto}
-        title="Photos"
-        images={tourDetail.photos || []}
-      />
+        <PhotoSection
+          icon={iconPhoto}
+          title="Photos"
+          images={tourDetail.photos || []}
+        />
       </section>
       {/*-------------- Guide Section --------------*/}
-      <GuideSection
-        icon={iconTourDetail}
-        title="Guide"
-        guideName={guideDetail.forename + ' ' + guideDetail.surname}
-        guideImage={guideDetail.image}
-        guideDescription={guideDetail.biography}
-      />
+      <section id="guide" className="flex-col px-4">
+        <GuideSection
+          icon={iconTourDetail}
+          title="Guide"
+          guideName={guideDetail.forename + " " + guideDetail.surname}
+          guideImage={guideDetail.image}
+          guideDescription={guideDetail.biography}
+        />
+      </section>
     </main>
   );
 };

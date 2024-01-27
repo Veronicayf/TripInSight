@@ -18,10 +18,10 @@ const GuideDetail = () => {
   return (
     <div className="font-Nunito">
       <Carousel
-        images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
+        images={[ ImageProvisoria2, ImageProvisoria3, ImageProvisoria1]}
       />
-      <div className="w-full flex flex-row p-4">
-        <div className="w-2/3 px-9">
+      <div className="w-full flex flex-row justify-center p-4">
+        <div className="w-1/2 px-9">
           <div className=" flex flex-col">
             <div className="flex justify-center flex-row py-9">
               <b className="text-5xl">{guideDetail.forename}</b>
@@ -33,14 +33,14 @@ const GuideDetail = () => {
           <div className="flex justify-center items-center">
             <p className="w-1/2">{guideDetail.biography}</p>
           </div>
-          <div className="flex text-center justify-around items-center ">
+          <div className="flex text-center justify-around items-center">
             <div className="flex text-center items-center py-8">
               <i>
                 <img className="h-12" src={IconBirthday} alt="" />
               </i>
               <b>{guideDetail.birthDate}</b>
             </div>
-            <div className="flex text-center items-center">
+            <div className="flex text-center items-center py-8">
               <i>
                 <img className="h-12" src={IconCountry} alt="" />
               </i>
@@ -58,15 +58,15 @@ const GuideDetail = () => {
             </div> */}
         </div>
 
-        <div>
-          <div className="">
-            <img className="h-1/2" src={guideDetail.image} alt="" />
+        <div className="w-1/2 px-9">
+          <div className="flex justify-center mt-10 mb-10 h-96">
+            <img className="h-full" src={guideDetail.image} alt="" />
           </div>
         </div>
       </div>
       {/* Tours por guía */}
 
-      <div className="flex flex-col w-full justify-around items-center">
+      <div className="flex flex-col w-full justify-center items-center ">
         <div className="flex justify-center flex-row">
           <b className="text-5xl">Tours with</b>
           <b className="text-5xl text-primary pl-4">{guideDetail.forename}</b>

@@ -60,4 +60,3 @@ export default function Paypal() {
   return <main ref={paypal}></main>;
 }
 
-console.log(Paypal);
