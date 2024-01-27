@@ -39,10 +39,6 @@ const TourCard = ({ tour }) => {
       onMouseOut={handleMouseOut}
       onClick={(e) => handleClick(e)}
     >
-      <Link
-        to={`/tours/${tour.id}`}
-        className="tourCard rounded-lg overflow-hidden shadow-md transition-transform transform hover:scale-105 mb-4"
-      >
         <img
           src={tour.image}
           alt={tour.nameTour}
@@ -63,7 +59,6 @@ const TourCard = ({ tour }) => {
             <strong>Price:</strong> ${tour.price}
           </p>
         </div>
-      </Link>
     </div>
     {showPlaces && (
           <div className="bg-primary text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
