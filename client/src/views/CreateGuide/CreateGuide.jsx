@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import CloudinaryUploadWidget from "../../components/UploadWidget/UploadWidget";
 import { image } from "@cloudinary/url-gen/qualifiers/source";
+import { useDispatch } from "react-redux";
+import { postGuide } from "../../redux/guideStore/guidesActions";
 
 
 const CreateGuide = () => {
+    const dispatch = useDispatch();
     const [guideInfo, setGuideInfo] = useState({
         forename: "",
         surname: "",
         nationality: "",
         birthDate: "",
         biography: "",
+        image:"",
 
     });
 
@@ -18,6 +22,11 @@ const CreateGuide = () => {
 
     const handleImageUpload = (newImages) => {
         setImages([...images, ...newImages]);
+        setGuideInfo({
+            ...guideInfo,
+            image: newImages[0][0],  // Asignar la URL de la imagen al campo 'image'
+        });
+
     };
 
     const handleInputChange = (e) => {
@@ -30,19 +39,17 @@ const CreateGuide = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //Aca va ala info para enviar al servidor
-
-
+        dispatch(postGuide(guideInfo))
     };
-
-    
-
     return (
     <div className="flex flex-row font-Poppins">
         <SideBar />
         <div className="w-full flex flex-col p-2 ">
             <h1 className="text-3xl font-bold px-4 " >Create Guide</h1>
-            <form onSubmit={handleSubmit} className=" flex flex-col justify-between   border-seconday-text border-2 rounded-xl ">
+            <form 
+                onSubmit={(event) => handleSubmit(event)}
+                className=" flex flex-col justify-between   border-seconday-text border-2 rounded-xl "
+                >
                 <div className="flex  w-full gap-5 p-6 ">
                     {/* <--- Left --->*/}
                     <div className=" flex flex-col w-1/2 border-seconday-text border-2 rounded-xl">
@@ -66,7 +73,6 @@ const CreateGuide = () => {
                             {images.map((image, index) => (
                                 
                                 <div className=" flex flex-row justify-around items-center">
-                                    {console.log(images)}
                                     <img
                                 className="h-14"
                                 key={index}
@@ -134,11 +140,12 @@ const CreateGuide = () => {
                         {/* -- Biography -- */}
                         <label className="flex flex-col">
                         Biography:
-                        <textarea
-                            name="description"
+                        <input
+                            type="text"
+                            name="biography"
                             value={guideInfo.biography}
                             onChange={handleInputChange}
-                            className="border p-2 rounded-md  focus:outline-none focus:border-primary"
+                            className="border p-2 rounded-md focus:outline-none focus:border-primary"
                         />
                         </label>
                     </div>

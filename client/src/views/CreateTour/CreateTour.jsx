@@ -27,7 +27,6 @@ const CreateTour = () => {
     equipment: "",
     guideId: "",
     places: null,
-    status: true,
     tags: "",
   });
 
