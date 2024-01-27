@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import axios from "axios";
 
 const Checkout = () => {
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
@@ -34,7 +35,23 @@ const Checkout = () => {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
       alert(`Transaction completed by ${name}`);
+      const cartData = JSON.parse(localStorage.getItem("cart"));
+
+      // Assuming you have a function to send cart data to the backend
+      sendCartDataToBackend(cartData);
     });
+  };
+
+  const sendCartDataToBackend = (cartData) => {
+    // Make an HTTP request to your backend endpoint to save cartData
+    axios
+      .post("http://localhost:4000/purchases", { cartData })
+      .then((response) => {
+        console.log("Cart data sent to the backend:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending cart data to the backend:", error);
+      });
   };
 
   return (
