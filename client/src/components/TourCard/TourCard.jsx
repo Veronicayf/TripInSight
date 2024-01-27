@@ -10,6 +10,10 @@ const TourCard = ({ tour }) => {
   const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const places = tour.capacity - tour.subscription;
+  const showPlaces = places <= 3 && places > 0;
+  const soldOut = places === 0;
+
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -22,12 +26,13 @@ const TourCard = ({ tour }) => {
   const handleClick = (e) => {
     e.preventDefault();
     dispatch(getTourId(tour.id));
-    dispatch(getGuideId(tour.guideId))
+    dispatch(getGuideId(tour.guideId));
     //console.log("aqui", tour);
     navigate(`/tours/${tour.nameTour}`);
   };
 
   return (
+    <div className="relative">
     <div
       className=" w-60 h-[21rem] tourCard rounded-lg bg-white overflow-hidden shadow-md transition-transform transform hover:scale-105"
       onMouseOver={handleMouseOver}
@@ -51,7 +56,7 @@ const TourCard = ({ tour }) => {
 
           {isHovering && (
             <p className="text-gray-800">
-              <span>Capacity:</span> {tour.capacity}
+              <strong>Capacity:</strong> {tour.capacity}
             </p>
           )}
           <p className="text-gray-800">
@@ -59,6 +64,17 @@ const TourCard = ({ tour }) => {
           </p>
         </div>
       </Link>
+    </div>
+    {showPlaces && (
+          <div className="bg-primary text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
+            <div className="text-xl">{places} places</div>
+          </div>
+        )}
+    {soldOut && (
+          <div className="bg-red-600 text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
+            <div className="text-xl">Sold Out!</div>
+          </div>
+        )}
     </div>
   );
 };
