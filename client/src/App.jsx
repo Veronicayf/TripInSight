@@ -22,7 +22,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
 import { getUserId, loggedUser } from "./redux/userStore/usersActions";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
@@ -33,28 +33,33 @@ import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
 
 
 const App = () => {
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
-    useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const [userRegistered, setUserRegistered] = useState(false);
+  const userProfile = useSelector((state) => state.user.userProfile)
 
-  //verificar si el user esta autenticado cuando ingresa.
+  const fetchUserId = () => {
+    if (isAuthenticated && userProfile.id) {
+      dispatch(getUserId(userProfile.id));
+    }
+  };
+
+  const authenticateUser = async () => {
+    if (isAuthenticated ) {
+      const userAuth = {
+        name: user.name,
+        email: user.email,
+        image: user.picture,
+        auth0Id: user.sub,
+      };
+      await dispatch(loggedUser(userAuth));
+    }
+    fetchUserId();
+  };
+
+  // Verificar la autenticación del usuario cuando cambia su estado
   useEffect(() => {
-    const data = async () => {
-      if (isAuthenticated && !userRegistered) {
-        //si lo esta destructuro la info para mandarla al back
-        const userAuth = {
-          name: user.name,
-          email: user.email,
-          image: user.picture,
-          auth0Id: user.sub,
-        };
-        await dispatch(loggedUser(userAuth));
-        setUserRegistered(true);
-      }
-    };
-    data();
-  }, [dispatch, isAuthenticated, user, userRegistered]);
+    authenticateUser();
+  }, [isAuthenticated, user]);
 
   const location = useLocation();
   const isOnAdminRoute = location.pathname.startsWith("/admin");

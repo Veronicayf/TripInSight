@@ -10,6 +10,7 @@ const Profile = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
+  // console.log('aca', profile.admin);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -30,10 +31,17 @@ const Profile = () => {
     setOpen(!open);
   };
 
-  const options = [
-    { label: 'Profile', to: `/profilefavs/${profile.name}` },
-    { label: 'Settings', to: `/profile/${profile.name}` },
-  ];
+  const options = profile.admin && profile.admin === true
+  ? [
+      { label: "Profile", to: `/profilefavs/${profile.name}` },
+      { label: "Settings", to: `/profile/${profile.name}` },
+      { label: "Admin", to: `/admin/` }
+    ]
+  : [
+      { label: "Profile", to: `/profilefavs/${profile.name}` },
+      { label: "Settings", to: `/profile/${profile.name}` }
+    ];
+
   if (isLoading) {
     return <div>Loading...</div>;
   }

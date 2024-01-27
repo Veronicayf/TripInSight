@@ -14,13 +14,15 @@ export const getGuideId = (id) => {
       return dispatch(getGuideById(data));
     };
   };
-  export const postGuide = (guideDate) => {
-    return async (dispatch) => {
-      try {
-        let {data} = await axios.post('http://localhost:4000/guides', guideDate);
-        return dispatch(postGuideReducer(data));
-      } catch (error) {
-        console.error(error)
-      }
+
+
+export const postGuide = (guideDate) => {
+  return async (dispatch) => {
+    try {
+      let {data} = await axios.post('http://localhost:4000/guides', guideDate);
+      return dispatch(postGuideReducer(data));
+    } catch (error) {
+      console.error(error)
     }
   }
+}

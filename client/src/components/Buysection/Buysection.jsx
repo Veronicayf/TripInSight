@@ -3,31 +3,37 @@ import { useDispatch, useSelector } from "react-redux";
 import iconCart from "../../assets/icons/cartIcon.png";
 import iconFav from "../../assets/icons/favoriteIcon.png";
 import iconPrice from "../../assets/icons/PriceIcon.png";
+import iconpeople from "../../assets/icons/peopleIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/dist/sweetalert2.min.css';
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/dist/sweetalert2.min.css";
+import { addFav, removeFav } from "../../redux/userStore/usersActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
+  const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
+  const profile = useSelector((state) => state.user.userProfile);
+  const places = tourDetail.capacity - tourDetail.subscription;
+
   const handleAddToCart = () => {
     try {
       dispatch(addTourCart(tourDetail));
 
       Swal.fire({
-        icon: 'success',
-        title: 'Product added to cart!',
+        icon: "success",
+        title: "Product added to cart!",
         showConfirmButton: false,
         timer: 1500,
       });
     } catch (error) {
-      console.error('Error adding product to cart:', error);
+      console.error("Error adding product to cart:", error);
 
       Swal.fire({
-        icon: 'error',
-        title: 'Error adding product to cart',
-        text: 'Please try again later',
+        icon: "error",
+        title: "Error adding product to cart",
+        text: "Please try again later",
       });
     }
   };
@@ -39,6 +45,26 @@ const Buysection = ({ tour }) => {
       setIsSticky(true);
     } else {
       setIsSticky(false);
+    }
+  };
+
+  const handleFavorite = () => {
+    if (isFav) {
+      setIsFav(false);
+      dispatch(removeFav(tourDetail.id, profile.id));
+      Swal.fire({
+        icon: "error",
+        title: "Tour removed from favorites!",
+      });
+    } else {
+      setIsFav(true);
+      dispatch(addFav(tourDetail.id, profile.id));
+      Swal.fire({
+        icon: "success",
+        title: "Tour added to favorites!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
@@ -56,35 +82,64 @@ const Buysection = ({ tour }) => {
         isSticky ? "translate-y-0" : ""
       }`}
     >
-      <div className="flex-col">
+      <div className="flex-col justify-center">
         <div className="w-full">
-          <h2 className="mb-2 text-4xl py-2 font-semibold flex items-center justify-center">
+          <h2 className="mt-2 text-3xl py-2 font-semibold flex items-center justify-center">
             PRICE
           </h2>
         </div>
-        <div className="w-full flex justify-center items-center">
+        <div className="w-full flex justify-center items-center gap-3">
           <i className="h-12 flex items-center justify-center">
-            <img className="h-16 w-16" src={iconPrice} alt="icon" />
+            <img className="h-12 w-12" src={iconPrice} alt="icon" />
           </i>
-          <b className=" mb-2 text-6xl py-4 font-Bebas flex justify-center items-center">{`$ ${tour.price}`}</b>
+          <b className="text-6xl py-5 font-Bebas flex justify-center items-center">{`$${tour.price}`}</b>
         </div>
-        <div className="w-full ">
-          <button
-            className="text-primary bg-white w-full py-2 mb-2 rounded flex items-center justify-center hover:bg-btn-hover hover:text-white"
-            onClick={handleAddToCart}
-          >
-            <i className="h-12">
-              <img className="h-10 w-10" src={iconCart} alt="icon" />
-            </i>
-            <b className="ml-2">Add to Cart</b>
-          </button>
+        <div className="w-full flex justify-center items-center gap-3">
+          <i className="h-10 flex items-center justify-center bg-white rounded-full">
+            <img className="h-10 w-10" src={iconpeople} alt="icon" />
+          </i>
+          <b className="text-2xl py-5 flex justify-center items-center">
+            Available places: {places}
+          </b>
+        </div>
+        <div className="w-full">
+          {places === 0 ? (
+            <b className="text-2xl py-5 bg-red-600 text-white italic flex justify-center items-center">
+              SOLD OUT!
+            </b>
+          ) : (
+            <button
+              className="text-primary bg-white w-full py-2 mb-2 rounded flex items-center justify-center hover:bg-btn-hover hover:text-white"
+              onClick={handleAddToCart}
+            >
+              <i className="h-12">
+                <img className="h-10 w-10" src={iconCart} alt="icon" />
+              </i>
+              <b className="ml-2">Add to Cart</b>
+            </button>
+          )}
         </div>
         <div>
-          <button className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white">
-            <i className="h-12">
+          <button
+            className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white"
+            onClick={(e) => handleFavorite(e)}
+          >
+            {isFav ? (
+              <div className="flex flex-row justify-center items-center">
+                {/* <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>
-            <b className="ml-2">Add to favorite</b>
+            <b className="ml-2">In your favorites!</b> */}
+                ❤️
+              </div>
+            ) : (
+              <div className="flex flex-row justify-center items-center">
+                <i className="h-12">
+                  <img className="h-10 w-10" src={iconFav} alt="icon" />
+                </i>
+                <b className="ml-2">Add to favorite</b>
+              </div>
+            )}
           </button>
         </div>
       </div>

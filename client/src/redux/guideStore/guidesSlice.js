@@ -20,7 +20,7 @@ export const guideSlice = createSlice({
     },
     postGuideReducer: (state, action) => {
       state.guides = [...state.guides, action.payload];
-    },
+    }
     },
   },
 );
