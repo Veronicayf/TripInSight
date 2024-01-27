@@ -10,6 +10,7 @@ const Profile = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
+  console.log(profile);
   const menuRef = useRef(null);
 
   useEffect(() => {
@@ -31,8 +32,8 @@ const Profile = () => {
   };
 
   const options = [
-    { label: 'Profile', to: `/profilefavs/${profile.name}` },
-    { label: 'Settings', to: `/profile/${profile.name}` },
+    { label: "Profile", to: `/profilefavs/${profile.name}` },
+    { label: "Settings", to: `/profile/${profile.name}` },
   ];
 
   if (isLoading) {
