@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import iconCart from "../../assets/icons/cartIcon.png";
 import iconFav from "../../assets/icons/favoriteIcon.png";
 import iconPrice from "../../assets/icons/PriceIcon.png";
+import iconpeople from "../../assets/icons/peopleIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -14,6 +15,7 @@ const Buysection = ({ tour }) => {
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
   const profile = useSelector((state) => state.user.userProfile)
+  const places = tourDetail.capacity - tourDetail.subscription;
 
   const handleAddToCart = () => {
     try {
@@ -80,17 +82,23 @@ const Buysection = ({ tour }) => {
         isSticky ? "translate-y-0" : ""
       }`}
     >
-      <div className="flex-col">
+      <div className="flex-col justify-center">
         <div className="w-full">
-          <h2 className="mb-2 text-3xl py-2 font-semibold flex items-center justify-center">
+          <h2 className="mt-2 text-3xl py-2 font-semibold flex items-center justify-center">
             PRICE
           </h2>
         </div>
-        <div className="w-full flex justify-center items-center gap-2">
-          <i className="h-12 flex items-center justify-end w-1/3">
+        <div className="w-full flex justify-center items-center gap-3">
+          <i className="h-12 flex items-center justify-center">
             <img className="h-12 w-12" src={iconPrice} alt="icon" />
           </i>
-          <b className="mb-2 w-2/3 text-6xl py-4 font-Bebas flex justify-start items-center">{`$${tour.price}`}</b>
+          <b className="text-6xl py-5 font-Bebas flex justify-center items-center">{`$${tour.price}`}</b>
+        </div>
+        <div className="w-full flex justify-center items-center gap-3">
+        <i className="h-10 flex items-center justify-center bg-white rounded-full">
+            <img className="h-10 w-10" src={iconpeople} alt="icon" />
+          </i>
+          <b className="text-2xl py-5 flex justify-center items-center">Available places: {places}</b>
         </div>
         <div className="w-full">
           <button
