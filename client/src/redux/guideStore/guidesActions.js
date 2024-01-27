@@ -15,6 +15,7 @@ export const getGuideId = (id) => {
     };
   };
 
+
 export const postGuide = (guideDate) => {
   return async (dispatch) => {
     try {

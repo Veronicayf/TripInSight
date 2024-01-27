@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 
 import SideBar from '../../components/SideBar/SideBar';
+import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
+import AdminDashboard from "../../components/AdminDashboard/AdminDashboard";
 
 
 const AdminPanel = () => {
@@ -49,9 +51,12 @@ const AdminPanel = () => {
   );
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen font-Poppins">
         <SideBar />
-      
+        <div className=" w-full">
+          <HeaderAdmin/>
+          <AdminDashboard/>
+        </div>
 
     </div>
   );
