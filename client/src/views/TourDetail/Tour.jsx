@@ -45,16 +45,21 @@ const Tour = () => {
   };
 
   return (
-    <main className=" font-Nunito">
+    <main className="font-Nunito">
       {/* Image Section */}
       <section className="">
         <img
           src={tourDetail.image}
-          className="w-full h-[38rem] object-cover "
+          className="w-full h-[24rem] object-cover "
           alt=""
         />
       </section>
       {/*-------------- Info Del Tour --------------*/}
+      <section className="flex px-4 w-3/4 mt-2">
+        <div className="flex items-center justify-center">
+          <h3 className="text-4xl">{tourDetail.nameTour}</h3>
+        </div>
+      </section>
       <section className="px-4 pt-8 flex w-3/4">
         <div className="flex w-1/2">
           <ul>
@@ -88,12 +93,12 @@ const Tour = () => {
       </section>
       {/*-------------- Info Del Tour --------------*/}
       {/*-------------- Page Nav Bar--------------*/}
-      <section className="px-4 flex w-3/4 h-14 bg-gray-500 justify-around items-center">
+      <section className="px-4 flex w-3/4 h-14 bg-seconday-text justify-around items-center rounded-full ml-4">
         <div className="">
           <a
             href="#description"
             onClick={(e) => scrollToSection(e, "#description")}
-            className="text-white hover:bg-green-800 font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover dark:focus:ring-green-800"
+            className="text-white font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover"
           >
             Description
           </a>
@@ -102,7 +107,7 @@ const Tour = () => {
           <a
             href="#photos"
             onClick={(e) => scrollToSection(e, "#photos")}
-            className="text-white hover:bg-green-800 font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover dark:focus:ring-green-800"
+            className="text-white font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover"
           >
             Photos
           </a>
@@ -111,7 +116,7 @@ const Tour = () => {
           <a
             href="#guide"
             onClick={(e) => scrollToSection(e, "#guide")}
-            className="text-white hover:bg-green-800 font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover dark:focus:ring-green-800"
+            className="text-white font-medium rounded-full text-sm px-5 py-2.5 h-12 w-32 dark: bg-primary dark:hover:bg-btn-hover"
           >
             Guide
           </a>
@@ -145,33 +150,35 @@ const Tour = () => {
       </section>
       {/*-------------- Detail tour --------------*/}
       <section className=" w-3/4">
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex h-16">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Depature place</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>
-              {tourDetail.city +
-                ", " +
-                tourDetail.country +
-                ", " +
-                tourDetail.continent}
-            </p>
+          <TourInfoItem
+              icon={iconplace}
+              label={tourDetail.city + ", " + tourDetail.country + ", " + tourDetail.continent}
+            />
           </div>
         </div>
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex h-16">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Travel time</b>
           </div>
           <div className="w-2/3 flex text-lg">
-            <p>
-              {tourDetail.initialDate} - {tourDetail.endDate}
-            </p>
+          <TourInfoItem
+              icon={iconCalendar}
+              label={"Initial Date: " + tourDetail.initialDate}
+            />
+            <TourInfoItem
+              icon={iconCalendar}
+              label={"End Date: " + tourDetail.endDate}
+            />
           </div>
         </div>
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Included in the price</b>
@@ -182,8 +189,7 @@ const Tour = () => {
                 <img className="h-10 w-16" src={IconIncludes} alt="icon" />
               </i>
               <p className="px-4 flex-grow text-base">
-                Accommodation and overnight stay in all hotels in a shared room,
-                the single supplement is €650
+                Accommodation and overnight stay in all hotels in a shared room.
               </p>
             </div>
             <div className="w-2/3 flex text-lg py-1">
@@ -212,7 +218,7 @@ const Tour = () => {
             </div>
           </div>
         </div>
-        <div className="bg-seconday-text h-2 my-4"></div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
       </section>
       {/*-------------- Photos tour --------------*/}
       <section id="photos" className="flex-col px-4 w-3/4">
