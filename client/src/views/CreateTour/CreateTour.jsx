@@ -16,7 +16,7 @@ const CreateTour = () => {
     city: "",
     type: "",
     capacity: 0,
-    place: 0,
+    places: 0,
     season: "",
     price: 0,
     initialDate: "",
@@ -36,12 +36,20 @@ const CreateTour = () => {
   const [additionalImages, setAdditionalImages] = useState([]);
 
   const handleBannerImageUpload = (uploadedImages) => {
-    // Solo permitimos una imagen de banner, así que tomamos la primera del array
     setBannerImage(uploadedImages[0]);
+    setTourInfo({
+      ...tourInfo,
+      image:uploadedImages[0][0]
+    })
   };
+
   const handleAdditionalImagesUpload = (uploadedImages) => {
-    // Concatenar las nuevas imágenes con las existentes
+    const imageUrls = uploadedImages.map((subArray) => subArray[0]);
     setAdditionalImages([...additionalImages, ...uploadedImages]);
+    setTourInfo({
+      ...tourInfo,
+      photos: imageUrls
+    });
   };
 
   const handleInputChange = (e) => {
@@ -55,6 +63,7 @@ const CreateTour = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postTourAction(tourInfo));
+    console.log("peticion enviada");
   };
   return (
     <div className="flex flex-row font-Poppins">
@@ -130,7 +139,7 @@ const CreateTour = () => {
                             className=" flex flex-row justify-around items-center"
                             key={index}
                           >
-                            {console.log(additionalImages)}
+
                             <img
                               className="h-14"
                               src={image[0]}
