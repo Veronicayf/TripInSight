@@ -30,7 +30,17 @@ const Checkout = () => {
       ],
     });
   };
-
+  const sendCartDataToBackend = (cartData) => {
+    // Make an HTTP request to your backend endpoint to save cartData
+    axios
+      .post("http://localhost:4000/purchases", { cartData })
+      .then((response) => {
+        console.log("Cart data sent to the backend: ", response.data);
+      })
+      .catch((error) => {
+        console.error("Error sending cart data to the backend: ", error);
+      });
+  };
   const onApproveOrder = (data, actions) => {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
@@ -40,18 +50,6 @@ const Checkout = () => {
       // Assuming you have a function to send cart data to the backend
       sendCartDataToBackend(cartData);
     });
-  };
-
-  const sendCartDataToBackend = (cartData) => {
-    // Make an HTTP request to your backend endpoint to save cartData
-    axios
-      .post("http://localhost:4000/purchases", { cartData })
-      .then((response) => {
-        console.log("Cart data sent to the backend:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error sending cart data to the backend:", error);
-      });
   };
 
   return (
