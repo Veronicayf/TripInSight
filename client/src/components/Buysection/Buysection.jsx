@@ -110,10 +110,11 @@ const Buysection = ({ tour }) => {
           >
           {isFav ? (
             <div className="flex flex-row justify-center items-center">
-            <i className="h-12">
+            {/* <i className="h-12">
               <img className="h-10 w-10" src={iconFav} alt="icon" />
             </i>
-            <b className="ml-2">In your favorites!</b>
+            <b className="ml-2">In your favorites!</b> */}
+            ❤️
             </div>
           ) : ( 
             <div className="flex flex-row justify-center items-center">
