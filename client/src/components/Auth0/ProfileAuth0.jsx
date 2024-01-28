@@ -10,7 +10,7 @@ const Profile = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
-  // console.log('aca', profile.admin);
+  //console.log('aca', profile.admin);
   const menuRef = useRef(null);
 
   useEffect(() => {

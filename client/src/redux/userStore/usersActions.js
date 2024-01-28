@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { addFavReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
+import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
 
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
@@ -67,3 +67,16 @@ export const removeFav = (tourId, userId) => {
   }
 }
 }
+
+export const getAllFav = (userId) => {
+  console.log('getall', userId);
+  return async (dispatch) => {
+   try { 
+    let response = await axios.get(`http://localhost:4000/user/allfavs/${userId}`);
+    console.log('aqui', response);
+    return dispatch(getAllFavsReducer(response.data));
+  } catch(error) {
+    console.log(error);
+  }
+  }
+};

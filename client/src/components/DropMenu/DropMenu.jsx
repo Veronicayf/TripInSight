@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { getAllFav } from '../../redux/userStore/usersActions';
 
 const DropMenu = ({ options, onClose }) => {
   const menuRef = useRef(null);
+  const dispatch = useDispatch();
+  const profile = useSelector((state) => state.user.userProfile);
 
   useEffect(() => {
+    dispatch(getAllFav(profile.id));
     const handleOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         onClose();
