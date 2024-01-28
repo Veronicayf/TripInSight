@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SideBar from "../../components/SideBar/SideBar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { postTourAction } from "../../redux/tourStore/toursActions";
 import CloudinaryBannerUploadWidget from "../../components/CloudinaryBannerUpload/CloudinaryBannerUpload";
 import CloudinaryPhotosUploadWidget from "../../components/CloudinaryPhotosUpload/CloudinaryPhotosUpload";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
+import { getAllG } from "../../redux/guideStore/guidesActions";
 
 const CreateTour = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,12 @@ const CreateTour = () => {
     tags: "",
   });
 
+  const allGuides = useSelector((state) => state.guide.guides);
+
+  useEffect(() => {
+    dispatch(getAllG());
+  }, [dispatch]);
+
   const [images, setImages] = useState([]);
 
   const [bannerImage, setBannerImage] = useState(null);
@@ -41,8 +48,8 @@ const CreateTour = () => {
     setBannerImage(uploadedImages[0]);
     setTourInfo({
       ...tourInfo,
-      image:uploadedImages[0][0]
-    })
+      image: uploadedImages[0][0],
+    });
   };
 
   const handleAdditionalImagesUpload = (uploadedImages) => {
@@ -50,7 +57,7 @@ const CreateTour = () => {
     setAdditionalImages([...additionalImages, ...uploadedImages]);
     setTourInfo({
       ...tourInfo,
-      photos: imageUrls
+      photos: imageUrls,
     });
   };
 
@@ -67,7 +74,7 @@ const CreateTour = () => {
     dispatch(postTourAction(tourInfo));
   };
   return (
-    <div className="flex flex-row font-Poppins">
+    <div className=" w-full flex flex-row md:flex-row font-Poppins ">
       <SideBar />
       <div className="w-full flex flex-col p-2 ">
         <h1 className="text-3xl font-bold px-4 ">Create Tour</h1>
@@ -76,7 +83,7 @@ const CreateTour = () => {
           className=" flex flex-col justify-between   border-seconday-text border-2 rounded-xl "
         >
           {/* <--- Left --->*/}
-          <div className="flex  w-full gap-5 p-6 ">
+          <div className="flex  flex-col-reverse md:flex-row items-center md:items-start  w-full gap-5 p-6 ">
             <div className="flex flex-col w-1/2 border-seconday-text border-2 rounded-xl px-4">
               <h2 className="text-2xl font-bold px-4">Add Images</h2>
 
@@ -140,7 +147,6 @@ const CreateTour = () => {
                             className=" flex flex-row justify-around items-center"
                             key={index}
                           >
-
                             <img
                               className="h-14"
                               src={image[0]}
@@ -305,14 +311,22 @@ const CreateTour = () => {
               </label>
               {/* -- Guide ID -- */}
               <label className="flex flex-col">
-                Guide ID:
-                <input
-                  type="text"
+                Guide:
+                <select
                   name="guideId"
                   value={tourInfo.guideId}
                   onChange={handleInputChange}
                   className="border p-2 rounded-md focus:outline-none focus:border-primary"
-                />
+                >
+                  <option value="">Select a guide</option>
+                  {allGuides.map((guide) => (
+                    <option className="text-bold text-black" key={guide.id} value={guide.id}>
+                      {guide.forename}
+                    </option>
+                    
+                  ))}
+
+                </select>
               </label>
               {/* -- Tags -- */}
               <label className="flex flex-col">
