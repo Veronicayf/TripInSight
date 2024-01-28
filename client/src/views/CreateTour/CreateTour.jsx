@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { postTourAction } from "../../redux/tourStore/toursActions";
 import CloudinaryBannerUploadWidget from "../../components/CloudinaryBannerUpload/CloudinaryBannerUpload";
 import CloudinaryPhotosUploadWidget from "../../components/CloudinaryPhotosUpload/CloudinaryPhotosUpload";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const CreateTour = () => {
   const dispatch = useDispatch();
@@ -63,7 +65,6 @@ const CreateTour = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(postTourAction(tourInfo));
-    console.log("peticion enviada");
   };
   return (
     <div className="flex flex-row font-Poppins">

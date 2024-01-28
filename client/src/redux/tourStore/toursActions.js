@@ -37,7 +37,6 @@ export const getTourName = (tour) => {
 
 //veronica__________________
 export const postTourAction = (posteoTour) => {
-  console.log("action problematico", postTour);
   return async (dispatch) => {
     try {
       const response = await axios.post(
@@ -45,8 +44,22 @@ export const postTourAction = (posteoTour) => {
         posteoTour
       );
       dispatch(postTour(response.data));
+      Swal.fire({
+        icon: "success",
+        title: "Tour  created",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+
     } catch (error) {
-      console.error("error en la accion:", error);
+      // Manejar errores de red u otros
+      console.error("Error to create tour:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Error to create tour",
+        text: "Please try again later",
+      });
     }
   };
 };
