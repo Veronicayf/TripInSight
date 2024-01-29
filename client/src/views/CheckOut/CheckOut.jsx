@@ -12,8 +12,8 @@ const Checkout = () => {
   const quantities = useSelector((state) => state.tour.quantityCart);
 
   const newArr = [];
-  
-  cart.forEach(element => {
+
+  cart.forEach((element) => {
     newArr.push({
       tourId: element.id,
       userId: userCart.id,
@@ -21,14 +21,14 @@ const Checkout = () => {
       initialDate: element.initialDate,
       equipment: element.equipment,
       status: true,
-      detail: 'tour bonito',
-      totalPrice: quantities[element.id] * element.price
+      detail: "tour bonito",
+      totalPrice: quantities[element.id] * element.price,
     });
   });
 
   console.table(newArr);
-  console.log('El total de lo que va a pagar el cliente', price);
-     
+  console.log("El total de lo que va a pagar el cliente", price);
+
   const onCurrencyChange = ({ target: { value } }) => {
     setCurrency(value);
     dispatch({
@@ -51,11 +51,11 @@ const Checkout = () => {
       ],
     });
   };
-  const sendCartDataToBackend = (cartData) => {
+  const sendCartDataToBackend = (newArr) => {
     // Make an HTTP request to your backend endpoint to save cartData
-    console.log("1:", cartData);
+    console.log("1:", newArr);
     axios
-      .post("http://localhost:4000/purchased", cartData)
+      .post("http://localhost:4000/purchased", newArr)
       .then((response) => {
         console.log("Cart data sent to the backend: ", response.data);
       })
@@ -69,7 +69,7 @@ const Checkout = () => {
       alert(`Transaction completed by ${name}`);
 
       // Assuming you have a function to send cart data to the backend
-      sendCartDataToBackend(cartData);
+      sendCartDataToBackend(newArr);
     });
   };
 
