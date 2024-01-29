@@ -7,7 +7,20 @@ const Checkout = () => {
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [currency, setCurrency] = useState(options.currency);
   const price = useSelector((state) => state.tour.cartTotal);
-
+  const cart = useSelector((state) => state.tour.addCart);
+  const userCart = useSelector((state) => state.user.userProfile);
+  const quantities = useSelector((state) => state.tour.quantityCart);
+  const cartData = {
+    userId: userCart.id,
+    tourId: cart.map((item) => item.id),
+    initialDate: cart.map((item) => item.initialDate),
+    equipment: cart.map((item) => item.equipment),
+    detail: "o tour bonito",
+    status: true,
+    totalPrice: price,
+    tickets: quantities,
+  };
+  console.log("cartData:", cartData);
   const onCurrencyChange = ({ target: { value } }) => {
     setCurrency(value);
     dispatch({
@@ -32,8 +45,9 @@ const Checkout = () => {
   };
   const sendCartDataToBackend = (cartData) => {
     // Make an HTTP request to your backend endpoint to save cartData
+    console.log("1:", cartData);
     axios
-      .post("http://localhost:4000/purchases", { cartData })
+      .post("http://localhost:4000/purchased", cartData)
       .then((response) => {
         console.log("Cart data sent to the backend: ", response.data);
       })
@@ -45,7 +59,6 @@ const Checkout = () => {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
       alert(`Transaction completed by ${name}`);
-      const cartData = JSON.parse(localStorage.getItem("cart"));
 
       // Assuming you have a function to send cart data to the backend
       sendCartDataToBackend(cartData);

@@ -10,6 +10,7 @@ import {
   addTourCartReducer,
   cartTotalReducer,
   removeFromCartReducer,
+  cartQuantityReducer,
 } from "./toursSlice";
 
 export const getAllT = () => {
@@ -96,5 +97,11 @@ export const removeTourFromCartAction = (tour) => {
 export const cartTotal = (price) => {
   return (dispatch) => {
     dispatch(cartTotalReducer(price));
+  };
+};
+
+export const cartQuantity = (quantity) => {
+  return (dispatch) => {
+    dispatch(cartQuantityReducer(quantity));
   };
 };

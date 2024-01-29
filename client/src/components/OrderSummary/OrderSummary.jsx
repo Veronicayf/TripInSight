@@ -1,16 +1,21 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addTourCart, cartTotal } from "../../redux/tourStore/toursActions";
+import {
+  addTourCart,
+  cartTotal,
+  cartQuantity,
+} from "../../redux/tourStore/toursActions";
 import { Link, useNavigate } from "react-router-dom";
 
-const OrderSummary = ({ totalPrice }) => {
+const OrderSummary = ({ totalPrice, quantities }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const priceHandler = async (e) => {
     e.preventDefault();
-    console.log(totalPrice);
+    console.log("J:", totalPrice, quantities);
     await dispatch(cartTotal(totalPrice));
+    await dispatch(cartQuantity(quantities));
     navigate("/checkout/");
   };
 

@@ -25,7 +25,7 @@ import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch, useSelector } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
-import ProfileEdit from "./views/Profile/Profile";
+
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
