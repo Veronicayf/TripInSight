@@ -86,6 +86,7 @@ export const sortToursPrice = () => {
 export const addTourCart = (tour) => {
   return (dispatch) => {
     const cart = {
+      id: tour.id,
       nameTour: tour.nameTour,
       image: tour.image,
       price: tour.price,
