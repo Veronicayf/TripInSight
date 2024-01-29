@@ -85,7 +85,14 @@ export const sortToursPrice = () => {
 
 export const addTourCart = (tour) => {
   return (dispatch) => {
-    dispatch(addTourCartReducer(tour));
+    const cart = {
+      nameTour: tour.nameTour,
+      image: tour.image,
+      price: tour.price,
+      equipment: tour.equipment,
+      initialDate: tour.initialDate,
+    };
+    dispatch(addTourCartReducer(cart));
   };
 };
 export const removeTourFromCartAction = (tour) => {
