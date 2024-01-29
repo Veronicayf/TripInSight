@@ -9,7 +9,7 @@ const SideBar = () => {
     
 
   return (
-    <aside className='flex flex-col w-56 h-screen border-r-4 border-b-4 rounded-xl border-seconday-text font-Poppins bg-admin-light-bg shadow-admin-sb justify-center items-center ' >
+    <aside className='flex flex-col w-56 h-screenrounded-xl border-seconday-text font-Poppins bg-admin-light-bg shadow-admin-sb justify-center items-center' >
         <div className='flex items-center gap-2 px-1 py-3'>
             <i><img src={logo} alt="Dashboard icon" className='h-12' /></i>
             <span>TripInSight</span>

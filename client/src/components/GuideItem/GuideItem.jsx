@@ -4,14 +4,6 @@ import DropMenu from '../DropMenu/DropMenu';
 
 const GuideItem = ({ guideInfo }) => {
 
-
-
-    const statusStyle = {
-        backgroundColor: guideInfo.working === 'true' ? 'green' : 'red',
-        color: 'white',
-        padding: '5px 10px',
-        borderRadius: '5px',
-    };
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
     useEffect(() => {

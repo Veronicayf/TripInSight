@@ -11,7 +11,7 @@ export default {
         'seconday-text': '#b7b7b7',
         'btn-hover': '#bc6c25',
         'cream-bg': '#fefae0',
-        'darkgreen-bg':'#0d2519',
+        'darkgreen-bg':'#212121',
         'admin-light-bg':'#f6f6f9',
       },
       backgroundImage:{

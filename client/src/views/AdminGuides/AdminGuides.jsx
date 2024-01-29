@@ -4,6 +4,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import GuideItem from "../../components/GuideItem/GuideItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllG } from "../../redux/guideStore/guidesActions";
+import HeaderAdmin from "../../components/HeaderAdmin/HeaderAdmin";
 
 const AdminGuides = () => {
   const allGuides = useSelector((state) => state.guide.guides);
@@ -27,7 +28,6 @@ const AdminGuides = () => {
     <div className="flex w-full flex-row font-Poppins">
       <SideBar />
       <div className=" flex w-full flex-col p-4">
-        <div>filter bar & Button add product</div>
         <div className=" w-full flex flex-col">
           <div className=" flex w-full flex-row justify-between text-white bg-primary rounded-b-3xl">
             <div className="w-1/6 flex justify-center items-center">
