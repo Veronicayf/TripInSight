@@ -50,9 +50,6 @@ const GuideItem = ({ guideInfo }) => {
             <b>{guideInfo.birthDate}</b>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
-        <div style={statusStyle}><b>{guideInfo.working}</b></div>
-        </div>
-        <div className='w-1/6 flex flex-row items-center justify-around'>
         <div className=" relative flex flex-col items-center">
           <button className='h-10 w-10 bg-primary rounded-2xl hover:bg-btn-hover' onClick={toggleMenu}>
           {open && <DropMenu options={options} onClose={() => setOpen(false)} />}

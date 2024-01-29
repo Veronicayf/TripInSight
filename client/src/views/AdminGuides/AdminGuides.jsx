@@ -39,9 +39,7 @@ const AdminGuides = () => {
             <div className="w-1/6 flex justify-center items-center">
               <b className="">Birthdate</b>
             </div>
-            <div className="w-1/6 flex justify-center items-center">
-              <b className="">Working</b>
-            </div>
+
             <div className="w-1/6 flex justify-center items-center">
               <b className="">Actions</b>
             </div>
