@@ -131,9 +131,13 @@ const Buysection = ({ tour }) => {
             onClick={(e) => handleFavorite(e)}
           >
             {tourFav && isFav ? (
-              <div className="flex flex-row justify-center items-center h-12 w-12">
-                
-                  ✨<img className="h-10 w-10 rounded-full" src={iconFav} alt="icon" />✨
+              <div className="flex flex-row justify-center items-center">
+                <div className=" bg-white rounded-full flex justify-center items-end h-14 w-14">
+                <span className="material-symbols-outlined text-red-500 text-5xl">
+                  favorite
+                </span>
+                </div>
+                  {/* <img className="h-10 w-10 rounded-full bg-red-600" src={iconFav} alt="icon" /> */}
                 
                 {/* <b className="ml-2">In your favorites!</b> */}
               </div>
