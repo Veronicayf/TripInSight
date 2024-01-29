@@ -36,10 +36,14 @@ export const userSlice = createSlice({
       state.favorites = [...state.favorites],
       console.log('removeFavReducer:', action.payload);
     },
+    getAllFavsReducer: (state, action) => {
+      console.log('aaaa', action);
+      state.favorites = [...action.payload]
+    }
   },
 });
 
-export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer} =
+export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer, getAllFavsReducer} =
   userSlice.actions;
 
 export default userSlice.reducer;

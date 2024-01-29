@@ -19,6 +19,7 @@ import iconplace from "../../assets/icons/placeIcon.png";
 import iconTourDetail from "../../assets/icons/tourDetailicon.png";
 import IconIncludes from "../../assets/icons/includesIcon.png";
 import iconPhoto from "../../assets/icons/photosIcon.png";
+import guidesIcon from "../../assets/icons/guidesIcon.png"
 
 const Tour = () => {
   const tourDetail = useSelector((state) => state.tour.detail);
@@ -175,6 +176,18 @@ const Tour = () => {
             <TourInfoItem
               icon={iconCalendar}
               label={"End Date: " + tourDetail.endDate}
+            />
+          </div>
+        </div>
+        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
+        <div className=" w-full flex h-16">
+          <div className="w-1/3 flex justify-center text-lg">
+            <b>Equipment</b>
+          </div>
+          <div className="w-2/3 flex text-lg">
+          <TourInfoItem
+              icon={guidesIcon}
+              label={tourDetail.equipment}
             />
           </div>
         </div>

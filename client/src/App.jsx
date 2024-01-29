@@ -20,7 +20,7 @@ import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-import { getUserId, loggedUser } from "./redux/userStore/usersActions";
+import { getAllFav, getUserId, loggedUser } from "./redux/userStore/usersActions";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch, useSelector } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
@@ -28,6 +28,8 @@ import Checkout from "./views/CheckOut/CheckOut";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
+import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
+
 
 
 const App = () => {
@@ -83,6 +85,8 @@ const App = () => {
         <Route path="/admin/createguide" element={<CreateGuide />} />
         <Route path="/admin/viewTours" element={<AdminTous />} />
         <Route path="/admin/viewGuides" element={<AdminGuides />} />
+        <Route path="/admin/transactions" element={<AdminTransactions />} />
+
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
 
