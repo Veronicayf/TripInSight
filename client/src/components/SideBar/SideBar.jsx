@@ -36,7 +36,12 @@ const SideBar = () => {
             </span>} />
             <SideBarLink linkTo="/admin/comments" text="Comments" icon={<span className="material-symbols-outlined">
             reviews
-            </span>} />
+            </span>
+          } />
+          <SideBarLink linkTo="/admin/users" text="Users" icon={<span className="material-symbols-outlined">
+            reviews
+            </span>
+          } />
 
           </div>
         </div>

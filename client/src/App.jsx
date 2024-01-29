@@ -29,6 +29,7 @@ import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
+import AdminUsers from "./views/AdminUsers/AdminUsers";
 
 
 
@@ -86,6 +87,7 @@ const App = () => {
         <Route path="/admin/viewTours" element={<AdminTous />} />
         <Route path="/admin/viewGuides" element={<AdminGuides />} />
         <Route path="/admin/transactions" element={<AdminTransactions />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
 
         <Route path="/checkout" element={<Checkout />} />
       </Routes>
