@@ -10,17 +10,25 @@ const Checkout = () => {
   const cart = useSelector((state) => state.tour.addCart);
   const userCart = useSelector((state) => state.user.userProfile);
   const quantities = useSelector((state) => state.tour.quantityCart);
-  const cartData = {
-    userId: userCart.id,
-    tourId: cart.map((item) => item.id),
-    initialDate: cart.map((item) => item.initialDate),
-    equipment: cart.map((item) => item.equipment),
-    detail: "o tour bonito",
-    status: true,
-    totalPrice: price,
-    tickets: quantities,
-  };
-  console.log("cartData:", cartData);
+
+  const newArr = [];
+  
+  cart.forEach(element => {
+    newArr.push({
+      tourId: element.id,
+      userId: userCart.id,
+      tickets: quantities[element.id],
+      initialDate: element.initialDate,
+      equipment: element.equipment,
+      status: true,
+      detail: 'tour bonito',
+      totalPrice: quantities[element.id] * element.price
+    });
+  });
+
+  console.table(newArr);
+  console.log('El total de lo que va a pagar el cliente', price);
+     
   const onCurrencyChange = ({ target: { value } }) => {
     setCurrency(value);
     dispatch({

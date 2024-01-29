@@ -16,7 +16,7 @@ import { removeTourFromCartAction } from "../../redux/tourStore/toursActions";
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.tour.addCart);
-  console.log(cart[1]);
+  // console.log(cart[1]);
   const initialQuantities = cart.reduce((quantities, product) => {
     quantities[product.id] = 1;
     return quantities;
@@ -41,7 +41,7 @@ const Cart = () => {
   const handleRemove = (cart) => {
     dispatch(removeTourFromCartAction(cart));
   };
-  console.log("quantity:", quantities);
+  // console.log("quantity:", quantities);
   const totalPrice = cart.reduce(
     (acc, product) => acc + product.price * quantities[product.id],
     0

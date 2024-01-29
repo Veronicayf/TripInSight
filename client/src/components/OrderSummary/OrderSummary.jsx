@@ -13,7 +13,7 @@ const OrderSummary = ({ totalPrice, quantities }) => {
 
   const priceHandler = async (e) => {
     e.preventDefault();
-    console.log("J:", totalPrice, quantities);
+    // console.log("J:", totalPrice, quantities);
     await dispatch(cartTotal(totalPrice));
     await dispatch(cartQuantity(quantities));
     navigate("/checkout/");
