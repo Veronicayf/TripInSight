@@ -69,11 +69,11 @@ export const removeFav = (tourId, userId) => {
 }
 
 export const getAllFav = (userId) => {
-  console.log('getall', userId);
+  //console.log('getall', userId);
   return async (dispatch) => {
    try { 
     let response = await axios.get(`http://localhost:4000/user/allfavs/${userId}`);
-    console.log('aqui', response);
+    //console.log('aqui', response);
     return dispatch(getAllFavsReducer(response.data));
   } catch(error) {
     console.log(error);

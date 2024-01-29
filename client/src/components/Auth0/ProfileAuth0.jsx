@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import DropMenu from "../DropMenu/DropMenu";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserId } from "../../redux/userStore/usersActions";
+import { getAllFav, getUserId } from "../../redux/userStore/usersActions";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -12,6 +12,13 @@ const Profile = () => {
   const profile = useSelector((state) => state.user.userProfile);
   //console.log('aca', profile.admin);
   const menuRef = useRef(null);
+
+  //Para ver los favs del user.
+  useEffect(() => {
+    if(profile.id){
+    dispatch(getAllFav(profile.id))
+  }
+  }, [])
 
   useEffect(() => {
     const handleOutsideClick = (event) => {

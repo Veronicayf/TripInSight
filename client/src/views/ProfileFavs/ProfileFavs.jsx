@@ -46,7 +46,12 @@ const ticketData = [
 const ProfileFavs = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
+  //ToursFavs del user.
   const favsUser = useSelector((state) => state.user.favorites);
+  const tours = useSelector((state) => state.tour.tours);
+  const favsTourIds = favsUser.map((fav) => fav.tourId);
+  const toursFavs = tours.filter((tour) => favsTourIds.includes(tour.id))
+  
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   
@@ -55,7 +60,7 @@ const ProfileFavs = () => {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className=" font-Nunito">
+    <div className="font-Nunito">
       <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
@@ -89,9 +94,9 @@ const ProfileFavs = () => {
               <div className="text-3xl py-4 flex justify-center">
                 <b>My</b> <b className="text-primary"> Favorites</b>
                 </div>
-                <div className="flex flex-wrap gap-10 p-4 w-full justify-around items-center">
-                {favsUser && favsUser.length > 0 ? (
-                  favsUser?.map((tour, index) => (
+                <div className="flex flex-wrap gap-10 p-4 w-full justify-center items-center">
+                {toursFavs && toursFavs.length > 0 ? (
+                  toursFavs?.map((tour, index) => (
                     <TourCard key={index} tour={tour} />
                   ))
                 ) : (
