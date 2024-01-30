@@ -96,7 +96,7 @@ export const getAllFav = (userId) => {
 export const getPurchesedById = (userId) => {
   return async (dispatch) => {
     try { 
-     let response = await axios.get(`${URL}/purchased/getpurchased/${userId}`);
+     let response = await axios.get(`${URL}/purchased/getuserpurchaseds/${userId}`);
      return dispatch(getPurchasedByIdReducer(response.data));
    } catch(error) {
      console.log(error);
