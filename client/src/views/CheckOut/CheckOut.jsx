@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import axios from "axios";
 
 const Checkout = () => {
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-  const [currency, setCurrency] = useState(options.currency);
+  const [currency, setCurrency] = useState("DEFAULT");
+  const [buttonKey, setButtonKey] = useState(0); // Add a state for the button key
   const price = useSelector((state) => state.tour.cartTotal);
   const cart = useSelector((state) => state.tour.addCart);
   const userCart = useSelector((state) => state.user.userProfile);
@@ -38,6 +39,8 @@ const Checkout = () => {
         currency: value,
       },
     });
+    // Increment the button key to re-render the PayPalButtons component
+    setButtonKey((prevKey) => prevKey + 1);
   };
 
   const onCreateOrder = (data, actions) => {
@@ -51,10 +54,9 @@ const Checkout = () => {
       ],
     });
   };
-  const sendCartDataToBackend = (newArr) => {
-    // Make an HTTP request to your backend endpoint to save cartData
-    for(const t of cartData) {
 
+  const sendCartDataToBackend = () => {
+    for (const t of newArr) {
       axios
         .post("http://localhost:4000/purchased", t)
         .then((response) => {
@@ -64,17 +66,20 @@ const Checkout = () => {
           console.error("Error sending cart data to the backend: ", error);
         });
     }
-    console.log("1:", cartData);
+    console.log("1:", newArr);
   };
+
   const onApproveOrder = (data, actions) => {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
       alert(`Transaction completed by ${name}`);
-
-      // Assuming you have a function to send cart data to the backend
-      sendCartDataToBackend(newArr);
+      sendCartDataToBackend();
     });
   };
+
+  /* useEffect(() => {
+    console.log("currency change:", currency);
+  }, [currency]); */
 
   return (
     <div className="checkout flex items-center justify-center min-h-screen text-center z-0">
@@ -83,10 +88,12 @@ const Checkout = () => {
       ) : (
         <div className="container mx-auto p-4">
           <select
+            defaultValue="DEFAULT"
             value={currency}
             onChange={onCurrencyChange}
             className="mb-4 p-2 border border-gray-300 rounded justify-center"
           >
+            <option value="DEFAULT">Choose your currency</option>
             <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
@@ -94,8 +101,10 @@ const Checkout = () => {
           <div className="flex items-center justify-center">
             {/* Surround PayPalButtons with a container for centering */}
             <div className="text-center">
+              {/* Use the key prop to trigger re-render */}
               <PayPalButtons
-                style={{ layout: "vertical", height: 55, width: 180 }} // Adjust the width value
+                key={buttonKey}
+                style={{ layout: "vertical", height: 55, width: 180 }}
                 createOrder={(data, actions) => onCreateOrder(data, actions)}
                 onApprove={(data, actions) => onApproveOrder(data, actions)}
               />
