@@ -11,18 +11,18 @@ import FilterContinent from "../../components/Filters/FiltersCG/FilterContinent"
 import PriceOrder from "../../components/Filters/Order/PriceOrder";
 
 const ToursList = () => {
-    const allTours = useSelector((state) => state.tour.tours);
-    const dispatch = useDispatch();
+  const allTours = useSelector((state) => state.tour.tours);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-      dispatch(getAllT());
-    }, [dispatch])
+  useEffect(() => {
+    dispatch(getAllT());
+  }, [dispatch])
 
-    const handleClick = (e) => {
-      //refresco largando nuevamente una petición al back.
-      e.preventDefault();
-      dispatch(getAllT(e.target.value));
-    };
+  const handleClick = (e) => {
+    //refresco largando nuevamente una petición al back.
+    e.preventDefault();
+    dispatch(getAllT(e.target.value));
+  };
 
   return (
     <main className=" font-Nunito">
@@ -35,21 +35,21 @@ const ToursList = () => {
           <b className="text-primary"> Tours </b>
         </div>
         <div className="flex justify-center my-3 gap-3">
-        <FilterContinent />
-        <FilterTags />
-        <PriceOrder />
+          <FilterContinent />
+          <FilterTags />
+          <PriceOrder />
         </div>
         <div className="flex flex-wrap gap-10 p-4 w-full justify-around items-center">
           {allTours && allTours.length > 0 ? (
-            allTours?.map((tour, index) => <TourCard key={index} tour={tour}/>)
+            allTours?.map((tour, index) => <TourCard key={index} tour={tour} />)
           ) : (
             <div className="flex flex-col justify-center items-center p-5 gap-5">
-            <b>Loading...</b>
-            <img src="https://media1.tenor.com/m/QqPVtiP0IjYAAAAC/travel-lets-go.gif" alt="loading" width="250"/>
-            <button className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5" onClick={handleClick}>View all tours</button>
+              <b>Loading...</b>
+              <img src="https://media1.tenor.com/m/QqPVtiP0IjYAAAAC/travel-lets-go.gif" alt="loading" width="250" />
+              <button className="bg-green-600 text-white flex flex-row rounded-full items-center gap-3 p-1.5" onClick={handleClick}>View all tours</button>
             </div>
           )}
-          
+
         </div>
       </section>
     </main>
