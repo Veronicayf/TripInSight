@@ -1,3 +1,4 @@
+
 import axios from 'axios'
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
@@ -7,7 +8,7 @@ export const getAllG = () => {
   return async (dispatch) => {
     let json = await axios.get("http://localhost:4000/guides");
     return dispatch(getAllGuides(json.data));
-  }
+  };
 };
 
 export const getGuideId = (id) => {
@@ -38,6 +39,7 @@ export const postGuide = (guideDate) => {
         title: "Error to create guide",
         text: "Please try again later",
       });
+
     }
-  }
-}
+  };
+};
