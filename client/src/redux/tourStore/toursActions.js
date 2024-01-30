@@ -100,3 +100,12 @@ export const cartTotal = (price) => {
     dispatch(cartTotalReducer(price));
   };
 };
+
+// export const updateTour = (id, tourData) => {
+//   return async (dispatch) => {
+//     let { data } = await axios.put(
+//       `https://tripinsight.onrender.com/tours/${id}`, {tourData}
+//     );
+//     return dispatch((data));
+//   };
+// };
