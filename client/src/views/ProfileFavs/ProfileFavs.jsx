@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
@@ -9,6 +9,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileView from "../../components/ProfileView/ProfileView";
 import TourCard from "../../components/TourCard/TourCard";
+import { getAllFav } from "../../redux/userStore/usersActions";
 
 const ticketData = [
   {
@@ -59,6 +60,13 @@ const ProfileFavs = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    if(tours && profile) {
+     dispatch(getAllFav(profile.id))
+    }
+  }, [tours, profile])
+
   return (
     <div className="font-Nunito">
       <Carousel

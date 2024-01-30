@@ -37,9 +37,9 @@ const CreateGuide = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(postGuide(guideInfo))
+        dispatch(postGuide(guideInfo));
     };
     return (
     <div className="flex flex-row font-Poppins">
