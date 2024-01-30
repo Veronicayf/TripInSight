@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
+import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, subscribeReducer, updateUserReducer } from './usersSlice'
 
 
 export const getUsers = (page, pagesize) => {
@@ -68,27 +68,43 @@ export const removeFav = (tourId, userId) => {
   const url = "https://tripinsight.onrender.com/user/deletefavoritetour";
   const deleteFav = { tourId, userId };
   return async (dispatch) => {
-   try { 
-    let {data} = await axios.delete(url, {
-      data: deleteFav
-    });
-    return dispatch(removeFavReducer(data));
-  } catch(error) {
-    console.log(error.data);
+    try {
+      let { data } = await axios.delete(url, {
+        data: deleteFav
+      });
+      return dispatch(removeFavReducer(data));
+    } catch (error) {
+      console.log(error.data);
+    }
   }
-}
-}
+};
 
 export const getAllFav = (userId) => {
   //console.log('getall', userId);
   return async (dispatch) => {
-   try { 
-    let response = await axios.get(`http://localhost:4000/user/allfavs/${userId}`);
-    //console.log('aqui', response);
-    return dispatch(getAllFavsReducer(response.data));
-  } catch(error) {
-    console.log(error);
+    try {
+      let response = await axios.get(`http://localhost:4000/user/allfavs/${userId}`);
+      //console.log('aqui', response);
+      return dispatch(getAllFavsReducer(response.data));
+    } catch (error) {
+      console.log(error);
+    }
   }
-  }
+};
+// newLines
+export const subscribeUser = (email) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:4000/user/subscribe', { email });
+      if (response.status === 200) {
+        dispatch(subscribeReducer(true));
+      } else {
+        dispatch(subscribeReducer(false));
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error.message);
+      dispatch(subscribeReducer(false));
+    }
+  };
 };
 

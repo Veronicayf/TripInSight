@@ -16,10 +16,31 @@ import { getAllT } from "../../redux/tourStore/toursActions";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TourCard from "../../components/TourCard/TourCard";
+import { subscribeUser } from "../../redux/userStore/usersActions"; //newLine
 
 const Home = () => {
+
+
+  const [email, setEmail] = useState('');//newLine
   const allTours = useSelector((state) => state.tour.tours);
   const dispatch = useDispatch();
+  const subscribed = useSelector((state) => state.user.subscribed) //newLine
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(subscribeUser(email));
+    console.log('soy el email del submit', email)
+    Swal.fire({
+      icon: "success",
+      title: "Tour added to favorites!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
   useEffect(() => {
     dispatch(getAllT());
@@ -160,10 +181,13 @@ const Home = () => {
                   className=" w-full outline-none"
                   type="text"
                   placeholder="Your Email Address..."
+                  value={email}
+                  onChange={handleEmailChange}
                 />
                 <button
                   className=" bg-darkgreen-bg text-white w-40 h-12 rounded-3xl hover:bg-btn-hover"
                   type="submit"
+                  onClick={handleSubmit}
                 >
                   Suscribe
                 </button>
