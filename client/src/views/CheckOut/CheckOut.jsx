@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { clearCart } from "../../redux/tourStore/toursActions";
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Checkout = () => {
+  const dispatchACT = useDispatch();
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
   const [currency, setCurrency] = useState("DEFAULT");
-  const [buttonKey, setButtonKey] = useState(0); // Add a state for the button key
+  const [buttonKey, setButtonKey] = useState(0);
   const price = useSelector((state) => state.tour.cartTotal);
   const cart = useSelector((state) => state.tour.addCart);
   const userCart = useSelector((state) => state.user.userProfile);
@@ -39,7 +43,6 @@ const Checkout = () => {
         currency: value,
       },
     });
-    // Increment the button key to re-render the PayPalButtons component
     setButtonKey((prevKey) => prevKey + 1);
   };
 
@@ -72,8 +75,22 @@ const Checkout = () => {
   const onApproveOrder = (data, actions) => {
     return actions.order.capture().then((details) => {
       const name = details.payer.name.given_name;
-      alert(`Transaction completed by ${name}`);
+
+      // Use Sweetalert instead of alert
+      Swal.fire({
+        title: `Transaction completed by ${name}`,
+        icon: "success",
+        showConfirmButton: false,
+        timer: 2000, // Set the duration of the success message
+      });
+
       sendCartDataToBackend();
+
+      // Dispatch the clearCart action
+      dispatchACT(clearCart());
+
+      // Redirect the user to the home page
+      window.location.href = "/";
     });
   };
 
@@ -88,12 +105,10 @@ const Checkout = () => {
       ) : (
         <div className="container mx-auto p-4">
           <select
-            defaultValue="DEFAULT"
             value={currency}
             onChange={onCurrencyChange}
             className="mb-4 p-2 border border-gray-300 rounded justify-center"
           >
-            <option value="DEFAULT">Choose your currency</option>
             <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
@@ -103,10 +118,10 @@ const Checkout = () => {
             <div className="text-center">
               {/* Use the key prop to trigger re-render */}
               <PayPalButtons
-                key={buttonKey}
-                style={{ layout: "vertical", height: 55, width: 180 }}
-                createOrder={(data, actions) => onCreateOrder(data, actions)}
-                onApprove={(data, actions) => onApproveOrder(data, actions)}
+                createOrder={onCreateOrder}
+                onApprove={onApproveOrder}
+                options={{ ...options, currency }}
+                forceReRender={[buttonKey]}
               />
             </div>
           </div>

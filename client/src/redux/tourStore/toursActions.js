@@ -11,6 +11,7 @@ import {
   cartTotalReducer,
   removeFromCartReducer,
   cartQuantityReducer,
+  clearCartReducer,
 } from "./toursSlice";
 
 export const getAllT = () => {
@@ -101,7 +102,11 @@ export const removeTourFromCartAction = (tour) => {
     dispatch(removeFromCartReducer(tour));
   };
 };
-
+export const clearCart = (tour) => {
+  return (dispatch) => {
+    dispatch(clearCartReducer(tour));
+  };
+};
 export const cartTotal = (price) => {
   return (dispatch) => {
     dispatch(cartTotalReducer(price));
