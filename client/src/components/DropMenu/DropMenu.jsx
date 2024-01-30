@@ -24,7 +24,7 @@ const DropMenu = ({ options, onClose }) => {
   }, [onClose]);
 
   return (
-    <div ref={menuRef} className='bg-white text-black p-4 w-52 shadow-lg absolute -left-14 top-24 z-50'>
+    <div ref={menuRef} className=' bg-zinc-300  text-black p-4 w-52 rounded-2xl shadow-lg absolute -left-28 top-[4.5rem] z-50'>
       <ul>
         {options.map((option) => (
           <li className='p-2 text-lg cursor-pointer rounded hover:bg-seconday-text' key={option.label}>

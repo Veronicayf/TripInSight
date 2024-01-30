@@ -5,7 +5,7 @@ import DropMenu from '../DropMenu/DropMenu';
 const TourItem = ({ tourInfo }) => {
 
     const statusStyle = {
-        backgroundColor: tourInfo.status === 'true' ? 'green' : 'red',
+        backgroundColor: tourInfo.status === '1' ? 'green' : 'red',
         color: 'white',
         padding: '5px 10px',
         borderRadius: '5px',
