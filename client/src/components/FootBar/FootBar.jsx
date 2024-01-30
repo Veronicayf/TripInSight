@@ -34,7 +34,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="mt-4 flex flex-col w-full lg:justify-around sm:flex-row justify-center sm:justify-between gap-4 sm:mb-6">
+      <div className="mt-4 flex flex-col w-full lg:justify-around sm:flex-row justify-center items-center sm:justify-between gap-4 sm:mb-6">
         <Link to="/aboutus">
           <h3 className="cursor-pointer hover:underline">ABOUT US</h3>
         </Link>
