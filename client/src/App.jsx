@@ -25,17 +25,24 @@ import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch, useSelector } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
 import Checkout from "./views/CheckOut/CheckOut";
+
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
 
-
+const initialOptions = {
+  "client-id":
+    "Ae43YNhNcy82WK7N3f27yDbXklBUj1Pozc0NPYBJrayPxISs85PIMt9WPorvGk20mza-F3aKJd-z9HJI",
+  currency: "USD",
+  intent: "capture",
+};
 
 const App = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const userProfile = useSelector((state) => state.user.userProfile)
+  const userProfile = useSelector((state) => state.user.userProfile);
 
   const fetchUserId = () => {
     if (isAuthenticated && userProfile.id) {
@@ -44,7 +51,7 @@ const App = () => {
   };
 
   const authenticateUser = async () => {
-    if (isAuthenticated ) {
+    if (isAuthenticated) {
       const userAuth = {
         name: user.name,
         email: user.email,
@@ -66,7 +73,6 @@ const App = () => {
 
   return (
     <div>
-
       {!isOnAdminRoute && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
@@ -74,9 +80,9 @@ const App = () => {
         <Route path="/aboutus" />
         <Route path="/guides" element={<Guides />} />
         <Route path="/tours" element={<ToursList />} />
-        <Route path="/profile/:id" element={<ProfileEdit/>} />
-        <Route path="/profilefavs/:id" element={<ProfileFavs/>} />
-        <Route path="/profile/review" element={<ReviewFavorites/>}/>
+        <Route path="/profile/:id" element={<ProfileEdit />} />
+        <Route path="/profilefavs/:id" element={<ProfileFavs />} />
+        <Route path="/profile/review" element={<ReviewFavorites />} />
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guides/:id" element={<GuideDetail />} />
         <Route path="/cart" element={<Cart />} />
@@ -86,8 +92,14 @@ const App = () => {
         <Route path="/admin/viewTours" element={<AdminTous />} />
         <Route path="/admin/viewGuides" element={<AdminGuides />} />
         <Route path="/admin/transactions" element={<AdminTransactions />} />
-
-        <Route path="/checkout" element={<Checkout />} />
+        <Route
+          path="/checkout"
+          element={
+            <PayPalScriptProvider options={initialOptions}>
+              <Checkout />
+            </PayPalScriptProvider>
+          }
+        />
       </Routes>
 
       {!isOnAdminRoute && <Footer />}
