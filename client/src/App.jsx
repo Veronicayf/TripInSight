@@ -20,7 +20,7 @@ import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-import { getUserId, loggedUser } from "./redux/userStore/usersActions";
+import { getAllFav, getUserId, loggedUser } from "./redux/userStore/usersActions";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch, useSelector } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";

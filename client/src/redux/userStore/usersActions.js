@@ -1,12 +1,6 @@
-import axios from "axios";
-import {
-  addFavReducer,
-  getAllUsers,
-  getUserDetail,
-  loggedUserReducer,
-  removeFavReducer,
-  updateUserReducer,
-} from "./usersSlice";
+import axios from 'axios'
+import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
+
 
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
@@ -74,13 +68,27 @@ export const removeFav = (tourId, userId) => {
   const url = "https://tripinsight.onrender.com/user/deletefavoritetour";
   const deleteFav = { tourId, userId };
   return async (dispatch) => {
-    try {
-      let { data } = await axios.delete(url, {
-        data: deleteFav,
-      });
-      return dispatch(removeFavReducer(data));
-    } catch (error) {
-      console.log(error.data);
-    }
-  };
+   try { 
+    let {data} = await axios.delete(url, {
+      data: deleteFav
+    });
+    return dispatch(removeFavReducer(data));
+  } catch(error) {
+    console.log(error.data);
+  }
+}
+}
+
+export const getAllFav = (userId) => {
+  //console.log('getall', userId);
+  return async (dispatch) => {
+   try { 
+    let response = await axios.get(`http://localhost:4000/user/allfavs/${userId}`);
+    //console.log('aqui', response);
+    return dispatch(getAllFavsReducer(response.data));
+  } catch(error) {
+    console.log(error);
+  }
+  }
 };
+

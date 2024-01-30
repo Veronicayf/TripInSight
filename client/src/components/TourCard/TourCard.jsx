@@ -1,12 +1,14 @@
 import { React } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getTourId } from "../../redux/tourStore/toursActions";
 import { getTourById } from "../../redux/tourStore/toursSlice";
 import { getGuideId } from "../../redux/guideStore/guidesActions";
+import { getAllFav } from "../../redux/userStore/usersActions";
 
 const TourCard = ({ tour }) => {
+  const profile = useSelector((state) => state.user.userProfile);
   const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,7 +29,7 @@ const TourCard = ({ tour }) => {
     e.preventDefault();
     dispatch(getTourId(tour.id));
     dispatch(getGuideId(tour.guideId));
-    //console.log("aqui", tour);
+    dispatch(getAllFav(profile.id))
     navigate(`/tours/${tour.nameTour}`);
   };
 

@@ -39,7 +39,7 @@ export const getTourName = (tour) => {
 
 //veronica__________________
 export const postTourAction = (posteoTour) => {
-  console.log("action problematico", postTour);
+  //console.log("action problematico", postTour);
   return async (dispatch) => {
     try {
       const response = await axios.post(

@@ -7,20 +7,26 @@ import iconpeople from "../../assets/icons/peopleIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { addFav, removeFav } from "../../redux/userStore/usersActions";
+import { addFav, getAllFav, removeFav } from "../../redux/userStore/usersActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
-  const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
   const profile = useSelector((state) => state.user.userProfile);
   const places = tourDetail.capacity - tourDetail.subscription;
 
+  //favs
+  const favsUser = useSelector((state) => state.user.favorites);
+  const favsTourIds = favsUser.map((fav) => fav.tourId);
+  const tourFav = favsTourIds.includes(tourDetail.id);
+  const [isFav, setIsFav] = useState(true);
+  //console.log('favsss', tourFav);
+
   const handleAddToCart = () => {
     try {
       dispatch(addTourCart(tourDetail));
-
+      
       Swal.fire({
         icon: "success",
         title: "Product added to cart!",
@@ -49,16 +55,16 @@ const Buysection = ({ tour }) => {
   };
 
   const handleFavorite = () => {
-    if (isFav) {
-      setIsFav(false);
+    if (tourFav && isFav) {
       dispatch(removeFav(tourDetail.id, profile.id));
+      setIsFav(false);
       Swal.fire({
         icon: "error",
         title: "Tour removed from favorites!",
       });
     } else {
-      setIsFav(true);
       dispatch(addFav(tourDetail.id, profile.id));
+      setIsFav(true);
       Swal.fire({
         icon: "success",
         title: "Tour added to favorites!",
@@ -69,12 +75,13 @@ const Buysection = ({ tour }) => {
   };
 
   useEffect(() => {
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isFav]);
 
   return (
     <div
@@ -124,13 +131,16 @@ const Buysection = ({ tour }) => {
             className="text-white bg-primary w-full py-2  rounded-br-[50px]  rounded-bl-[50px] flex items-center justify-center hover:bg-btn-hover hover:text-white"
             onClick={(e) => handleFavorite(e)}
           >
-            {isFav ? (
+            {tourFav && isFav ? (
               <div className="flex flex-row justify-center items-center">
-                {/* <i className="h-12">
-              <img className="h-10 w-10" src={iconFav} alt="icon" />
-            </i>
-            <b className="ml-2">In your favorites!</b> */}
-                ❤️
+                <div className=" bg-white rounded-full flex justify-center items-end h-14 w-14">
+                <span className="material-symbols-outlined text-red-500 text-5xl">
+                  favorite
+                </span>
+                </div>
+                  {/* <img className="h-10 w-10 rounded-full bg-red-600" src={iconFav} alt="icon" /> */}
+                
+                {/* <b className="ml-2">In your favorites!</b> */}
               </div>
             ) : (
               <div className="flex flex-row justify-center items-center">
