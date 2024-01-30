@@ -12,7 +12,7 @@ const FilterTags = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-5 rounded-full bg-primary">
+    <div className="flex flex-col items-center justify-center p-5 rounded-full bg-primary order-3 lg:order-2">
       <div className="flex justify-center items-center text-white pb-4">
         <b>Filter by the 10 most searched tags</b>
       </div>
