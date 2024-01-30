@@ -1,8 +1,20 @@
+import { useDispatch, useSelector } from "react-redux";
 import DashboardCard from "../../components/DashboardCard/DashboardCard";
 import SideBar from "../../components/SideBar/SideBar";
 import UserChart from "../../components/UserChart/UserChart";
+import { useEffect } from "react";
+import { getAllUsers } from "../../redux/userStore/usersSlice";
+import UserList from "../../components/UserList/Userlist";
+import { getUsers } from "../../redux/userStore/usersActions";
 
 const AdminUsers = () => {
+
+    const allUser = useSelector((state) => state.users);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUsers(1,10));
+      }, [dispatch]);
+
   const transactionsData = [
     {
       id: "45ad4120-bb2f-4d43-a9fa-b745356be83b0",
@@ -99,7 +111,21 @@ const AdminUsers = () => {
             </div>
           </div>
           <div>
-            item list
+          {allUser && allUser.length > 0 ? (
+              allUser.map((user, index) => (
+                <UserList key={index} UserInfo={user} />
+              ))
+            ) : (
+              <div className="flex flex-col justify-center items-center p-5 gap-5">
+                <b>Loading...</b>
+                <img
+                  src="https://media1.tenor.com/m/QqPVtiP0IjYAAAAC/travel-lets-go.gif"
+                  alt="loading"
+                  width="250"
+                />
+              
+              </div>
+            )}
           </div>
         </div>
       </div>

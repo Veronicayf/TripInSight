@@ -34,12 +34,12 @@ const SideBar = () => {
             <SideBarLink linkTo="/admin/transactions" text="Transactions" icon={<span className="material-symbols-outlined">
             storefront
             </span>} />
-            <SideBarLink linkTo="/admin/comments" text="Comments" icon={<span className="material-symbols-outlined">
+            <SideBarLink linkTo="/admin/review" text="Reviews" icon={<span className="material-symbols-outlined">
             reviews
             </span>
           } />
           <SideBarLink linkTo="/admin/users" text="Users" icon={<span className="material-symbols-outlined">
-            reviews
+            person
             </span>
           } />
 
