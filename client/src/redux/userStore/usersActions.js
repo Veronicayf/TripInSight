@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
+import { addFavReducer, getAllFavsReducer, getAllUsers, getPurchasedByIdReducer, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
 
 
 export const getUsers = (page, pagesize) => {
@@ -92,3 +92,13 @@ export const getAllFav = (userId) => {
   }
 };
 
+export const getPurchesedById = (userId) => {
+  return async (dispatch) => {
+    try { 
+     let response = await axios.get(`http://localhost:4000/purchased/getpurchased/${userId}`);
+     return dispatch(getPurchasedByIdReducer(response.data));
+   } catch(error) {
+     console.log(error);
+   }
+  }
+}

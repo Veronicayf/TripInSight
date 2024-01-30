@@ -8,6 +8,7 @@ export const userSlice = createSlice({
     users: [],
     userProfile: {},
     favorites: [], //favorites,
+    purchased: [],
   },
   reducers: {
     getAllUsers: (state, action) => {
@@ -39,11 +40,14 @@ export const userSlice = createSlice({
     getAllFavsReducer: (state, action) => {
       state.favorites = [...action.payload];
       //localStorage.setItem("fav-user", JSON.stringify(state.favorites));
+    },
+    getPurchasedByIdReducer: (state, action) => {
+      state.purchased = [...action.payload]
     }
   },
 });
 
-export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer, getAllFavsReducer} =
+export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer, getAllFavsReducer, getPurchasedByIdReducer} =
   userSlice.actions;
 
 export default userSlice.reducer;
