@@ -1,19 +1,20 @@
-
 import axios from 'axios'
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { getAllGuides, getGuideById, postGuideReducer } from './guidesSlice'
 
+const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
+
 export const getAllG = () => {
   return async (dispatch) => {
-    let json = await axios.get("http://localhost:4000/guides");
+    let json = await axios.get(`${URL}/guides`);
     return dispatch(getAllGuides(json.data));
   };
 };
 
 export const getGuideId = (id) => {
   return async (dispatch) => {
-    let { data } = await axios.get(`http://localhost:4000/guides/${id}`);
+    let { data } = await axios.get(`${URL}/guides/${id}`);
     return dispatch(getGuideById(data));
   };
 };
@@ -22,7 +23,7 @@ export const getGuideId = (id) => {
 export const postGuide = (guideDate) => {
   return async (dispatch) => {
     try {
-      let { data } = await axios.post('http://localhost:4000/guides', guideDate);
+      let { data } = await axios.post(`${URL}/guides`, guideDate);
       dispatch(postGuideReducer(data));
       Swal.fire({
         icon: "success",

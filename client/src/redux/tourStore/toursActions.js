@@ -12,9 +12,11 @@ import {
   removeFromCartReducer,
 } from "./toursSlice";
 
+const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
+
 export const getAllT = () => {
   return async (dispatch) => {
-    let json = await axios.get("https://tripinsight.onrender.com/tours");
+    let json = await axios.get(`${URL}/tours`);
     return dispatch(getAllTours(json.data));
   };
 };
@@ -22,7 +24,7 @@ export const getAllT = () => {
 export const getTourId = (id) => {
   return async (dispatch) => {
     let { data } = await axios.get(
-      `https://tripinsight.onrender.com/tours/${id}`
+      `${URL}/tours/${id}`
     );
     return dispatch(getTourById(data));
   };
@@ -31,7 +33,7 @@ export const getTourId = (id) => {
 export const getTourName = (tour) => {
   return async (dispatch) => {
     let { data } = await axios.get(
-      `https://tripinsight.onrender.com/tours/nameTour?nameTour=${tour}`
+      `${URL}/tours/nameTour?nameTour=${tour}`
     );
     return dispatch(searchTourByName(data));
   };
@@ -42,7 +44,7 @@ export const postTourAction = (posteoTour) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "https://tripinsight.onrender.com/tours",
+        `${URL}/tours`,
         posteoTour
       );
       dispatch(postTour(response.data));
@@ -69,7 +71,7 @@ export const postTourAction = (posteoTour) => {
 export const searchTourTags = (tour) => {
   return async (dispatch) => {
     let { data } = await axios.get(
-      `https://tripinsight.onrender.com/tours/tags?tags=${tour}`
+      `${URL}/tours/tags?tags=${tour}`
     );
     return dispatch(searchTourByTags(data));
   };
@@ -82,7 +84,7 @@ export const filterContinent = (tour) => {
     }
     try {
       let { data } = await axios.get(
-        `https://tripinsight.onrender.com/tours/continent?continent=${tour}`
+        `${URL}/tours/continent?continent=${tour}`
       );
       return dispatch(filterTourByContinent(data));
     } catch (error) {
@@ -113,3 +115,12 @@ export const cartTotal = (price) => {
     dispatch(cartTotalReducer(price));
   };
 };
+
+// export const updateTour = (id, tourData) => {
+//   return async (dispatch) => {
+//     let { data } = await axios.put(
+//       `${URL}/tours/${id}`, {tourData}
+//     );
+//     return dispatch((data));
+//   };
+// };
