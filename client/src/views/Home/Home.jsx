@@ -36,7 +36,7 @@ const Home = () => {
           <b className="text-primary">Tours</b>
         </div>
         <div className=" flex justify-center text-gray-600 my-6">
-          <p>
+          <p className="text-center p-4">
             Explore our top destinations, curated by more than +100.000
             costumers around the world
           </p>
@@ -53,16 +53,19 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center w-full h-96">
-          <div className="flex justify-center items-center  gap-4">
-            {allTours && allTours.length > 0 ? (
-              allTours
-                .slice(0, 5)
-                .map((tour) => <TourCard key={tour.id} tour={tour} />)
-            ) : (
-              <h2>Loading...</h2>
-            )}
-          </div>
+        <div className="flex flex-wrap justify-around items-center w-full">
+          {allTours && allTours.length > 0 ? (
+            allTours.slice(0, 4).map((tour) => (
+              <div
+                key={tour.id}
+                className="w-full flex items-center justify-center sm:w-1/2 md:w-1/2 lg:w-1/6 xl:w-1/4 p-4"
+              >
+                <TourCard tour={tour} />
+              </div>
+            ))
+          ) : (
+            <h2>Loading...</h2>
+          )}
         </div>
       </section>
       <section>
@@ -74,17 +77,20 @@ const Home = () => {
             <b className=" mx-4">OUR</b>
             <b className="text-primary mx-2">PROPOSALS</b>
           </div>
-          <div className="flex justify-center items-center w-full h-96">
-            <div className="flex justify-center items-center gap-4">
-              {allTours && allTours.length > 0 ? (
-                allTours
-                  .slice(0, 5)
-                  .map((tour) => <TourCard key={tour.id} tour={tour} />)
-              ) : (
-                <h2>Loading...</h2>
-              )}
-            </div>
-          </div>
+          <div className="flex flex-wrap justify-around items-center w-full">
+          {allTours && allTours.length > 0 ? (
+            allTours.slice(0, 4).map((tour) => (
+              <div
+                key={tour.id}
+                className="w-full flex items-center justify-center sm:w-1/2 md:w-1/2 lg:w-1/6 xl:w-1/4 p-4"
+              >
+                <TourCard tour={tour} />
+              </div>
+            ))
+          ) : (
+            <h2>Loading...</h2>
+          )}
+        </div>
           <div className="my-3 w-full flex justify-center">
             <Link
               to={"/tours"}

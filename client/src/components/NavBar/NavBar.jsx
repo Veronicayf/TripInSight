@@ -49,7 +49,7 @@ const NavBar = () => {
         </Link>
       </div>
 
-      <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute top-16 left-0 right-0 bg-black text-white`}>
+      <div className={`lg:hidden ${isMenuOpen ? 'block' : 'hidden'} absolute w-full top-16 left-0 right-0 bg-black text-white`}>
         {/* Menú de navegación en dispositivos pequeños */}
         <Link to="/" onClick={toggleMenu} className={`${location.pathname === '/' ? 'text-green-400' : ''} block p-2 border-b border-gray-600`}>
           Home
@@ -63,6 +63,19 @@ const NavBar = () => {
         <Link to="/aboutus" onClick={toggleMenu} className={`${location.pathname === '/aboutus' ? 'text-green-400' : ''} block p-2 border-b border-gray-600`}>
           About Us
         </Link>
+        {isAuthenticated && isAuthenticated ? (
+            <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center"> 
+              <Profile /> 
+              <div className="flex flex-row p-1 justify-center items-center"> <LogoutButton /> </div>
+            </div> 
+          ) : (
+            <Link to="/login">
+              <button className="h-12 w-36 bg-primary flex flex-row justify-center rounded-full items-center gap-3 p-1.5 hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out">
+                <img className="h-10" src={login} alt="Login" />
+                <h3>Login</h3>
+              </button>
+            </Link>
+          )}
       </div>
 
       <div className="hidden lg:flex flex-row basis-3/5 justify-between items-center gap-5 p-5">
