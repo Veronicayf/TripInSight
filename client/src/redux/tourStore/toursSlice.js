@@ -27,6 +27,7 @@ export const tourSlice = createSlice({
     sortOrder: "asc",
     addCart: cart,
     cartTotal: price,
+    quantityCart: {},
   },
   reducers: {
     getAllTours: (state, action) => {
@@ -82,6 +83,9 @@ export const tourSlice = createSlice({
         JSON.stringify(state.addCart.map((item) => item))
       );
     },
+    cartQuantityReducer: (state, action) => {
+      state.quantityCart = action.payload;
+    },
   },
 });
 
@@ -96,6 +100,7 @@ export const {
   addTourCartReducer,
   cartTotalReducer,
   removeFromCartReducer,
+  cartQuantityReducer,
 } = tourSlice.actions;
 
 export default tourSlice.reducer;
