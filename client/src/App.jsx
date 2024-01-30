@@ -31,6 +31,8 @@ import ProfileEdit from "./views/ProfileSettings/ProfileSettings";
 import ProfileFavs from "./views/ProfileFavs/ProfileFavs";
 import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
+import AdminUsers from "./views/AdminUsers/AdminUsers";
+import AdminReviews from "./views/AdminReviews/AdminReviews";
 
 const initialOptions = {
   "client-id":
@@ -92,6 +94,9 @@ const App = () => {
         <Route path="/admin/viewTours" element={<AdminTous />} />
         <Route path="/admin/viewGuides" element={<AdminGuides />} />
         <Route path="/admin/transactions" element={<AdminTransactions />} />
+        <Route path="/admin/users" element={<AdminUsers />} />
+        <Route path="/admin/review" element={<AdminReviews />} />
+
         <Route
           path="/checkout"
           element={
@@ -100,6 +105,7 @@ const App = () => {
             </PayPalScriptProvider>
           }
         />
+
       </Routes>
 
       {!isOnAdminRoute && <Footer />}

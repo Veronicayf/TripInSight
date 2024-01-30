@@ -2,7 +2,17 @@ import React, { useEffect, useRef, useState } from 'react';
 import iconmenu from '../../assets/icons/IconMenuVertical.png';
 import DropMenu from '../DropMenu/DropMenu';
 
-const GuideItem = ({ guideInfo }) => {
+const UserList = ({ UserInfo }) => {
+
+    var status = ""
+
+    if(UserInfo.isBanned == true){
+        status = Banned   }
+        else if (UserInfo.admin == true){
+            status = Admin
+        }else(
+            status = User
+        )
 
     const [open, setOpen] = useState(false);
     const menuRef = useRef(null);
@@ -24,22 +34,22 @@ const GuideItem = ({ guideInfo }) => {
       setOpen(!open);
     };
     const options = [
-      { label: 'Edit', to: `/profilefavs/` },
-      { label: 'Disable', to: `/profile/` },
+      { label: 'ViewUser', to: `/profile/` },
     ];
     
 
     return (
     <div id='Item' className='flex flex-row w-full justify-between py-4'>
-        <div className='w-1/6 flex flex-row items-center justify-around'>
-            <p className='text-[12px]'>{guideInfo.id}</p>
-        </div>
+
         <div className='w-2/6 flex flex-row items-center justify-around'>
-            <img src={guideInfo.image} alt={guideInfo.nameTour} className='h-12 rounded-3xl' />
-            <b>{guideInfo.forename} {guideInfo.surname}</b>
+            <img src={UserInfo.image} alt={UserInfo.name} className='h-12 rounded-3xl' />
+            <b>{UserInfo.name}</b>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
-            <b>{guideInfo.birthDate}</b>
+            <b>{UserInfo.email}</b>
+        </div>
+        <div className='w-1/6 flex flex-row items-center justify-around'>
+            <b>{status}</b>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
         <div className=" relative flex flex-col items-center">
@@ -47,11 +57,10 @@ const GuideItem = ({ guideInfo }) => {
           {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
             <img src={iconmenu} alt="icon menu" />
           </button>
-        
           </div>
         </div>
     </div>
     );
 }
 
-export default GuideItem
+export default UserList
