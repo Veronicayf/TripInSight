@@ -10,6 +10,7 @@ import {
   addTourCartReducer,
   cartTotalReducer,
   removeFromCartReducer,
+  cartQuantityReducer,
 } from "./toursSlice";
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
@@ -101,7 +102,15 @@ export const sortToursPrice = () => {
 
 export const addTourCart = (tour) => {
   return (dispatch) => {
-    dispatch(addTourCartReducer(tour));
+    const cart = {
+      id: tour.id,
+      nameTour: tour.nameTour,
+      image: tour.image,
+      price: tour.price,
+      equipment: tour.equipment,
+      initialDate: tour.initialDate,
+    };
+    dispatch(addTourCartReducer(cart));
   };
 };
 export const removeTourFromCartAction = (tour) => {
@@ -124,3 +133,10 @@ export const cartTotal = (price) => {
 //     return dispatch((data));
 //   };
 // };
+
+export const cartQuantity = (quantity) => {
+  return (dispatch) => {
+    dispatch(cartQuantityReducer(quantity));
+  };
+};
+

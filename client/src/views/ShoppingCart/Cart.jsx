@@ -16,7 +16,7 @@ import { removeTourFromCartAction } from "../../redux/tourStore/toursActions";
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.tour.addCart);
-  console.log(cart[1]);
+  // console.log(cart[1]);
   const initialQuantities = cart.reduce((quantities, product) => {
     quantities[product.id] = 1;
     return quantities;
@@ -37,9 +37,11 @@ const Cart = () => {
       [productId]: Math.max((prevQuantities[productId] || 1) - 1, 1),
     }));
   };
+
   const handleRemove = (cart) => {
     dispatch(removeTourFromCartAction(cart));
   };
+  // console.log("quantity:", quantities);
   const totalPrice = cart.reduce(
     (acc, product) => acc + product.price * quantities[product.id],
     0
@@ -113,7 +115,7 @@ const Cart = () => {
         </div>
 
         <div className="w-1/3 flex flex-col">
-          <OrderSummary totalPrice={totalPrice} />
+          <OrderSummary totalPrice={totalPrice} quantities={quantities} />
           <div>
             <div className=" text-2xl py-3">
               <b>Buy with confidence</b>
