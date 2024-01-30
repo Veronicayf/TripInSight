@@ -7,32 +7,53 @@ import iconpeople from "../../assets/icons/peopleIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { addFav, getAllFav, removeFav } from "../../redux/userStore/usersActions";
+import {
+  addFav,
+  getAllFav,
+  removeFav,
+} from "../../redux/userStore/usersActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
-  const profile = useSelector((state) => state.user.userProfile);
-  //const places = tourDetail.capacity - tourDetail.subscription;
-
-  //favs
   const favsUser = useSelector((state) => state.user.favorites);
   const favsTourIds = favsUser.map((fav) => fav.tourId);
   const tourFav = favsTourIds.includes(tourDetail.id);
   const [isFav, setIsFav] = useState(true);
-  //console.log('favsss', tourFav);
 
   const handleAddToCart = () => {
     try {
-      dispatch(addTourCart(tourDetail));
-      
-      Swal.fire({
-        icon: "success",
-        title: "Product added to cart!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      // Retrieve the cart from local storage
+      const cartFromStorage = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Check if the tour is already in the cart
+      const isTourInCart = cartFromStorage.some(
+        (item) => item.id === tourDetail.id
+      );
+
+      if (isTourInCart) {
+        // Display a SweetAlert indicating that the tour is already in the cart
+        Swal.fire({
+          icon: "warning",
+          title: "Tour already in cart!",
+          text: "You cannot add the same tour to the cart again.",
+        });
+      } else {
+        // Dispatch the action to add the tour to the cart
+        dispatch(addTourCart(tourDetail));
+
+        // Update local storage with the updated cart
+        const updatedCart = [...cartFromStorage, tourDetail];
+        localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+        Swal.fire({
+          icon: "success",
+          title: "Product added to cart!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
     } catch (error) {
       console.error("Error adding product to cart:", error);
 
@@ -44,6 +65,7 @@ const Buysection = ({ tour }) => {
     }
   };
 
+  console.log(JSON.parse(localStorage.getItem("cart")));
   const handleScroll = () => {
     const offset = window.scrollY;
 
@@ -75,7 +97,6 @@ const Buysection = ({ tour }) => {
   };
 
   useEffect(() => {
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -134,12 +155,12 @@ const Buysection = ({ tour }) => {
             {tourFav && isFav ? (
               <div className="flex flex-row justify-center items-center">
                 <div className=" bg-white rounded-full flex justify-center items-end h-14 w-14">
-                <span className="material-symbols-outlined text-red-500 text-5xl">
-                  favorite
-                </span>
+                  <span className="material-symbols-outlined text-red-500 text-5xl">
+                    favorite
+                  </span>
                 </div>
-                  {/* <img className="h-10 w-10 rounded-full bg-red-600" src={iconFav} alt="icon" /> */}
-                
+                {/* <img className="h-10 w-10 rounded-full bg-red-600" src={iconFav} alt="icon" /> */}
+
                 {/* <b className="ml-2">In your favorites!</b> */}
               </div>
             ) : (
