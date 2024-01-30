@@ -5,7 +5,7 @@ import { addFavReducer, getAllFavsReducer, getAllUsers, getPurchasedByIdReducer,
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
     let { data } = await axios(
-      `https://tripinsight.onrender.com/user/all?page=${page}&pagesize=${pagesize}`
+      `http://localhost:4000/user/all?page=${page}&pagesize=${pagesize}`
     );
     return dispatch(getAllUsers(data));
   };
@@ -15,7 +15,7 @@ export const loggedUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(
-        "https://tripinsight.onrender.com/user",
+        "http://localhost:4000/user",
         user
       );
       dispatch(loggedUserReducer(response.data));
@@ -30,7 +30,7 @@ export const loggedUser = (user) => {
 export const getUserId = (id) => {
   return async (dispatch) => {
     let { data } = await axios.get(
-      `https://tripinsight.onrender.com/user/getuser/${id}`
+      `http://localhost:4000/user/getuser/${id}`
     );
     return dispatch(getUserDetail(data));
   };
@@ -40,7 +40,7 @@ export const updateUser = (userData) => {
   return async (dispatch) => {
     try {
       let response = await axios.put(
-        "https://tripinsight.onrender.com/user/updateuser",
+        "http://localhost:4000/user/updateuser",
         userData
       );
       return dispatch(updateUserReducer(response.data));
@@ -54,7 +54,7 @@ export const addFav = (tourId, userId) => {
   return async (dispatch) => {
     try {
       let response = await axios.put(
-        "https://tripinsight.onrender.com/user/addfavorite",
+        "http://localhost:4000/user/addfavorite",
         { tourId, userId }
       );
       return dispatch(addFavReducer(response.data));
@@ -65,7 +65,7 @@ export const addFav = (tourId, userId) => {
 };
 
 export const removeFav = (tourId, userId) => {
-  const url = "https://tripinsight.onrender.com/user/deletefavoritetour";
+  const url = "http://localhost:4000/user/deletefavoritetour";
   const deleteFav = { tourId, userId };
   return async (dispatch) => {
    try { 
