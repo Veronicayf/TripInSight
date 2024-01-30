@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//const userdetail = localStorage.getItem('user-detail') !== null ? JSON.parse(localStorage.getItem('user-detail')) : {};
+//const favorites = localStorage.getItem('fav-user') !== null ? JSON.parse(localStorage.getItem('fav-user')) : [];
 
 export const userSlice = createSlice({
   name: "user",
   initialState: {
     users: [],
-    userProfile: {}, //userdetail,  // //detail/profile, userdetail,
-    favorites: [],
+    userProfile: {},
+    favorites: [], //favorites,
   },
   reducers: {
     getAllUsers: (state, action) => {
@@ -37,8 +37,8 @@ export const userSlice = createSlice({
       console.log('removeFavReducer:', action.payload);
     },
     getAllFavsReducer: (state, action) => {
-      //console.log('aaaa', action);
-      state.favorites = [...action.payload]
+      state.favorites = [...action.payload];
+      //localStorage.setItem("fav-user", JSON.stringify(state.favorites));
     }
   },
 });

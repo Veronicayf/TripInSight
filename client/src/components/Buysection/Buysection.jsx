@@ -7,7 +7,7 @@ import iconpeople from "../../assets/icons/peopleIcon.png";
 import { addTourCart } from "../../redux/tourStore/toursActions";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { addFav, removeFav } from "../../redux/userStore/usersActions";
+import { addFav, getAllFav, removeFav } from "../../redux/userStore/usersActions";
 
 const Buysection = ({ tour }) => {
   const [isSticky, setIsSticky] = useState(false);
@@ -26,7 +26,7 @@ const Buysection = ({ tour }) => {
   const handleAddToCart = () => {
     try {
       dispatch(addTourCart(tourDetail));
-
+      
       Swal.fire({
         icon: "success",
         title: "Product added to cart!",
@@ -75,12 +75,13 @@ const Buysection = ({ tour }) => {
   };
 
   useEffect(() => {
+
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isFav]);
 
   return (
     <div

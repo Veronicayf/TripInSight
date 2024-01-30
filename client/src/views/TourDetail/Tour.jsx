@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // <-- Components -->
+import { getAllFav } from "../../redux/userStore/usersActions";
 import { getTourId } from "../../redux/tourStore/toursActions";
 import TourInfoItem from "../../components/TourInfoItem/TourInfoItem";
 import Buysection from "../../components/Buysection/Buysection";
@@ -22,8 +23,10 @@ import iconPhoto from "../../assets/icons/photosIcon.png";
 import guidesIcon from "../../assets/icons/guidesIcon.png"
 
 const Tour = () => {
+  const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
   const guideDetail = useSelector((state) => state.guide.detail);
+  const profile = useSelector((state) => state.user.userProfile);
 
   const initialDate = new Date(tourDetail.initialDate);
   const endDate = new Date(tourDetail.endDate);
@@ -33,7 +36,6 @@ const Tour = () => {
     differenceInMilliseconds / (1000 * 60 * 60 * 24)
   );
 
-  //const availablePlaces = tourDetail.places;
 
   const scrollToSection = (event, sectionId) => {
     event.preventDefault();
@@ -44,6 +46,12 @@ const Tour = () => {
       targetSection.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
+
+  useEffect(() => {
+    if(tourDetail && profile) {
+    dispatch(getAllFav(profile.id));
+  }
+  }, [tourDetail, profile])
 
   return (
     <main className="font-Nunito">
