@@ -1,18 +1,10 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-// <-- Components -->
 import { getAllFav } from "../../redux/userStore/usersActions";
-import { getTourId } from "../../redux/tourStore/toursActions";
 import TourInfoItem from "../../components/TourInfoItem/TourInfoItem";
 import Buysection from "../../components/Buysection/Buysection";
 import PhotoSection from "../../components/PhotoSection/PhotoSection";
 import GuideSection from "../../components/TourDetailGuideSection/GuideSection";
-import ImangeProvisoria1 from "../../assets/img/ciervo1.jpg";
-
-// <-- Icons -->
 import iconDay from "../../assets/icons/dayIcon.png";
 import iconCalendar from "../../assets/icons/calendarIcon.png";
 import iconpeople from "../../assets/icons/peopleIcon.png";
@@ -20,7 +12,7 @@ import iconplace from "../../assets/icons/placeIcon.png";
 import iconTourDetail from "../../assets/icons/tourDetailicon.png";
 import IconIncludes from "../../assets/icons/includesIcon.png";
 import iconPhoto from "../../assets/icons/photosIcon.png";
-import guidesIcon from "../../assets/icons/guidesIcon.png"
+import guidesIcon from "../../assets/icons/guidesIcon.png";
 
 const Tour = () => {
   const dispatch = useDispatch();
@@ -30,28 +22,24 @@ const Tour = () => {
 
   const initialDate = new Date(tourDetail.initialDate);
   const endDate = new Date(tourDetail.endDate);
-
   const differenceInMilliseconds = endDate - initialDate;
   const differenceInDays = Math.ceil(
     differenceInMilliseconds / (1000 * 60 * 60 * 24)
   );
 
-
   const scrollToSection = (event, sectionId) => {
     event.preventDefault();
-
     const targetSection = document.querySelector(sectionId);
-
     if (targetSection) {
       targetSection.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   };
 
   useEffect(() => {
-    if(tourDetail && profile) {
-    dispatch(getAllFav(profile.id));
-  }
-  }, [tourDetail, profile])
+    if (tourDetail && profile) {
+      dispatch(getAllFav(profile.id));
+    }
+  }, [tourDetail, profile]);
 
   return (
     <main className="font-Nunito">
@@ -64,12 +52,12 @@ const Tour = () => {
         />
       </section>
       {/*-------------- Info Del Tour --------------*/}
-      <section className="flex px-4 w-3/4 mt-2">
+      <section className="flex px-4 w-full lg:w-3/4 mt-2">
         <div className="flex items-center justify-center">
           <h3 className="text-4xl">{tourDetail.nameTour}</h3>
         </div>
       </section>
-      <section className="px-4 pt-8 flex w-3/4">
+      <section className="px-4 pt-8 flex w-full lg:w-3/4">
         <div className="flex w-1/2">
           <ul>
             <TourInfoItem
@@ -96,13 +84,10 @@ const Tour = () => {
           </ul>
         </div>
       </section>
-      {/*-------------- BuySection --------------*/}
-      <section>
-        <Buysection tour={tourDetail} />
-      </section>
+      
       {/*-------------- Info Del Tour --------------*/}
       {/*-------------- Page Nav Bar--------------*/}
-      <section className="px-4 flex w-3/4 h-14 bg-seconday-text justify-around items-center rounded-full ml-4">
+      <section className="px-4 flex w-full lg:w-3/4 h-14 bg-seconday-text justify-around items-center rounded-full ">
         <div className="">
           <a
             href="#description"
@@ -134,7 +119,7 @@ const Tour = () => {
       {/*-------------- Page Nav Bar--------------*/}
 
       {/*-------------- Tour Detail --------------*/}
-      <section id="description" className="flex-col px-4 w-3/4">
+      <section id="description" className="flex-col px-4 w-full lg:w-3/4">
         <div className="flex items-center">
           <i className="h-12 content-center">
             <img className="h-10 w-10" src={iconTourDetail} alt="Tour Detail" />
@@ -148,7 +133,7 @@ const Tour = () => {
       {/*-------------- Tour Detail --------------*/}
 
       {/*-------------- Second Image --------------*/}
-      <section className=" w-3/4 px-4 flex justify-center">
+      <section className="w-full lg:w-3/4 px-4 flex justify-center">
         {tourDetail && tourDetail.photos && tourDetail.photos.length > 0 && (
           <img
             className=" h-[38rem] rounded-3xl my-4"
@@ -158,7 +143,7 @@ const Tour = () => {
         )}
       </section>
       {/*-------------- Detail tour --------------*/}
-      <section className=" w-3/4">
+      <section className=" w-full lg:w-3/4">
         <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         <div className=" w-full flex h-16">
           <div className="w-1/3 flex justify-center text-lg">
@@ -242,15 +227,19 @@ const Tour = () => {
         <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
       </section>
       {/*-------------- Photos tour --------------*/}
-      <section id="photos" className="flex-col px-4 w-3/4">
+      <section id="photos" className="flex-col px-4 w-full lg:w-3/4">
         <PhotoSection
           icon={iconPhoto}
           title="Photos"
           images={tourDetail.photos || []}
         />
       </section>
+      {/*-------------- BuySection --------------*/}
+      <section className="">
+        <Buysection tour={tourDetail} />
+      </section>
       {/*-------------- Guide Section --------------*/}
-      <section id="guide" className="flex-col px-4">
+      <section id="guide" className="flex-col px-4 w-full lg:w-3/4">
         <GuideSection
           icon={iconTourDetail}
           title="Guide"
