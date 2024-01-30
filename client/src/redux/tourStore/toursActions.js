@@ -11,6 +11,7 @@ import {
   cartTotalReducer,
   removeFromCartReducer,
   cartQuantityReducer,
+  clearCartReducer,
 } from "./toursSlice";
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
@@ -118,7 +119,11 @@ export const removeTourFromCartAction = (tour) => {
     dispatch(removeFromCartReducer(tour));
   };
 };
-
+export const clearCart = (tour) => {
+  return (dispatch) => {
+    dispatch(clearCartReducer(tour));
+  };
+};
 export const cartTotal = (price) => {
   return (dispatch) => {
     dispatch(cartTotalReducer(price));
