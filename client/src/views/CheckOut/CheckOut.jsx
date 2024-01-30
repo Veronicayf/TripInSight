@@ -9,7 +9,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 const Checkout = () => {
   const dispatchACT = useDispatch();
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-  const [currency, setCurrency] = useState("DEFAULT");
+  const [currency, setCurrency] = useState(options.currency);
   const [buttonKey, setButtonKey] = useState(0);
   const price = useSelector((state) => state.tour.cartTotal);
   const cart = useSelector((state) => state.tour.addCart);
@@ -74,13 +74,13 @@ const Checkout = () => {
 
   const onApproveOrder = (data, actions) => {
     return actions.order.capture().then((details) => {
-      const name = details.payer.name.given_name;
-
+      /* const name = details.payer.name.given_name;
+       */
       // Use Sweetalert instead of alert
       Swal.fire({
-        title: `Transaction completed by ${name}`,
+        title: "Transaction completed!",
         icon: "success",
-        showConfirmButton: false,
+        showConfirmButton: true,
         timer: 2000, // Set the duration of the success message
       });
 
@@ -99,11 +99,14 @@ const Checkout = () => {
   }, [currency]); */
 
   return (
-    <div className="checkout flex items-center justify-center min-h-screen text-center z-0">
+    <div className="checkout flex items-center justify-center min-h-screen text-center z-0 shadow-md rounded-md">
       {isPending ? (
         <p>LOADING...</p>
       ) : (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 ">
+          <label className="block mb-2 font-bold text-lg">
+            Choose your preferred currency:
+          </label>
           <select
             value={currency}
             onChange={onCurrencyChange}
@@ -112,6 +115,15 @@ const Checkout = () => {
             <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
+          <div className="flex flex-row items-center justify-center mb-2">
+            <label className="block font-bold text-lg">Total</label>
+            <label className="text-primary mx-1 block font-bold text-lg">
+              amount:
+            </label>
+          </div>
+          <p className="text-xl font-bold mb-4">
+            {price} {currency}
+          </p>
 
           <div className="flex items-center justify-center">
             {/* Surround PayPalButtons with a container for centering */}
@@ -125,6 +137,32 @@ const Checkout = () => {
               />
             </div>
           </div>
+          <button
+            className="bg-red-500 text-white py-2 px-4 rounded"
+            onClick={() => {
+              // Show confirmation alert
+              Swal.fire({
+                title: "Cancel Purchase",
+                text: "Are you sure you want to cancel the purchase? This will delete everything in your cart.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!",
+                cancelButtonText: "No, go back",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Clear the cart
+                  dispatchACT(clearCart());
+
+                  // Redirect the user to the home page
+                  window.location.href = "/";
+                }
+              });
+            }}
+          >
+            Cancel Purchase
+          </button>
         </div>
       )}
     </div>
