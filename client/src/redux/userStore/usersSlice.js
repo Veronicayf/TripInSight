@@ -42,7 +42,7 @@ export const userSlice = createSlice({
       //localStorage.setItem("fav-user", JSON.stringify(state.favorites));
     },
     getPurchasedByIdReducer: (state, action) => {
-      state.purchased = [...action.payload]
+      state.purchased = [...state.purchased, action.payload]
     }
   },
 });
