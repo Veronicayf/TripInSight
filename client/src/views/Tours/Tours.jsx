@@ -34,8 +34,15 @@ const ToursList = () => {
           <b>Our </b>
           <b className="text-primary"> Tours </b>
         </div>
-        <div className="flex lg:flex-row flex-col lg:justify-center my-3 gap-3 px-8">
-        <FilterContinent className="order-1" />
+        <div className="flex flex-col lg:hidden px-4">
+          <div className=" flex justify-center py-4git gap-4">
+            <FilterContinent/>
+            <PriceOrder/>
+          </div>
+          <FilterTags />
+        </div>
+        <div className="hidden lg:flex lg:flex-row flex-col lg:justify-center my-3 gap-3 px-8">
+        <FilterContinent/>
         <FilterTags />
         <PriceOrder/>
         </div>
