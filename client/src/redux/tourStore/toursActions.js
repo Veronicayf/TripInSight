@@ -15,6 +15,7 @@ import {
   updateTourReducer,
   deleteTourReducer,
   updateStatusReducer,
+  addReviewReducer,
 } from "./toursSlice";
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
@@ -167,5 +168,14 @@ export const updateStatus = (idTour, status) => {
       `${URL}/tours/status`, {idTour, status}
     );
     return dispatch(updateStatusReducer(data));
+  };
+};
+
+export const addReview = (idTour,idUser,review) =>{
+  return async(dispatch ) => {
+    let {data} = await axios.post (
+      `${URL}/reviews`,{idTour,idUser,review}
+    )
+    return dispatch(addReviewReducer(data))
   };
 };
