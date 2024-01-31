@@ -110,7 +110,7 @@ const Buysection = ({ tour }) => {
 
   return (
     <div
-      className={`fixed top-1/2 right-3 transform -translate-y-1/2 bg-primary text-white w-1/4 border border-seconday-text rounded-[50px] shadow-md transition-transform duration-300 ${
+      className={` relative lg:fixed top-1/3 right-3 transform -translate-y-1/2 bg-primary text-white w-fulllg:w-1/4 border border-seconday-text rounded-[50px] shadow-md transition-transform duration-300 ${
         isSticky ? "translate-y-0" : ""
       }`}
     >

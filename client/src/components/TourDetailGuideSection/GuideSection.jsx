@@ -2,7 +2,7 @@ import React from 'react'
 
 const GuideSection = ({ icon, title, guideName, guideImage, guideDescription}) => {
     return (
-        <section id='guide' className='flex-col px-4 w-3/4'>
+        <section id='guide' className='flex-col px-4 w-full lg:w-3/4'>
             <div className='flex items-center mb-4'>
             <i className='h-12 content-center'>
                 <img className='h-10 w-10' src={icon} alt={title} />

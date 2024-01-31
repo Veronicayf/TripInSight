@@ -56,14 +56,16 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div className="flex flex-col items-center relative">
+      <div className="flex flex-col items-center  relative">
         <img
-          className="rounded-full size-16 cursor-pointer"
-          src={profile.image}
+
+          className=" flex rounded-full size-16 cursor-pointer"
+          src={user.picture}
+
           alt={user.name}
           onClick={toggleMenu}
         />
-        <h2>{user.name}</h2>
+        <h2 className="hidden lg:flex">{user.name}</h2>
         {/* <p>{user.email}</p> */}
         {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
       </div>
