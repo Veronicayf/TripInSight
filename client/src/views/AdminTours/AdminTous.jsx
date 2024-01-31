@@ -11,10 +11,10 @@ const AdminTous = () => {
   const allTours = useSelector((state) => state.tour.tours);
   const dispatch = useDispatch();
 
-
-  useEffect(() => {
+ useEffect(() => {
     dispatch(getAllT());
-  }, [dispatch]);
+  }, [dispatch, allTours]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage] = useState(10);
 
