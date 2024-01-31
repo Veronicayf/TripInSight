@@ -205,7 +205,7 @@ const Tour = () => {
         </div>
         <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         {/* Includes Section */ }
-        <section className="w-full flex lg:flex-row ml-4 mt-6">
+        <section className="w-full flex lg:flex-row mt-6">
       <div className="text-lg text-center flex justify-center lg:w-1/3 lg:text-left mb-4">
         <b>Included in the price</b>
       </div>
