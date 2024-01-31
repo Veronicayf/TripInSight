@@ -62,13 +62,12 @@ export const updateGuide = (guideData) => {
 };
 
 export const deleteGuide = (guideId) => {
-  const url = `${URL}/guides/${guideId}`;
-  const deleteG = { guideId };
+  // const url = `${URL}/guides`;
+  // const deleteG = { guideId };
   return async (dispatch) => {
     try {
-      let { data } = await axios.delete(url, {
-        data: deleteG
-      });
+      console.log('id action', guideId);
+      let { data } = await axios.delete(`${URL}/guides/${guideId}`);
       return dispatch(deleteGuideReducer(data));
     } catch (error) {
       console.log(error.data);
