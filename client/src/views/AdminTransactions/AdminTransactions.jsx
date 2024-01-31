@@ -125,7 +125,7 @@ const AdminTransactions = () => {
           <div className="px-4">
             
             <div className=" w-full">
-                <TransactionList transactions={transactionsData} />
+                <TransactionList/>
             </div>
             <Pagination
             itemPerPage={itemPerPage}
