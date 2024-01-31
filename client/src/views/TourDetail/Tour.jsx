@@ -255,7 +255,7 @@ const Tour = () => {
         />
       </section>
       {/*-------------- BuySection --------------*/}
-      <section className="">
+      <section className="px-4 pb-4 lg:px-0">
         <Buysection tour={tourDetail} />
       </section>
       {/*-------------- Guide Section --------------*/}
