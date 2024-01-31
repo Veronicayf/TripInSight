@@ -9,6 +9,7 @@ import {
   updateGuideReducer,
 } from "./guidesSlice";
 
+
 const URL = "http://localhost:4000"; //"https://tripinsight.onrender.com"
 
 export const getAllG = (page, pageSize) => {

@@ -51,7 +51,7 @@ const TourCard = ({ tour }) => {
 
           {isHovering && (
             <p className="text-gray-800">
-              <strong>Capacity:</strong> {tour.capacity}
+              <strong>Capacity:</strong> {tour.places}
             </p>
           )}
           <p className="text-gray-800">
