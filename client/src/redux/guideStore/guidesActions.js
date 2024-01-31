@@ -3,7 +3,7 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { deleteGuideReducer, getAllGuides, getGuideById, postGuideReducer, updateGuideReducer } from './guidesSlice'
 
-const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
+const URL =   "http://localhost:4000"  // "https://tripinsight.onrender.com"
 
 
 export const getAllG = (page, pageSize) => {
