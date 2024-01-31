@@ -19,7 +19,7 @@ const SearchBar = () => {
     }
 
     return (
-        <div className='flex flex-row items-center text-black'>
+        <div className=' hidden lg:flex flex-row items-center text-black'>
             <input className='rounded-lg p-1' type="search" placeholder="Search tour..." onChange={handleChange}/>
             {/* <img src={search} alt='Search Tour'/> */}
             
