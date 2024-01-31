@@ -1,12 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
 import iconmenu from "../../assets/icons/IconMenuVertical.png";
 import DropMenu from "../DropMenu/DropMenu";
+import { useDispatch } from "react-redux";
+import { deleteGuide } from "../../redux/guideStore/guidesActions";
 
 const GuideItem = ({ guideInfo }) => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
+  const dispatch = useDispatch();
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
+    console.log('me ejecute');
+    Swal.fire({
+      title: `Do you want to eliminate ${guideInfo.forename} from "guides"?`,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        console.log('idddddddd', guideInfo.id);
+        dispatch(deleteGuide(guideInfo.id));
+        Swal.fire("Saved changes!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
     
   }
 
@@ -64,9 +85,9 @@ const GuideItem = ({ guideInfo }) => {
           </button>
           <button
             className="h-10 w-10 flex justify-center items-center bg-primary rounded-full hover:bg-btn-hover"
-            onClick={() => handleDelete()}
+            onClick={(e) => handleDelete(e)}
           >
-            <span class="material-symbols-outlined text-white">delete</span>
+            <span className="material-symbols-outlined text-white">delete</span>
           </button>
         </div>
       </div>
