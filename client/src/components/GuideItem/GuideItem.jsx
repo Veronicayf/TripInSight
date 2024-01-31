@@ -3,11 +3,14 @@ import iconmenu from "../../assets/icons/IconMenuVertical.png";
 import DropMenu from "../DropMenu/DropMenu";
 import { useDispatch } from "react-redux";
 import { deleteGuide } from "../../redux/guideStore/guidesActions";
+import { useNavigate } from "react-router-dom";
+import { getGuideId } from "../../redux/guideStore/guidesActions";
 
 const GuideItem = ({ guideInfo }) => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleDelete = (e) => {
     e.preventDefault();
@@ -17,7 +20,7 @@ const GuideItem = ({ guideInfo }) => {
       showDenyButton: true,
       showCancelButton: true,
       confirmButtonText: "Yes",
-      denyButtonText: `No`
+      denyButtonText: `No`,
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
@@ -27,12 +30,16 @@ const GuideItem = ({ guideInfo }) => {
         Swal.fire("Changes are not saved", "", "info");
       }
     });
-  }
+  };
 
   const handleEdit = (e) => {
-      e.preventDefault();
-  }
-
+    e.preventDefault();
+    const guideId = guideInfo.id;
+    console.log(guideId);
+    dispatch(getGuideId(guideInfo.id));
+    // Navigate to the update form for the specific guide using useNavigate
+    navigate(`/admin/updateguide/${guideId}`);
+  };
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -79,7 +86,6 @@ const GuideItem = ({ guideInfo }) => {
           >
             <span className="material-symbols-outlined text-white">delete</span>
           </button>
-          
         </div>
       </div>
     </div>

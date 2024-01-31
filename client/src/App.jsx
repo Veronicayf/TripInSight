@@ -40,6 +40,7 @@ import ReviewFavorites from "./views/ReviewFavorites/ReviewFavorites";
 import AdminTransactions from "./views/AdminTransactions/AdminTransactions";
 import AdminUsers from "./views/AdminUsers/AdminUsers";
 import AdminReviews from "./views/AdminReviews/AdminReviews";
+import UpdateGuide from "./views/UpdateGuide/UpdateGuide";
 
 const initialOptions = {
   "client-id":
@@ -86,10 +87,12 @@ const App = () => {
       navigate("/login");
     }
 
-    // if (isOnAdminRoute && !userProfile.isAdmin) {
-    //   // Redirect to a different page or display a message
-    //   navigate("/"); // Redirect to the home page in this example
-    // }
+
+    if (isOnAdminRoute && !userProfile.isAdmin) {
+      // Redirect to a different page or display a message
+      navigate("/"); // Redirect to the home page in this example
+    }
+
   }, [
     isAuthenticated,
     userProfile.isBanned,
@@ -123,6 +126,7 @@ const App = () => {
           <Route path="/admin/transactions" element={<AdminTransactions />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/review" element={<AdminReviews />} />
+          <Route path="/admin/updateguide/:id" element={<UpdateGuide />} />
         </>
 
         <Route path="/banned" element={<BannedPage />} />
