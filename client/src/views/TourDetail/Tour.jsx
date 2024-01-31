@@ -5,7 +5,6 @@ import TourInfoItem from "../../components/TourInfoItem/TourInfoItem";
 import Buysection from "../../components/Buysection/Buysection";
 import PhotoSection from "../../components/PhotoSection/PhotoSection";
 import GuideSection from "../../components/TourDetailGuideSection/GuideSection";
-import iconDay from "../../assets/icons/dayIcon.png";
 import iconCalendar from "../../assets/icons/calendarIcon.png";
 import iconpeople from "../../assets/icons/peopleIcon.png";
 import iconplace from "../../assets/icons/placeIcon.png";
@@ -13,6 +12,7 @@ import iconTourDetail from "../../assets/icons/tourDetailicon.png";
 import IconIncludes from "../../assets/icons/includesIcon.png";
 import iconPhoto from "../../assets/icons/photosIcon.png";
 import guidesIcon from "../../assets/icons/guidesIcon.png";
+import { styles } from "../../components/styles";
 
 const Tour = () => {
   const dispatch = useDispatch();
@@ -61,24 +61,35 @@ const Tour = () => {
         <div className="flex w-1/2">
           <ul>
             <TourInfoItem
-              icon={iconDay}
+              icon={<span className={styles.tourItem}>
+              schedule
+              </span>}
               label={"Duration: " + differenceInDays + " days."}
             />
             <TourInfoItem
-              icon={iconCalendar}
+              icon={<span className={styles.tourItem}>
+              event
+              </span>}
               label={"Initial Date: " + tourDetail.initialDate}
             />
             <TourInfoItem
-              icon={iconCalendar}
+              icon={<span className={styles.tourItem}>
+              event
+              </span>}
               label={" End Date: " + tourDetail.endDate}
             />
           </ul>
         </div>
         <div className="flex w-1/2">
           <ul>
-            <TourInfoItem icon={iconpeople} label={tourDetail.capacity} />
+            <TourInfoItem icon={<span className={styles.tourItem}>
+            groups
+            </span>} 
+            label={tourDetail.capacity} />
             <TourInfoItem
-              icon={iconplace}
+              icon={<span className={styles.tourItem}>
+              location_on
+              </span>}
               label={tourDetail.city + ", " + tourDetail.country}
             />
           </ul>
@@ -151,7 +162,9 @@ const Tour = () => {
           </div>
           <div className="w-2/3 flex text-lg">
           <TourInfoItem
-              icon={iconplace}
+              icon={<span className={styles.tourItem}>
+              location_on
+              </span>}
               label={tourDetail.city + ", " + tourDetail.country + ", " + tourDetail.continent}
             />
           </div>
@@ -163,11 +176,15 @@ const Tour = () => {
           </div>
           <div className="w-2/3 flex text-lg">
           <TourInfoItem
-              icon={iconCalendar}
+              icon={<span className={styles.tourItem}>
+              event
+              </span>}
               label={"Initial Date: " + tourDetail.initialDate}
             />
             <TourInfoItem
-              icon={iconCalendar}
+              icon={<span className={styles.tourItem}>
+              event
+              </span>}
               label={"End Date: " + tourDetail.endDate}
             />
           </div>
@@ -179,12 +196,15 @@ const Tour = () => {
           </div>
           <div className="w-2/3 flex text-lg">
           <TourInfoItem
-              icon={guidesIcon}
+              icon={<span className={styles.tourItem}>
+              hiking
+              </span>}
               label={tourDetail.equipment}
             />
           </div>
         </div>
         <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
+        {/* Includes Section */ }
         <div className=" w-full flex">
           <div className="w-1/3 flex justify-center text-lg">
             <b>Included in the price</b>
