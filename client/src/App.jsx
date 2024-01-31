@@ -86,7 +86,7 @@ const App = () => {
       navigate("/login");
     }
 
-    if (isOnAdminRoute && !userProfile.isAdmin) {
+    if (isOnAdminRoute && userProfile.isAdmin) {
       // Redirect to a different page or display a message
       navigate("/"); // Redirect to the home page in this example
     }
@@ -113,7 +113,7 @@ const App = () => {
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guides/:id" element={<GuideDetail />} />
         <Route path="/cart" element={<Cart />} />
-        {userProfile.isAdmin && (
+
           <>
             <Route path="/admin/" element={<AdminPanel />} />
             <Route path="/admin/createtour" element={<CreateTour />} />
@@ -124,7 +124,7 @@ const App = () => {
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/review" element={<AdminReviews />} />
           </>
-        )}
+
         <Route path="/banned" element={<BannedPage />} />
 
         <Route
