@@ -3,18 +3,21 @@ import Carousel from '../../components/Carrusel/Carousel';
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addReview } from '../../redux/tourStore/toursActions';
 
 const ReviewFavorites = () => {
   const allTours = useSelector((state) => state.tour.tours);
-  console.log(allTours);
+  const profile = useSelector((state) => state.user.userProfile);
+  const dispatch = useDispatch()
+
   const [selectedTour, setSelectedTour] = useState('');
   const [comment, setComment] = useState('');
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes usar selectedTour y comment para enviar la reseña.
-    // Aca va la action XDxdxdxd
+    console.log("info de review",selectedTour,profile.id,comment);
+    dispatch(addReview(selectedTour,profile.id,comment))
   };
 
   return (
