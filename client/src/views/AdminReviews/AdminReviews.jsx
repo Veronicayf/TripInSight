@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SideBar from '../../components/SideBar/SideBar'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllReviews } from '../../redux/tourStore/toursActions'
 
 const AdminReviews = () => {
+  const review = useSelector((state) => state.tour.reviews)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getAllReviews());
+  }, [review]) 
+
+  
+
+
   return (
     <div className='flex flex-row font-Poppins w-full h-full'>
         <SideBar/>
@@ -23,7 +34,20 @@ const AdminReviews = () => {
             </div>
           </div>
           <div>
-            lista de comentarios
+          {review && review.length > 0 ? (
+            review.map((rev, index) => (
+              <div key={index}>
+                <p>{rev.review}</p>
+              </div>
+            ))
+            ): (
+              <div>
+                <p>No hay reviews</p>
+              </div>
+            )}
+            
+
+            
           </div>
         </div>
     </div>

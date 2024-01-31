@@ -111,6 +111,9 @@ export const tourSlice = createSlice({
     },
     addReviewReducer:(state,action) =>{
       state.reviews =[...state.reviews, action.payload]
+    },
+    getAllReviewsReducer:(state,action) =>{
+      state.reviews = [...action.payload]
     }
   },
 });
@@ -132,6 +135,7 @@ export const {
   deleteTourReducer,
   updateStatusReducer,
   addReviewReducer,
+  getAllReviewsReducer,
 } = tourSlice.actions;
 
 export default tourSlice.reducer;
