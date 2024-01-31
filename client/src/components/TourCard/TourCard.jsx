@@ -1,11 +1,9 @@
-import { React } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTourId } from "../../redux/tourStore/toursActions";
-import { getTourById } from "../../redux/tourStore/toursSlice";
 import { getGuideId } from "../../redux/guideStore/guidesActions";
 import { getAllFav } from "../../redux/userStore/usersActions";
+import { Link, useNavigate } from "react-router-dom";
 
 const TourCard = ({ tour }) => {
   const profile = useSelector((state) => state.user.userProfile);
@@ -15,7 +13,6 @@ const TourCard = ({ tour }) => {
   const places = tour.capacity - tour.subscription;
   const showPlaces = places <= 3 && places > 0;
   const soldOut = places === 0;
-
 
   const handleMouseOver = () => {
     setIsHovering(true);
@@ -29,18 +26,18 @@ const TourCard = ({ tour }) => {
     e.preventDefault();
     dispatch(getTourId(tour.id));
     dispatch(getGuideId(tour.guideId));
-    dispatch(getAllFav(profile.id))
+    dispatch(getAllFav(profile.id));
     navigate(`/tours/${tour.nameTour}`);
   };
 
   return (
     <div className="relative">
-    <div
-      className=" w-60 h-[21rem] tourCard rounded-lg bg-white overflow-hidden shadow-md transition-transform transform hover:scale-105"
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
-      onClick={(e) => handleClick(e)}
-    >
+      <div
+        className="w-full md:w-60 h-[21rem] tourCard rounded-lg bg-white overflow-hidden shadow-md transition-transform transform hover:scale-105"
+        onMouseOver={handleMouseOver}
+        onMouseOut={handleMouseOut}
+        onClick={(e) => handleClick(e)}
+      >
         <img
           src={tour.image}
           alt={tour.nameTour}
@@ -61,17 +58,17 @@ const TourCard = ({ tour }) => {
             <strong>Price:</strong> ${tour.price}
           </p>
         </div>
-    </div>
-    {showPlaces && (
-          <div className="bg-primary text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
-            <div className="text-xl">{places} places</div>
-          </div>
-        )}
-    {soldOut && (
-          <div className="bg-red-600 text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
-            <div className="text-xl">Sold Out!</div>
-          </div>
-        )}
+      </div>
+      {showPlaces && (
+        <div className="bg-primary text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
+          <div className="text-xl">{places} places</div>
+        </div>
+      )}
+      {soldOut && (
+        <div className="bg-red-600 text-white rounded-br-lg rounded-tl-lg font-bold p-2 absolute top-5 left-[-30px] shadow-xl shadow-black">
+          <div className="text-xl">Sold Out!</div>
+        </div>
+      )}
     </div>
   );
 };
