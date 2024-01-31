@@ -1,7 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Pagination from "../Pagination/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPurchased } from "../../redux/userStore/usersActions";
 
-const TransactionList = ({ transactions }) => {
+const TransactionList = () => {
+  const dispatch = useDispatch();
+  const allPurchased = useSelector((state) => state.user.purchasedAll)
+
+  useEffect(() => {
+    dispatch(getAllPurchased());
+  }, [allPurchased])
 
   
   return (
@@ -16,14 +24,14 @@ const TransactionList = ({ transactions }) => {
             <div className=" w-1/6 flex justify-center"><b>Date</b></div>
         </div>
         <div className="flex flex-col w-full">
-        {transactions.map((transaction) => (
+        {allPurchased.map((transaction) => (
             <div key={transaction.id} className="flex flex-row w-full my-4">
             <div className=" w-2/6 flex justify-center items-center"><p>{transaction.id}</p></div>
             <div className=" w-1/6 flex justify-center items-center"><p>{transaction.status ? "Complete" : "Fail"}</p></div>
-            <div className=" w-2/6 flex justify-center items-center text-center"><p>{transaction.detail}</p></div>
-            <div className=" w-1/6 flex justify-center items-center"><p>${transaction.totalPrice.toFixed(2)}</p></div>
-            <div className=" w-1/6 flex justify-center items-center"><p>{transaction.buyer}</p></div>
-            <div className=" w-1/6 flex justify-center items-center"><p>{new Date(transaction.timestamp).toLocaleDateString()}</p></div>
+            <div className=" w-2/6 flex justify-center items-center text-center"><p>{transaction.tourName}</p></div>
+            <div className=" w-1/6 flex justify-center items-center"><p>${transaction.totalPrice}</p></div>
+            <div className=" w-1/6 flex justify-center items-center"><p>{transaction.userName}</p></div>
+            <div className=" w-1/6 flex justify-center items-center"><p>{new Date(transaction.createdAt).toLocaleDateString()}</p></div>
         </div>
         ))}
         </div>

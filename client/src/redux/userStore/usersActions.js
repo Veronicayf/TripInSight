@@ -107,7 +107,7 @@ export const getPurchesedById = (userId) => {
 export const subscribeUser = (email) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:4000/user/subscribe', { email });
+      const response = await axios.post(`${URL}/user/subscribe`, { email });
       if (response.status === 200) {
         dispatch(subscribeReducer(true));
       } else {
@@ -124,10 +124,11 @@ export const subscribeUser = (email) => {
 export const getAllPurchased = () => {
   return async (dispatch) => {
     try { 
-     let response = await axios.get(`${URL}/purchased/all?page=${page}&pagesize=${pagesize}`);
+     let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=10`);
      return dispatch(getAllPurchasedReducer(response.data));
    } catch(error) {
      console.log(error);
    }
   }
 };
+
