@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import logo from "./assets/img/logo.png";
 import "./App.css";
@@ -14,6 +15,7 @@ import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
 import AboutUs from "./views/AboutUs/AboutUs";
 import Cart from "./views/ShoppingCart/Cart";
+import BannedPage from "./views/BannedPage/BannedPage";
 import AdminPanel from "./views/AdminPanel/AdminPanel";
 import CreateTour from "./views/CreateTour/CreateTour";
 import CreateGuide from "./views/CreateGuide/CreateGuide";
@@ -50,6 +52,7 @@ const App = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.user.userProfile);
+  const navigate = useNavigate();
 
   const fetchUserId = () => {
     if (isAuthenticated && userProfile.id) {
@@ -76,11 +79,28 @@ const App = () => {
   }, [isAuthenticated, user]);
 
   const location = useLocation();
-  const isOnAdminRoute = location.pathname.startsWith("/admin");
+
+  const isOnAdminRoute = location.pathname.toLowerCase().startsWith("/admin");
+  useEffect(() => {
+    if (isAuthenticated && userProfile.isBanned) {
+      navigate("/login");
+    }
+
+    if (isOnAdminRoute && !userProfile.isAdmin) {
+      // Redirect to a different page or display a message
+      navigate("/"); // Redirect to the home page in this example
+    }
+  }, [
+    isAuthenticated,
+    userProfile.isBanned,
+    userProfile.isAdmin,
+    isOnAdminRoute,
+    navigate,
+  ]);
 
   return (
     <div>
-      {!isOnAdminRoute && <NavBar />}
+      {!isOnAdminRoute && !userProfile.isBanned && <NavBar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -93,14 +113,19 @@ const App = () => {
         <Route path="/tours/:id" element={<TourDetail />} />
         <Route path="/guides/:id" element={<GuideDetail />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/admin/" element={<AdminPanel />} />
-        <Route path="/admin/createtour" element={<CreateTour />} />
-        <Route path="/admin/createguide" element={<CreateGuide />} />
-        <Route path="/admin/viewTours" element={<AdminTous />} />
-        <Route path="/admin/viewGuides" element={<AdminGuides />} />
-        <Route path="/admin/transactions" element={<AdminTransactions />} />
-        <Route path="/admin/users" element={<AdminUsers />} />
-        <Route path="/admin/review" element={<AdminReviews />} />
+        {userProfile.isAdmin && (
+          <>
+            <Route path="/admin/" element={<AdminPanel />} />
+            <Route path="/admin/createtour" element={<CreateTour />} />
+            <Route path="/admin/createguide" element={<CreateGuide />} />
+            <Route path="/admin/viewTours" element={<AdminTous />} />
+            <Route path="/admin/viewGuides" element={<AdminGuides />} />
+            <Route path="/admin/transactions" element={<AdminTransactions />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/review" element={<AdminReviews />} />
+          </>
+        )}
+        <Route path="/banned" element={<BannedPage />} />
 
         <Route
           path="/checkout"
