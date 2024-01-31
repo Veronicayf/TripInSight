@@ -110,6 +110,7 @@ export const addTourCart = (tour) => {
       price: tour.price,
       equipment: tour.equipment,
       initialDate: tour.initialDate,
+      places: tour.places
     };
     dispatch(addTourCartReducer(cart));
   };
