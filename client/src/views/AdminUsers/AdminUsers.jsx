@@ -9,10 +9,10 @@ import { getUsers } from "../../redux/userStore/usersActions";
 
 const AdminUsers = () => {
 
-    const allUser = useSelector((state) => state.users);
+    const allUser = useSelector((state) => state.user.users);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getUsers(1,10));
+        dispatch(getUsers(1, 10));
       }, [dispatch]);
 
   const transactionsData = [
@@ -112,7 +112,7 @@ const AdminUsers = () => {
           </div>
           <div>
           {allUser && allUser.length > 0 ? (
-              allUser.map((user, index) => (
+              allUser?.map((user, index) => (
                 <UserList key={index} UserInfo={user} />
               ))
             ) : (
