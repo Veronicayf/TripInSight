@@ -5,9 +5,10 @@ import { deleteGuideReducer, getAllGuides, getGuideById, postGuideReducer, updat
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
 
-export const getAllG = (page, pagesize) => {
+
+export const getAllG = (page, pageSize) => {
   return async (dispatch) => {
-    let json = await axios.get(`${URL}/guides?page=1&pagesize=10`); //?page=1&pagesize=10
+    let json = await axios.get(`${URL}/guides?page=1&pagesize=100`);
     return dispatch(getAllGuides(json.data));
   };
 };
