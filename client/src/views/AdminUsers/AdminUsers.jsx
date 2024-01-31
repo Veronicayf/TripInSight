@@ -10,10 +10,7 @@ import { getUsers } from "../../redux/userStore/usersActions";
 const AdminUsers = () => {
 
     const allUser = useSelector((state) => state.user.users);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getUsers(1, 10));
-      }, [dispatch]);
+
 
   const transactionsData = [
     {
