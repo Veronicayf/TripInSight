@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ImageProvisoria1 from "../../assets/img/ciervo1.jpg";
 import ImageProvisoria2 from "../../assets/img/paisaje1.jpg";
 import ImageProvisoria3 from "../../assets/img/paisaje2.jpg";
@@ -9,6 +9,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileView from "../../components/ProfileView/ProfileView";
 import TourCard from "../../components/TourCard/TourCard";
+import { getAllFav, getPurchesedById } from "../../redux/userStore/usersActions";
 
 const ticketData = [
   {
@@ -50,7 +51,9 @@ const ProfileFavs = () => {
   const favsUser = useSelector((state) => state.user.favorites);
   const tours = useSelector((state) => state.tour.tours);
   const favsTourIds = favsUser.map((fav) => fav.tourId);
-  const toursFavs = tours.filter((tour) => favsTourIds.includes(tour.id))
+  const toursFavs = tours.filter((tour) => favsTourIds.includes(tour.id));
+  //Compras del user.
+  const ticketData = useSelector((state) => state.user.purchased)
   
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
@@ -59,6 +62,14 @@ const ProfileFavs = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    if(tours && profile) {
+     dispatch(getAllFav(profile.id))
+     dispatch(getPurchesedById(profile.id))
+    }
+  }, [tours, profile])
+
   return (
     <div className="font-Nunito">
       <Carousel

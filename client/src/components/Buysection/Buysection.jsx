@@ -14,7 +14,7 @@ const Buysection = ({ tour }) => {
   const dispatch = useDispatch();
   const tourDetail = useSelector((state) => state.tour.detail);
   const profile = useSelector((state) => state.user.userProfile);
-  const places = tourDetail.capacity - tourDetail.subscription;
+  //const places = tourDetail.capacity - tourDetail.subscription;
 
   //favs
   const favsUser = useSelector((state) => state.user.favorites);
@@ -106,11 +106,11 @@ const Buysection = ({ tour }) => {
             <img className="h-10 w-10" src={iconpeople} alt="icon" />
           </i>
           <b className="text-2xl py-5 flex justify-center items-center">
-            Available places: {places}
+            Available places: {tourDetail.places}
           </b>
         </div>
         <div className="w-full">
-          {places === 0 ? (
+          {tourDetail.places === 0 ? (
             <b className="text-2xl py-5 bg-red-600 text-white italic flex justify-center items-center">
               SOLD OUT!
             </b>

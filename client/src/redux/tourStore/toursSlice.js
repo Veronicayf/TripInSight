@@ -27,6 +27,7 @@ export const tourSlice = createSlice({
     sortOrder: "asc",
     addCart: cart,
     cartTotal: price,
+    quantityCart: {},
   },
   reducers: {
     getAllTours: (state, action) => {
@@ -82,6 +83,21 @@ export const tourSlice = createSlice({
         JSON.stringify(state.addCart.map((item) => item))
       );
     },
+    clearCartReducer: (state) => {
+      // Clear the cart in the state
+      state.addCart = [];
+      state.cartTotal = 0;
+      state.quantityCart = {};
+
+      // Clear the cart in localStorage
+      localStorage.removeItem("cart");
+      localStorage.removeItem("cart-price");
+
+      // You may want to add logic here to clear other related data if needed
+    },
+    cartQuantityReducer: (state, action) => {
+      state.quantityCart = action.payload;
+    },
   },
 });
 
@@ -96,6 +112,8 @@ export const {
   addTourCartReducer,
   cartTotalReducer,
   removeFromCartReducer,
+  clearCartReducer,
+  cartQuantityReducer,
 } = tourSlice.actions;
 
 export default tourSlice.reducer;
