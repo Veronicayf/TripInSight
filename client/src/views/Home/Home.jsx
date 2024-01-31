@@ -26,6 +26,23 @@ const Home = () => {
   const dispatch = useDispatch();
   const subscribed = useSelector((state) => state.user.subscribed) //newLine
 
+    // Obtener la fecha actual
+  const currentDate = new Date();
+
+  // Crear una copia del array antes de ordenar
+  const sortedTours = [...allTours].sort((a, b) => {
+    const dateA = new Date(a.initialDate);
+    const dateB = new Date(b.initialDate);
+
+    const timeDiffA = Math.abs(dateA - currentDate);
+    const timeDiffB = Math.abs(dateB - currentDate);
+
+    return timeDiffA - timeDiffB;
+  });
+
+  // Obtener los 4 tours más cercanos
+  const upcomingTours = sortedTours.slice(0, 4);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(subscribeUser(email));
@@ -75,8 +92,8 @@ const Home = () => {
         </div>
 
         <div className="flex flex-wrap justify-around items-center w-full">
-          {allTours && allTours.length > 0 ? (
-            allTours.slice(0, 4).map((tour) => (
+          {upcomingTours && upcomingTours.length > 0 ? (
+            upcomingTours.slice(0, 4).map((tour) => (
               <div
                 key={tour.id}
                 className="w-full flex items-center justify-center sm:w-1/2 md:w-1/2 lg:w-1/6 xl:w-1/4 p-4"

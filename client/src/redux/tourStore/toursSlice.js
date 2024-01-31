@@ -28,6 +28,7 @@ export const tourSlice = createSlice({
     addCart: cart,
     cartTotal: price,
     quantityCart: {},
+    reviews:[]
   },
   reducers: {
     getAllTours: (state, action) => {
@@ -108,6 +109,12 @@ export const tourSlice = createSlice({
     updateStatusReducer: (state, action) => {
       state.tours = [...state.tours, action.payload]
     },
+    addReviewReducer:(state,action) =>{
+      state.reviews =[...state.reviews, action.payload]
+    },
+    getAllReviewsReducer:(state,action) =>{
+      state.reviews = [...action.payload]
+    }
   },
 });
 
@@ -126,7 +133,9 @@ export const {
   cartQuantityReducer,
   updateTourReducer,
   deleteTourReducer,
-  updateStatusReducer
+  updateStatusReducer,
+  addReviewReducer,
+  getAllReviewsReducer,
 } = tourSlice.actions;
 
 export default tourSlice.reducer;

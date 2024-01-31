@@ -15,6 +15,8 @@ import {
   updateTourReducer,
   deleteTourReducer,
   updateStatusReducer,
+  addReviewReducer,
+  getAllReviewsReducer,
 } from "./toursSlice";
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
@@ -169,3 +171,38 @@ export const updateStatus = (idTour, status) => {
     return dispatch(updateStatusReducer(data));
   };
 };
+
+export const addReview = (idTour,idUser,review) =>{
+  return async(dispatch ) => {
+    try {
+      let {data} = await axios.post (
+        `${URL}/reviews`,{idTour,idUser,review}
+      )
+      dispatch(addReviewReducer(data))
+      Swal.fire({
+        icon: "success",
+        title: "Review added!",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+
+    } catch (error) {
+      // Manejar errores de red u otros
+      console.error("Error to create tour:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Error to add review",
+        text: "Please try again later",
+      });
+    }
+  };
+};
+export const getAllReviews = () =>{
+  return async(dispatch) =>{
+    let {data} = await axios.get (
+      `${URL}/reviews`
+    )
+    dispatch(getAllReviewsReducer(data))
+  }
+}

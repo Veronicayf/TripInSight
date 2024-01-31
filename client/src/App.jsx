@@ -86,7 +86,7 @@ const App = () => {
       navigate("/login");
     }
 
-    if (isOnAdminRoute && !userProfile.isAdmin) {
+    if (isOnAdminRoute && userProfile.isAdmin) {
       // Redirect to a different page or display a message
       navigate("/"); // Redirect to the home page in this example
     }
