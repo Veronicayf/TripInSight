@@ -124,7 +124,7 @@ export const subscribeUser = (email) => {
 export const getAllPurchased = () => {
   return async (dispatch) => {
     try { 
-     let response = await axios.get(`${URL}/purchased/all?page=${page}&pagesize=${pagesize}`);
+     let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=10`);
      return dispatch(getAllPurchasedReducer(response.data));
    } catch(error) {
      console.log(error);
