@@ -16,7 +16,7 @@ const ProfileEdit = () => {
     image: "",
     idUser: profile.id,
   });
-  console.log(profile);
+  //console.log(profile);
 
   const [validationMessage, setValidationMessage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
@@ -33,39 +33,22 @@ const ProfileEdit = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-
-    if (name === "image") {
-      // Procesar la imagen seleccionada y mostrar la vista previa
-      const selectedImage = files[0];
-      if (selectedImage) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setImagePreview(reader.result);
-        };
-        reader.readAsDataURL(selectedImage);
-      }
-    }
-
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData({
+      ...formData,
       [name]: value,
-    }));
+    });
   };
 
   const handleImageUpload = (newImages) => {
     setImages([...images, ...newImages]);
+    setFormData({
+      ...formData,
+      image: newImages[0][0],  // Asignar la URL de la imagen al campo 'image'
+  });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!formData.nationality || !formData.birthDate || !formData.phoneNumber) {
-      setValidationMessage("Please complete all fields.");
-      return;
-    }
-
-    // Puedes acceder a las imágenes subidas en el estado 'images'
-    console.log("Imágenes subidas:", images);
 
     try {
       await dispatch(updateUser(formData));
@@ -148,7 +131,7 @@ const ProfileEdit = () => {
 
                 {images.map((image, index) => (
                   <div className=" flex flex-row justify-around items-center">
-                    {console.log(images)}
+                    {/* {console.log(images)} */}
                     <img
                       className="h-14"
                       key={index}

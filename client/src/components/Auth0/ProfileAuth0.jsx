@@ -59,7 +59,7 @@ const Profile = () => {
       <div className="flex flex-col items-center relative">
         <img
           className="rounded-full size-16 cursor-pointer"
-          src={user.picture}
+          src={profile.image}
           alt={user.name}
           onClick={toggleMenu}
         />
