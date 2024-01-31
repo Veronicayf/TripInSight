@@ -26,7 +26,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const subscribed = useSelector((state) => state.user.subscribed) //newLine
 
-    // Obtener la fecha actual
+  // Obtener la fecha actual
   const currentDate = new Date();
 
   // Crear una copia del array antes de ordenar
@@ -144,54 +144,43 @@ const Home = () => {
       {/*<-- Subscribe section -->*/}
       <section className="bg-bg-landscape bg-cover text-white flex flex-col sm:flex-row p-4 sm:p-24">
 
-      {/* Left */}
-      <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full">
-        <div className="w-5/6 h-5/6 lg:h-72 m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
-          <div className="flex">
-            <div className="w-full sm:w-2/3 flex flex-col justify-center">
-              <b className="text-4xl opacity-100">Discover special Deals!</b>
-              <p className="text-2xl">
-                Make sure to check out these special promotions
-              </p>
-            </div>
-            <div className="hidden sm:flex items-center w-1/3">
-              <i>
-                <img src={IconSale} alt="Sales Icon" className="h-38 w-36" />
-              </i>
+        {/* Left */}
+        <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full">
+          <div className="w-5/6 h-5/6 lg:h-72 m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
+            <div className="flex">
+              <div className="w-full sm:w-2/3 flex flex-col justify-center">
+                <b className="text-4xl opacity-100">Discover special Deals!</b>
+                <p className="text-2xl">
+                  Make sure to check out these special promotions
+                </p>
+              </div>
+              <div className="hidden sm:flex items-center w-1/3">
+                <i>
+                  <img src={IconSale} alt="Sales Icon" className="h-38 w-36" />
+                </i>
 
-            </div>
+              </div>
 
-            <div className="h-12 flex justify-center">
-              <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary transition hover:duration-300 hover:scale-110 ease-in-out">
-                <Link to={"/tours"}>
-                  <b>See Tours</b>
-                </Link>
-              </button>
+              <div className="h-12 flex justify-center">
+                <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary transition hover:duration-300 hover:scale-110 ease-in-out">
+                  <Link to={"/tours"}>
+                    <b>See Tours</b>
+                  </Link>
+                </button>
+              </div>
             </div>
           </div>
+
         </div>
-
-      </div>
-                {/* Right */}
-          <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full mt-4 sm:mt-0">
-        <div className="w-5/6 h-5/6 lg:h-72 m-auto p-4 bg-primary opacity-75 flex flex-col rounded-3xl justify-around">
-                <div className="flex">
-            <div className="w-full sm:w-2/3 flex flex-col justify-center">
-              <b className="text-3xl opacity-100">Don´t miss a thing</b>
-              <p className="text-xl">
-                Get updated on special deals and exclusive offers
-              </p>
-                </div>
-                <div className="flex items-center w-1/3">
-                  <i>
-                    <img
-                      src={IconPlane}
-                      alt="Sales Icon"
-                      className="h-38 w-36"
-                    />
-                  </i>
-                </div>
-
+        {/* Right */}
+        <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full mt-4 sm:mt-0">
+          <div className="w-5/6 h-5/6 lg:h-72 m-auto p-4 bg-primary opacity-75 flex flex-col rounded-3xl justify-around">
+            <div className="flex">
+              <div className="w-full sm:w-2/3 flex flex-col justify-center">
+                <b className="text-3xl opacity-100">Don´t miss a thing</b>
+                <p className="text-xl">
+                  Get updated on special deals and exclusive offers
+                </p>
               </div>
               <div className="flex items-center w-1/3">
                 <i>
@@ -202,31 +191,40 @@ const Home = () => {
                   />
                 </i>
               </div>
-            </div>
-            <div className="h-12 flex justify-between bg-white text-black rounded-3xl items-center">
-              <i className=" px-2">
-                <img src={IconMail} alt="" />
-              </i>
-              <input
-                className=" w-full outline-none"
-                type="text"
-                placeholder="Your Email Address..."
-                value={email}
-                onChange={handleEmailChange}
-              />
-              <button
-                className=" bg-darkgreen-bg text-white w-40 h-12 rounded-3xl hover:bg-btn-hover"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                Suscribe
-              </button>
-            </div>
 
+            </div>
+            <div className="flex items-center w-1/3">
+              <i>
+                <img
+                  src={IconPlane}
+                  alt="Sales Icon"
+                  className="h-38 w-36"
+                />
+              </i>
+            </div>
+          </div>
+          <div className="h-12 flex justify-between bg-white text-black rounded-3xl items-center">
+            <i className=" px-2">
+              <img src={IconMail} alt="" />
+            </i>
+            <input
+              className=" w-full outline-none"
+              type="text"
+              placeholder="Your Email Address..."
+              value={email}
+              onChange={handleEmailChange}
+            />
+            <button
+              className=" bg-darkgreen-bg text-white w-40 h-12 rounded-3xl hover:bg-btn-hover"
+              type="submit"
+              onClick={handleSubmit}
+            >
+              Suscribe
+            </button>
           </div>
         </div>
-      </section>
 
+      </section>
       {/* <-- Comentary Section --> */}
       <section className=" flex flex-col px-4">
         <div className="flex justify-center item-center text-center my-5">
@@ -319,7 +317,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-    </main>
+    </main >
   );
 };
 
