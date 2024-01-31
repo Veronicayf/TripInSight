@@ -27,7 +27,7 @@ const ToursList = () => {
       const totalPages = Math.ceil(allTours.length / 12);
       setTotalPage(totalPages);
     }
-  }, [allTours]);
+  }, [allTours, currentPage]);
 
   const handlePageChange = page => {
     setCurrentPage(page)
@@ -52,15 +52,15 @@ const ToursList = () => {
 
         <div className="flex flex-col lg:hidden px-4">
           <div className=" flex justify-center py-4git gap-4">
-            <FilterContinent/>
-            <PriceOrder/>
+            <FilterContinent />
+            <PriceOrder />
           </div>
           <FilterTags />
         </div>
         <div className="hidden lg:flex lg:flex-row flex-col lg:justify-center my-3 gap-3 px-8">
-        <FilterContinent/>
-        <FilterTags />
-        <PriceOrder/>
+          <FilterContinent />
+          <FilterTags />
+          <PriceOrder />
         </div>
         <div className="flex flex-wrap gap-10 p-4 w-full justify-around items-center">
           {allTours && allTours.length > 0 ? (
