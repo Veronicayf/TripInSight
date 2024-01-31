@@ -16,18 +16,18 @@ const ToursList = () => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
+  // const [totalPage, setTotalPage] = useState(1);
 
   useEffect(() => {
     dispatch(getAllT(currentPage));
   }, [dispatch, currentPage])
 
-  useEffect(() => {
-    if (allTours && allTours.length > 0) {
-      const totalPages = Math.ceil(allTours.length / 12);
-      setTotalPage(totalPages);
-    }
-  }, [allTours]);
+  // useEffect(() => {
+  //   if (allTours && allTours.length > 0) {
+  //     const totalPages = Math.ceil(allTours.length / 12);
+  //     setTotalPage(totalPages);
+  //   }
+  // }, [allTours]);
 
   const handlePageChange = page => {
     setCurrentPage(page)
@@ -38,6 +38,9 @@ const ToursList = () => {
     e.preventDefault();
     dispatch(getAllT(e.target.value));
   };
+
+  const toursPerPage = 12;
+  const totalPage = Math.ceil(allTours.length / toursPerPage);
 
   return (
     <main className=" font-Nunito">
@@ -52,21 +55,21 @@ const ToursList = () => {
 
         <div className="flex flex-col lg:hidden px-4">
           <div className=" flex justify-center py-4git gap-4">
-            <FilterContinent/>
-            <PriceOrder/>
+            <FilterContinent />
+            <PriceOrder />
           </div>
           <FilterTags />
         </div>
         <div className="hidden lg:flex lg:flex-row flex-col lg:justify-center my-3 gap-3 px-8">
-        <FilterContinent/>
-        <FilterTags />
-        <PriceOrder/>
+          <FilterContinent />
+          <FilterTags />
+          <PriceOrder />
         </div>
         <div className="flex flex-wrap gap-10 p-4 w-full justify-around items-center">
           {allTours && allTours.length > 0 ? (
             allTours
               .map((tour, index) => <TourCard key={index} tour={tour} />)
-              .slice((currentPage - 1) * 12, currentPage * 12)
+              .slice((currentPage - 1) * toursPerPage, currentPage * toursPerPage)
           ) : (
             <div className="flex flex-col justify-center items-center p-5 gap-5">
               <b>Loading...</b>
