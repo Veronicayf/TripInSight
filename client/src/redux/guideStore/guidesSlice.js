@@ -20,11 +20,18 @@ export const guideSlice = createSlice({
     },
     postGuideReducer: (state, action) => {
       state.guides = [...state.guides, action.payload];
-    }
+    },
+    updateGuideReducer: (state, action) => {
+      state.guides = [...state.guides, action.payload]
+    },
+    deleteGuideReducer: (state, action) => {
+      state.guides = [...state.guides]
+      console.log('Delete Guide:', action.payload);
+    },
     },
   },
 );
 
-export const { getAllGuides, getGuideById, postGuideReducer } = guideSlice.actions;
+export const { getAllGuides, getGuideById, postGuideReducer, updateGuideReducer, deleteGuideReducer } = guideSlice.actions;
 
 export default guideSlice.reducer;

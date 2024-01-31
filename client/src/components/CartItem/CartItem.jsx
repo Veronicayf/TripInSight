@@ -30,9 +30,11 @@ const CartItem = ({
         <span className="bg-white lg:px-4 lg:py-2 p-2 border-t border-b text-gray-700">
           {quantity}
         </span>
+        
         <button
           onClick={handleIncrease}
           className="bg-gray-300 text-gray-700 lg:px-4 lg:py-2 px-1 rounded-r"
+          disabled={quantity === product.places ? true : false}
         >
           <span className=" text-primary material-symbols-outlined">add</span>
         </button>
