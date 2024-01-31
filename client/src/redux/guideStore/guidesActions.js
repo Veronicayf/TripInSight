@@ -66,7 +66,7 @@ export const deleteGuide = (guideId) => {
   // const deleteG = { guideId };
   return async (dispatch) => {
     try {
-      console.log('id action', guideId);
+      //console.log('id action', guideId);
       let { data } = await axios.delete(`${URL}/guides/${guideId}`);
       return dispatch(deleteGuideReducer(data));
     } catch (error) {

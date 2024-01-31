@@ -114,16 +114,16 @@ const App = () => {
         <Route path="/guides/:id" element={<GuideDetail />} />
         <Route path="/cart" element={<Cart />} />
 
-          <>
-            <Route path="/admin/" element={<AdminPanel />} />
-            <Route path="/admin/createtour" element={<CreateTour />} />
-            <Route path="/admin/createguide" element={<CreateGuide />} />
-            <Route path="/admin/viewTours" element={<AdminTous />} />
-            <Route path="/admin/viewGuides" element={<AdminGuides />} />
-            <Route path="/admin/transactions" element={<AdminTransactions />} />
-            <Route path="/admin/users" element={<AdminUsers />} />
-            <Route path="/admin/review" element={<AdminReviews />} />
-          </>
+        <>
+          <Route path="/admin/" element={<AdminPanel />} />
+          <Route path="/admin/createtour" element={<CreateTour />} />
+          <Route path="/admin/createguide" element={<CreateGuide />} />
+          <Route path="/admin/viewTours" element={<AdminTous />} />
+          <Route path="/admin/viewGuides" element={<AdminGuides />} />
+          <Route path="/admin/transactions" element={<AdminTransactions />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/review" element={<AdminReviews />} />
+        </>
 
         <Route path="/banned" element={<BannedPage />} />
 

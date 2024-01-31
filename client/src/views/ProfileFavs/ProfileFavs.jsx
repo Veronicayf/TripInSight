@@ -22,6 +22,8 @@ const ProfileFavs = () => {
   const favsTourIds = favsUser.map((fav) => fav.tourId);
   const toursFavs = tours.filter((tour) => favsTourIds.includes(tour.id));
   const ticketData = useSelector((state) => state.user.purchased);
+  //console.log("compra", ticketData);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
