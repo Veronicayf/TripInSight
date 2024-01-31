@@ -95,12 +95,12 @@ export const getAllFav = (userId) => {
 
 export const getPurchesedById = (userId) => {
   return async (dispatch) => {
-    try { 
-     let response = await axios.get(`${URL}/purchased/getuserpurchaseds/${userId}`);
-     return dispatch(getPurchasedByIdReducer(response.data));
-   } catch(error) {
-     console.log(error);
-   }
+    try {
+      let response = await axios.get(`${URL}/purchased/getuserpurchaseds/${userId}`);
+      return dispatch(getPurchasedByIdReducer(response.data));
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
@@ -123,12 +123,13 @@ export const subscribeUser = (email) => {
 
 export const getAllPurchased = () => {
   return async (dispatch) => {
-    try { 
-     let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=10`);
-     return dispatch(getAllPurchasedReducer(response.data));
-   } catch(error) {
-     console.log(error);
-   }
+    try {
+      let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=100`);
+      return dispatch(getAllPurchasedReducer(response.data));
+    } catch (error) {
+      console.log('soy el error infinito', error);
+    }
   }
 };
+
 

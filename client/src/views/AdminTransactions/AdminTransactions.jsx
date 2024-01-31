@@ -42,44 +42,44 @@ const AdminTransactions = () => {
       timestamp: new Date("2024-02-04T14:20:00").getTime(),
     },
     {
-        id: "45ad4120-bb2f-4d43-a9fa-b74535be383b0",
-        status: true,
-        detail: "Compra de libros",
-        totalPrice: 45.0,
-        buyer: "Usuario4",
-        timestamp: new Date("2024-02-05T14:20:00").getTime(),
-      },
-      {
-        id: "45ad4120-bb2f-4d43-a9fa-b74535b4e83b0",
-        status: true,
-        detail: "Compra de libros",
-        totalPrice: 45.0,
-        buyer: "Usuario4",
-        timestamp: new Date("2024-02-06T14:20:00").getTime(),
-      },
-      {
-        id: "45ad4120-bb2f-4d43-a9fa-b74535be583b0",
-        status: true,
-        detail: "Compra de libros",
-        totalPrice: 45.0,
-        buyer: "Usuario4",
-        timestamp: new Date("2024-02-07T14:20:00").getTime(),
-      },
+      id: "45ad4120-bb2f-4d43-a9fa-b74535be383b0",
+      status: true,
+      detail: "Compra de libros",
+      totalPrice: 45.0,
+      buyer: "Usuario4",
+      timestamp: new Date("2024-02-05T14:20:00").getTime(),
+    },
+    {
+      id: "45ad4120-bb2f-4d43-a9fa-b74535b4e83b0",
+      status: true,
+      detail: "Compra de libros",
+      totalPrice: 45.0,
+      buyer: "Usuario4",
+      timestamp: new Date("2024-02-06T14:20:00").getTime(),
+    },
+    {
+      id: "45ad4120-bb2f-4d43-a9fa-b74535be583b0",
+      status: true,
+      detail: "Compra de libros",
+      totalPrice: 45.0,
+      buyer: "Usuario4",
+      timestamp: new Date("2024-02-07T14:20:00").getTime(),
+    },
     // Agrega más transacciones según sea necesario
   ];
   // Convertimos transactionsData a un formato compatible con lightweight-charts
   const convertedData = transactionsData.map((transaction) => {
     // Crear un objeto Date utilizando el timestamp de la transacción
     const fecha = new Date(transaction.timestamp);
-  
+
     // Obtener el año, mes y día
     const año = fecha.getFullYear();
     const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // +1 porque los meses van de 0 a 11
     const dia = String(fecha.getDate()).padStart(2, '0');
-  
+
     // Formatear la fecha como 'YYYY-MM-DD'
     const fechaFormateada = `${año}-${mes}-${dia}`;
-  
+
     return {
       time: fechaFormateada,
       value: transaction.totalPrice,
@@ -123,15 +123,15 @@ const AdminTransactions = () => {
           </div>
           {/* List Transaction */}
           <div className="px-4">
-            
+
             <div className=" w-full">
-                <TransactionList transactions={transactionsData} />
+              <TransactionList transactions={transactionsData} />
             </div>
             <Pagination
-            itemPerPage={itemPerPage}
-            totalItems={transactionsData.length}
-            paginate={paginate}
-          />
+              itemPerPage={itemPerPage}
+              totalItems={transactionsData.length}
+              paginate={paginate}
+            />
           </div>
         </div>
       </div>
