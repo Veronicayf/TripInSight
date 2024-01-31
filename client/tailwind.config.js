@@ -11,7 +11,8 @@ export default {
         'seconday-text': '#b7b7b7',
         'btn-hover': '#bc6c25',
         'cream-bg': '#fefae0',
-        'darkgreen-bg':'#0d2519'
+        'darkgreen-bg':'#212121',
+        'admin-light-bg':'#f6f6f9',
       },
       backgroundImage:{
         'vector-leaves': "url('./assets/img/vector1.jpg')",
@@ -21,8 +22,10 @@ export default {
         'Mulish': ['Mulish', 'sans-serif'],
         'Nunito': ['Nunito Sans', 'sans-serif'],
         'Bebas': ['Bebas Neue', 'sans-serif'],
+        'Poppins': ['Poppins', 'sans-serif'],
 
-      } 
+      },
+
     },
   },
   plugins: [],

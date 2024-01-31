@@ -50,7 +50,13 @@ export default function Paypal() {
     };
   }, [isButtonRendered]);
 
+  const onApproveOrder = (data, actions) => {
+    return actions.order.capture().then((details) => {
+      const name = details.payer.name.given_name;
+      alert(`Transaction completed by ${name}`);
+    });
+  };
+
   return <main ref={paypal}></main>;
 }
 
-console.log(Paypal);

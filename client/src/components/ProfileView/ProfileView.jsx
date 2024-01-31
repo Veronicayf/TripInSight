@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProfileView = ({ profile }) => {
   return (
-    <div className="w-1/2">
+    <div className="w-full lg:w-1/2">
       <div className="flex justify-center">
         <b>My</b>
         <b className="text-primary">Profile</b>
@@ -40,7 +40,7 @@ const ProfileView = ({ profile }) => {
           </div>
           <div className="flex justify-center py-2">
             <button className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover">
-              <Link to={`/profilefavs/${profile.name}`}>
+              <Link to={`/profile/${profile.name}`}>
                 <b>Edit Profile</b>
               </Link>
             </button>

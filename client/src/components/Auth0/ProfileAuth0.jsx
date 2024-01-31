@@ -3,14 +3,23 @@ import React, { useEffect, useRef, useState } from "react";
 import DropMenu from "../DropMenu/DropMenu";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserId } from "../../redux/userStore/usersActions";
+import { getAllFav, getPurchesedById, getUserId } from "../../redux/userStore/usersActions";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
+  //console.log('aca', profile.admin);
   const menuRef = useRef(null);
+
+  //Para ver los favs del user.
+  useEffect(() => {
+    if(profile.id){
+    dispatch(getAllFav(profile.id))
+    dispatch(getPurchesedById(profile.id))
+  }
+  }, [])
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -30,10 +39,16 @@ const Profile = () => {
     setOpen(!open);
   };
 
-  const options = [
-    { label: 'Profile', to: `/profilefavs/${profile.name}` },
-    { label: 'Settings', to: `/profile/${profile.name}` },
-  ];
+  const options = profile.admin && profile.admin === true
+  ? [
+      { label: "Profile", to: `/profilefavs/${profile.name}` },
+      { label: "Settings", to: `/profile/${profile.name}` },
+      { label: "Admin", to: `/admin/` }
+    ]
+  : [
+      { label: "Profile", to: `/profilefavs/${profile.name}` },
+      { label: "Settings", to: `/profile/${profile.name}` }
+    ];
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -41,14 +56,16 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div className="flex flex-col items-center relative">
+      <div className="flex flex-col items-center  relative">
         <img
-          className="rounded-full size-16 cursor-pointer"
+
+          className=" flex rounded-full size-16 cursor-pointer"
           src={user.picture}
+
           alt={user.name}
           onClick={toggleMenu}
         />
-        <h2>{user.name}</h2>
+        <h2 className="hidden lg:flex">{user.name}</h2>
         {/* <p>{user.email}</p> */}
         {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
       </div>

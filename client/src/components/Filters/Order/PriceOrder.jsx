@@ -10,21 +10,17 @@ const PriceOrder = () => {
   };
 
   return (
-    <div className="flex flex-col justify-items-center justify-center items-center min-w-fit bg-green-300 gap-3 p-5 rounded-full">
-      <b>Order by Price</b>
+    <div className="w-48 flex flex-col items-center justify-center p-5 rounded-full bg-primary order-2">
+      <b className="mb-3">Order by Price</b>
       <select
-        className="bg-primary text-white flex flex-row rounded-full items-center gap-3 p-1.5"
+        className="bg-white text-primary rounded-full p-2"
         name="orderPrice"
         id="orderPrice"
         defaultValue="asc"
         onChange={(e) => handleOrderPrice(e)}
       >
-        <option className="bg-primary text-white" value="asc">
-          Low to High
-        </option>
-        <option className="bg-primary text-white" value="desc">
-          High to Low
-        </option>
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
       </select>
     </div>
   );
