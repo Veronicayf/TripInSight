@@ -129,7 +129,7 @@ const Home = () => {
       <section className="bg-bg-landscape bg-cover text-white flex flex-col sm:flex-row p-4 sm:p-24">
       {/* Left */}
       <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full">
-        <div className="w-5/6 h-5/6 m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
+        <div className="w-5/6 h-5/6 lg:h-72  m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
           <div className="flex">
             <div className="w-full sm:w-2/3 flex flex-col justify-center">
               <b className="text-4xl opacity-100">Discover special Deals!</b>
@@ -155,7 +155,7 @@ const Home = () => {
       </div>
                 {/* Right */}
           <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full mt-4 sm:mt-0">
-        <div className="w-5/6 h-5/6 m-auto p-4 bg-primary opacity-75 flex flex-col rounded-3xl justify-around">
+        <div className="w-5/6 h-5/6 lg:h-72 m-auto p-4 bg-primary opacity-75 flex flex-col rounded-3xl justify-around">
                 <div className="flex">
             <div className="w-full sm:w-2/3 flex flex-col justify-center">
               <b className="text-3xl opacity-100">Don´t miss a thing</b>
