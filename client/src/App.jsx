@@ -12,6 +12,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/FootBar/FootBar";
 import Login from "./views/Login/Login";
 import Home from "./views/Home/Home";
+import AboutUs from "./views/AboutUs/AboutUs";
 import Cart from "./views/ShoppingCart/Cart";
 import AdminPanel from "./views/AdminPanel/AdminPanel";
 import CreateTour from "./views/CreateTour/CreateTour";
@@ -20,7 +21,11 @@ import ToursList from "./views/Tours/Tours";
 import AdminTous from "./views/AdminTours/AdminTous";
 import { useAuth0 } from "@auth0/auth0-react";
 import Guides from "./views/Guides/Guides";
-import { getAllFav, getUserId, loggedUser } from "./redux/userStore/usersActions";
+import {
+  getAllFav,
+  getUserId,
+  loggedUser,
+} from "./redux/userStore/usersActions";
 import AdminGuides from "./views/AdminGuides/AdminGuides";
 import { useDispatch, useSelector } from "react-redux";
 import GuideDetail from "./views/GuideDetail/Guide";
@@ -79,7 +84,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/aboutus" />
+        <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/guides" element={<Guides />} />
         <Route path="/tours" element={<ToursList />} />
         <Route path="/profile/:id" element={<ProfileEdit />} />
@@ -105,7 +110,6 @@ const App = () => {
             </PayPalScriptProvider>
           }
         />
-
       </Routes>
 
       {!isOnAdminRoute && <Footer />}
