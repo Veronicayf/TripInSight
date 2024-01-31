@@ -173,9 +173,27 @@ export const updateStatus = (idTour, status) => {
 
 export const addReview = (idTour,idUser,review) =>{
   return async(dispatch ) => {
-    let {data} = await axios.post (
-      `${URL}/reviews`,{idTour,idUser,review}
-    )
-    return dispatch(addReviewReducer(data))
+    try {
+      let {data} = await axios.post (
+        `${URL}/reviews`,{idTour,idUser,review}
+      )
+      dispatch(addReviewReducer(data))
+      Swal.fire({
+        icon: "success",
+        title: "Review added!",
+        showConfirmButton: false,
+        timer: 1500,
+    });
+
+    } catch (error) {
+      // Manejar errores de red u otros
+      console.error("Error to create tour:", error);
+
+      Swal.fire({
+        icon: "error",
+        title: "Error to add review",
+        text: "Please try again later",
+      });
+    }
   };
 };
