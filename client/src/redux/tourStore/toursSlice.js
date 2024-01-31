@@ -104,7 +104,10 @@ export const tourSlice = createSlice({
     deleteTourReducer: (state, action) => {
       state.tours = [...state.tours]
       console.log('Delete Tour:', action.payload);
-    }
+    },
+    updateStatusReducer: (state, action) => {
+      state.tours = [...state.tours, action.payload]
+    },
   },
 });
 
@@ -122,7 +125,8 @@ export const {
   clearCartReducer,
   cartQuantityReducer,
   updateTourReducer,
-  deleteTourReducer
+  deleteTourReducer,
+  updateStatusReducer
 } = tourSlice.actions;
 
 export default tourSlice.reducer;

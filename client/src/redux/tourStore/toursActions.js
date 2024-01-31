@@ -14,6 +14,7 @@ import {
   clearCartReducer,
   updateTourReducer,
   deleteTourReducer,
+  updateStatusReducer,
 } from "./toursSlice";
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
@@ -158,4 +159,13 @@ export const deleteTour = (tourId) => {
       console.log(error.data);
     }
   }
+};
+
+export const updateStatus = (idTour, status) => {
+  return async (dispatch) => {
+    let { data } = await axios.put(
+      `${URL}/tours/status`, {idTour, status}
+    );
+    return dispatch(updateStatusReducer(data));
+  };
 };

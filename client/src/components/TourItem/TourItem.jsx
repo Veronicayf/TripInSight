@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import iconmenu from "../../assets/icons/IconMenuVertical.png";
 import DropMenu from "../DropMenu/DropMenu";
 import { useDispatch } from "react-redux";
-import { deleteTour } from "../../redux/tourStore/toursActions";
+import { deleteTour, updateStatus } from "../../redux/tourStore/toursActions";
 
 const TourItem = ({ tourInfo }) => {
   const dispatch = useDispatch();
@@ -33,7 +33,8 @@ const TourItem = ({ tourInfo }) => {
 
   const handleStatus = (e) => {
     e.preventDefault();
-    //dispatch(action(e.target.value));
+    console.log('ahora:', e.target.value);
+    dispatch(updateStatus(tourInfo.id, e.target.value));
   };
 
   // const statusStyle = {
@@ -86,6 +87,7 @@ const TourItem = ({ tourInfo }) => {
           <select
             name="status"
             onChange={(e) => handleStatus(e)}
+            defaultValue={tourInfo.status}
           >
             <option 
             className="bg-primary rounded-full p-2"
