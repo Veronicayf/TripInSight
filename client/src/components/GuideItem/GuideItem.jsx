@@ -4,6 +4,7 @@ import DropMenu from "../DropMenu/DropMenu";
 import { useDispatch } from "react-redux";
 import { deleteGuide } from "../../redux/guideStore/guidesActions";
 import { useNavigate } from "react-router-dom";
+import { getGuideId } from "../../redux/guideStore/guidesActions";
 
 const GuideItem = ({ guideInfo }) => {
   const [open, setOpen] = useState(false);
@@ -34,11 +35,11 @@ const GuideItem = ({ guideInfo }) => {
   const handleEdit = (e) => {
     e.preventDefault();
     const guideId = guideInfo.id;
-
+    console.log(guideId);
+    dispatch(getGuideId(guideInfo.id));
     // Navigate to the update form for the specific guide using useNavigate
     navigate(`/admin/updateguide/${guideId}`);
   };
-
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {

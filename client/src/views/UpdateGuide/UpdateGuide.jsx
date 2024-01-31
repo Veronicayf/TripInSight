@@ -2,41 +2,47 @@ import React, { useState, useEffect } from "react";
 import SideBar from "../../components/SideBar/SideBar";
 import CloudinaryUploadWidget from "../../components/UploadWidget/UploadWidget";
 import { image } from "@cloudinary/url-gen/qualifiers/source";
-import { useDispatch } from "react-redux";
-import { updateGuide } from "../../redux/guideStore/guidesActions";
+import { useDispatch, useSelector } from "react-redux";
+import { updateGuide, getGuideId } from "../../redux/guideStore/guidesActions";
 import { useParams } from "react-router-dom";
 
-const UpdateGuide = () => {
+const UpdateGuide = (guideData) => {
   const dispatch = useDispatch();
-  const { guideId } = useParams(); // Get guideId from URL
+  const guideId = useSelector((state) => state.guide.detail);
 
+  console.log(guideId);
   const [guideInfo, setGuideInfo] = useState({
-    forename: "",
-    surname: "",
-    nationality: "",
-    birthDate: "",
-    biography: "",
-    image: "",
+    id: guideId.id,
+    forename: guideId.forename || "",
+    surname: guideId.surname || "",
+    nationality: guideId.nationality || "",
+    birthDate: guideId.birthDate || "",
+    biography: guideId.biography || "",
+    image: guideId.image || "",
   });
 
   const [images, setImages] = useState([]);
 
-  useEffect(() => {
+  /* useEffect(() => {
     // Fetch existing guide data and update the state
     const fetchGuideData = async () => {
       try {
         const response = await axios.get(`${URL}/guides/${guideId}`);
-        const existingGuideData = response.data; // Adjust this based on your API response structure
+        const existingGuideData = response.data; // Error is likely here
         setGuideInfo(existingGuideData);
         // You may also want to set images if there are existing images
         // setImages(existingGuideData.images);
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error);
       }
     };
 
     fetchGuideData();
-  }, [guideId]);
+  }, [guideId]); */
+
+  useEffect(() => {
+    dispatch(getGuideId(guideId.id));
+  }, []);
 
   const handleImageUpload = (newImages) => {
     // Check if there are existing images
@@ -60,6 +66,7 @@ const UpdateGuide = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(guideId, guideInfo);
     dispatch(updateGuide(guideInfo));
   };
   return (

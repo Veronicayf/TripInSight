@@ -1,10 +1,15 @@
-import axios from 'axios'
+import axios from "axios";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { deleteGuideReducer, getAllGuides, getGuideById, postGuideReducer, updateGuideReducer } from './guidesSlice'
+import {
+  deleteGuideReducer,
+  getAllGuides,
+  getGuideById,
+  postGuideReducer,
+  updateGuideReducer,
+} from "./guidesSlice";
 
-const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
-
+const URL = "http://localhost:4000"; //"https://tripinsight.onrender.com"
 
 export const getAllG = (page, pageSize) => {
   return async (dispatch) => {
@@ -19,7 +24,6 @@ export const getGuideId = (id) => {
     return dispatch(getGuideById(data));
   };
 };
-
 
 export const postGuide = (guideDate) => {
   return async (dispatch) => {
@@ -41,22 +45,21 @@ export const postGuide = (guideDate) => {
         title: "Error to create guide",
         text: "Please try again later",
       });
-
     }
   };
 };
 
-
 export const updateGuide = (guideData) => {
   return async (dispatch) => {
     try {
+      console.log(guideData);
       let response = await axios.put(
-        `${URL}/guides/updateguide`,
+        `http://localhost:4000/guides/updateguide`,
         guideData
       );
       return dispatch(updateGuideReducer(response.data));
     } catch (error) {
-      console.log(error.response.data);
+      console.log(error);
     }
   };
 };
@@ -72,5 +75,5 @@ export const deleteGuide = (guideId) => {
     } catch (error) {
       console.log(error.data);
     }
-  }
+  };
 };
