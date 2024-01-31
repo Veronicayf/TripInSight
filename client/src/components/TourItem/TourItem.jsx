@@ -33,7 +33,7 @@ const TourItem = ({ tourInfo }) => {
 
   const handleStatus = (e) => {
     e.preventDefault();
-    console.log('ahora:', e.target.value);
+    //console.log('ahora:', e.target.value);
     dispatch(updateStatus(tourInfo.id, e.target.value));
   };
 
