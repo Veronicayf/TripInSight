@@ -9,11 +9,8 @@ import { getUsers } from "../../redux/userStore/usersActions";
 
 const AdminUsers = () => {
 
-    const allUser = useSelector((state) => state.users);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getUsers(1,10));
-      }, [dispatch]);
+    const allUser = useSelector((state) => state.user.users);
+
 
   const transactionsData = [
     {
@@ -53,6 +50,7 @@ const AdminUsers = () => {
     },
     // Agrega más transacciones según sea necesario
   ];
+  console.log(allUser);
   // Convertimos transactionsData a un formato compatible con lightweight-charts
   const convertedData = transactionsData.map((transaction) => {
     // Crear un objeto Date utilizando el timestamp de la transacción
@@ -76,26 +74,6 @@ const AdminUsers = () => {
       <SideBar />
       <div className="flex w-full flex-col px-4">
         <div>
-          <div className="flex justify-center">
-            <DashboardCard />
-          </div>
-          <div className=" w-full flex justify-center">
-            <div className="w-full text-center md:w-1/2 lg:w-1/2 xl:w-1/2 p-4 border-2 border-seconday-text rounded-md">
-              <UserChart
-                data={convertedData}
-                colors={{
-                  backgroundColor: "#ffffff",
-                  lineColor: "#3aab47",
-                  textColor: "#3aab47",
-                  areaTopColor: "#3aab47",
-                  areaBottomColor: "rgba(58, 171, 71, 0.28)",
-                }}
-                title="Views"
-              />
-            </div>
-          </div>
-        </div>
-        <div>
           <div className=" flex w-full flex-row justify-between text-white bg-primary rounded-b-3xl">
             <div className="w-1/6 flex justify-center items-center">
               <b className="">User name</b>
@@ -112,7 +90,7 @@ const AdminUsers = () => {
           </div>
           <div>
           {allUser && allUser.length > 0 ? (
-              allUser.map((user, index) => (
+              allUser?.map((user, index) => (
                 <UserList key={index} UserInfo={user} />
               ))
             ) : (

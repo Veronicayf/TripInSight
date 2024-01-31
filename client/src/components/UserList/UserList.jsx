@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import iconmenu from '../../assets/icons/IconMenuVertical.png';
 import DropMenu from '../DropMenu/DropMenu';
 
 const UserList = ({ UserInfo }) => {
-
-    var status = ""
+    let status = ""
+    const navigate = useNavigate(); 
 
     if(UserInfo.isBanned == true){
-        status = Banned   }
+        status = "Banned"   }
         else if (UserInfo.admin == true){
-            status = Admin
+            status = "Admin"
         }else(
-            status = User
+            status = "User"
         )
 
     const [open, setOpen] = useState(false);
@@ -29,13 +30,18 @@ const UserList = ({ UserInfo }) => {
         document.removeEventListener("mousedown", handleOutsideClick);
       };
     }, []);
-  
-    const toggleMenu = () => {
-      setOpen(!open);
+
+    const handleEdit = (e) => {
+      e.preventDefault();
+      //navigate(`/admin/users/edit/${UserInfo.name}`);
     };
-    const options = [
-      { label: 'ViewUser', to: `/profile/` },
-    ];
+  
+    // const toggleMenu = () => {
+    //   setOpen(!open);
+    // };
+    // const options = [
+    //   { label: 'ViewUser', to: `/profilefavs/` },
+    // ];
     
 
     return (
@@ -52,11 +58,19 @@ const UserList = ({ UserInfo }) => {
             <b>{status}</b>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-around'>
-        <div className=" relative flex flex-col items-center">
-          <button className='h-10 w-10 bg-primary rounded-2xl hover:bg-btn-hover' onClick={toggleMenu}>
-          {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
-            <img src={iconmenu} alt="icon menu" />
+        <div className=" relative flex flex-row items-center gap-3">
+          <button
+            className="h-10 w-10 flex justify-center items-center bg-primary rounded-full hover:bg-btn-hover"
+            onClick={(e) => handleEdit(e)}
+          >
+            <span className="material-symbols-outlined text-white">edit</span>
           </button>
+          {/* <button
+            className="h-10 w-10 flex justify-center items-center bg-red-600 rounded-full hover:bg-btn-hover"
+            onClick={(e) => handleDelete(e)}
+          >
+            <span className="material-symbols-outlined text-white">delete</span>
+          </button> */}
           </div>
         </div>
     </div>

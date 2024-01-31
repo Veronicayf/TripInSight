@@ -19,6 +19,7 @@ const ProfileEdit = () => {
     image: "",
     idUser: profile.id,
   });
+
   
   const formik = useFormik({
     initialValues: {
@@ -45,6 +46,7 @@ const ProfileEdit = () => {
       handleSubmit(values);
     }
   })
+
 
   const [validationMessage, setValidationMessage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
@@ -115,6 +117,7 @@ const ProfileEdit = () => {
             value={formData.nationality}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:outline-primary"
+
           /> */}
           <input
             type="text"
@@ -124,6 +127,7 @@ const ProfileEdit = () => {
             onBlur={formik.handleBlur}
             value={formik.values.nationality}
             className="mt-1 p-2 w-full border rounded-md focus:outline-primary"
+
           />
           {formik.touched.nationality && formik.errors.nationality ? <div>{formik.errors.nationality}</div> : null}
         </label>
@@ -157,6 +161,7 @@ const ProfileEdit = () => {
             value={formData.phoneNumber}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
+
           /> */}
           <input
             type="text"
@@ -166,6 +171,7 @@ const ProfileEdit = () => {
             onBlur={formik.handleBlur}
             value={formik.values.phoneNumber}
             className="mt-1 p-2 w-full border rounded-md focus:outline-primary"
+
           />
           {formik.touched.phoneNumber && formik.errors.phoneNumber ? <div>{formik.errors.phoneNumber}</div> : null}
         </label>
