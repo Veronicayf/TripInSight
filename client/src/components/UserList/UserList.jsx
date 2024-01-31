@@ -8,9 +8,9 @@ const UserList = ({ UserInfo }) => {
     const navigate = useNavigate(); 
 
     if(UserInfo.isBanned == true){
-        status = Banned   }
+        status = "Banned"   }
         else if (UserInfo.admin == true){
-            status = Admin
+            status = "Admin"
         }else(
             status = "User"
         )
