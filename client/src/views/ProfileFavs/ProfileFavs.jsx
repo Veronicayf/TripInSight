@@ -9,7 +9,10 @@ import Pagination from "../../components/Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileView from "../../components/ProfileView/ProfileView";
 import TourCard from "../../components/TourCard/TourCard";
-import { getAllFav, getPurchesedById } from "../../redux/userStore/usersActions";
+import {
+  getAllFav,
+  getPurchesedById,
+} from "../../redux/userStore/usersActions";
 
 const ticketData = [
   {
@@ -53,22 +56,23 @@ const ProfileFavs = () => {
   const favsTourIds = favsUser.map((fav) => fav.tourId);
   const toursFavs = tours.filter((tour) => favsTourIds.includes(tour.id));
   //Compras del user.
-  const ticketData = useSelector((state) => state.user.purchased)
-  
+  const ticketData = useSelector((state) => state.user.purchased);
+  console.log("compra", ticketData);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  
+
   // Función para manejar el cambio de página
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   useEffect(() => {
-    if(tours && profile) {
-     dispatch(getAllFav(profile.id))
-     dispatch(getPurchesedById(profile.id))
+    if (tours && profile) {
+      dispatch(getAllFav(profile.id));
+      dispatch(getPurchesedById(profile.id));
     }
-  }, [tours, profile])
+  }, [tours, profile]);
 
   return (
     <div className="font-Nunito">
@@ -88,7 +92,16 @@ const ProfileFavs = () => {
                   <div className="flex justify-center">
                     <b>My </b> <b className=" text-primary">Tickets</b>
                   </div>
-                  <TicketSection ticketData={ticketData} />
+                  <TicketSection />
+                  {/* {ticketData && ticketData.length > 0 ? (
+                    ticketData?.map((purchased, index) => (
+                      <TicketSection key={index} ticketData={purchased} />
+                    ))
+                  ) : (
+                    <div className="flex flex-col justify-center items-center p-5 gap-5">
+                      <b>Not purchased yet.</b>
+                    </div>
+                  )} */}
                   <Pagination
                     itemPerPage={itemsPerPage}
                     totalItems={ticketData.length}
@@ -104,8 +117,8 @@ const ProfileFavs = () => {
             <div className="w-full flex items-center justify-center flex-col border-2 border-seconday-text rounded-xl px-10">
               <div className="text-3xl py-4 flex justify-center">
                 <b>My</b> <b className="text-primary"> Favorites</b>
-                </div>
-                <div className="flex flex-wrap gap-10 p-4 w-full justify-center items-center">
+              </div>
+              <div className="flex flex-wrap gap-10 p-4 w-full justify-center items-center">
                 {toursFavs && toursFavs.length > 0 ? (
                   toursFavs?.map((tour, index) => (
                     <TourCard key={index} tour={tour} />
@@ -120,7 +133,6 @@ const ProfileFavs = () => {
                     />
                   </div>
                 )}
-                
               </div>
             </div>
           </div>

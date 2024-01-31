@@ -58,8 +58,10 @@ const Profile = () => {
     isAuthenticated && (
       <div className="flex flex-col items-center  relative">
         <img
+
           className=" flex rounded-full size-16 cursor-pointer"
           src={user.picture}
+
           alt={user.name}
           onClick={toggleMenu}
         />
