@@ -14,55 +14,19 @@ import {
   getPurchesedById,
 } from "../../redux/userStore/usersActions";
 
-const ticketData = [
-  {
-    id: "125232312342",
-    tourname: " Cachorritas en chaco con tomy",
-    price: "3500",
-    date: "22/01/2024",
-  },
-  {
-    id: "634634125",
-    tourname: " aureola boreal en chaco con tomy",
-    price: "6500",
-    date: "16/01/2024",
-  },
-  {
-    id: "163482891",
-    tourname: " Visitando el mar de bolivia en chaco con tomy",
-    price: "512",
-    date: "30/02/2023",
-  },
-  {
-    id: "1252352342",
-    tourname: "Snowboarding en dunas de tierra en chaco, con tomy",
-    price: "1200",
-    date: "13/01/2024",
-  },
-  {
-    id: "1252352312342",
-    tourname: "Los de la muni agarrando la pala en chaco, con tomy",
-    price: "999",
-    date: "25/05/1810",
-  },
-];
-
 const ProfileFavs = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.userProfile);
-  //ToursFavs del user.
   const favsUser = useSelector((state) => state.user.favorites);
   const tours = useSelector((state) => state.tour.tours);
   const favsTourIds = favsUser.map((fav) => fav.tourId);
   const toursFavs = tours.filter((tour) => favsTourIds.includes(tour.id));
-  //Compras del user.
   const ticketData = useSelector((state) => state.user.purchased);
-  console.log("compra", ticketData);
+  //console.log("compra", ticketData);
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  // Función para manejar el cambio de página
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -79,61 +43,48 @@ const ProfileFavs = () => {
       <Carousel
         images={[ImageProvisoria1, ImageProvisoria2, ImageProvisoria3]}
       />
-      <div>
-        <div className="p-4">
-          <ReviewSection />
-          <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-10">
-            <div className="text-3xl py-4">
-              <b>My</b> <b className="text-primary">Things</b>
+      <div className="p-4">
+        <ReviewSection />
+        <div className="w-full flex items-center flex-col border-2 border-seconday-text rounded-xl px-4 lg:px-10">
+          <div className="text-xl text-center lg:text-3xl py-2 lg:py-4">
+            <b>My</b> <b className="text-primary">Things</b>
+          </div>
+          <div className="w-full flex flex-col lg:flex-row my-4 lg:my-8">
+            <div className="w-full lg:w-1/2 mb-4 lg:mb-0">
+              <div className="flex justify-center">
+                <b>My </b> <b className=" text-primary">Tickets</b>
+              </div>
+              <TicketSection />
+              <Pagination
+                itemPerPage={itemsPerPage}
+                totalItems={ticketData.length}
+                paginate={handlePageChange}
+              />
             </div>
-            <div className="w-full flex flex-row my-8">
-              <div className="w-full flex flex-row">
-                <div className="w-1/2">
-                  <div className="flex justify-center">
-                    <b>My </b> <b className=" text-primary">Tickets</b>
-                  </div>
-                  <TicketSection />
-                  {/* {ticketData && ticketData.length > 0 ? (
-                    ticketData?.map((purchased, index) => (
-                      <TicketSection key={index} ticketData={purchased} />
-                    ))
-                  ) : (
-                    <div className="flex flex-col justify-center items-center p-5 gap-5">
-                      <b>Not purchased yet.</b>
-                    </div>
-                  )} */}
-                  <Pagination
-                    itemPerPage={itemsPerPage}
-                    totalItems={ticketData.length}
-                    paginate={handlePageChange}
+            <ProfileView profile={profile} />
+          </div>
+        </div>
+        <div className="p-4">
+          <div className="w-full flex items-center justify-center flex-col border-2 border-seconday-text rounded-xl px-4 lg:px-10">
+            <div className="text-xl lg:text-3xl py-2 lg:py-4 flex justify-center">
+              <b>My</b> <b className="text-primary"> Favorites</b>
+            </div>
+            <div className="flex flex-wrap gap-4 lg:gap-10 p-2 lg:p-4 w-full justify-center items-center">
+              {toursFavs && toursFavs.length > 0 ? (
+                toursFavs?.map((tour, index) => (
+                  <TourCard key={index} tour={tour} />
+                ))
+              ) : (
+                <div className="flex flex-col justify-center items-center p-5 gap-2 lg:gap-5">
+                  <b>Loading...</b>
+                  <img
+                    src="https://media1.tenor.com/m/QqPVtiP0IjYAAAAC/travel-lets-go.gif"
+                    alt="loading"
+                    width="200"
+                    className="lg:w-48"
                   />
                 </div>
-
-                <ProfileView profile={profile} />
-              </div>
-            </div>
-          </div>
-          <div className="p-4">
-            <div className="w-full flex items-center justify-center flex-col border-2 border-seconday-text rounded-xl px-10">
-              <div className="text-3xl py-4 flex justify-center">
-                <b>My</b> <b className="text-primary"> Favorites</b>
-              </div>
-              <div className="flex flex-wrap gap-10 p-4 w-full justify-center items-center">
-                {toursFavs && toursFavs.length > 0 ? (
-                  toursFavs?.map((tour, index) => (
-                    <TourCard key={index} tour={tour} />
-                  ))
-                ) : (
-                  <div className="flex flex-col justify-center items-center p-5 gap-5">
-                    <b>Loading...</b>
-                    <img
-                      src="https://media1.tenor.com/m/QqPVtiP0IjYAAAAC/travel-lets-go.gif"
-                      alt="loading"
-                      width="250"
-                    />
-                  </div>
-                )}
-              </div>
+              )}
             </div>
           </div>
         </div>

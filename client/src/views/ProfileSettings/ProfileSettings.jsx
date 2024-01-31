@@ -16,7 +16,6 @@ const ProfileEdit = () => {
     image: "",
     idUser: profile.id,
   });
-  //console.log(profile);
 
   const [validationMessage, setValidationMessage] = useState("");
   const [imagePreview, setImagePreview] = useState("");
@@ -87,6 +86,7 @@ const ProfileEdit = () => {
             value={formData.nationality}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md focus:outline-primary"
+            placeholder="Argentine"
           />
         </label>
 
@@ -109,6 +109,7 @@ const ProfileEdit = () => {
             value={formData.phoneNumber}
             onChange={handleChange}
             className="mt-1 p-2 w-full border rounded-md"
+            placeholder="1234-56789"
           />
         </label>
 

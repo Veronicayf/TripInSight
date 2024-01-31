@@ -205,46 +205,46 @@ const Tour = () => {
         </div>
         <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
         {/* Includes Section */ }
-        <div className=" w-full flex">
-          <div className="w-1/3 flex justify-center text-lg">
-            <b>Included in the price</b>
-          </div>
-          <div className=" flex-col">
-            <div className="w-2/3 flex text-lg py-1">
-              <i className="h-12 content-center">
-                <img className="h-10 w-16" src={IconIncludes} alt="icon" />
-              </i>
-              <p className="px-4 flex-grow text-base">
-                Accommodation and overnight stay in all hotels in a shared room.
-              </p>
-            </div>
-            <div className="w-2/3 flex text-lg py-1">
-              <i className="h-12 content-center">
-                <img className="h-10 w-10" src={IconIncludes} alt="icon" />
-              </i>
-              <p className="px-4 flex-grow text-base">
-                All meals, breakfasts, lunches and dinners.
-              </p>
-            </div>
-            <div className="w-2/3 flex text-lg py-1">
-              <i className="h-12 content-center">
-                <img className="h-10 w-10" src={IconIncludes} alt="icon" />
-              </i>
-              <p className="px-4 flex-grow text-base">
-                Local bilingual guide throughout the trip
-              </p>
-            </div>
-            <div className="w-2/3 flex text-lg py-1">
-              <i className="h-12 content-center">
-                <img className="h-10 w-10" src={IconIncludes} alt="icon" />
-              </i>
-              <p className="px-4 flex-grow text-base">
-                Photographic guide and all its expenses
-              </p>
-            </div>
-          </div>
+        <section className="w-full flex lg:flex-row mt-6">
+      <div className="text-lg text-center flex justify-center lg:w-1/3 lg:text-left mb-4">
+        <b>Included in the price</b>
+      </div>
+      <div className="flex flex-col ">
+        <div className="w-full lg:w-2/3 flex items-center text-lg py-2">
+          <i className="h-12 content-center">
+            <img className="h-10 w-16" src={IconIncludes} alt="icon" />
+          </i>
+          <p className="lg:pl-4 flex-grow text-base">
+            Accommodation and overnight stay in all hotels in a shared room.
+          </p>
         </div>
-        <div className="bg-seconday-text h-2 my-4 rounded-full ml-4"></div>
+        <div className="w-full lg:w-2/3 flex items-center text-lg py-2">
+          <i className="h-12 content-center">
+            <img className="h-10 w-10" src={IconIncludes} alt="icon" />
+          </i>
+          <p className="lg:pl-4 flex-grow text-base">
+            All meals, breakfasts, lunches, and dinners.
+          </p>
+        </div>
+        <div className="w-full lg:w-2/3 flex items-center text-lg py-2">
+          <i className="h-12 content-center">
+            <img className="h-10 w-10" src={IconIncludes} alt="icon" />
+          </i>
+          <p className="lg:pl-4 flex-grow text-base">
+            Local bilingual guide throughout the trip.
+          </p>
+        </div>
+        <div className="w-full lg:w-2/3 flex items-center text-lg py-2">
+          <i className="h-12 content-center">
+            <img className="h-10 w-10" src={IconIncludes} alt="icon" />
+          </i>
+          <p className="lg:pl-4 flex-grow text-base">
+            Photographic guide and all its expenses.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div className="bg-seconday-text h-2 my-4 rounded-full"></div>
       </section>
       {/*-------------- Photos tour --------------*/}
       <section id="photos" className="flex-col px-4 w-full lg:w-3/4">
@@ -255,7 +255,7 @@ const Tour = () => {
         />
       </section>
       {/*-------------- BuySection --------------*/}
-      <section className="">
+      <section className="px-4 pb-4 lg:px-0">
         <Buysection tour={tourDetail} />
       </section>
       {/*-------------- Guide Section --------------*/}

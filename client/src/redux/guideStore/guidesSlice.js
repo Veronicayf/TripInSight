@@ -27,7 +27,7 @@ export const guideSlice = createSlice({
     deleteGuideReducer: (state, action) => {
       state.guides = [...state.guides]
       console.log('Delete Guide:', action.payload);
-    }
+    },
     },
   },
 );
