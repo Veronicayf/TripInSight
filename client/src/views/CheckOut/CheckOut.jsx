@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
+import { clearCart } from "../../redux/tourStore/toursActions";
 import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 const Checkout = () => {
+  const dispatchACT = useDispatch();
   const [{ options, isPending }, dispatch] = usePayPalScriptReducer();
-  const [currency, setCurrency] = useState("DEFAULT");
-  const [buttonKey, setButtonKey] = useState(0); // Add a state for the button key
+  const [currency, setCurrency] = useState(options.currency);
+  const [buttonKey, setButtonKey] = useState(0);
   const price = useSelector((state) => state.tour.cartTotal);
   const cart = useSelector((state) => state.tour.addCart);
   const userCart = useSelector((state) => state.user.userProfile);
@@ -39,7 +43,6 @@ const Checkout = () => {
         currency: value,
       },
     });
-    // Increment the button key to re-render the PayPalButtons component
     setButtonKey((prevKey) => prevKey + 1);
   };
 
@@ -71,9 +74,23 @@ const Checkout = () => {
 
   const onApproveOrder = (data, actions) => {
     return actions.order.capture().then((details) => {
-      const name = details.payer.name.given_name;
-      alert(`Transaction completed by ${name}`);
+      /* const name = details.payer.name.given_name;
+       */
+      // Use Sweetalert instead of alert
+      Swal.fire({
+        title: "Transaction completed!",
+        icon: "success",
+        showConfirmButton: true,
+        timer: 2000, // Set the duration of the success message
+      });
+
       sendCartDataToBackend();
+
+      // Dispatch the clearCart action
+      dispatchACT(clearCart());
+
+      // Redirect the user to the home page
+      window.location.href = "/";
     });
   };
 
@@ -82,34 +99,70 @@ const Checkout = () => {
   }, [currency]); */
 
   return (
-    <div className="checkout flex items-center justify-center min-h-screen text-center z-0">
+    <div className="checkout flex items-center justify-center min-h-screen text-center z-0 shadow-md rounded-md">
       {isPending ? (
         <p>LOADING...</p>
       ) : (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 ">
+          <label className="block mb-2 font-bold text-lg">
+            Choose your preferred currency:
+          </label>
           <select
-            defaultValue="DEFAULT"
             value={currency}
             onChange={onCurrencyChange}
             className="mb-4 p-2 border border-gray-300 rounded justify-center"
           >
-            <option value="DEFAULT">Choose your currency</option>
             <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
+          <div className="flex flex-row items-center justify-center mb-2">
+            <label className="block font-bold text-lg">Total</label>
+            <label className="text-primary mx-1 block font-bold text-lg">
+              amount:
+            </label>
+          </div>
+          <p className="text-xl font-bold mb-4">
+            {price} {currency}
+          </p>
 
           <div className="flex items-center justify-center">
             {/* Surround PayPalButtons with a container for centering */}
             <div className="text-center">
               {/* Use the key prop to trigger re-render */}
               <PayPalButtons
-                key={buttonKey}
-                style={{ layout: "vertical", height: 55, width: 180 }}
-                createOrder={(data, actions) => onCreateOrder(data, actions)}
-                onApprove={(data, actions) => onApproveOrder(data, actions)}
+                createOrder={onCreateOrder}
+                onApprove={onApproveOrder}
+                options={{ ...options, currency }}
+                forceReRender={[buttonKey]}
               />
             </div>
           </div>
+          <button
+            className="bg-red-500 text-white py-2 px-4 rounded"
+            onClick={() => {
+              // Show confirmation alert
+              Swal.fire({
+                title: "Cancel Purchase",
+                text: "Are you sure you want to cancel the purchase? This will delete everything in your cart.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, cancel it!",
+                cancelButtonText: "No, go back",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Clear the cart
+                  dispatchACT(clearCart());
+
+                  // Redirect the user to the home page
+                  window.location.href = "/";
+                }
+              });
+            }}
+          >
+            Cancel Purchase
+          </button>
         </div>
       )}
     </div>

@@ -40,7 +40,7 @@ const ProfileView = ({ profile }) => {
           </div>
           <div className="flex justify-center py-2">
             <button className="bg-primary text-white py-2 px-4 rounded-md hover:bg-btn-hover">
-              <Link to={`/profilefavs/${profile.name}`}>
+              <Link to={`/profile/${profile.name}`}>
                 <b>Edit Profile</b>
               </Link>
             </button>

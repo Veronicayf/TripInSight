@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { addFavReducer, getAllFavsReducer, getAllUsers, getPurchasedByIdReducer, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer } from './usersSlice'
+import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer, getPurchasedByIdReducer, subscribeReducer, getAllPurchasedReducer } from './usersSlice'
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
 
@@ -69,37 +69,65 @@ export const removeFav = (tourId, userId) => {
   const url = `${URL}/user/deletefavoritetour`;
   const deleteFav = { tourId, userId };
   return async (dispatch) => {
-   try { 
-    let {data} = await axios.delete(url, {
-      data: deleteFav
-    });
-    return dispatch(removeFavReducer(data));
-  } catch(error) {
-    console.log(error.data);
+    try {
+      let { data } = await axios.delete(url, {
+        data: deleteFav
+      });
+      return dispatch(removeFavReducer(data));
+    } catch (error) {
+      console.log(error.data);
+    }
   }
-}
-}
+};
 
 export const getAllFav = (userId) => {
   //console.log('getall', userId);
   return async (dispatch) => {
-   try { 
-    let response = await axios.get(`${URL}/user/allfavs/${userId}`);
-    //console.log('aqui', response);
-    return dispatch(getAllFavsReducer(response.data));
-  } catch(error) {
-    console.log(error);
-  }
+    try {
+      let response = await axios.get(`${URL}/user/allfavs/${userId}`);
+      //console.log('aqui', response);
+      return dispatch(getAllFavsReducer(response.data));
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
 export const getPurchesedById = (userId) => {
   return async (dispatch) => {
     try { 
-     let response = await axios.get(`${URL}/purchased/getpurchased/${userId}`);
+     let response = await axios.get(`${URL}/purchased/getuserpurchaseds/${userId}`);
      return dispatch(getPurchasedByIdReducer(response.data));
    } catch(error) {
      console.log(error);
    }
   }
-}
+};
+
+export const subscribeUser = (email) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:4000/user/subscribe', { email });
+      if (response.status === 200) {
+        dispatch(subscribeReducer(true));
+      } else {
+        dispatch(subscribeReducer(false));
+      }
+    } catch (error) {
+      console.error('Error subscribing:', error.message);
+      dispatch(subscribeReducer(false));
+    }
+  };
+};
+
+
+export const getAllPurchased = () => {
+  return async (dispatch) => {
+    try { 
+     let response = await axios.get(`${URL}/purchased/all?page=${page}&pagesize=${pagesize}`);
+     return dispatch(getAllPurchasedReducer(response.data));
+   } catch(error) {
+     console.log(error);
+   }
+  }
+};

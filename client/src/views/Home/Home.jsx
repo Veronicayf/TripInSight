@@ -16,10 +16,31 @@ import { getAllT } from "../../redux/tourStore/toursActions";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TourCard from "../../components/TourCard/TourCard";
+import { subscribeUser } from "../../redux/userStore/usersActions"; //newLine
 
 const Home = () => {
+
+
+  const [email, setEmail] = useState('');//newLine
   const allTours = useSelector((state) => state.tour.tours);
   const dispatch = useDispatch();
+  const subscribed = useSelector((state) => state.user.subscribed) //newLine
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(subscribeUser(email));
+    console.log('soy el email del submit', email)
+    Swal.fire({
+      icon: "success",
+      title: "Tour added to favorites!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
   useEffect(() => {
     dispatch(getAllT());
@@ -36,7 +57,7 @@ const Home = () => {
           <b className="text-primary">Tours</b>
         </div>
         <div className=" flex justify-center text-gray-600 my-6">
-          <p>
+          <p className="text-center p-4">
             Explore our top destinations, curated by more than +100.000
             costumers around the world
           </p>
@@ -53,16 +74,19 @@ const Home = () => {
           </Link>
         </div>
 
-        <div className="flex justify-center items-center w-full h-96">
-          <div className="flex justify-center items-center  gap-4">
-            {allTours && allTours.length > 0 ? (
-              allTours
-                .slice(0, 5)
-                .map((tour) => <TourCard key={tour.id} tour={tour} />)
-            ) : (
-              <h2>Loading...</h2>
-            )}
-          </div>
+        <div className="flex flex-wrap justify-around items-center w-full">
+          {allTours && allTours.length > 0 ? (
+            allTours.slice(0, 4).map((tour) => (
+              <div
+                key={tour.id}
+                className="w-full flex items-center justify-center sm:w-1/2 md:w-1/2 lg:w-1/6 xl:w-1/4 p-4"
+              >
+                <TourCard tour={tour} />
+              </div>
+            ))
+          ) : (
+            <h2>Loading...</h2>
+          )}
         </div>
       </section>
       <section>
@@ -74,17 +98,20 @@ const Home = () => {
             <b className=" mx-4">OUR</b>
             <b className="text-primary mx-2">PROPOSALS</b>
           </div>
-          <div className="flex justify-center items-center w-full h-96">
-            <div className="flex justify-center items-center gap-4">
-              {allTours && allTours.length > 0 ? (
-                allTours
-                  .slice(0, 5)
-                  .map((tour) => <TourCard key={tour.id} tour={tour} />)
-              ) : (
-                <h2>Loading...</h2>
-              )}
-            </div>
-          </div>
+          <div className="flex flex-wrap justify-around items-center w-full">
+          {allTours && allTours.length > 0 ? (
+            allTours.slice(0, 4).map((tour) => (
+              <div
+                key={tour.id}
+                className="w-full flex items-center justify-center sm:w-1/2 md:w-1/2 lg:w-1/6 xl:w-1/4 p-4"
+              >
+                <TourCard tour={tour} />
+              </div>
+            ))
+          ) : (
+            <h2>Loading...</h2>
+          )}
+        </div>
           <div className="my-3 w-full flex justify-center">
             <Link
               to={"/tours"}
@@ -99,48 +126,42 @@ const Home = () => {
         </div>
       </section>
       {/*<-- Subscribe section -->*/}
-      <section>
-        <div className="bg-bg-landscape bg-cover text-white flex p-24">
-          {/*<-- Left --> */}
-          <div className="flex flex-col w-1/2 justify-around items-center h-96">
-            <div className="w-5/6 h-5/6 m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
-              <div className="flex">
-                <div className="w-2/3 flex flex-col justify-center">
-                  <b className="text-4xl opacity-100">
-                    Discover special Deals!
-                  </b>
-                  <p className="text-2xl">
-                    Make sure to check out these special promotions
-                  </p>
-                </div>
-                <div className="flex items-center w-1/3">
-                  <i>
-                    <img
-                      src={IconSale}
-                      alt="Sales Icon"
-                      className="h-38 w-36"
-                    />
-                  </i>
-                </div>
-              </div>
-              <div className="h-12 flex justify-center">
-                <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary transition hover:duration-300 hover:scale-110 ease-in-out ">
-                  <Link to={"/tours"}>
-                    <b>See Tours</b>
-                  </Link>
-                </button>
-              </div>
+      <section className="bg-bg-landscape bg-cover text-white flex flex-col sm:flex-row p-4 sm:p-24">
+      {/* Left */}
+      <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full">
+        <div className="w-5/6 h-5/6 m-auto p-4 bg-darkgreen-bg opacity-75 flex flex-col rounded-3xl justify-around">
+          <div className="flex">
+            <div className="w-full sm:w-2/3 flex flex-col justify-center">
+              <b className="text-4xl opacity-100">Discover special Deals!</b>
+              <p className="text-2xl">
+                Make sure to check out these special promotions
+              </p>
+            </div>
+            <div className="hidden sm:flex items-center w-1/3">
+              <i>
+                <img src={IconSale} alt="Sales Icon" className="h-38 w-36" />
+              </i>
             </div>
           </div>
-          {/*<-- right --> */}
-          <div className="flex flex-col w-1/2 justify-around items-center h-96">
-            <div className="w-5/6 h-5/6 m-auto p-4 bg-primary opacity-75  flex flex-col rounded-3xl justify-around">
-              <div className="flex">
-                <div className="w-2/3 flex flex-col justify-center">
-                  <b className="text-3xl opacity-100">Don´t miss a thing</b>
-                  <p className="text-xl">
-                    Get updated on special deals and exclusive offers
-                  </p>
+
+          <div className="h-12 flex justify-center">
+            <button className="h-12 w-44 bg-white text-black rounded-3xl hover:bg-primary transition hover:duration-300 hover:scale-110 ease-in-out">
+              <Link to={"/tours"}>
+                <b>See Tours</b>
+              </Link>
+            </button>
+          </div>
+        </div>
+      </div>
+                {/* Right */}
+          <div className="flex flex-col w-full sm:w-1/2 justify-around items-center h-full mt-4 sm:mt-0">
+        <div className="w-5/6 h-5/6 m-auto p-4 bg-primary opacity-75 flex flex-col rounded-3xl justify-around">
+                <div className="flex">
+            <div className="w-full sm:w-2/3 flex flex-col justify-center">
+              <b className="text-3xl opacity-100">Don´t miss a thing</b>
+              <p className="text-xl">
+                Get updated on special deals and exclusive offers
+              </p>
                 </div>
                 <div className="flex items-center w-1/3">
                   <i>
@@ -160,28 +181,31 @@ const Home = () => {
                   className=" w-full outline-none"
                   type="text"
                   placeholder="Your Email Address..."
+                  value={email}
+                  onChange={handleEmailChange}
                 />
                 <button
                   className=" bg-darkgreen-bg text-white w-40 h-12 rounded-3xl hover:bg-btn-hover"
                   type="submit"
+                  onClick={handleSubmit}
                 >
                   Suscribe
                 </button>
               </div>
+
             </div>
           </div>
-        </div>
-      </section>
+    </section>
 
       {/* <-- Comentary Section --> */}
-      <section>
-        <div className="flex justify-center item-center my-5">
+      <section className=" flex flex-col px-4">
+        <div className="flex justify-center item-center text-center my-5">
           <b className="text-4xl">
             What <b className=" text-primary">our customers</b> are saying about
             us
           </b>
         </div>
-        <div className=" flex flex-row justify-around items-center mb-6">
+        <div className=" flex flex-col lg:flex-row justify-around items-center mb-6">
           {/* <-- Comentary --> */}
           <div className=" w-1/3 flex flex-col justify-center items-center m-5">
             <div className="flex flex-col justify-center items-center">
