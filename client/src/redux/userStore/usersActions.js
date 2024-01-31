@@ -107,7 +107,7 @@ export const getPurchesedById = (userId) => {
 export const subscribeUser = (email) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:4000/user/subscribe', { email });
+      const response = await axios.post(`${URL}/user/subscribe`, { email });
       if (response.status === 200) {
         dispatch(subscribeReducer(true));
       } else {

@@ -33,7 +33,7 @@ const TicketSection = () => {
             className='w-full h-20 flex items-center justify-around border-t-2'
           >
             <div className='w-1/3 text-center'>{ticket.tourName}</div>
-            <div className='w-1/4 text-center'>{ticket.createdAt}</div>
+            <div className='w-1/4 text-center'>{new Date(ticket.createdAt).toLocaleDateString()}</div>
             <div className='w-1/4 text-center'>${ticket.totalPrice}</div>
             <div className='w-1/4 text-center'>{ticket.id}</div>
           </div>
