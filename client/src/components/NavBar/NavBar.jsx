@@ -63,22 +63,34 @@ const NavBar = () => {
         <Link to="/aboutus" onClick={toggleMenu} className={`${location.pathname === '/aboutus' ? 'text-green-400' : ''} block p-2 border-b border-gray-600`}>
           About Us
         </Link>
+        
+        {/* Vista sm */}
         {isAuthenticated && isAuthenticated ? (
+          <div>
+            <Link to="/cart" onClick={toggleMenu} className={`${location.pathname === '/aboutus' ? 'text-green-400' : ''} block p-2 border-b border-gray-600`}>
+          Cart Shop
+        </Link>
+          
             <div className="flex flex-col lg:flex-row lg:justify-center lg:items-center"> 
               <Profile /> 
               <div className="flex flex-row p-1 justify-center items-center"> <LogoutButton /> </div>
-            </div> 
+            </div>
+          </div> 
+            
+
           ) : (
+            <div className="flex flex-row p-1 justify-center items-center">
             <Link to="/login">
               <button className="h-12 w-36 bg-primary flex flex-row justify-center rounded-full items-center gap-3 p-1.5 hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out">
                 <img className="h-10" src={login} alt="Login" />
                 <h3>Login</h3>
               </button>
             </Link>
+            </div>
           )}
       </div>
-
-      <div className="hidden lg:flex flex-row basis-3/5 justify-between items-center gap-5 p-5">
+            {/* Vista LG */}
+      <div className=" hidden lg:flex flex-row basis-3/5 justify-between items-center gap-5 p-5">
         <SearchBar />
         <div className="flex flex-row items-center gap-5">
           <Link to="/cart">
@@ -94,8 +106,9 @@ const NavBar = () => {
               <div className="flex flex-row p-1 items-center"> <LogoutButton /> </div>
             </div> 
           ) : (
+            
             <Link to="/login">
-              <button className="h-12 w-36 bg-primary flex flex-row justify-center rounded-full items-center gap-3 p-1.5 hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out">
+              <button className="h-12 w-36 bg-primary flex flex-row justify-center  rounded-full items-center gap-3 p-1.5 hover:bg-btn-hover transition hover:duration-300 hover:scale-110 ease-in-out">
                 <img className="h-10" src={login} alt="Login" />
                 <h3>Login</h3>
               </button>

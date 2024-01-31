@@ -25,7 +25,6 @@ const Buysection = ({ tour }) => {
   const favsTourIds = favsUser.map((fav) => fav.tourId);
   const tourFav = favsTourIds.includes(tourDetail.id);
   const [isFav, setIsFav] = useState(true);
-  //console.log('favsss', tourFav);
 
   const handleAddToCart = () => {
     try {
@@ -110,7 +109,7 @@ const Buysection = ({ tour }) => {
 
   return (
     <div
-      className={` relative lg:fixed top-1/3 right-3 transform -translate-y-1/2 bg-primary text-white w-fulllg:w-1/4 border border-seconday-text rounded-[50px] shadow-md transition-transform duration-300 ${
+      className={` relative lg:fixed lg:top-1/3 lg:right-4 transform -translate-y-1/2 bg-primary text-white w-full lg:w-1/4 border border-seconday-text lg:rounded-[50px] rounded-2xl lg:shadow-md transition-transform duration-300 ${
         isSticky ? "translate-y-0" : ""
       }`}
     >
