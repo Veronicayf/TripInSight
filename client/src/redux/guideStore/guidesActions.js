@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/dist/sweetalert2.min.css";
-import { getAllGuides, getGuideById, postGuideReducer } from './guidesSlice'
+import { deleteGuideReducer, getAllGuides, getGuideById, postGuideReducer, updateGuideReducer } from './guidesSlice'
 
 const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
 
@@ -43,4 +43,34 @@ export const postGuide = (guideDate) => {
 
     }
   };
+};
+
+
+export const updateGuide = (guideData) => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.put(
+        `${URL}/guides/updateguide`,
+        guideData
+      );
+      return dispatch(updateGuideReducer(response.data));
+    } catch (error) {
+      console.log(error.response.data);
+    }
+  };
+};
+
+export const deleteGuide = (guideId) => {
+  const url = `${URL}/guides/${guideId}`;
+  const deleteG = { guideId };
+  return async (dispatch) => {
+    try {
+      let { data } = await axios.delete(url, {
+        data: deleteG
+      });
+      return dispatch(deleteGuideReducer(data));
+    } catch (error) {
+      console.log(error.data);
+    }
+  }
 };
