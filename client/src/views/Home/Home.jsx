@@ -194,27 +194,7 @@ const Home = () => {
               </div>
 
             </div>
-            <div className="hidden sm:flex items-center w-1/3">
-              <i>
-                <img src={IconPlane} alt="Sales Icon" className="h-38 w-36" />
-              </i>
-            </div>
           </div>
-          <div className="h-12 flex justify-between bg-white text-black rounded-3xl items-center">
-            <i className=" px-2">
-              <img src={IconMail} alt="" />
-            </i>
-            <input
-              className="w-full outline-none text-black"
-              type="text"
-              placeholder="Your Email Address..."
-            />
-            <button className="bg-darkgreen-bg text-white w-40 h-12 rounded-3xl hover:bg-btn-hover" type="submit">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </div>
     </section>
 
       {/* <-- Comentary Section --> */}
