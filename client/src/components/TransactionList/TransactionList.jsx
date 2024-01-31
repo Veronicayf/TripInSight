@@ -3,7 +3,7 @@ import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPurchased } from "../../redux/userStore/usersActions";
 
-const TransactionList = () => {
+const TransactionList = ( ) => {
   const dispatch = useDispatch();
   const allPurchased = useSelector((state) => state.user.purchasedAll)
 
