@@ -10,6 +10,7 @@ export const userSlice = createSlice({
     favorites: [], //favorites,
     subscribed: null, //newLine
     purchased: [],
+    purchasedAll: [],
   },
 
   reducers: {
@@ -48,11 +49,14 @@ export const userSlice = createSlice({
     },
     getPurchasedByIdReducer: (state, action) => {
       state.purchased = [...action.payload]
+    },
+    getAllPurchasedReducer: (state, action) => {
+      state.purchasedAll = [...action.payload]
     }
   },
 });
 
-export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer, getAllFavsReducer, subscribeReducer, getPurchasedByIdReducer } =
+export const { getAllUsers, getUserDetail, clearUserDetail, loggedUserReducer, updateUserReducer, addFavReducer, removeFavReducer, getAllFavsReducer, subscribeReducer, getPurchasedByIdReducer, getAllPurchasedReducer } =
   userSlice.actions;
 
 export default userSlice.reducer;
