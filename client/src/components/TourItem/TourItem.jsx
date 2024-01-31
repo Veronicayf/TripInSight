@@ -1,8 +1,36 @@
 import React, { useEffect, useRef, useState } from 'react';
 import iconmenu from '../../assets/icons/IconMenuVertical.png';
 import DropMenu from '../DropMenu/DropMenu';
+import { useDispatch } from 'react-redux';
+import { deleteTour } from '../../redux/tourStore/toursActions';
 
 const TourItem = ({ tourInfo }) => {
+
+  const dispatch = useDispatch();
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    //console.log('me ejecute');
+    Swal.fire({
+      title: `Do you want to eliminate ${tourInfo.nameTour} from "tours"?`,
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Yes",
+      denyButtonText: `No`
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        dispatch(deleteTour(tourInfo.id));
+        Swal.fire("Saved changes!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  }
+
+  const handleEdit = (e) => {
+      e.preventDefault();
+  }
 
     const statusStyle = {
         backgroundColor: tourInfo.status === '1' ? 'green' : 'red',
@@ -25,15 +53,6 @@ const TourItem = ({ tourInfo }) => {
         document.removeEventListener("mousedown", handleOutsideClick);
       };
     }, []);
-  
-    const toggleMenu = () => {
-      setOpen(!open);
-    };
-    const options = [
-      { label: 'Edit', to: `/profilefavs/` },
-      { label: 'Disable', to: `/profile/` },
-    ];
-    
 
     return (
     <div id='Item' className='flex flex-row w-full justify-between py-4'>
@@ -54,12 +73,21 @@ const TourItem = ({ tourInfo }) => {
         <div style={statusStyle}><b>{tourInfo.status}</b></div>
         </div>
         <div className='w-1/6 flex flex-row items-center justify-center'>
-            <div className=" relative flex flex-col items-center">
-                <button className='h-10 w-10 bg-primary rounded-2xl hover:bg-btn-hover' onClick={toggleMenu}>
-                {open && <DropMenu options={options} onClose={() => setOpen(false)} />}
-                    <img src={iconmenu} alt="icon menu" />
-                </button>
-            </div>
+          <div className=" relative flex flex-row items-center gap-2">
+          <button
+            className="h-10 w-10 flex justify-center items-center bg-primary rounded-full hover:bg-btn-hover"
+            onClick={(e) => handleEdit(e)}
+          >
+            <span className="material-symbols-outlined text-white">edit</span>
+          </button>
+          <button
+            className="h-10 w-10 flex justify-center items-center bg-red-600 rounded-full hover:bg-btn-hover"
+            onClick={(e) => handleDelete(e)}
+          >
+            <span className="material-symbols-outlined text-white">delete</span>
+          </button>
+          
+        </div>
         </div>
     </div>
     );
