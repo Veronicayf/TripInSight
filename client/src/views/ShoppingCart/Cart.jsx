@@ -16,20 +16,49 @@ import { removeTourFromCartAction } from "../../redux/tourStore/toursActions";
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.tour.addCart);
-  // console.log(cart[1]);
+  
   const initialQuantities = cart.reduce((quantities, product) => {
+        
     quantities[product.id] = 1;
+    
     return quantities;
   }, {});
-
+  
   const [quantities, setQuantities] = useState(initialQuantities);
 
+  //? const handleIncrease = (productId) => {
+  //   setQuantities((prevQuantities) => ({
+  //     ...prevQuantities,
+  //     [productId]: (prevQuantities[productId] || 0) + 1,
+  //   }));
+  //   const product = cart.find((p) => p.id === productId);
+
+  //   if(quantities[productId] >= product.places) {
+  //     alert('No puedes comprar mas tours de los que hay disponibles');
+  //   }
+
+  //   console.log(quantities[productId])
+  //   // console.log(product.places);
+  //? };
+
   const handleIncrease = (productId) => {
-    setQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [productId]: (prevQuantities[productId] || 0) + 1,
-    }));
+    setQuantities((prevQuantities) => {
+      const product = cart.find((p) => p.id === productId);
+  
+      if (!product) {
+        return prevQuantities;
+      }
+  
+      const currentQuantity = prevQuantities[productId] || 0;
+      const newQuantity = Math.min(currentQuantity + 1, product.places);
+      
+      return {
+        ...prevQuantities,
+        [productId]: newQuantity,
+      };
+    });
   };
+  
 
   const handleDecrease = (productId) => {
     setQuantities((prevQuantities) => ({

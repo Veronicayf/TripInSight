@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addTourCart,
   cartTotal,
@@ -8,6 +8,11 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 
 const OrderSummary = ({ totalPrice, quantities }) => {
+  
+  const cart = useSelector( state => state.tour.addCart);
+  // console.log(cart);
+  // console.log(quantities);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

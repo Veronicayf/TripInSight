@@ -24,9 +24,11 @@ const CartItem = ({
         <span className="bg-white px-4 py-2 border-t border-b text-gray-700">
           {quantity}
         </span>
+        
         <button
           onClick={handleIncrease}
           className="bg-gray-300 text-gray-700 px-4 py-2 rounded-r"
+          disabled={quantity === product.places ? true : false}
         >
           +
         </button>
