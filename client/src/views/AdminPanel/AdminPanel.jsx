@@ -51,10 +51,9 @@ const AdminPanel = () => {
   );
 
   return (
-    <div className="flex h-screen font-Poppins">
+    <div className="flex h-screen font-Poppins ">
         <SideBar />
         <div className=" w-full">
-          <HeaderAdmin/>
           <AdminDashboard/>
         </div>
 

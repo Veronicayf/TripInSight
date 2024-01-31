@@ -28,10 +28,7 @@ const AdminTous = () => {
   return (
     <div className="flex w-full flex-row">
       <SideBar />
-      <div className=" flex w-full flex-col p-4">
-        <div>
-          <HeaderAdmin />
-        </div>
+      <div className=" flex w-full flex-col ">
         <div className=" w-full flex flex-col">
           <div className=" flex w-full flex-row justify-between text-white bg-primary rounded-b-3xl">
             <div className="w-2/6 h-12 flex justify-center items-center">

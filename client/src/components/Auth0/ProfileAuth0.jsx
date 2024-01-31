@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import DropMenu from "../DropMenu/DropMenu";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllFav, getUserId } from "../../redux/userStore/usersActions";
+import { getAllFav, getPurchesedById, getUserId } from "../../redux/userStore/usersActions";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -17,6 +17,7 @@ const Profile = () => {
   useEffect(() => {
     if(profile.id){
     dispatch(getAllFav(profile.id))
+    dispatch(getPurchesedById(profile.id))
   }
   }, [])
 

@@ -5,6 +5,7 @@ import TotalSalesCard from '../TotalSalesCard/TotalSalesCard'
 import UserChart from '../UserChart/UserChart';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllT } from '../../redux/tourStore/toursActions';
+import TourCard from '../TourCard/TourCard';
 
 const initialData = [
 	{ time: '2018-12-22', value: 32.51 },
@@ -108,11 +109,7 @@ const AdminDashboard = () => {
         <h2 className="text-2xl font-bold mb-2">Próximos Tours</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {upcomingTours.map((tour) => (
-            <div key={tour.id} className="border p-4 rounded-md">
-              <h3 className="text-lg font-semibold mb-2">{tour.nameTour}</h3>
-              <img className='h-14 w-14' src={tour.image}/>
-              {/* Puedes agregar más detalles según sea necesario */}
-            </div>
+            <TourCard key={tour.id} tour={tour} />
           ))}
         </div>
       </div>
