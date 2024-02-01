@@ -61,7 +61,7 @@ const Checkout = () => {
   const sendCartDataToBackend = () => {
     for (const t of newArr) {
       axios
-        .post("http://localhost:4000/purchased", t)
+        .post("https://tripinsight.onrender.com/purchased", t)
         .then((response) => {
           console.log("Cart data sent to the backend: ", response.data);
         })
@@ -112,7 +112,7 @@ const Checkout = () => {
             onChange={onCurrencyChange}
             className="mb-4 p-2 border border-gray-300 rounded justify-center"
           >
-            <option value="USD">💵 USD</option>
+            {/* <option value="USD">💵 USD</option> */}
             <option value="EUR">💶 Euro</option>
           </select>
           <div className="flex flex-row items-center justify-center mb-2">
