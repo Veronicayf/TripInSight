@@ -27,7 +27,7 @@ export const loggedUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(`${URL}/user`, user);
-      dispatch(loggedUserReducer(response.data));
+      return dispatch(loggedUserReducer(response.data));
 
       //await dispatch(getUserId(response.data.id));
     } catch (error) {

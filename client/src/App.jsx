@@ -54,6 +54,11 @@ const App = () => {
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.user.userProfile);
   const navigate = useNavigate();
+  const [prevIsAuthenticated, setPrevIsAuthenticated] = useState(isAuthenticated);
+
+  useEffect(() => {
+    setPrevIsAuthenticated(isAuthenticated);
+  }, [isAuthenticated]);
 
   const fetchUserId = () => {
     if (isAuthenticated && userProfile.id) {
@@ -62,7 +67,8 @@ const App = () => {
   };
 
   const authenticateUser = async () => {
-    if (isAuthenticated) {
+    // Agrega un condicional para evitar ejecuciones innecesarias
+    if (isAuthenticated && isAuthenticated !== prevIsAuthenticated) {
       const userAuth = {
         name: user.name,
         email: user.email,
@@ -88,9 +94,6 @@ const App = () => {
     const checkAdminAndRedirect = async () => {
       if (isOnAdminRoute && isAuthenticated) {
         
-        await authenticateUser();
-  
-        
         if (userProfile && !userProfile.admin) {
           
           navigate("/"); 
@@ -99,7 +102,7 @@ const App = () => {
     };
   
     checkAdminAndRedirect();
-  }, [isOnAdminRoute, isAuthenticated, authenticateUser, userProfile, navigate]);
+  }, [isOnAdminRoute, userProfile]);
 
   return (
     <div>

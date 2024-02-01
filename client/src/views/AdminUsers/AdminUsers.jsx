@@ -50,7 +50,7 @@ const AdminUsers = () => {
     },
     // Agrega más transacciones según sea necesario
   ];
-  console.log(allUser);
+  //console.log(allUser);
   // Convertimos transactionsData a un formato compatible con lightweight-charts
   const convertedData = transactionsData.map((transaction) => {
     // Crear un objeto Date utilizando el timestamp de la transacción
@@ -85,7 +85,10 @@ const AdminUsers = () => {
               <b className="">Status</b>
             </div>
             <div className="w-1/6 flex justify-center items-center">
-              <b className="">Actions</b>
+              <b className="">Admin</b>
+            </div>
+            <div className="w-1/6 flex justify-center items-center">
+              <b className="">Banned</b>
             </div>
           </div>
           <div>
