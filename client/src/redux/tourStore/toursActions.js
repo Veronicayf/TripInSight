@@ -19,7 +19,7 @@ import {
   getAllReviewsReducer,
 } from "./toursSlice";
 
-const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"
+const URL = "http://localhost:4000"; //"http://localhost:4000" https://tripinsight.onrender.com
 
 export const getAllT = () => {
   return async (dispatch) => {

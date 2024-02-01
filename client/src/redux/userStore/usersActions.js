@@ -12,7 +12,7 @@ import {
   getAllPurchasedReducer,
 } from "./usersSlice";
 
-const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"
+const URL = "http://localhost:4000"; //"http://localhost:4000" https://tripinsight.onrender.com
 
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
