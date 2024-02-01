@@ -17,7 +17,7 @@ const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
     let { data } = await axios(
-      `${URL}/user/all?page=${page}&pagesize=${pagesize}`
+      `${URL}/user/all?page=1&pagesize=20`
     );
     return dispatch(getAllUsers(data));
   };
@@ -27,7 +27,7 @@ export const loggedUser = (user) => {
   return async (dispatch) => {
     try {
       let response = await axios.post(`${URL}/user`, user);
-      dispatch(loggedUserReducer(response.data));
+      return dispatch(loggedUserReducer(response.data));
 
       //await dispatch(getUserId(response.data.id));
     } catch (error) {
@@ -128,7 +128,7 @@ export const subscribeUser = (email) => {
 export const getAllPurchased = () => {
   return async (dispatch) => {
     try {
-      let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=10`);
+      let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=50`);
       return dispatch(getAllPurchasedReducer(response.data));
     } catch (error) {
       console.log(error);

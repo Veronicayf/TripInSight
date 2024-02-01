@@ -72,31 +72,64 @@ const Checkout = () => {
     console.log("1:", newArr);
   };
 
-  const onApproveOrder = (data, actions) => {
-    return actions.order.capture().then((details) => {
-      /* const name = details.payer.name.given_name;
-       */
-      // Use Sweetalert instead of alert
-      Swal.fire({
-        title: "Transaction completed!",
-        icon: "success",
-        showConfirmButton: true,
-        timer: 2000, // Set the duration of the success message
-      });
+  // const onApproveOrder = (data, actions) => {
+  //   return actions.order.capture().then((details) => {
+  //     /* const name = details.payer.name.given_name;
+  //      */
+  //     // Use Sweetalert instead of alert
+  //     Swal.fire({
+  //       title: "Transaction completed!",
+  //       icon: "success",
+  //       showConfirmButton: true,
+  //       timer: 2000, // Set the duration of the success message
+  //     });
 
-      sendCartDataToBackend();
+  //     sendCartDataToBackend();
 
-      // Dispatch the clearCart action
-      dispatchACT(clearCart());
+  //     // Dispatch the clearCart action
+  //     dispatchACT(clearCart());
 
-      // Redirect the user to the home page
-      window.location.href = "/";
-    });
-  };
+  //     // Redirect the user to the home page
+  //     window.location.href = "/";
+  //   });
+  // };
 
   /* useEffect(() => {
     console.log("currency change:", currency);
   }, [currency]); */
+  const onApproveOrder = async (data, actions) => {
+    try {
+      await actions.order.capture();
+
+      // Send cart data to the backend
+      await sendCartDataToBackend();
+
+      // Dispatch the clearCart action
+      dispatchACT(clearCart());
+
+      // Show success message
+      Swal.fire({
+        title: "Transaction completed!",
+        icon: "success",
+        showConfirmButton: true,
+        timer: 2000,
+      });
+
+      // Redirect the user to the home page
+      window.location.href = "/";
+    } catch (error) {
+      // Handle any errors that may occur during order capture or cart data sending
+      console.error("Error during order capture or cart data sending:", error);
+
+      // Show an error message to the user
+      Swal.fire({
+        title: "Error",
+        text: "An error occurred during the transaction. Please try again.",
+        icon: "error",
+        showConfirmButton: true,
+      });
+    }
+  };
 
   return (
     <div className="checkout flex items-center justify-center min-h-screen text-center z-0 shadow-md rounded-md">
