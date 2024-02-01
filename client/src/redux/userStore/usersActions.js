@@ -17,7 +17,7 @@ const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
     let { data } = await axios(
-      `${URL}/user/all?page=${page}&pagesize=${pagesize}`
+      `${URL}/user/all?page=1&pagesize=20`
     );
     return dispatch(getAllUsers(data));
   };

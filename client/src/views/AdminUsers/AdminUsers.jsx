@@ -8,7 +8,7 @@ import UserList from "../../components/UserList/Userlist";
 import { getUsers } from "../../redux/userStore/usersActions";
 
 const AdminUsers = () => {
-
+    const dispatch = useDispatch();
     const allUser = useSelector((state) => state.user.users);
 
 
@@ -69,6 +69,11 @@ const AdminUsers = () => {
       value: transaction.visit,
     };
   });
+
+  useEffect(() => {
+    dispatch(getUsers());
+  }, [])
+
   return (
     <div className="flex flex-row font-Poppins w-full h-full">
       <SideBar />

@@ -4,8 +4,10 @@ import iconmenu from '../../assets/icons/IconMenuVertical.png';
 import DropMenu from '../DropMenu/DropMenu';
 import { updateUser } from '../../redux/userStore/usersActions';
 import Switch from 'react-switch';
+import { useDispatch } from 'react-redux';
 
 const UserList = ({ UserInfo }) => {
+    const dispatch = useDispatch();
     let status = ""
     const navigate = useNavigate(); 
 
@@ -46,6 +48,11 @@ const UserList = ({ UserInfo }) => {
     //   { label: 'ViewUser', to: `/profilefavs/` },
     // ];
     const handleBanned = (checked) => {
+      console.log('banned', checked);
+      const banned = {
+        isBanned: checked,
+        idUser: UserInfo.id
+      }
       Swal.fire({
         title: `Do you want to change the ${UserInfo.name} status?`,
         showDenyButton: true,
@@ -54,7 +61,7 @@ const UserList = ({ UserInfo }) => {
         denyButtonText: "No",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(updateUser(UserInfo));
+          dispatch(updateUser(banned));
           Swal.fire("Saved changes!", "", "success");
         } else if (result.isDenied) {
           Swal.fire("Changes are not saved", "", "info");
@@ -63,6 +70,12 @@ const UserList = ({ UserInfo }) => {
     };
 
     const handleAdmin = (checked) => {
+      console.log('admin', checked);
+      console.log(UserInfo.id);
+      const admin = {
+        admin: checked,
+        idUser: UserInfo.id
+      }
       Swal.fire({
         title: `Do you want to change the ${UserInfo.name} status?`,
         showDenyButton: true,
@@ -71,7 +84,7 @@ const UserList = ({ UserInfo }) => {
         denyButtonText: "No",
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(updateUser(UserInfo));
+          dispatch(updateUser(admin));
           Swal.fire("Saved changes!", "", "success");
         } else if (result.isDenied) {
           Swal.fire("Changes are not saved", "", "info");
