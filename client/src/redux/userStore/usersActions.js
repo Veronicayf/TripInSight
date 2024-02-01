@@ -1,7 +1,18 @@
-import axios from 'axios'
-import { addFavReducer, getAllFavsReducer, getAllUsers, getUserDetail, loggedUserReducer, removeFavReducer, updateUserReducer, getPurchasedByIdReducer, subscribeReducer, getAllPurchasedReducer } from './usersSlice'
+import axios from "axios";
+import {
+  addFavReducer,
+  getAllFavsReducer,
+  getAllUsers,
+  getUserDetail,
+  loggedUserReducer,
+  removeFavReducer,
+  updateUserReducer,
+  getPurchasedByIdReducer,
+  subscribeReducer,
+  getAllPurchasedReducer,
+} from "./usersSlice";
 
-const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
+const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"
 
 export const getUsers = (page, pagesize) => {
   return async (dispatch) => {
@@ -15,10 +26,7 @@ export const getUsers = (page, pagesize) => {
 export const loggedUser = (user) => {
   return async (dispatch) => {
     try {
-      let response = await axios.post(
-        `${URL}/user`,
-        user
-      );
+      let response = await axios.post(`${URL}/user`, user);
       dispatch(loggedUserReducer(response.data));
 
       //await dispatch(getUserId(response.data.id));
@@ -30,9 +38,7 @@ export const loggedUser = (user) => {
 
 export const getUserId = (id) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `${URL}/user/getuser/${id}`
-    );
+    let { data } = await axios.get(`${URL}/user/getuser/${id}`);
     return dispatch(getUserDetail(data));
   };
 };
@@ -40,10 +46,7 @@ export const getUserId = (id) => {
 export const updateUser = (userData) => {
   return async (dispatch) => {
     try {
-      let response = await axios.put(
-        `${URL}/user/updateuser`,
-        userData
-      );
+      let response = await axios.put(`${URL}/user/updateuser`, userData);
       return dispatch(updateUserReducer(response.data));
     } catch (error) {
       console.log(error.response.data);
@@ -54,10 +57,10 @@ export const updateUser = (userData) => {
 export const addFav = (tourId, userId) => {
   return async (dispatch) => {
     try {
-      let response = await axios.put(
-        `${URL}/user/addfavorite`,
-        { tourId, userId }
-      );
+      let response = await axios.put(`${URL}/user/addfavorite`, {
+        tourId,
+        userId,
+      });
       return dispatch(addFavReducer(response.data));
     } catch (error) {
       console.log(error);
@@ -71,13 +74,13 @@ export const removeFav = (tourId, userId) => {
   return async (dispatch) => {
     try {
       let { data } = await axios.delete(url, {
-        data: deleteFav
+        data: deleteFav,
       });
       return dispatch(removeFavReducer(data));
     } catch (error) {
       console.log(error.data);
     }
-  }
+  };
 };
 
 export const getAllFav = (userId) => {
@@ -90,18 +93,20 @@ export const getAllFav = (userId) => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
 };
 
 export const getPurchesedById = (userId) => {
   return async (dispatch) => {
-    try { 
-     let response = await axios.get(`${URL}/purchased/getuserpurchaseds/${userId}`);
-     return dispatch(getPurchasedByIdReducer(response.data));
-   } catch(error) {
-     console.log(error);
-   }
-  }
+    try {
+      let response = await axios.get(
+        `${URL}/purchased/getuserpurchaseds/${userId}`
+      );
+      return dispatch(getPurchasedByIdReducer(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
 
 export const subscribeUser = (email) => {
@@ -114,21 +119,19 @@ export const subscribeUser = (email) => {
         dispatch(subscribeReducer(false));
       }
     } catch (error) {
-      console.error('Error subscribing:', error.message);
+      console.error("Error subscribing:", error.message);
       dispatch(subscribeReducer(false));
     }
   };
 };
 
-
 export const getAllPurchased = () => {
   return async (dispatch) => {
-    try { 
-     let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=10`);
-     return dispatch(getAllPurchasedReducer(response.data));
-   } catch(error) {
-     console.log(error);
-   }
-  }
+    try {
+      let response = await axios.get(`${URL}/purchased/all?page=1&pagesize=10`);
+      return dispatch(getAllPurchasedReducer(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 };
-

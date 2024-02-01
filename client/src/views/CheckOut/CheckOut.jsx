@@ -61,7 +61,7 @@ const Checkout = () => {
   const sendCartDataToBackend = () => {
     for (const t of newArr) {
       axios
-        .post("http://localhost:4000/purchased", t)
+        .post("https://tripinsight.onrender.com/purchased", t)
         .then((response) => {
           console.log("Cart data sent to the backend: ", response.data);
         })
