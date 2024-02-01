@@ -82,24 +82,24 @@ const App = () => {
   const location = useLocation();
 
   const isOnAdminRoute = location.pathname.toLowerCase().startsWith("/admin");
+
+ 
   useEffect(() => {
-    if (isAuthenticated && userProfile.isBanned) {
-      navigate("/login");
-    }
-
-
-    if (isOnAdminRoute && !userProfile.isAdmin) {
-      // Redirect to a different page or display a message
-      navigate("/"); // Redirect to the home page in this example
-    }
-
-  }, [
-    isAuthenticated,
-    userProfile.isBanned,
-    userProfile.isAdmin,
-    isOnAdminRoute,
-    navigate,
-  ]);
+    const checkAdminAndRedirect = async () => {
+      if (isOnAdminRoute && isAuthenticated) {
+        
+        await authenticateUser();
+  
+        
+        if (userProfile && !userProfile.admin) {
+          
+          navigate("/"); 
+        }
+      }
+    };
+  
+    checkAdminAndRedirect();
+  }, [isOnAdminRoute, isAuthenticated, authenticateUser, userProfile, navigate]);
 
   return (
     <div>
