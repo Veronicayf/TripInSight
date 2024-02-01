@@ -84,19 +84,13 @@ const Checkout = () => {
         timer: 2000, // Set the duration of the success message
       });
 
-      // Send cart data to backend
-      sendCartDataToBackend()
-        .then(() => {
-          // Dispatch the clearCart action
-          dispatchACT(clearCart());
+      sendCartDataToBackend();
 
-          // Redirect the user to the home page
-          window.location.href = "/";
-        })
-        .catch((error) => {
-          console.error("Error sending cart data to the backend: ", error);
-          // Handle error, e.g., show an error message to the user
-        });
+      // Dispatch the clearCart action
+      dispatchACT(clearCart());
+
+      // Redirect the user to the home page
+      window.location.href = "/";
     });
   };
 
@@ -118,7 +112,7 @@ const Checkout = () => {
             onChange={onCurrencyChange}
             className="mb-4 p-2 border border-gray-300 rounded justify-center"
           >
-            {/* <option value="USD">💵 USD</option> */}
+            <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
           <div className="flex flex-row items-center justify-center mb-2">
