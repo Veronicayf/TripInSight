@@ -9,8 +9,7 @@ import {
   updateGuideReducer,
 } from "./guidesSlice";
 
-
-const URL = "http://localhost:4000"; //"https://tripinsight.onrender.com"
+const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"; //"https://tripinsight.onrender.com"
 
 export const getAllG = (page, pageSize) => {
   return async (dispatch) => {
@@ -55,7 +54,7 @@ export const updateGuide = (guideData) => {
     try {
       console.log(guideData);
       let response = await axios.put(
-        `http://localhost:4000/guides/updateguide`,
+        "https://tripinsight.onrender.com/guides/updateguide",
         guideData
       );
       return dispatch(updateGuideReducer(response.data));

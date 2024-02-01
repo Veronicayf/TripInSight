@@ -19,7 +19,7 @@ import {
   getAllReviewsReducer,
 } from "./toursSlice";
 
-const URL = "http://localhost:4000"  //"https://tripinsight.onrender.com"
+const URL = "https://tripinsight.onrender.com"; //"http://localhost:4000"
 
 export const getAllT = () => {
   return async (dispatch) => {
@@ -30,18 +30,14 @@ export const getAllT = () => {
 
 export const getTourId = (id) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `${URL}/tours/${id}`
-    );
+    let { data } = await axios.get(`${URL}/tours/${id}`);
     return dispatch(getTourById(data));
   };
 };
 
 export const getTourName = (tour) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `${URL}/tours/nameTour?nameTour=${tour}`
-    );
+    let { data } = await axios.get(`${URL}/tours/nameTour?nameTour=${tour}`);
     return dispatch(searchTourByName(data));
   };
 };
@@ -50,18 +46,14 @@ export const getTourName = (tour) => {
 export const postTourAction = (posteoTour) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        `${URL}/tours`,
-        posteoTour
-      );
+      const response = await axios.post(`${URL}/tours`, posteoTour);
       dispatch(postTour(response.data));
       Swal.fire({
         icon: "success",
         title: "Tour  created",
         showConfirmButton: false,
         timer: 1500,
-    });
-
+      });
     } catch (error) {
       // Manejar errores de red u otros
       console.error("Error to create tour:", error);
@@ -77,9 +69,7 @@ export const postTourAction = (posteoTour) => {
 
 export const searchTourTags = (tour) => {
   return async (dispatch) => {
-    let { data } = await axios.get(
-      `${URL}/tours/tags?tags=${tour}`
-    );
+    let { data } = await axios.get(`${URL}/tours/tags?tags=${tour}`);
     return dispatch(searchTourByTags(data));
   };
 };
@@ -115,7 +105,7 @@ export const addTourCart = (tour) => {
       price: tour.price,
       equipment: tour.equipment,
       initialDate: tour.initialDate,
-      places: tour.places
+      places: tour.places,
     };
     dispatch(addTourCartReducer(cart));
   };
@@ -144,9 +134,7 @@ export const cartQuantity = (quantity) => {
 
 export const updateTour = (id, tourData) => {
   return async (dispatch) => {
-    let { data } = await axios.put(
-      `${URL}/tours/${id}`, {tourData}
-    );
+    let { data } = await axios.put(`${URL}/tours/${id}`, { tourData });
     return dispatch(updateTourReducer(data));
   };
 };
@@ -160,32 +148,31 @@ export const deleteTour = (tourId) => {
     } catch (error) {
       console.log(error.data);
     }
-  }
+  };
 };
 
 export const updateStatus = (idTour, status) => {
   return async (dispatch) => {
-    let { data } = await axios.put(
-      `${URL}/tours/status`, {idTour, status}
-    );
+    let { data } = await axios.put(`${URL}/tours/status`, { idTour, status });
     return dispatch(updateStatusReducer(data));
   };
 };
 
-export const addReview = (idTour,idUser,review) =>{
-  return async(dispatch ) => {
+export const addReview = (idTour, idUser, review) => {
+  return async (dispatch) => {
     try {
-      let {data} = await axios.post (
-        `${URL}/reviews`,{idTour,idUser,review}
-      )
-      dispatch(addReviewReducer(data))
+      let { data } = await axios.post(`${URL}/reviews`, {
+        idTour,
+        idUser,
+        review,
+      });
+      dispatch(addReviewReducer(data));
       Swal.fire({
         icon: "success",
         title: "Review added!",
         showConfirmButton: false,
         timer: 1500,
-    });
-
+      });
     } catch (error) {
       // Manejar errores de red u otros
       console.error("Error to create tour:", error);
@@ -198,11 +185,9 @@ export const addReview = (idTour,idUser,review) =>{
     }
   };
 };
-export const getAllReviews = () =>{
-  return async(dispatch) =>{
-    let {data} = await axios.get (
-      `${URL}/reviews`
-    )
-    dispatch(getAllReviewsReducer(data))
-  }
-}
+export const getAllReviews = () => {
+  return async (dispatch) => {
+    let { data } = await axios.get(`${URL}/reviews`);
+    dispatch(getAllReviewsReducer(data));
+  };
+};
