@@ -112,7 +112,7 @@ const Checkout = () => {
             onChange={onCurrencyChange}
             className="mb-4 p-2 border border-gray-300 rounded justify-center"
           >
-            {/* <option value="USD">💵 USD</option> */}
+            <option value="USD">💵 USD</option>
             <option value="EUR">💶 Euro</option>
           </select>
           <div className="flex flex-row items-center justify-center mb-2">
